@@ -1,0 +1,186 @@
+fileFormatVersion: 2
+guid: 8e046cd34b5b7b84fa2abb24dfcf76dc
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Abdomen
+    100002: Abdomen2
+    100004: Abdomen3
+    100006: Armature
+    100008: Body
+    100010: BottomLeg1.L
+    100012: BottomLeg1.R
+    100014: BottomLeg2.L
+    100016: BottomLeg2.R
+    100018: BottomLeg3.L
+    100020: BottomLeg3.L_end
+    100022: BottomLeg3.R
+    100024: BottomLeg3.R_end
+    100026: Head
+    100028: Head_end
+    100030: MidLeg1.L
+    100032: MidLeg1.R
+    100034: MidLeg2.L
+    100036: MidLeg2.R
+    100038: MidLeg3.L
+    100040: MidLeg3.L_end
+    100042: MidLeg3.R
+    100044: MidLeg3.R_end
+    100046: Neck
+    100048: Root
+    100050: Sting
+    100052: Sting_end
+    100054: Thorax
+    100056: TopLeg1.L
+    100058: TopLeg1.R
+    100060: TopLeg2.L
+    100062: TopLeg2.R
+    100064: TopLeg3.L
+    100066: TopLeg3.L_end
+    100068: TopLeg3.R
+    100070: TopLeg3.R_end
+    100072: //RootNode
+    100074: Wasp
+    100076: Wing.L
+    100078: Wing.L_end
+    100080: Wing.R
+    100082: Wing.R_end
+    400000: Abdomen
+    400002: Abdomen2
+    400004: Abdomen3
+    400006: Armature
+    400008: Body
+    400010: BottomLeg1.L
+    400012: BottomLeg1.R
+    400014: BottomLeg2.L
+    400016: BottomLeg2.R
+    400018: BottomLeg3.L
+    400020: BottomLeg3.L_end
+    400022: BottomLeg3.R
+    400024: BottomLeg3.R_end
+    400026: Head
+    400028: Head_end
+    400030: MidLeg1.L
+    400032: MidLeg1.R
+    400034: MidLeg2.L
+    400036: MidLeg2.R
+    400038: MidLeg3.L
+    400040: MidLeg3.L_end
+    400042: MidLeg3.R
+    400044: MidLeg3.R_end
+    400046: Neck
+    400048: Root
+    400050: Sting
+    400052: Sting_end
+    400054: Thorax
+    400056: TopLeg1.L
+    400058: TopLeg1.R
+    400060: TopLeg2.L
+    400062: TopLeg2.R
+    400064: TopLeg3.L
+    400066: TopLeg3.L_end
+    400068: TopLeg3.R
+    400070: TopLeg3.R_end
+    400072: Wasp
+    400074: //RootNode
+    400076: Wing.L
+    400078: Wing.L_end
+    400080: Wing.R
+    400082: Wing.R_end
+    2100000: Black
+    2100002: Orange
+    2100004: Yellow
+    2100006: LightBlue
+    4300000: Wasp
+    7400000: Armature|Wasp_Attack
+    7400002: Armature|Wasp_Death
+    7400004: Armature|Wasp_Flying
+    9500000: //RootNode
+    13700000: Wasp
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
