@@ -32,8 +32,8 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="Characters" t="Include">
-            <e p="CameraLogic" t="Include">
-              <e p="CameraFollow.cs" t="Include" />
+            <e p="Animations" t="Include">
+              <e p="PlayerAnimatorController.cs" t="Include" />
             </e>
             <e p="Controllers" t="Include">
               <e p="ManualController.cs" t="Include" />

@@ -1,14 +1,16 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using Characters.Animations;
 
 namespace Characters.Controllers
 {
     public class ManualController : MonoBehaviour
     {
-        [SerializeField] private float characterMovementSpeed = 5f;
+        [SerializeField] private float characterMovementSpeed = 4f;
         [SerializeField] private float characterRotationSpeed = 0.1f;
 
         private CharacterController _directionalController = null;
+        private PlayerAnimatorController _animatorController;
+        
         private Transform _mainCamera = null;
         private Vector3 _moveDirection = Vector3.zero;
 
@@ -18,9 +20,12 @@ namespace Characters.Controllers
 
         // Initialization should be made via Unity editor. Should be initialized from UI Canvas Joystick instance
         public FixedJoystick directionalJoystick;
+        private static readonly int MovementSpeedFactor = Animator.StringToHash("movementSpeedFactor");
 
         private void Start() {
             _directionalController = GetComponent<CharacterController>();
+            _animatorController = new PlayerAnimatorController(GetComponent<Animator>());
+            
             if (Camera.main != null) _mainCamera = Camera.main.transform;
         }
 
@@ -41,7 +46,7 @@ namespace Characters.Controllers
                 transform.rotation = Quaternion.Slerp(transform.rotation,
                     Quaternion.LookRotation(_moveDirection), characterRotationSpeed);
             }
-
+            _animatorController.OnMove(_currentSpeed / characterMovementSpeed, 0.01f);
             _directionalController.Move(_moveDirection * (_currentSpeed * Time.deltaTime));
         }
 
