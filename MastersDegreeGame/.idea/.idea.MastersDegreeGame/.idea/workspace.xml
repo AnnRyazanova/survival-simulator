@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ca0e637-be39-485c-a3bb-ecdd99b2934a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/StateCache/Hierarchy/d5dfc3-mainStage.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/StateCache/Hierarchy/d5dfc3-mainStage.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/StateCache/SceneView/65ebf0-mainStage.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/StateCache/SceneView/65ebf0-mainStage.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/assetDatabase3" beforeDir="false" afterPath="$PROJECT_DIR$/Library/assetDatabase3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,8 +32,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Characters/CameraLogic/CameraFollow.cs" />
         <option value="$PROJECT_DIR$/Assets/Joystick Pack/Examples/JoystickPlayerExample.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Animations/PlayerAnimatorController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CameraLogic/CameraFollow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualController.cs" />
       </list>
     </option>
   </component>
@@ -82,7 +81,7 @@
       <updated>1581781939508</updated>
       <workItem from="1581781950358" duration="674000" />
       <workItem from="1583266566885" duration="3362000" />
-      <workItem from="1583313306165" duration="11192000" />
+      <workItem from="1583313306165" duration="12685000" />
     </task>
     <servers />
   </component>
@@ -96,6 +95,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="461" y="167" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1583317654577" />
+    <state x="734" y="139" key="VCS.ChangeListViewerDialog" timestamp="1583326592093">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="734" y="139" key="VCS.ChangeListViewerDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1583326592093" />
     <state x="616" y="243" key="run.anything.popup" timestamp="1583266701933">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
