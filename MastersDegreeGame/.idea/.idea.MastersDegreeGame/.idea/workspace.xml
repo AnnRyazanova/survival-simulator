@@ -4,10 +4,6 @@
     <list default="true" id="8ca0e637-be39-485c-a3bb-ecdd99b2934a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/DogKnight/Animator/MovementControllerAnimator.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/DogKnight/Animator/MovementControllerAnimator.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MovementTest/MovementTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MovementTest/MovementTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/StateCache/Hierarchy/d5dfc3-mainStage.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/StateCache/Hierarchy/d5dfc3-mainStage.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/StateCache/SceneView/65ebf0-mainStage.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/StateCache/SceneView/65ebf0-mainStage.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/assetDatabase3" beforeDir="false" afterPath="$PROJECT_DIR$/Library/assetDatabase3" afterDir="false" />
@@ -27,6 +23,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Joystick Pack/Examples/JoystickSetterExample.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/Animations/PlayerAnimatorController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Joystick Pack/Examples/JoystickPlayerExample.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraLogic/CameraFollow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Joystick Pack/Scripts/Joysticks/FixedJoystick.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -37,6 +34,7 @@
         <option value="$PROJECT_DIR$/Assets/Joystick Pack/Examples/JoystickPlayerExample.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Animations/PlayerAnimatorController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/CameraLogic/CameraFollow.cs" />
       </list>
     </option>
   </component>
@@ -84,7 +82,7 @@
       <updated>1581781939508</updated>
       <workItem from="1581781950358" duration="674000" />
       <workItem from="1583266566885" duration="3362000" />
-      <workItem from="1583313306165" duration="9907000" />
+      <workItem from="1583313306165" duration="11192000" />
     </task>
     <servers />
   </component>
