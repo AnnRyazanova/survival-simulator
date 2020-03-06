@@ -16,20 +16,18 @@ namespace Characters.Controllers
         // !!! Initialization should be made via Unity editor.
         // Should be initialized from UI Canvas Joystick instance
         public FixedJoystick directionalJoystick;
-
+        
+        private Vector2 _inputDirections = Vector2.zero;
+        
         private void Start() {
-            _movementController =
-                new ManualMovementController(GetComponent<CharacterController>(), directionalJoystick);
+            _movementController = new ManualMovementController(GetComponent<CharacterController>());
             _animatorController = new PlayerAnimatorController(GetComponent<Animator>());
         }
 
         private void Update() {
-            _movementController.CalculateMovementParameters(characterMovementSpeed);
+            _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
+            _movementController.Move(transform, characterRotationSpeed, characterMovementSpeed, _inputDirections);
             _animatorController.OnMove(_movementController.CurrentSpeed / characterMovementSpeed, 0.01f);
-        }
-
-        private void FixedUpdate() {
-            _movementController.Move(transform, characterRotationSpeed);
         }
     }
 }

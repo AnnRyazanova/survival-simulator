@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ca0e637-be39-485c-a3bb-ecdd99b2934a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/PlayerMainScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/DogKnight/Animator/PlayerAnimatorController.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player/DogKnight/Animator/PlayerAnimatorController.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MovementTest/MovementTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MovementTest/MovementTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/PlayerMainScript.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/CurrentLayout.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/Library/CurrentLayout.dwlt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/LastSceneManagerSetup.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Library/LastSceneManagerSetup.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/StateCache/Hierarchy/d5dfc3-mainStage.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/StateCache/Hierarchy/d5dfc3-mainStage.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/StateCache/SceneView/65ebf0-mainStage.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/StateCache/SceneView/65ebf0-mainStage.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/Animations/PlayerAnimatorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/Animations/PlayerAnimatorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualMovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualMovementController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/PlayerMainScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/PlayerMainScript.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Library/assetDatabase3" beforeDir="false" afterPath="$PROJECT_DIR$/Library/assetDatabase3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Library/expandedItems" beforeDir="false" afterPath="$PROJECT_DIR$/Library/expandedItems" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-Editor.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-Editor.csprojAssemblyReference.cache" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,10 +34,10 @@
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Characters/CameraLogic/CameraFollow.cs" />
         <option value="$PROJECT_DIR$/Assets/Joystick Pack/Examples/JoystickPlayerExample.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Animations/PlayerAnimatorController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CameraLogic/CameraFollow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualMovementCotroller.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Animations/PlayerAnimatorController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualMovementController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/PlayerMainScript.cs" />
       </list>
@@ -94,7 +87,7 @@
       <updated>1581781939508</updated>
       <workItem from="1581781950358" duration="674000" />
       <workItem from="1583266566885" duration="3362000" />
-      <workItem from="1583313306165" duration="15382000" />
+      <workItem from="1583313306165" duration="16494000" />
     </task>
     <servers />
   </component>

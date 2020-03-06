@@ -5,7 +5,6 @@ namespace Characters.Controllers
     public class ManualMovementController
     {
         private readonly CharacterController _directionalController;
-        private readonly FixedJoystick _directionalJoystick;
         private readonly Transform _mainCamera;
 
         private const float Gravity = 9.8f;
@@ -16,31 +15,27 @@ namespace Characters.Controllers
 
         public float CurrentSpeed { get; private set; }
 
-        public ManualMovementController(CharacterController directionalController, FixedJoystick directionalJoystick) {
+        public ManualMovementController(CharacterController directionalController) {
             _directionalController = directionalController;
-            _directionalJoystick = directionalJoystick;
             if (Camera.main != null) _mainCamera = Camera.main.transform;
         }
 
-        public void CalculateMovementParameters(float characterMovementSpeed) {
-            // Directional input components
-            var horizontalInput = _directionalJoystick.Horizontal;
-            var verticalInput = _directionalJoystick.Vertical;
-            var dirMagnitude = Mathf.Sqrt(horizontalInput * horizontalInput + verticalInput * verticalInput);
-
+        private void CalculateMovementParameters(float characterMovementSpeed, Vector2 inputDirection) {
             // Calculate character target speed
-            var targetSpeed = characterMovementSpeed * dirMagnitude;
+            var targetSpeed = characterMovementSpeed * inputDirection.magnitude;
             // Gradually change speed from current towards desired (target speed)
             CurrentSpeed = Mathf.SmoothDamp(CurrentSpeed, targetSpeed,
                 ref _smoothingVelocity, SmoothingTime);
 
             // Calculate moving direction
-            _moveDirection = (_mainCamera.forward * verticalInput + _mainCamera.right * horizontalInput).normalized;
+            _moveDirection = (_mainCamera.forward * inputDirection.y + _mainCamera.right * inputDirection.x).normalized;
             // Set Y coordinate to zero to prevent character from tilting along that axis
             _moveDirection.y = 0;
         }
 
-        public void Move(Transform transform, float characterRotationSpeed) {
+        public void Move(Transform transform, float characterRotationSpeed, float characterMovementSpeed,
+            Vector2 inputDirection) {
+            CalculateMovementParameters(characterMovementSpeed, inputDirection);
             // Apply gravity if the character is not on the ground 
             if (!_directionalController.isGrounded) {
                 _directionalController.Move(new Vector3(0, -Gravity, 0) * Time.deltaTime);
