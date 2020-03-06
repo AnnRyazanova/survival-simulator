@@ -39,7 +39,8 @@
               <e p="PlayerAnimatorController.cs" t="Include" />
             </e>
             <e p="Controllers" t="Include">
-              <e p="ManualController.cs" t="Include" />
+              <e p="ManualMovementController.cs" t="Include" />
+              <e p="PlayerMainScript.cs" t="Include" />
             </e>
           </e>
           <e p="InitController.cs" t="Include" />
