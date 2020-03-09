@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ca0e637-be39-485c-a3bb-ecdd99b2934a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-Editor.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp-Editor.csprojAssemblyReference.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Assembly-CSharp.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MastersDegreeGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/Animations/PlayerAnimatorController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/Animations/PlayerAnimatorController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualMovementController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualMovementController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/PlayerMainScript.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/PlayerMainScript.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/StateCache/Hierarchy/d5dfc3-mainStage.json" beforeDir="false" afterPath="$PROJECT_DIR$/Library/StateCache/Hierarchy/d5dfc3-mainStage.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Library/assetDatabase3" beforeDir="false" afterPath="$PROJECT_DIR$/Library/assetDatabase3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,15 +21,17 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Windows/BaseWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/Animations/CharacterAnimationController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/StateCache/SceneView/65ebf0-mainStage.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Joystick Pack/Scripts/Joysticks/VariableJoystick.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Joystick Pack/Examples/JoystickSetterExample.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Joystick Pack/Scripts/Joysticks/FixedJoystick.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/GameCharacter.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualMovementController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CameraLogic/CameraFollow.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/PlayerMainScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Joystick Pack/Examples/JoystickPlayerExample.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/Animations/PlayerAnimatorController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/MovementController.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -33,9 +41,12 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/CameraLogic/CameraFollow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualMovementCotroller.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Animations/PlayerAnimatorController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/ManualMovementController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Animations/CharacterAnimationController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Animations/PlayerAnimatorController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/MovementController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Characters/Controllers/PlayerMainScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Characters/GameCharacter.cs" />
       </list>
     </option>
   </component>

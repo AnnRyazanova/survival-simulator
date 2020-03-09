@@ -30,18 +30,30 @@
             </e>
           </e>
         </e>
+        <e p="Prefabs" t="Include">
+          <e p="Objects" t="Include">
+            <e p="Weapons" t="Include">
+              <e p="Stone Age Weapons Pack" t="Include">
+                <e p="Readme.txt" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
         <e p="Scripts" t="Include">
           <e p="CameraLogic" t="Include">
             <e p="CameraFollow.cs" t="Include" />
           </e>
           <e p="Characters" t="Include">
             <e p="Animations" t="Include">
+              <e p="CharacterAnimationController.cs" t="Include" />
               <e p="PlayerAnimatorController.cs" t="Include" />
             </e>
             <e p="Controllers" t="Include">
               <e p="ManualMovementController.cs" t="Include" />
-              <e p="PlayerMainScript.cs" t="Include" />
+              <e p="MovementController.cs" t="Include" />
             </e>
+            <e p="GameCharacter.cs" t="Include" />
+            <e p="PlayerMainScript.cs" t="Include" />
           </e>
           <e p="InitController.cs" t="Include" />
           <e p="Windows" t="Include">
