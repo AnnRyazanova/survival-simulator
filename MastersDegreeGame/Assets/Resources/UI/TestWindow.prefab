@@ -319,7 +319,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: KNOPKA
+          m_StringArgument: "\u041A\u041D\u041E\u041F\u041A\u0410"
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!222 &2106097634036563014
@@ -520,8 +520,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 16411760510161278}
-        m_MethodName: OnButtonClick
-        m_Mode: 5
+        m_MethodName: Hide
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

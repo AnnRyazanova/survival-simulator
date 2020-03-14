@@ -30,7 +30,6 @@ public class BaseWindow : MonoBehaviour
             return null;
         }
         go = AddChild(GuiController.Instance.Canvas.gameObject, prefab);
-        //go.name = prefabName; 
         
         return go;
     }

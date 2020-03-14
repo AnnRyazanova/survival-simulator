@@ -20,6 +20,6 @@ public class TestWindow : BaseWindow
 
     public void OnButtonClick(string name)
     {
-        Debug.Log($"OnButtonClick >> {name}");
+        Debug.Log($"[TestWindow::OnButtonClick] You've clicked on {name}");
     }
 }
