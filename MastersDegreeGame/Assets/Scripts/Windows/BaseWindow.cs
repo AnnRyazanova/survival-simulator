@@ -7,18 +7,28 @@ public class BaseWindow : MonoBehaviour
 {
     public Action OnWindowShow = delegate { };
     public Action OnWindowHide = delegate { };
-
+    
     public virtual void Show()
     {
         OnWindowShow();
-        Time.timeScale = 0;
+        OnShow();
     }
     
     public virtual void Hide()
     {
         OnWindowHide();
-        Time.timeScale = 1;
+        OnHide();
         Destroy(gameObject);
+    }
+
+    protected virtual void OnShow()
+    {
+        Time.timeScale = 0;
+    }
+
+    protected virtual void OnHide()
+    {
+        Time.timeScale = 1;
     }
     
     public static BaseWindow LoadWindow(string prefabName)

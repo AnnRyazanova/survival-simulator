@@ -16,6 +16,9 @@ public class MainWindow : BaseWindow
         TestController.Instance.ShowWindow();
     }
 
+    protected override void OnShow() { }
+    protected override void OnHide() { }
+    
     private void Init()
     {
         // initialize window here
