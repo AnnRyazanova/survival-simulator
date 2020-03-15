@@ -31,6 +31,11 @@ public sealed class MainWindowController
         window.Hide();
     }
 
+    public FixedJoystick GetJoystick()
+    {
+        return window.Joystick;
+    }
+
     private void OnWindowHide()
     {
         window.OnWindowHide -= OnWindowHide;

@@ -22,6 +22,9 @@ public class InitController : MonoBehaviour
     {
         GuiController.Instance.SetCameraClearFlags();
         MainWindowController.Instance.ShowWindow();
-        TestController.Instance.ShowWindow();
+        
+        // TO DO: главное меню, загрузка
+
+        SceneLoaderController.Instance.LoadStartScene();
     }
 }

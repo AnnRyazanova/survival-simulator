@@ -22,12 +22,18 @@ namespace Characters.Controllers
         private void Start() {
             _movementController = new ManualMovementController(GetComponent<CharacterController>());
             _animatorController = new PlayerAnimatorController(GetComponent<Animator>());
+            InitJoystick();
         }
 
         private void Update() {
             _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
             _movementController.Move(transform, characterRotationSpeed, characterMovementSpeed, _inputDirections);
             _animatorController.OnMove(_movementController.CurrentSpeed / characterMovementSpeed, 0.01f);
+        }
+
+        private void InitJoystick()
+        {
+            directionalJoystick = MainWindowController.Instance.GetJoystick();
         }
     }
 }
