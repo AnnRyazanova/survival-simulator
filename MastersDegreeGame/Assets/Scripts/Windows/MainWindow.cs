@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestWindow : BaseWindow
+public class MainWindow : BaseWindow
 {
     public override void Show()
     {
@@ -13,10 +13,5 @@ public class TestWindow : BaseWindow
     private void Init()
     {
         // initialize window here
-    }
-
-    public void OnButtonClick(string name)
-    {
-        Debug.Log($"[TestWindow::OnButtonClick] You've clicked on {name}");
     }
 }

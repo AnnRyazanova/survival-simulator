@@ -21,6 +21,7 @@ public class InitController : MonoBehaviour
     private void Init()
     {
         GuiController.Instance.SetCameraClearFlags();
+        MainWindowController.Instance.ShowWindow();
         TestController.Instance.ShowWindow();
     }
 }

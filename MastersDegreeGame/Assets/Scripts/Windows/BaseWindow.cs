@@ -1,16 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseWindow : MonoBehaviour
 {
-    public virtual void Show() { }
+    public Action OnWindowShow = delegate { };
+    public Action OnWindowHide = delegate { };
+
+    public virtual void Show()
+    {
+        OnWindowShow();
+    }
     
     public virtual void Hide()
     {
+        OnWindowHide();
         Destroy(gameObject);
     }
-
+    
     public static BaseWindow LoadWindow(string prefabName)
     {
         var go = LoadPrefab(prefabName);
@@ -29,23 +37,9 @@ public class BaseWindow : MonoBehaviour
         if (prefab == null) {
             return null;
         }
-        go = AddChild(GuiController.Instance.Canvas.gameObject, prefab);
+        
+        go = GameObject.Instantiate(prefab, GuiController.Instance.Canvas.transform) as GameObject;
         
         return go;
-    }
-
-    private static GameObject AddChild(GameObject parent, GameObject child)
-    {
-        GameObject go = GameObject.Instantiate(child) as GameObject;
-        if (go != null && parent != null) {
-            Transform t = go.transform;
-            t.SetParent(parent.transform);
-            t.localPosition = Vector3.zero;
-            t.localRotation = Quaternion.identity;
-            t.localScale = Vector3.one;
-        }
-        return go;
-    }
-    
-    
+    }   
 }
