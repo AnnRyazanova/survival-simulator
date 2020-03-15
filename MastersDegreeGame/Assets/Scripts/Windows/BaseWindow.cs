@@ -11,11 +11,13 @@ public class BaseWindow : MonoBehaviour
     public virtual void Show()
     {
         OnWindowShow();
+        Time.timeScale = 0;
     }
     
     public virtual void Hide()
     {
         OnWindowHide();
+        Time.timeScale = 1;
         Destroy(gameObject);
     }
     
