@@ -15,6 +15,7 @@ MastersDegreeGame/Temp/
 MastersDegreeGame/Library
 MastersDegreeGame/Library/
 MastersDegreeGame/.idea/*
+MastersDegreeGame/Assets/Plugins/Editor/JetBrains/*
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
