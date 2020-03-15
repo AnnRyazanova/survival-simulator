@@ -2,18 +2,15 @@
 
 namespace Characters.Animations
 {
-    public class PlayerAnimatorController
+    public class PlayerAnimatorController: CharacterAnimationController
     {
-        private readonly Animator _animatorController;
-
-        public PlayerAnimatorController(Animator animatorController) => _animatorController = animatorController;
+        public PlayerAnimatorController(Animator animatorController) : base(animatorController){}
         
         private static readonly int MovementSpeedFactor = Animator.StringToHash("movementSpeedFactor");
         
-        public void OnMove(float speedFactor, float smoothingFactor) {
-            _animatorController.SetFloat(MovementSpeedFactor, speedFactor, 
+        public override void OnMove(float speedFactor, float smoothingFactor) {
+            AnimatorController.SetFloat(MovementSpeedFactor, speedFactor, 
                 smoothingFactor, Time.deltaTime);
-            
         }
     }
 }

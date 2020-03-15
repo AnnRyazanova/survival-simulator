@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\User_HP\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\User_HP\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_MastersDegreeGame.937777483.00" t="ExcludeRecursive" />
+    <e p="D:\graduate work\survival-simulator\MastersDegreeGame" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Joystick Pack" t="Include">
+          <e p="Examples" t="Include">
+            <e p="JoystickPlayerExample.cs" t="Include" />
+            <e p="JoystickSetterExample.cs" t="Include" />
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="Base" t="Include">
+              <e p="Joystick.cs" t="Include" />
+            </e>
+            <e p="Editor" t="Include">
+              <e p="DynamicJoystickEditor.cs" t="Include" />
+              <e p="FloatingJoystickEditor.cs" t="Include" />
+              <e p="JoystickEditor.cs" t="Include" />
+              <e p="VariableJoystickEditor.cs" t="Include" />
+            </e>
+            <e p="Joysticks" t="Include">
+              <e p="DynamicJoystick.cs" t="Include" />
+              <e p="FixedJoystick.cs" t="Include" />
+              <e p="FloatingJoystick.cs" t="Include" />
+              <e p="VariableJoystick.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Prefabs" t="Include">
+          <e p="Objects" t="Include">
+            <e p="Weapons" t="Include">
+              <e p="Stone Age Weapons Pack" t="Include">
+                <e p="Readme.txt" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="CameraLogic" t="Include">
+            <e p="CameraFollow.cs" t="Include" />
+          </e>
+          <e p="Characters" t="Include">
+            <e p="Animations" t="Include">
+              <e p="CharacterAnimationController.cs" t="Include" />
+              <e p="PlayerAnimatorController.cs" t="Include" />
+            </e>
+            <e p="Controllers" t="Include">
+              <e p="ManualMovementController.cs" t="Include" />
+              <e p="MovementController.cs" t="Include" />
+            </e>
+            <e p="GameCharacter.cs" t="Include" />
+            <e p="PlayerMainScript.cs" t="Include" />
+          </e>
+          <e p="InitController.cs" t="Include" />
+          <e p="Windows" t="Include">
+            <e p="BaseWindow.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="MastersDegreeGame.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>
