@@ -10,13 +10,11 @@
 /[Bb]undles/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
-Library
-/Library
-Library/
-MastersDegreeGame/Library
 MastersDegreeGame/Temp
-MastersDegreeGame/Library/
 MastersDegreeGame/Temp/
+MastersDegreeGame/Library
+MastersDegreeGame/Library/
+MastersDegreeGame/.idea/*
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -58,17 +56,8 @@ ExportedObj/
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
-Assets/ConsoleE/*
-Assets/ConsoleE.meta
-Assets/ConsoleE/Editor.meta
-Assets/ConsoleE/Editor/ConsoleE.dll.meta
-Assets/ConsoleE/Editor/ConsoleE_TabSettings
-Assets/ConsoleE/Editor/ConsoleE_TabSettings.meta
-Assets/ConsoleE/Editor/Extensions.zip
-Assets/ConsoleE/Editor/Extensions.zip.meta
-Assets/ConsoleE/Editor/readme.html
-Assets/ConsoleE/Editor/readme.html.meta
-Assets/Enemy/FX/Model/Materials.meta
+MastersDegreeGame/Assets/ConsoleE/*
+MastersDegreeGame/Assets/ConsoleE.meta
 
 # Builds
 *.apk
