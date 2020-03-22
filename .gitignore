@@ -2,23 +2,14 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
+MastersDegreeGame/[Ll]ibrary/
+MastersDegreeGame/[Tt]emp/
+MastersDegreeGame/[Oo]bj/
 #/[Bb]uild/
-/[Bb]uilds/
-/[Bb]undles/
-/[Ll]ogs/
-/[Mm]emoryCaptures/
-MastersDegreeGame/Temp
-MastersDegreeGame/Temp/
-MastersDegreeGame/Library
-MastersDegreeGame/Library/
-MastersDegreeGame/.idea/*
-MastersDegreeGame/Assets/Plugins/Editor/JetBrains
-MastersDegreeGame/Assets/Plugins/Editor/JetBrains/*
-MastersDegreeGame/obj/Debug
-MastersDegreeGame/obj/Debug/*
+MastersDegreeGame/[Bb]uilds/
+MastersDegreeGame/[Bb]undles/
+MastersDegreeGame/[Ll]ogs/
+MastersDegreeGame/[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
@@ -66,6 +57,8 @@ MastersDegreeGame/Assets/ConsoleE.meta
 
 # -------------- JetBrains --------------
 .idea
-MastersDegreeGame/Assets/Plugins/Editor/JetBrains
+MastersDegreeGame/Assets/Plugins/Editor/JetBrains/*
 MastersDegreeGame/Assets/Plugins/Editor/JetBrains.meta
+MastersDegreeGame/.idea.meta
+MastersDegreeGame/.idea/*
 # --------------------------------------
