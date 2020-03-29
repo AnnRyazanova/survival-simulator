@@ -1,16 +1,15 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Inventory.Items
+namespace InventoryObjects.Items
 {
-    // Weapon items can be used as tools
-    [CreateAssetMenu(fileName = "Create New Weapon", menuName = "Inventory/Items/Weapon")]
-    public class WeaponItem : ItemObject
+    [CreateAssetMenu(fileName = "Create New Material", menuName = "Inventory/Items/Material")]
+    public class MaterialItem : ItemObject
     {
-        public float attackPower;
-        
         private void Awake() {
-            ItemType = ItemObjectType.Weapon;
+            ItemType = ItemObjectType.Material;
+            // Materials don't have durability decrease, they cannot be broken or stale
+            durability = 100f;
+            durabilityDecreaseRate = 0f;
         }
 
         public override void OnUse(GameObject target) {

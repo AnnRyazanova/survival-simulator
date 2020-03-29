@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Inventory.Items
+namespace InventoryObjects.Items
 {
     public enum ItemObjectType
     {
@@ -14,6 +12,10 @@ namespace Inventory.Items
     public abstract class ItemObject : ScriptableObject
     {
         public ItemObjectType ItemType { get; protected set; }
+        public Sprite displayIcon;
+        
+        [TextArea(20, 50)]
+        public string description;
         
         public int id;
         public float durability;

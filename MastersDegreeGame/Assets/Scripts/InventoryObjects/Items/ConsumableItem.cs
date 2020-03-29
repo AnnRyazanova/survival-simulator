@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Inventory.Items
+namespace InventoryObjects.Items
 {
     [CreateAssetMenu(fileName = "Create New Consumable", menuName = "Inventory/Items/Consumable")]
     public class ConsumableItem : ItemObject
