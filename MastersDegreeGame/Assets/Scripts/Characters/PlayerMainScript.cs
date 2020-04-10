@@ -7,10 +7,14 @@ namespace Characters.Controllers
     public class PlayerMainScript : GameCharacter
     {
         public FixedJoystick directionalJoystick;
+        public PlayerObject playerObject;
+        public static PlayerMainScript MyPlayer { get; private set; }
 
         private Vector2 _inputDirections = Vector2.zero;
 
-        private void Start() {
+        private void Start()
+        {
+            MyPlayer = this;
             MovementController = new ManualMovementController(GetComponent<CharacterController>());
             AnimatorController = new PlayerAnimatorController(GetComponent<Animator>());
             damage = DamageType.Medium;

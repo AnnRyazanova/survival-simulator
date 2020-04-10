@@ -4788,6 +4788,7 @@ MonoBehaviour:
   health: 100
   fullness: 100
   directionalJoystick: {fileID: 0}
+  playerObject: {fileID: 7048604421504527946}
 --- !u!143 &1611442293
 CharacterController:
   m_ObjectHideFlags: 0
@@ -6296,3 +6297,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d434f46a4d64624fa9d26a2c65dd6a4, type: 3}
+--- !u!114 &7048604421504527946 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7240433993112141357, guid: 2d434f46a4d64624fa9d26a2c65dd6a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 7048604421504527945}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ab8a706393c4c4d8c30ec460651ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

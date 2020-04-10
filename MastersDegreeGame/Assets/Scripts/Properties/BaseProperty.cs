@@ -21,10 +21,9 @@ public class BaseProperty: MonoBehaviour
         _started = true;
     }
 
-    protected virtual void UpdateProperty()
-    {
-        
-    }
+    protected virtual void UpdateProperty() { }
+    
+    protected virtual void AddPoints(int points) { }
 
     private void Awake()
     {

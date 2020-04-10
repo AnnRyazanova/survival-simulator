@@ -6,10 +6,9 @@ using UnityEngine;
 
 public class Object: MonoBehaviour
 {
-    [HideInInspector]
-    public List<BaseProperty> properties = new List<BaseProperty>();
+    public List<BaseProperty> Properties { get; private set; } = new List<BaseProperty>();
 
-    private void Start()
+    protected virtual void Start()
     {
         GetProperties();
     }
@@ -20,7 +19,7 @@ public class Object: MonoBehaviour
          foreach (var prop in props) {
              if (prop.IsDeferred == false) {
                  prop.StartProperty();
-                 properties.Add(prop);
+                 Properties.Add(prop);
              }
          }
     }
