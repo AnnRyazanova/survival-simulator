@@ -6,7 +6,7 @@ using UnityEngine;
 public class NeedProperty : BaseProperty
 {
     /// <summary>
-    /// Максимальное кол-во здоровья
+    /// Максимальное кол-во поинтов свойства
     /// </summary>
     [SerializeField] protected int _totalPoints;
 
@@ -21,12 +21,12 @@ public class NeedProperty : BaseProperty
     [SerializeField] protected int _recoveryPoints;
 
     /// <summary>
-    /// Текущий уровень здоровья
+    /// Текущий уровень поинтов свойства
     /// </summary>
     protected int _currentPoints;
 
     /// <summary>
-    /// Последнее время обновления здоровья
+    /// Последнее время обновления поинтов свойства
     /// </summary>
     protected DateTime _lastUpdateTime;
 
