@@ -24,6 +24,7 @@ public class MainWindow : BaseWindow
     public void OnInventoryButtonClick()
     {
         // Open InventoryWindow here
+        InventoryController.Instance.ShowWindow();
         Debug.Log($"[MainWindow::OnInventoryButtonClick] You've clicked on InventoryButton");
     }
 
