@@ -21,14 +21,14 @@ public class MobHealthProperty : BaseProperty
     
     public Action OnChange = () => { };
 
-    public override void StartProperty()
+    public override void StartProperty(Object parent)
     {
-        base.StartProperty();
+        base.StartProperty(parent);
         
         _currentPoints = _totalPoints;
     }
 
-    protected override void AddPoints(int points)
+    public override void AddPoints(int points)
     {
         base.AddPoints(points);
         _currentPoints = Math.Min(_totalPoints, _currentPoints + points);

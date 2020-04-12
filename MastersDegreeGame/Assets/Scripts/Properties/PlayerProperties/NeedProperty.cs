@@ -38,16 +38,16 @@ public class NeedProperty : BaseProperty
     
     public Action OnChange = () => { };
 
-    public override void StartProperty()
+    public override void StartProperty(Object parent)
     {
-        base.StartProperty();
+        base.StartProperty(parent);
         
         // TO DO: Если будет сохранение свойств, нужно будет изменить это
         _currentPoints = _totalPoints;
         _lastUpdateTime = DateTime.Now;
     }
 
-    protected override void AddPoints(int points)
+    public override void AddPoints(int points)
     {
         base.AddPoints(points);
         _currentPoints = Math.Min(_totalPoints, _currentPoints + points);

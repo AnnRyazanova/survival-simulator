@@ -18,7 +18,7 @@ public class Object: MonoBehaviour
          var props = GetComponents<BaseProperty>();
          foreach (var prop in props) {
              if (prop.IsDeferred == false) {
-                 prop.StartProperty();
+                 prop.StartProperty(this);
                  Properties.Add(prop);
              }
          }

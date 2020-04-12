@@ -63,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isDeferred: 0
   _totalPoints: 100
-  _recoveryTime: 10
+  _recoveryTime: 15
   _recoveryPoints: 5
 --- !u!114 &7048604420730459272
 MonoBehaviour:
@@ -79,8 +79,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isDeferred: 0
   _totalPoints: 100
-  _recoveryTime: 5
-  _recoveryPoints: 10
+  _recoveryTime: 15
+  _recoveryPoints: 1
 --- !u!114 &7048604420730459273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,9 +96,11 @@ MonoBehaviour:
   _isDeferred: 0
   _totalPoints: 100
   _recoveryTime: 10
-  _recoveryPoints: 2
+  _recoveryPoints: 10
   _decreaseTime: 15
   _decreasePoints: -3
+  _criticalLowBorder: 40
+  _criticalLowHpPoints: -5
 --- !u!114 &7240433993112141357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,3 +131,5 @@ MonoBehaviour:
   _recoveryPoints: 0
   _decreaseTime: 10
   _decreasePoints: -2
+  _criticalLowBorder: 30
+  _criticalLowHpPoints: -10

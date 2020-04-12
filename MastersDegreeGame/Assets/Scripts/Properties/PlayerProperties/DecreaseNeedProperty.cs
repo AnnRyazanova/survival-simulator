@@ -12,6 +12,16 @@ public class DecreaseNeedProperty : NeedProperty
     /// Единица, на которую уменьшается показатель в единицу времени
     /// </summary>
     [SerializeField] protected int _decreasePoints;
+
+    /// <summary>
+    /// Единицы, ниже которых у персонажа начинает отниматься здоровье
+    /// </summary>
+    [SerializeField] protected int _criticalLowBorder;
+    
+    /// <summary>
+    /// Единицы, здоровья, которые отнимаются при низких показателях
+    /// </summary>
+    [SerializeField] protected int _criticalLowHpPoints;
     
     protected override void UpdateProperty()
     {
@@ -19,6 +29,12 @@ public class DecreaseNeedProperty : NeedProperty
             _lastUpdateTime = DateTime.Now;
             _previousPoints = _currentPoints;
             AddPoints(_decreasePoints);
+
+            if (_currentPoints < _criticalLowBorder) {
+                (parentObject as PlayerObject).Health.AddPoints(_criticalLowHpPoints);
+            }
         }
     }
+    
+    
 }

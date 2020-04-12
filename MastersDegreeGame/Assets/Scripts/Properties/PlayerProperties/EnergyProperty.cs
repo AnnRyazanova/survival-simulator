@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class EnergyProperty : NeedProperty
 {
-    public override void StartProperty()
+    public override void StartProperty(Object parent)
     {
-        base.StartProperty();
+        base.StartProperty(parent);
         Debug.Log("Activate EnergyProperty");
     }
 }
