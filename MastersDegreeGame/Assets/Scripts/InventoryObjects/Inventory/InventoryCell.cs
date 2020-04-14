@@ -7,21 +7,21 @@ namespace InventoryObjects.Inventory
     public class InventoryCell
     {
         public ItemObject item;
-        public int Amount { get; private set; }
+        public int amount;
 
         public InventoryCell(ItemObject item, int amount) {
             this.item = item;
-            this.Amount = amount;
+            this.amount = amount;
         }
 
-        public void AddAmount(int value) => Amount += value;
+        public void AddAmount(int value) => amount += value;
 
         public void ReduceAmount(int value) {
-            if (Amount >= value) {
-                Amount -= value;
+            if (amount >= value) {
+                amount -= value;
             }
             else {
-                Amount = 0;
+                amount = 0;
             }
         }
     }

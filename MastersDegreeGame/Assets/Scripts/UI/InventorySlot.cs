@@ -16,7 +16,7 @@ public sealed class InventorySlot : MonoBehaviour
             _icon.gameObject.SetActive(true);
         }
     }
-
+    
     private void Awake()
     {
         _icon.gameObject.SetActive(false);

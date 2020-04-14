@@ -7,6 +7,8 @@ namespace InventoryObjects.Items
     public class WeaponItem : ItemObject
     {
         public float attackPower;
+
+        public GameObject weaponPrefab;
         
         private void Awake() {
             ItemType = ItemObjectType.Weapon;

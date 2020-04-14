@@ -1,6 +1,9 @@
 ﻿using System;
 using UnityEngine;
 using Characters.Animations;
+using InventoryObjects.Inventory;
+using InventoryObjects.Items;
+using Objects;
 
 namespace Characters.Controllers
 {
@@ -10,7 +13,24 @@ namespace Characters.Controllers
         public PlayerObject playerObject;
         public static PlayerMainScript MyPlayer { get; private set; }
 
+        public Inventory inventory;
+        
         private Vector2 _inputDirections = Vector2.zero;
+
+        private void OnTriggerEnter(Collider other) {
+            Debug.Log("Entered collision");
+            var collidedWith = other.GetComponent<PickableItem>().item;
+            if (collidedWith == null) return;
+            
+            inventory.AddItem(collidedWith);
+            if (collidedWith.ItemType != ItemObjectType.Weapon) {
+                Destroy(other.gameObject);
+            }
+        }
+
+        private void OnApplicationQuit() {
+            inventory.Clear();
+        }
 
         private void Start()
         {
