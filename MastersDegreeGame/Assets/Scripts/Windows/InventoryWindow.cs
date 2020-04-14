@@ -20,8 +20,8 @@ public class InventoryWindow : BaseWindow
 
     public void Display() {
         var itemIndex = 0;
-        foreach (var item in inventory.container) {
-            _inventorySlots[itemIndex].Init(this, item.item.displayIcon);
+        foreach (var inventoryCell in inventory.container) {
+            _inventorySlots[itemIndex].Init(this, inventoryCell.item.displayIcon, inventoryCell.amount);
             itemIndex++;
         }
     }
