@@ -16,20 +16,14 @@ public class BaseProperty: MonoBehaviour
     protected Object parentObject;
     private bool _started = false;
 
-    public virtual void StartProperty()
+    public virtual void StartProperty(Object parent)
     {
+        parentObject = parent;
         _started = true;
     }
-
-    protected virtual void UpdateProperty()
-    {
-        
-    }
-
-    private void Awake()
-    {
-        parentObject = GetComponent<Object>();
-    }
+    
+    public virtual void AddPoints(int points) { }
+    protected virtual void UpdateProperty() { }
 
     private void Update()
     {

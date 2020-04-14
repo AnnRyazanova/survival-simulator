@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7048604420730459382}
-  - component: {fileID: 7048604420730459277}
   - component: {fileID: 7048604420730459274}
   - component: {fileID: 7048604420730459275}
   - component: {fileID: 7048604420730459272}
   - component: {fileID: 7048604420730459273}
+  - component: {fileID: 7240433993112141357}
+  - component: {fileID: 5993714724704773270}
   m_Layer: 0
   m_Name: Needs
   m_TagString: Untagged
@@ -35,19 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7048604420730459277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7048604420730459383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0946558de88d9874690cb7695a894588, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  properties: []
 --- !u!114 &7048604420730459274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,6 +62,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isDeferred: 0
+  _totalPoints: 100
+  _recoveryTime: 15
+  _recoveryPoints: 5
 --- !u!114 &7048604420730459272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +78,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isDeferred: 0
+  _totalPoints: 100
+  _recoveryTime: 15
+  _recoveryPoints: 1
 --- !u!114 &7048604420730459273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,3 +94,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isDeferred: 0
+  _totalPoints: 100
+  _recoveryTime: 10
+  _recoveryPoints: 10
+  _decreaseTime: 15
+  _decreasePoints: -3
+  _criticalLowBorder: 40
+  _criticalLowHpPoints: -5
+--- !u!114 &7240433993112141357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7048604420730459383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17ab8a706393c4c4d8c30ec460651ae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5993714724704773270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7048604420730459383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08268f5457b11c5468442820ea735043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isDeferred: 0
+  _totalPoints: 100
+  _recoveryTime: 0
+  _recoveryPoints: 0
+  _decreaseTime: 10
+  _decreasePoints: -2
+  _criticalLowBorder: 30
+  _criticalLowHpPoints: -10

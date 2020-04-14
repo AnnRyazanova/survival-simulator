@@ -6,11 +6,7 @@ using UnityEngine.UI;
 public class MainWindow : BaseWindow
 {
     public FixedJoystick Joystick;
-
-    [Header("Player indicators")]
-    [SerializeField] private Image _warmIndicator;
-    [SerializeField] private Image _healthIndicator; 
-    [SerializeField] private Image _energyIndicator; 
+    [SerializeField] private PlayerNeedsUiView _playerNeeds;
     
     public override void Show()
     {
@@ -28,6 +24,7 @@ public class MainWindow : BaseWindow
     public void OnInventoryButtonClick()
     {
         // Open InventoryWindow here
+        InventoryController.Instance.ShowWindow();
         Debug.Log($"[MainWindow::OnInventoryButtonClick] You've clicked on InventoryButton");
     }
 
@@ -47,5 +44,6 @@ public class MainWindow : BaseWindow
     private void Init()
     {
         // initialize window here
+        StartCoroutine(_playerNeeds.Start());
     }
 }
