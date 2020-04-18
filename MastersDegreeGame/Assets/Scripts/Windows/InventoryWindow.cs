@@ -2,38 +2,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using InventoryObjects.Inventory;
+using UI;
 using UnityEngine;
 
 public class InventoryWindow : BaseWindow
 {
     [SerializeField] private InventorySlot[] _inventorySlots;
     [SerializeField] private InventorySlot[] _weaponSlots;
-
+    
     public Inventory inventory;
-
+    
     public override void Show()
     {
         base.Show();
         Init();
         Display();
     }
-
+    
     public void Display() {
-        var itemIndex = 0;
-        foreach (var inventoryCell in inventory.container) {
-            _inventorySlots[itemIndex].Init(this, inventoryCell.item.displayIcon, inventoryCell.amount);
-            itemIndex++;
+        for (var i = 0; i < inventory.maxLength; ++i) {
+            _inventorySlots[i].Init(this, inventory.container[i]);
         }
     }
-    
+
     private void Init()
     {
         foreach (var slot in _inventorySlots) {
             slot.Init(this);
+            slot.ThrowOut += SlotOnThrowOut;
+            slot.ThrowOutAll += SlotOnThrowOutAll;
         }
 
         foreach (var slot in _weaponSlots) {
             slot.Init(this);
         }
+    }
+
+    private void SlotOnThrowOut(InventoryCell inventoryCell) {
+        inventory.RemoveItem(inventoryCell.item.id);
+        Display();
+    }
+    
+    private void SlotOnThrowOutAll(InventoryCell inventoryCell) {
+        inventory.RemoveItem(inventoryCell.item.id, inventoryCell.amount);
+        Display();
     }
 }

@@ -7,42 +7,48 @@ namespace InventoryObjects.Inventory
     [CreateAssetMenu(fileName = "Create New InventoryController", menuName = "Inventory/InventoryController")]
     public class Inventory : ScriptableObject
     {
-        [SerializeField] private int maxLength = 9;
+        public int maxLength = 9;
 
         public List<InventoryCell> container = new List<InventoryCell>();
-        
-        
+
         public void AddItem(ItemObject item) {
-            var containedItem = container.Find(cell => cell.item.id == item.id);
-            if (containedItem != null) {
-                containedItem.AddAmount(1);
-            }
-            else {
-                if (container.Count < maxLength) {
-                    container.Add(new InventoryCell(item, 1));
+            var firstFreeCellIdx = -1;
+            for (var i = 0; i < maxLength; ++i) {
+                if (container[i].item != null) {
+                    if (container[i].item.id == item.id) {
+                        container[i].AddAmount(1);
+                        return;
+                    }
+                }
+                else {
+                    firstFreeCellIdx = firstFreeCellIdx == -1 ? i : firstFreeCellIdx;
                 }
             }
+
+            container[firstFreeCellIdx] = new InventoryCell(item, 1);
         }
-        
+
         public void UpdateItems() {
             foreach (var cell in container) {
                 cell.item.OnUpdate();
             }
         }
 
-        public void RemoveItem(int itemId) {
-            var containedItem = container.Find(cell => cell.item.id == itemId);
-            if (containedItem == null) return;
-            var amount = container[itemId].amount;
-            if ( amount > 1) {
-                containedItem.ReduceAmount(1);
+        public void RemoveItem(int itemId, int quantity = 1) {
+            var containedItemIndex = container.FindIndex(cell => cell.item != null && cell.item.id == itemId);
+            if (containedItemIndex == -1) return;
+            var amount = container[containedItemIndex].amount;
+            if (amount > 1 && quantity < amount) {
+                container[containedItemIndex].ReduceAmount(quantity);
+                Debug.Log(container[containedItemIndex].amount);
             }
-            else if (amount == 1) {
-                container.Remove(containedItem);
+            else {
+                container[containedItemIndex] = new InventoryCell(null, 0);
             }
         }
 
+        public InventoryCell GetItem(int id) => container.Find(cell => cell.item != null && cell.item.id == id);
         public void Clear() => container.Clear();
-        public bool HasItem(int itemId) => container.Find(cell => cell.item.id == itemId) != null;
+        public bool HasItem(int itemId) => container.Find(cell => cell != null && cell.item.id == itemId) != null;
     }
 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayIcon: {fileID: 21300000, guid: e85ad1b5a0611144d8bfedfee394074f, type: 3}
   description: 
-  id: 0
+  id: 1
   durability: 0
   durabilityDecreaseRate: 0
   attackPower: 0
