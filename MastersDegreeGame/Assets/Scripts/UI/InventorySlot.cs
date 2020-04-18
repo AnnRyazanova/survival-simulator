@@ -26,6 +26,7 @@ namespace UI
 
         public event Action<InventoryCell> ThrowOut;
         public event Action<InventoryCell> ThrowOutAll;
+        public event Action<InventoryCell> Use;
 
         public void Init(InventoryWindow window, InventoryCell inventoryCell) {
             _window = window;
@@ -37,23 +38,21 @@ namespace UI
             else {
                 _icon.gameObject.SetActive(false);
             }
-
+            popupPanel.SetActive(false);
             _count.SetText(_cell.amount > 1 ? _cell.amount.ToString() : "");
         }
 
-
         public void OnThrowOut() {
             Debug.Log("On throw " + _cell.item.id);
-            popupPanel.SetActive(false);
             ThrowOut?.Invoke(_cell);
         }
 
         public void OnThrowOutAll() {
-            popupPanel.SetActive(false);
             ThrowOutAll?.Invoke(_cell);
         }
 
         public void OnUse() {
+            Use?.Invoke(_cell);
         }
 
         private void Awake() {

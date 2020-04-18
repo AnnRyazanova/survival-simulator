@@ -18,3 +18,4 @@ MonoBehaviour:
   durability: 1
   durabilityDecreaseRate: 0
   healthRegen: 0
+  hungerRegen: 20

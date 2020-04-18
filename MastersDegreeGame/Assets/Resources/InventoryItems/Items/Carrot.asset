@@ -17,4 +17,5 @@ MonoBehaviour:
   id: 2
   durability: 0
   durabilityDecreaseRate: 0
-  healthRegen: 0
+  healthRegen: 2
+  hungerRegen: 15

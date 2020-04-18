@@ -12,7 +12,7 @@ namespace InventoryObjects.Items
             durabilityDecreaseRate = 0f;
         }
 
-        public override void OnUse(GameObject target) {
+        public override void OnUse(Object target) {
             throw new System.NotImplementedException();
         }
 

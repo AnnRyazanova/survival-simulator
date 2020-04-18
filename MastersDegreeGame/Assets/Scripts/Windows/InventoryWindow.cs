@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Characters.Controllers;
 using InventoryObjects.Inventory;
+using InventoryObjects.Items;
 using UI;
 using UnityEngine;
 
@@ -34,6 +36,7 @@ public class InventoryWindow : BaseWindow
             slot.Init(this, new InventoryCell(null, 0));
             slot.ThrowOut += SlotOnThrowOut;
             slot.ThrowOutAll += SlotOnThrowOutAll;
+            slot.Use += SlotOnUse;
         }
 
         foreach (var slot in _weaponSlots) {
@@ -48,6 +51,23 @@ public class InventoryWindow : BaseWindow
     
     private void SlotOnThrowOutAll(InventoryCell inventoryCell) {
         inventory.RemoveItem(inventoryCell.item.id, inventoryCell.amount);
+        Display();
+    }
+
+    private void SlotOnUse(InventoryCell inventoryCell) {
+        Debug.Log(inventoryCell.item.ItemType);
+        switch (inventoryCell.item.ItemType) {
+            case ItemObjectType.Consumable:
+                inventoryCell.item.OnUse(PlayerMainScript.MyPlayer.playerObject);
+                break;
+            case ItemObjectType.Weapon:
+                break;
+            case ItemObjectType.Material:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        inventory.RemoveItem(inventoryCell.item.id);
         Display();
     }
 }

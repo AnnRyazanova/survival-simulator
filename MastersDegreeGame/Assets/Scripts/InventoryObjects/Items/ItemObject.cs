@@ -21,7 +21,7 @@ namespace InventoryObjects.Items
         public float durability;
         public float durabilityDecreaseRate;
         
-        public abstract void OnUse(GameObject target);
+        public abstract void OnUse(Object target);
     
         public abstract void OnThrowOut();
     

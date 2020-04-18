@@ -14,7 +14,7 @@ namespace InventoryObjects.Items
             ItemType = ItemObjectType.Weapon;
         }
 
-        public override void OnUse(GameObject target) {
+        public override void OnUse(Object target) {
             throw new System.NotImplementedException();
         }
 

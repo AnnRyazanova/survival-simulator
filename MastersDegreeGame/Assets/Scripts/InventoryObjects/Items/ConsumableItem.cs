@@ -6,14 +6,19 @@ namespace InventoryObjects.Items
     [CreateAssetMenu(fileName = "Create New Consumable", menuName = "Inventory/Items/Consumable")]
     public class ConsumableItem : ItemObject
     {
-        public float healthRegen;
+        public int healthRegen = 2;
+        public int hungerRegen = 10;
         
         private void Awake() {
             ItemType = ItemObjectType.Consumable;
         }
 
-        public override void OnUse(GameObject target) {
-            throw new System.NotImplementedException();
+        public override void OnUse(Object target) {
+            Debug.Log("Entered on use");
+            if (target is PlayerObject playerObject) {
+                playerObject.Health.AddPoints(healthRegen);
+                playerObject.Hunger.AddPoints(hungerRegen);
+            }
         }
 
         public override void OnThrowOut() {
