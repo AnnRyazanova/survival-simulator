@@ -13,6 +13,9 @@ namespace Characters.Controllers
         public PlayerObject playerObject;
         public static PlayerMainScript MyPlayer { get; private set; }
 
+        public GameObject leftHand;
+        public GameObject rightHand;
+        
         public Inventory inventory;
         
         private Vector2 _inputDirections = Vector2.zero;
@@ -21,9 +24,11 @@ namespace Characters.Controllers
             Debug.Log("Entered collision");
             var collidedWith = other.GetComponent<PickableItem>().item;
             if (collidedWith == null) return;
-            
+
             inventory.AddItem(collidedWith);
-            if (collidedWith.ItemType != ItemObjectType.Weapon) {
+
+            if (collidedWith.ItemType != ItemObjectType.Weapon && collidedWith.ItemType != ItemObjectType.Tool) {
+                Debug.Log(collidedWith.ItemType);
                 Destroy(other.gameObject);
             }
         }

@@ -4,20 +4,16 @@ using UnityEngine;
 namespace InventoryObjects.Items
 {
     [CreateAssetMenu(fileName = "Create New Consumable", menuName = "Inventory/Items/Consumable")]
-    public class ConsumableItem : ItemObject
+    public class ToolItem : ItemObject
     {
-        public int healthRegen = 2;
-        public int hungerRegen = 10;
-        
         private void Awake() {
-            ItemType = ItemObjectType.Consumable;
+            ItemType = ItemObjectType.Tool;
         }
 
         public override void OnUse(Object target) {
             Debug.Log("Entered on use " + ItemType);
             if (target is PlayerObject playerObject) {
-                playerObject.Health.AddPoints(healthRegen);
-                playerObject.Hunger.AddPoints(hungerRegen);
+
             }
         }
 

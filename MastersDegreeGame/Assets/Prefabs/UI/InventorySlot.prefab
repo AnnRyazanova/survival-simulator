@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5577589140976875268}
   - component: {fileID: 5136204866949877506}
   - component: {fileID: 7901089431172443358}
-  - component: {fileID: 3927361209601610182}
   m_Layer: 9
   m_Name: Actions
   m_TagString: Untagged
@@ -38,8 +37,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0.000022888184}
+  m_SizeDelta: {x: -0.000045776, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5136204866949877506
 CanvasRenderer:
@@ -76,18 +75,6 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!225 &3927361209601610182
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 441146698541300261}
-  m_Enabled: 0
-  m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!1 &851940006242871849
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 152, y: 190}
+  m_AnchoredPosition: {x: 145, y: 205.94998}
   m_SizeDelta: {x: 315.8, y: 85.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3725168917745409177
@@ -266,7 +253,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 152, y: 14.050003}
+  m_AnchoredPosition: {x: 145, y: 30}
   m_SizeDelta: {x: 315.8, y: 85.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6634367502747293399
@@ -501,10 +488,6 @@ MonoBehaviour:
   _icon: {fileID: 5808524194415029070}
   _count: {fileID: 2413985901302283678}
   popupPanel: {fileID: 441146698541300261}
-  canvasGroup: {fileID: 0}
-  cell:
-    item: {fileID: 0}
-    amount: 0
 --- !u!114 &3801711662131843614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1098,7 +1081,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 152, y: 99.350006}
+  m_AnchoredPosition: {x: 145, y: 115.29999}
   m_SizeDelta: {x: 315.8, y: 85.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1795909512680130997

@@ -3,15 +3,10 @@ using UnityEngine.EventSystems;
 
 namespace UI
 {
-    public class PopupMenu : MonoBehaviour
+    public class PopupMenu : MonoBehaviour, IDeselectHandler
     {
-        public void OnPointerDown(PointerEventData eventData) {
-            Debug.Log("DOWN");
-
-        }
-
-        public void OnPointerUp(PointerEventData eventData) {
-            Debug.Log("UP");
+        public void OnDeselect(BaseEventData eventData) {
+            transform.gameObject.SetActive(false);
         }
     }
 }

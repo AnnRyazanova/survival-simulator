@@ -38,21 +38,23 @@ namespace UI
             else {
                 _icon.gameObject.SetActive(false);
             }
-            popupPanel.SetActive(false);
             _count.SetText(_cell.amount > 1 ? _cell.amount.ToString() : "");
         }
 
         public void OnThrowOut() {
             Debug.Log("On throw " + _cell.item.id);
             ThrowOut?.Invoke(_cell);
+            popupPanel.SetActive(false);
         }
 
         public void OnThrowOutAll() {
             ThrowOutAll?.Invoke(_cell);
+            popupPanel.SetActive(false);
         }
 
         public void OnUse() {
             Use?.Invoke(_cell);
+            popupPanel.SetActive(false);
         }
 
         private void Awake() {

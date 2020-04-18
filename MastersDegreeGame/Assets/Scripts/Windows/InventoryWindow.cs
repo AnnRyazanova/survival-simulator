@@ -55,19 +55,26 @@ public class InventoryWindow : BaseWindow
     }
 
     private void SlotOnUse(InventoryCell inventoryCell) {
-        Debug.Log(inventoryCell.item.ItemType);
         switch (inventoryCell.item.ItemType) {
             case ItemObjectType.Consumable:
                 inventoryCell.item.OnUse(PlayerMainScript.MyPlayer.playerObject);
+                inventory.RemoveItem(inventoryCell.item.id);
                 break;
             case ItemObjectType.Weapon:
+            {
+                
                 break;
+            }
             case ItemObjectType.Material:
                 break;
+            case ItemObjectType.Tool:
+            {
+                
+                break;
+            }
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        inventory.RemoveItem(inventoryCell.item.id);
         Display();
     }
 }
