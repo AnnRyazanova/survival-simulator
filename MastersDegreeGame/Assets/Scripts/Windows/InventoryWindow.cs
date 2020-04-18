@@ -11,15 +11,18 @@ public class InventoryWindow : BaseWindow
     [SerializeField] private InventorySlot[] _weaponSlots;
     
     public Inventory inventory;
-    
+
+    public void Awake() {
+        Init();
+    }
+
     public override void Show()
     {
         base.Show();
-        Init();
         Display();
     }
-    
-    public void Display() {
+
+    private void Display() {
         for (var i = 0; i < inventory.maxLength; ++i) {
             _inventorySlots[i].Init(this, inventory.container[i]);
         }
@@ -28,13 +31,13 @@ public class InventoryWindow : BaseWindow
     private void Init()
     {
         foreach (var slot in _inventorySlots) {
-            slot.Init(this);
+            slot.Init(this, new InventoryCell(null, 0));
             slot.ThrowOut += SlotOnThrowOut;
             slot.ThrowOutAll += SlotOnThrowOutAll;
         }
 
         foreach (var slot in _weaponSlots) {
-            slot.Init(this);
+            slot.Init(this, new InventoryCell(null, 0));
         }
     }
 

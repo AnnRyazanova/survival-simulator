@@ -14,7 +14,7 @@ namespace InventoryObjects.Inventory
         public void AddItem(ItemObject item) {
             var firstFreeCellIdx = -1;
             for (var i = 0; i < maxLength; ++i) {
-                if (container[i].item != null) {
+                if (container[i] != null && container[i].item != null) {
                     if (container[i].item.id == item.id) {
                         container[i].AddAmount(1);
                         return;
@@ -40,7 +40,6 @@ namespace InventoryObjects.Inventory
             var amount = container[containedItemIndex].amount;
             if (amount > 1 && quantity < amount) {
                 container[containedItemIndex].ReduceAmount(quantity);
-                Debug.Log(container[containedItemIndex].amount);
             }
             else {
                 container[containedItemIndex] = new InventoryCell(null, 0);

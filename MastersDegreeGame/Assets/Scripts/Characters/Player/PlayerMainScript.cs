@@ -50,7 +50,7 @@ namespace Characters.Controllers
 
         private void InitInventory() {
             for (var i = 0; i < inventory.maxLength; ++i) {
-                inventory.container.Add(null);
+                inventory.container.Add(new InventoryCell(null, 0));
             }
         }
         
