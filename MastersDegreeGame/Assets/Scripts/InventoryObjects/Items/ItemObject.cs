@@ -15,6 +15,7 @@ namespace InventoryObjects.Items
         public ItemObjectType ItemType { get; protected set; }
         public Sprite displayIcon;
         public bool isStackable = true;
+        public int maxItemsInStack = 10;
         
         [TextArea(20, 50)]
         public string description;

@@ -26,9 +26,10 @@ namespace Characters.Controllers
 
         private void OnTriggerEnter(Collider other) {
             var collidedWith = other.GetComponent<PickableItem>().item;
-            if (collidedWith == null) return;
+            var indexToAddTo = inventory.FindFreeCellToAdd(collidedWith);
+            if (collidedWith == null || indexToAddTo == -1) return;
             if (other.GetComponent<PickableItem>().isPickable) {
-                inventory.AddItem(collidedWith);
+                inventory.AddItem(collidedWith, indexToAddTo);
                 Destroy(other.gameObject);
             }
         }
