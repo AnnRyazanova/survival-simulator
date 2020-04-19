@@ -17,7 +17,7 @@ namespace InventoryObjects.Inventory
             var firstFreeCellIdx = -1;
             for (var i = 0; i < maxLength; ++i) {
                 if (container[i] != null && container[i].item != null) {
-                    if (container[i].item.id == item.id) {
+                    if (container[i].item.id == item.id && item.isStackable) {
                         container[i].AddAmount(1);
                         return;
                     }
@@ -26,7 +26,6 @@ namespace InventoryObjects.Inventory
                     firstFreeCellIdx = firstFreeCellIdx == -1 ? i : firstFreeCellIdx;
                 }
             }
-
             container[firstFreeCellIdx] = new InventoryCell(item, 1);
         }
 
@@ -49,7 +48,7 @@ namespace InventoryObjects.Inventory
                 cell.item.OnUpdate();
             }
         }
-
+        
         public void RemoveItem(int itemId, int quantity = 1) {
             var containedItemIndex = Array.FindIndex(container, cell => cell.item != null && cell.item.id == itemId);
             if (containedItemIndex == -1) return;

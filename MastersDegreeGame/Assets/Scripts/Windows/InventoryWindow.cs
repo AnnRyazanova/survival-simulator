@@ -69,15 +69,14 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
     }
 
     private void EquipSlot(ref ItemObject equipmentObject, InventoryCell inventoryCell) {
+        Debug.Log("On equip");
         if (equipmentObject == null) {
             equipmentObject = inventoryCell.item;
-            inventory.RemoveItem(inventoryCell.item.id);
         }
         else {
             if (equipmentObject.id != inventoryCell.item.id) {
                 var tmp = equipmentObject;
                 equipmentObject = (WeaponItem) inventoryCell.item;
-                inventory.RemoveItem(inventoryCell.item.id);
                 inventory.AddItem(tmp);
             }
         }

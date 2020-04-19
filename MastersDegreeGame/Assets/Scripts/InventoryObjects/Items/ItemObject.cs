@@ -14,6 +14,7 @@ namespace InventoryObjects.Items
     {
         public ItemObjectType ItemType { get; protected set; }
         public Sprite displayIcon;
+        public bool isStackable = true;
         
         [TextArea(20, 50)]
         public string description;

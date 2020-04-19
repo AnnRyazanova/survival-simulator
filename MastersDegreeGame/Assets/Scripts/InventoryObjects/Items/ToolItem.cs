@@ -9,6 +9,7 @@ namespace InventoryObjects.Items
         public GameObject toolPrefab;
         private void Awake() {
             ItemType = ItemObjectType.Tool;
+            isStackable = false;
         }
 
         public override void OnUse(Object target) {
