@@ -22,6 +22,7 @@ namespace UI
         [SerializeField] private TextMeshProUGUI _count;
         [SerializeField] private GameObject popupPanel;
         [SerializeField] private Text actionButtonText;
+        [SerializeField] private Button actionButton;
 
         private InventoryCell _cell;
 
@@ -59,20 +60,29 @@ namespace UI
             _window = window;
             _cell = inventoryCell;
             slotType = _slotType == InventorySlotType.PrevSet ? slotType : _slotType;
+            actionButton.gameObject.SetActive(true);
+            SetupFromCell();
+            _count.SetText(_cell.amount > 1 ? _cell.amount.ToString() : "");
+        }
+
+        private void SetupFromCell() {
             if (_cell.item != null) {
-                _icon.sprite = inventoryCell.item.displayIcon;
+                _icon.sprite =  _cell.item.displayIcon;
                 _icon.gameObject.SetActive(true);
                 if (_cell.item.ItemType == ItemObjectType.Weapon || _cell.item.ItemType == ItemObjectType.Tool) {
-                    actionButtonText.text = this.slotType == InventorySlotType.Inventory
+                    actionButtonText.text = slotType == InventorySlotType.Inventory
                         ? "НАДЕТЬ"
                         : "СНЯТЬ";
+                } else if (_cell.item.ItemType == ItemObjectType.Material) {
+                    actionButton.gameObject.SetActive(false);
+                }
+                else {
+                    actionButtonText.text = "ИСПОЛЬЗОВАТЬ";
                 }
             }
             else {
                 _icon.gameObject.SetActive(false);
             }
-
-            _count.SetText(_cell.amount > 1 ? _cell.amount.ToString() : "");
         }
 
         public void OnThrowOut() {
