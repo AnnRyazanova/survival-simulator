@@ -59,25 +59,24 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
     }
 
     private void SlotOnThrowOut(InventoryCell inventoryCell) {
-        inventory.RemoveItem(inventoryCell.item.id);
+        inventory.RemoveItem(inventoryCell);
         Display();
     }
 
     private void SlotOnThrowOutAll(InventoryCell inventoryCell) {
-        inventory.RemoveItem(inventoryCell.item.id, inventoryCell.amount);
+        inventory.RemoveItem(inventoryCell, inventoryCell.amount);
         Display();
     }
 
     private void EquipSlot(ref ItemObject equipmentObject, InventoryCell inventoryCell) {
+        Debug.Log("On equip");
         if (equipmentObject == null) {
             equipmentObject = inventoryCell.item;
-            inventory.RemoveItem(inventoryCell.item.id);
         }
         else {
             if (equipmentObject.id != inventoryCell.item.id) {
                 var tmp = equipmentObject;
                 equipmentObject = (WeaponItem) inventoryCell.item;
-                inventory.RemoveItem(inventoryCell.item.id);
                 inventory.AddItem(tmp);
             }
         }
@@ -95,7 +94,7 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
             PlayerMainScript.MyPlayer.EquipTool();
         }
 
-        inventory.RemoveItem(inventoryCell.item.id);
+        inventory.RemoveItem(inventoryCell);
         Display();
     }
 
@@ -116,7 +115,7 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
     private void SlotOnUse(InventoryCell inventoryCell) {
         if (inventoryCell.item.ItemType == ItemObjectType.Consumable) {
             inventoryCell.item.OnUse(PlayerMainScript.MyPlayer.playerObject);
-            inventory.RemoveItem(inventoryCell.item.id);
+            inventory.RemoveItem(inventoryCell);
         }
 
         Display();

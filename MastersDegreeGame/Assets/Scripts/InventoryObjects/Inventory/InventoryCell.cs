@@ -8,7 +8,8 @@ namespace InventoryObjects.Inventory
     {
         public ItemObject item;
         public int amount;
-
+        public int arrayIdx;
+        
         public InventoryCell(ItemObject item, int amount) {
             this.item = item;
             this.amount = amount;

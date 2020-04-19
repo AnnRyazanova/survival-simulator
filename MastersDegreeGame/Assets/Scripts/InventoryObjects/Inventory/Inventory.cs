@@ -17,7 +17,7 @@ namespace InventoryObjects.Inventory
             var firstFreeCellIdx = -1;
             for (var i = 0; i < maxLength; ++i) {
                 if (container[i] != null && container[i].item != null) {
-                    if (container[i].item.id == item.id) {
+                    if (container[i].item.id == item.id && item.isStackable) {
                         container[i].AddAmount(1);
                         return;
                     }
@@ -26,8 +26,8 @@ namespace InventoryObjects.Inventory
                     firstFreeCellIdx = firstFreeCellIdx == -1 ? i : firstFreeCellIdx;
                 }
             }
-
             container[firstFreeCellIdx] = new InventoryCell(item, 1);
+            container[firstFreeCellIdx].arrayIdx = firstFreeCellIdx;
         }
 
         public void TidyLayout() {
@@ -39,6 +39,7 @@ namespace InventoryObjects.Inventory
                         var tmp = container[i];
                         container[i] = container[j];
                         container[j] = tmp;
+                        container[j].arrayIdx = j;
                     }
                 }
             }
@@ -49,16 +50,14 @@ namespace InventoryObjects.Inventory
                 cell.item.OnUpdate();
             }
         }
-
-        public void RemoveItem(int itemId, int quantity = 1) {
-            var containedItemIndex = Array.FindIndex(container, cell => cell.item != null && cell.item.id == itemId);
-            if (containedItemIndex == -1) return;
-            var amount = container[containedItemIndex].amount;
-            if (amount > 1 && quantity < amount) {
-                container[containedItemIndex].ReduceAmount(quantity);
+        
+        public void RemoveItem(InventoryCell inventoryCell, int quantity = 1) {
+            if (inventoryCell.amount > 1 && quantity < inventoryCell.amount) {
+                container[inventoryCell.arrayIdx].ReduceAmount(quantity);
             }
             else {
-                container[containedItemIndex] = new InventoryCell(null, 0);
+                Debug.Log(inventoryCell.amount);
+                container[inventoryCell.arrayIdx] = new InventoryCell(null, 0);
             }
         }
 

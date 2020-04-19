@@ -4,7 +4,7 @@ namespace InventoryObjects.Items
 {
     // Weapon items can be used as tools
     [CreateAssetMenu(fileName = "Create New Weapon", menuName = "Inventory/Items/Weapon")]
-    public class WeaponItem : ItemObject
+    public class ThrowingWeaponItem : ItemObject
     {
         public float attackPower;
 
