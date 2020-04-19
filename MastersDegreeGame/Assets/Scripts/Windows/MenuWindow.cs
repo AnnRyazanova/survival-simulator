@@ -12,6 +12,7 @@ public class MenuWindow : BaseWindow
 
    public void OnPlayButtonClick()
    {
+      MenuController.Instance.HideWindow();
       MainWindowController.Instance.ShowWindow();
       SceneLoaderController.Instance.LoadStartScene();
       Debug.Log($"[MenuWindow::OnPlayButtonClick] You`ve clicked on PlayButton");

@@ -20,6 +20,14 @@ public sealed class MenuController
             window.Show();
         }
     }
+    public void HideWindow()
+    {
+        if (window == null) {
+            return;
+        }
+        
+        window.Hide();
+    }
     
     private void OnWindowHide()
     {
