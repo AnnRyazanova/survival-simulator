@@ -52,7 +52,19 @@ namespace Characters.Controllers
             AnimatorController.OnMove(MovementController.CurrentSpeed / characterMovementSpeed, 0.01f);
         }
 
-        private static GameObject SetEquippedItemProps(GameObject hand, GameObject itemPrefab) {
+        private void InitInventory() {
+            for (var i = 0; i < inventory.maxLength; ++i) {
+                inventory.container.Add(new InventoryCell(null, 0));
+            }
+        }
+
+        private void InitJoystick() {
+            directionalJoystick = MainWindowController.Instance.GetJoystick();
+        }
+
+        #region EquipmentActions
+
+        private static GameObject InstantiateEquipmentPrefab(GameObject hand, GameObject itemPrefab) {
             var handTransform = hand.transform;
             if (handTransform.childCount > 0) {
                 Destroy(handTransform.GetChild(0).gameObject);
@@ -64,16 +76,30 @@ namespace Characters.Controllers
             return instance;
         }
 
-        private void EquipOnPrefab(GameObject hand, GameObject itemPrefabInstance) {
+        private static void EquipOnPrefab(GameObject hand, GameObject itemPrefabInstance) {
             itemPrefabInstance.transform.parent = hand.transform;
             itemPrefabInstance.transform.localPosition = Vector3.zero;
             itemPrefabInstance.transform.rotation = new Quaternion(0, 0, 0, 0);
         }
 
+        private static void UnequipOnPrefab(GameObject hand) {
+            foreach (Transform child in hand.transform) {
+                Destroy(child.gameObject);
+            }
+        }
+
+        public void UnequipWeapon() {
+            UnequipOnPrefab(rightHand);
+        }
+
+        public void UnequipTool() {
+            UnequipOnPrefab(leftHand);
+        }
+        
         public void EquipWeapon() {
             if (equipment.weapon != null) {
                 // Instantiate prefab on scene
-                var instance = SetEquippedItemProps(rightHand, equipment.weapon.weaponPrefab);
+                var instance = InstantiateEquipmentPrefab(rightHand, equipment.weapon.weaponPrefab);
                 EquipOnPrefab(rightHand, instance);
             }
         }
@@ -81,19 +107,12 @@ namespace Characters.Controllers
         public void EquipTool() {
             if (equipment.weapon != null) {
                 // Instantiate prefab on scene
-                var instance = SetEquippedItemProps(rightHand, equipment.tool.toolPrefab);
+                var instance = InstantiateEquipmentPrefab(rightHand, equipment.tool.toolPrefab);
                 EquipOnPrefab(rightHand, instance);
             }
         }
-
-        private void InitInventory() {
-            for (var i = 0; i < inventory.maxLength; ++i) {
-                inventory.container.Add(new InventoryCell(null, 0));
-            }
-        }
-
-        private void InitJoystick() {
-            directionalJoystick = MainWindowController.Instance.GetJoystick();
-        }
+        
+        
+        #endregion
     }
 }

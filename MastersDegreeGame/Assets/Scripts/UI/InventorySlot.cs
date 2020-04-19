@@ -9,11 +9,18 @@ using Image = UnityEngine.UI.Image;
 
 namespace UI
 {
+    public enum InventorySlotType
+    {
+        EquipmentSlot,
+        InventorySlot
+    }
+
     public sealed class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private Image _icon;
         [SerializeField] private TextMeshProUGUI _count;
         [SerializeField] private GameObject popupPanel;
+        [SerializeField] private Text actionButtonText;
 
         private InventoryCell _cell;
 
@@ -26,23 +33,43 @@ namespace UI
         // Original parent to go to, after changing it for _uiPopup
         private Transform _originalParent;
 
+        public InventorySlotType slotType;
+
+        #region ActionEvents
+
         public event Action<InventoryCell> ThrowOut;
         public event Action<InventoryCell> ThrowOutAll;
         public event Action<InventoryCell> Use;
+        public event Action<InventoryCell> Equip;
+        public event Action<InventoryCell> Unquip;
 
-        public void Init(InventoryWindow window, InventoryCell inventoryCell) {
+        #endregion
+
+        private void Awake() {
+            _icon.gameObject.SetActive(false);
+            popupPanel.SetActive(false);
+
+            _uiPopup = GameObject.FindWithTag("UiPopUp").transform;
+            _originalParent = transform.parent;
+        }
+
+        public void Init(InventoryWindow window, InventoryCell inventoryCell, InventorySlotType slotType) {
             _window = window;
             _cell = inventoryCell;
+            this.slotType = slotType;
             if (_cell.item != null) {
                 _icon.sprite = inventoryCell.item.displayIcon;
                 _icon.gameObject.SetActive(true);
                 if (_cell.item.ItemType == ItemObjectType.Weapon || _cell.item.ItemType == ItemObjectType.Tool) {
-                    // GetComponents<Button>()[0].GetComponent<Text>().text = "НАДЕТЬ";
+                    actionButtonText.text = this.slotType == InventorySlotType.InventorySlot
+                        ? "НАДЕТЬ"
+                        : "СНЯТЬ";
                 }
             }
             else {
                 _icon.gameObject.SetActive(false);
             }
+
             _count.SetText(_cell.amount > 1 ? _cell.amount.ToString() : "");
         }
 
@@ -57,18 +84,21 @@ namespace UI
             popupPanel.SetActive(false);
         }
 
-        public void OnUse() {
-            Debug.Log("On use " + _cell.item);
-            Use?.Invoke(_cell);
-            popupPanel.SetActive(false);
-        }
+        public void OnActionButtonClick() {
+            if (_cell.item.ItemType == ItemObjectType.Consumable) {
+                Use?.Invoke(_cell);
+            }
+            else {
+                if (slotType == InventorySlotType.InventorySlot) {
+                    Equip?.Invoke(_cell);
+                }
+                else {
+                    Debug.Log("Enter Unequip");
+                    Unquip?.Invoke(_cell);
+                }
+            }
 
-        private void Awake() {
-            _icon.gameObject.SetActive(false);
             popupPanel.SetActive(false);
-
-            _uiPopup = GameObject.FindWithTag("UiPopUp").transform;
-            _originalParent = transform.parent;
         }
 
         // Call a popup panel with actions
@@ -76,6 +106,7 @@ namespace UI
             if (_window.popUpPanel != null && _window.popUpPanel != popupPanel) {
                 _window.popUpPanel.SetActive(false);
             }
+
             if (_cell == null || _cell.item == null) return;
             popupPanel.SetActive(!popupPanel.activeSelf);
             if (popupPanel.activeSelf) {
@@ -84,6 +115,7 @@ namespace UI
             else {
                 transform.SetParent(_originalParent);
             }
+
             _window.popUpPanel = popupPanel;
         }
     }

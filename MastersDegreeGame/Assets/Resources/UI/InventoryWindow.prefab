@@ -113,7 +113,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: R
+  m_Text: L
 --- !u!1 &1585025617546164487
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +386,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: L
+  m_Text: R
 --- !u!1 &8217993653996377171
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,8 +495,10 @@ MonoBehaviour:
   _weaponSlots:
   - {fileID: 6400997317927212232}
   - {fileID: 2527847681521576091}
+  useButtonText: {fileID: 0}
   inventory: {fileID: 11400000, guid: c31124c69a4b3394d8c128ac5cd63fbe, type: 2}
   equipment: {fileID: 11400000, guid: 6a7f3fd19d037e043977ab5c473ad38c, type: 2}
+  popUpPanel: {fileID: 0}
 --- !u!1001 &728081438763908979
 PrefabInstance:
   m_ObjectHideFlags: 0

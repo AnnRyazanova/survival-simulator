@@ -16,7 +16,7 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
     [SerializeField] private Equipment equipment;
 
     public GameObject popUpPanel = null;
-    
+
     public void Awake() {
         Init();
     }
@@ -28,27 +28,30 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
 
     private void Display() {
         for (var i = 0; i < inventory.maxLength; ++i) {
-            _inventorySlots[i].Init(this, inventory.container[i]);
+            _inventorySlots[i].Init(this, inventory.container[i], InventorySlotType.InventorySlot);
         }
 
-        _weaponSlots[0].Init(this, new InventoryCell(equipment.weapon, 1));
-        _weaponSlots[1].Init(this, new InventoryCell(equipment.tool, 1));
+        _weaponSlots[0].Init(this, new InventoryCell(equipment.weapon, 1), _weaponSlots[0].slotType);
+        _weaponSlots[1].Init(this, new InventoryCell(equipment.tool, 1), _weaponSlots[0].slotType);
     }
 
+    private void SubscribeToCommonItemEvents(InventorySlot slot) {
+        slot.ThrowOut += SlotOnThrowOut;
+        slot.ThrowOutAll += SlotOnThrowOutAll;
+        slot.Use += SlotOnUse;
+        slot.Equip += SlotOnEquip;
+        slot.Unquip += SlotOnUnequip;
+    }
+    
     private void Init() {
-        // TODO: Исправить копипасту
         foreach (var slot in _inventorySlots) {
-            slot.Init(this, new InventoryCell(null, 0));
-            slot.ThrowOut += SlotOnThrowOut;
-            slot.ThrowOutAll += SlotOnThrowOutAll;
-            slot.Use += SlotOnUse;
+            slot.Init(this, new InventoryCell(null, 0), InventorySlotType.InventorySlot);
+            SubscribeToCommonItemEvents(slot);
         }
 
         foreach (var slot in _weaponSlots) {
-            slot.Init(this, new InventoryCell(null, 0));
-            slot.ThrowOut += SlotOnThrowOut;
-            slot.ThrowOutAll += SlotOnThrowOutAll;
-            slot.Use += SlotOnUse;
+            slot.Init(this, new InventoryCell(null, 0), InventorySlotType.EquipmentSlot);
+            SubscribeToCommonItemEvents(slot);
         }
     }
 
@@ -62,42 +65,38 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
         Display();
     }
 
-    private void EquipItem(InventoryCell cell) {
+    private void SlotOnEquip(InventoryCell inventoryCell) {
         if (equipment.weapon == null) {
-            equipment.weapon = (WeaponItem) cell.item;
-            inventory.RemoveItem(cell.item.id);
+            equipment.weapon = (WeaponItem) inventoryCell.item;
+            inventory.RemoveItem(inventoryCell.item.id);
         }
         else {
-            if (equipment.weapon.id != cell.item.id) {
+            if (equipment.weapon.id != inventoryCell.item.id) {
                 var tmp = equipment.weapon;
-                equipment.weapon = (WeaponItem) cell.item;
-                inventory.RemoveItem(cell.item.id);
+                equipment.weapon = (WeaponItem) inventoryCell.item;
+                inventory.RemoveItem(inventoryCell.item.id);
                 inventory.AddItem(tmp);
             }
         }
 
-        _weaponSlots[0].Init(this, new InventoryCell(equipment.weapon, 1));
+        _weaponSlots[0].Init(this, new InventoryCell(equipment.weapon, 1), InventorySlotType.EquipmentSlot);
         PlayerMainScript.MyPlayer.EquipWeapon();
+        inventory.RemoveItem(inventoryCell.item.id);
+        Display();
     }
 
-    private void UnequipItem(InventoryCell cell) {
+    private void SlotOnUnequip(InventoryCell cell) {
         inventory.AddItem(cell.item);
         equipment.weapon = null;
+        PlayerMainScript.MyPlayer.UnequipWeapon();
+        Display();
     }
 
     private void SlotOnUse(InventoryCell inventoryCell) {
-        switch (inventoryCell.item.ItemType) {
-            case ItemObjectType.Consumable:
-                inventoryCell.item.OnUse(PlayerMainScript.MyPlayer.playerObject);
-                inventory.RemoveItem(inventoryCell.item.id);
-                break;
-            case ItemObjectType.Weapon:
-            {
-                EquipItem(inventoryCell);
-                break;
-            }
+        if (inventoryCell.item.ItemType == ItemObjectType.Consumable) {
+            inventoryCell.item.OnUse(PlayerMainScript.MyPlayer.playerObject);
+            inventory.RemoveItem(inventoryCell.item.id);
         }
-
         Display();
     }
 
