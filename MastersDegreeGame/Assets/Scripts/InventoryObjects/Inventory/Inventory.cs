@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using InventoryObjects.Items;
 using UnityEngine;
 
@@ -9,7 +10,8 @@ namespace InventoryObjects.Inventory
     {
         public int maxLength = 9;
 
-        public List<InventoryCell> container = new List<InventoryCell>();
+        // public List<InventoryCell> container = new List<InventoryCell>();
+        public InventoryCell[] container = new InventoryCell[9];
 
         public void AddItem(ItemObject item) {
             var firstFreeCellIdx = -1;
@@ -28,6 +30,20 @@ namespace InventoryObjects.Inventory
             container[firstFreeCellIdx] = new InventoryCell(item, 1);
         }
 
+        public void TidyLayout() {
+            for (var i = 0; i < maxLength; i++) {
+                if (container[i] == null) continue;
+                for (var j = i - 1 < 0 ? 0 : i - 1; j >= 0; --j) {
+                    if (container[j].item == null) {
+                        if (j != 0 && container[j - 1].item == null) continue;
+                        var tmp = container[i];
+                        container[i] = container[j];
+                        container[j] = tmp;
+                    }
+                }
+            }
+        }
+
         public void UpdateItems() {
             foreach (var cell in container) {
                 cell.item.OnUpdate();
@@ -35,7 +51,7 @@ namespace InventoryObjects.Inventory
         }
 
         public void RemoveItem(int itemId, int quantity = 1) {
-            var containedItemIndex = container.FindIndex(cell => cell.item != null && cell.item.id == itemId);
+            var containedItemIndex = Array.FindIndex(container, cell => cell.item != null && cell.item.id == itemId);
             if (containedItemIndex == -1) return;
             var amount = container[containedItemIndex].amount;
             if (amount > 1 && quantity < amount) {
@@ -46,8 +62,13 @@ namespace InventoryObjects.Inventory
             }
         }
 
-        public InventoryCell GetItem(int id) => container.Find(cell => cell.item != null && cell.item.id == id);
-        public void Clear() => container.Clear();
-        public bool HasItem(int itemId) => container.Find(cell => cell != null && cell.item.id == itemId) != null;
+        public void Clear() {
+            foreach (var inventoryCell in container) {
+                inventoryCell.SetToNull();
+            }
+        }
+
+        public bool HasItem(int itemId) =>
+            Array.Find(container, cell => cell != null && cell.item.id == itemId) != null;
     }
 }

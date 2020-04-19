@@ -28,10 +28,12 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
     }
 
     private void Display() {
+        inventory.TidyLayout();
+
         for (var i = 0; i < inventory.maxLength; ++i) {
             _inventorySlots[i].Init(this, inventory.container[i]);
         }
-
+        // TODO: Fix new to maybe some preallocated value
         _weaponSlots[0].Init(this, new InventoryCell(equipment.weapon, 1));
         _weaponSlots[1].Init(this, new InventoryCell(equipment.tool, 1));
     }

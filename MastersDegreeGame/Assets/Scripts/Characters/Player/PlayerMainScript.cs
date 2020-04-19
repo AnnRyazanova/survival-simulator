@@ -41,7 +41,6 @@ namespace Characters.Controllers
             MovementController = new ManualMovementController(GetComponent<CharacterController>());
             AnimatorController = new PlayerAnimatorController(GetComponent<Animator>());
             damage = DamageType.Medium;
-            InitInventory();
             InitJoystick();
         }
 
@@ -49,12 +48,6 @@ namespace Characters.Controllers
             _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
             MovementController.Move(transform, characterRotationSpeed, characterMovementSpeed, _inputDirections);
             AnimatorController.OnMove(MovementController.CurrentSpeed / characterMovementSpeed, 0.01f);
-        }
-
-        private void InitInventory() {
-            for (var i = 0; i < inventory.maxLength; ++i) {
-                inventory.container.Add(new InventoryCell(null, 0));
-            }
         }
 
         private void InitJoystick() {

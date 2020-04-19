@@ -14,6 +14,11 @@ namespace InventoryObjects.Inventory
             this.amount = amount;
         }
 
+        public void SetToNull() {
+            item = null;
+            amount = 0;
+        }
+        
         public void AddAmount(int value) => amount += value;
 
         public void ReduceAmount(int value) {
