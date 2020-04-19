@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace InventoryObjects.Inventory
 {
-    [CreateAssetMenu(fileName = "Create New InventoryController", menuName = "Inventory/InventoryController")]
+    [CreateAssetMenu(fileName = "Create New Inventory", menuName = "Inventory/Inventory")]
     public class Inventory : ScriptableObject
     {
         public int maxLength = 9;

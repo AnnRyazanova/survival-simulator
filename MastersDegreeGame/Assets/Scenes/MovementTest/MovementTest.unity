@@ -4800,6 +4800,7 @@ MonoBehaviour:
   leftHand: {fileID: 1133081114}
   rightHand: {fileID: 1133081113}
   inventory: {fileID: 11400000, guid: c31124c69a4b3394d8c128ac5cd63fbe, type: 2}
+  equipment: {fileID: 11400000, guid: 6a7f3fd19d037e043977ab5c473ad38c, type: 2}
 --- !u!143 &1611442293
 CharacterController:
   m_ObjectHideFlags: 0

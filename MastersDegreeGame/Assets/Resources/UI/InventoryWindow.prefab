@@ -496,6 +496,7 @@ MonoBehaviour:
   - {fileID: 6400997317927212232}
   - {fileID: 2527847681521576091}
   inventory: {fileID: 11400000, guid: c31124c69a4b3394d8c128ac5cd63fbe, type: 2}
+  equipment: {fileID: 11400000, guid: 6a7f3fd19d037e043977ab5c473ad38c, type: 2}
 --- !u!1001 &728081438763908979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -807,11 +808,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventorySlot
       objectReference: {fileID: 0}
-    - target: {fileID: 3927361209601610182, guid: 70706f4f87715e54393239f298beac47,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8014623846996289344, guid: 70706f4f87715e54393239f298beac47,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -926,6 +922,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.000022888184
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927361209601610182, guid: 70706f4f87715e54393239f298beac47,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3927361209601610182, guid: 70706f4f87715e54393239f298beac47, type: 3}

@@ -6,6 +6,7 @@ namespace InventoryObjects.Items
     [CreateAssetMenu(fileName = "Create New Consumable", menuName = "Inventory/Items/Consumable")]
     public class ToolItem : ItemObject
     {
+        public GameObject toolPrefab;
         private void Awake() {
             ItemType = ItemObjectType.Tool;
         }

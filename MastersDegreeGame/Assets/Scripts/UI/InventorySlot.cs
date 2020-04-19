@@ -1,8 +1,10 @@
 ﻿using System;
 using InventoryObjects.Inventory;
+using InventoryObjects.Items;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
 
 namespace UI
@@ -34,6 +36,9 @@ namespace UI
             if (_cell.item != null) {
                 _icon.sprite = inventoryCell.item.displayIcon;
                 _icon.gameObject.SetActive(true);
+                if (_cell.item.ItemType == ItemObjectType.Weapon || _cell.item.ItemType == ItemObjectType.Tool) {
+                    // GetComponents<Button>()[0].GetComponent<Text>().text = "НАДЕТЬ";
+                }
             }
             else {
                 _icon.gameObject.SetActive(false);
@@ -53,6 +58,7 @@ namespace UI
         }
 
         public void OnUse() {
+            Debug.Log("On use " + _cell.item);
             Use?.Invoke(_cell);
             popupPanel.SetActive(false);
         }
@@ -67,6 +73,9 @@ namespace UI
 
         // Call a popup panel with actions
         public void OnPointerClick(PointerEventData eventData) {
+            if (_window.popUpPanel != null && _window.popUpPanel != popupPanel) {
+                _window.popUpPanel.SetActive(false);
+            }
             if (_cell == null || _cell.item == null) return;
             popupPanel.SetActive(!popupPanel.activeSelf);
             if (popupPanel.activeSelf) {
@@ -75,6 +84,7 @@ namespace UI
             else {
                 transform.SetParent(_originalParent);
             }
+            _window.popUpPanel = popupPanel;
         }
     }
 }
