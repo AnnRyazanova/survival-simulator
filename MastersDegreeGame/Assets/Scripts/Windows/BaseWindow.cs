@@ -23,12 +23,12 @@ public class BaseWindow : MonoBehaviour
 
     protected virtual void OnShow()
     {
-        Time.timeScale = 0;
+        GameSettingsController.Instance.IsPaused = true;
     }
 
     protected virtual void OnHide()
     {
-        Time.timeScale = 1;
+        GameSettingsController.Instance.IsPaused = false;
     }
     
     public static BaseWindow LoadWindow(string prefabName)

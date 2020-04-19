@@ -14,7 +14,7 @@ public class BaseProperty: MonoBehaviour
     public bool IsDeferred => _isDeferred;
     
     protected Object parentObject;
-    private bool _started = false;
+    protected bool _started = false;
 
     public virtual void StartProperty(Object parent)
     {
@@ -25,9 +25,14 @@ public class BaseProperty: MonoBehaviour
     public virtual void AddPoints(int points) { }
     protected virtual void UpdateProperty() { }
 
+    protected virtual bool CanUpdate()
+    {
+        return _started == true && GameSettingsController.Instance.IsPaused == false;
+    }
+    
     private void Update()
     {
-        if (_started == false) return;
+        if (CanUpdate() == false) return;
         UpdateProperty();
     }
 }

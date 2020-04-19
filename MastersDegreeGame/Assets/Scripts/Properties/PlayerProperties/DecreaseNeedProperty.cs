@@ -25,6 +25,8 @@ public class DecreaseNeedProperty : NeedProperty
     
     protected override void UpdateProperty()
     {
+        if (CanUpdate() == false) return;
+        
         if ((DateTime.Now - _lastUpdateTime).TotalSeconds >= _decreaseTime && _currentPoints != _previousPoints) {
             _lastUpdateTime = DateTime.Now;
             _previousPoints = _currentPoints;
