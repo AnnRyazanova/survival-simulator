@@ -11,8 +11,9 @@ namespace UI
 {
     public enum InventorySlotType
     {
-        EquipmentSlot,
-        InventorySlot
+        Equipment,
+        Inventory,
+        PrevSet
     }
 
     public sealed class InventorySlot : MonoBehaviour, IPointerClickHandler
@@ -53,15 +54,16 @@ namespace UI
             _originalParent = transform.parent;
         }
 
-        public void Init(InventoryWindow window, InventoryCell inventoryCell, InventorySlotType slotType) {
+        public void Init(InventoryWindow window, InventoryCell inventoryCell, 
+                                InventorySlotType _slotType = InventorySlotType.PrevSet) {
             _window = window;
             _cell = inventoryCell;
-            this.slotType = slotType;
+            slotType = _slotType == InventorySlotType.PrevSet ? slotType : _slotType;
             if (_cell.item != null) {
                 _icon.sprite = inventoryCell.item.displayIcon;
                 _icon.gameObject.SetActive(true);
                 if (_cell.item.ItemType == ItemObjectType.Weapon || _cell.item.ItemType == ItemObjectType.Tool) {
-                    actionButtonText.text = this.slotType == InventorySlotType.InventorySlot
+                    actionButtonText.text = this.slotType == InventorySlotType.Inventory
                         ? "НАДЕТЬ"
                         : "СНЯТЬ";
                 }
@@ -74,7 +76,6 @@ namespace UI
         }
 
         public void OnThrowOut() {
-            Debug.Log("On throw " + _cell.item.id);
             ThrowOut?.Invoke(_cell);
             popupPanel.SetActive(false);
         }
@@ -89,11 +90,10 @@ namespace UI
                 Use?.Invoke(_cell);
             }
             else {
-                if (slotType == InventorySlotType.InventorySlot) {
+                if (slotType == InventorySlotType.Inventory) {
                     Equip?.Invoke(_cell);
                 }
                 else {
-                    Debug.Log("Enter Unequip");
                     Unquip?.Invoke(_cell);
                 }
             }
@@ -109,13 +109,7 @@ namespace UI
 
             if (_cell == null || _cell.item == null) return;
             popupPanel.SetActive(!popupPanel.activeSelf);
-            if (popupPanel.activeSelf) {
-                transform.SetParent(_uiPopup);
-            }
-            else {
-                transform.SetParent(_originalParent);
-            }
-
+            transform.SetParent(popupPanel.activeSelf ? _uiPopup : _originalParent);
             _window.popUpPanel = popupPanel;
         }
     }

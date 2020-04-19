@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InventoryObjects.Items
 {
-    [CreateAssetMenu(fileName = "Create New Consumable", menuName = "Inventory/Items/Consumable")]
+    [CreateAssetMenu(fileName = "Create New Tool", menuName = "Inventory/Items/Tool")]
     public class ToolItem : ItemObject
     {
         public GameObject toolPrefab;

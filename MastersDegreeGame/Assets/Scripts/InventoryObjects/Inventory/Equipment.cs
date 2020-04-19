@@ -6,7 +6,7 @@ namespace InventoryObjects.Inventory
     [CreateAssetMenu(fileName = "Create New Equipment", menuName = "Inventory/Equipment")]
     public class Equipment : ScriptableObject
     {
-        public WeaponItem weapon;
-        public ToolItem tool;
+        public ItemObject weapon;
+        public ItemObject tool;
     }
 }

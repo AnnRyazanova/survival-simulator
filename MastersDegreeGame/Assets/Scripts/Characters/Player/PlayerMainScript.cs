@@ -22,7 +22,6 @@ namespace Characters.Controllers
         private Vector2 _inputDirections = Vector2.zero;
 
         private void OnTriggerEnter(Collider other) {
-            Debug.Log("Entered collision");
             var collidedWith = other.GetComponent<PickableItem>().item;
             if (collidedWith == null) return;
             if (other.GetComponent<PickableItem>().isPickable) {
@@ -95,24 +94,23 @@ namespace Characters.Controllers
         public void UnequipTool() {
             UnequipOnPrefab(leftHand);
         }
-        
+
         public void EquipWeapon() {
             if (equipment.weapon != null) {
                 // Instantiate prefab on scene
-                var instance = InstantiateEquipmentPrefab(rightHand, equipment.weapon.weaponPrefab);
+                var instance = InstantiateEquipmentPrefab(rightHand, (equipment.weapon as WeaponItem).weaponPrefab);
                 EquipOnPrefab(rightHand, instance);
             }
         }
 
         public void EquipTool() {
-            if (equipment.weapon != null) {
+            if (equipment.tool != null) {
                 // Instantiate prefab on scene
-                var instance = InstantiateEquipmentPrefab(rightHand, equipment.tool.toolPrefab);
-                EquipOnPrefab(rightHand, instance);
+                var instance = InstantiateEquipmentPrefab(leftHand, (equipment.tool as ToolItem).toolPrefab);
+                EquipOnPrefab(leftHand, instance);
             }
         }
-        
-        
+
         #endregion
     }
 }
