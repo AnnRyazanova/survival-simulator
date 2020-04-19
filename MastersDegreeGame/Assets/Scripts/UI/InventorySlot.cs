@@ -119,7 +119,7 @@ namespace UI
 
             if (_cell == null || _cell.item == null) return;
             popupPanel.SetActive(!popupPanel.activeSelf);
-            transform.SetParent(popupPanel.activeSelf ? _uiPopup : _originalParent);
+            popupPanel.transform.SetParent(popupPanel.activeSelf ? _uiPopup : _originalParent);
             _window.popUpPanel = popupPanel;
         }
     }
