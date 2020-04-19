@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e06a104a59e1574c82f0b09f8bcab0c, type: 3}
-  m_Name: AnAxe
+  m_Name: ClubTool
   m_EditorClassIdentifier: 
   displayIcon: {fileID: 21300000, guid: 97de1a5970601a1468925050ba523972, type: 3}
   description: 

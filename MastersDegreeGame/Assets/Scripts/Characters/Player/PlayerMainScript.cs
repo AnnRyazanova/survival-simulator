@@ -21,6 +21,9 @@ namespace Characters.Controllers
 
         private Vector2 _inputDirections = Vector2.zero;
 
+        private static readonly Quaternion WeaponDockRotation = new Quaternion(0, 0, 0, 0);
+        private static readonly Quaternion ToolDockRotation = new Quaternion(0, 0, 180, 0);
+
         private void OnTriggerEnter(Collider other) {
             var collidedWith = other.GetComponent<PickableItem>().item;
             if (collidedWith == null) return;
@@ -68,10 +71,12 @@ namespace Characters.Controllers
             return instance;
         }
 
-        private static void EquipOnPrefab(GameObject hand, GameObject itemPrefabInstance) {
+        private void EquipOnPrefab(GameObject hand, GameObject itemPrefabInstance) {
             itemPrefabInstance.transform.parent = hand.transform;
             itemPrefabInstance.transform.localPosition = Vector3.zero;
-            itemPrefabInstance.transform.rotation = new Quaternion(0, 0, 0, 0);
+            if (hand == rightHand) {
+                itemPrefabInstance.transform.rotation = new Quaternion(0, 0, 0, 0);
+            }
         }
 
         private static void UnequipOnPrefab(GameObject hand) {
@@ -91,7 +96,7 @@ namespace Characters.Controllers
         public void EquipWeapon() {
             if (equipment.weapon != null) {
                 // Instantiate prefab on scene
-                var instance = InstantiateEquipmentPrefab(rightHand, (equipment.weapon as WeaponItem).weaponPrefab);
+                var instance = InstantiateEquipmentPrefab(rightHand, (equipment.weapon as WeaponItem)?.weaponPrefab);
                 EquipOnPrefab(rightHand, instance);
             }
         }
@@ -99,7 +104,7 @@ namespace Characters.Controllers
         public void EquipTool() {
             if (equipment.tool != null) {
                 // Instantiate prefab on scene
-                var instance = InstantiateEquipmentPrefab(leftHand, (equipment.tool as ToolItem).toolPrefab);
+                var instance = InstantiateEquipmentPrefab(leftHand, (equipment.tool as ToolItem)?.toolPrefab);
                 EquipOnPrefab(leftHand, instance);
             }
         }
