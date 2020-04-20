@@ -26,6 +26,7 @@ public class CraftWindow : BaseWindow
 
     public void OnCreateBtnClick() {
         if (_activeSlot != null) {
+           
             _activeSlot.recipe.CraftItem(_inventory);
             Init();
             SelectCraftableItem(_activeSlot);
@@ -55,8 +56,11 @@ public class CraftWindow : BaseWindow
     private void SelectCraftableItem(CraftSlot slot) {
         _activeSlot = slot;
         var hasAllIngredients = true;
+
         for (var i = 0; i < slot.recipe.ingredients.Count; i++) {
-            var foundIngredient = slot.recipe.foundIngredients.Find(cell => slot.recipe.ingredients[i].item == cell.item) != null;
+            var foundIngredient = slot.recipe.foundIngredients.Find(cell => {
+                return slot.recipe.ingredients[i].item.id == cell[0].item.id;
+            }) != null;
             _resourcesSlots[i].Init(slot.recipe.ingredients[i], !foundIngredient);
             hasAllIngredients &= foundIngredient;
         }

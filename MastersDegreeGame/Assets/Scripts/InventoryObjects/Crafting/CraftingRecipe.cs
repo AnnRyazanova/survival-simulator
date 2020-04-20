@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using InventoryObjects.Inventory;
 using UnityEngine;
@@ -9,7 +11,7 @@ namespace InventoryObjects.Crafting
     public class CraftingRecipe : ScriptableObject
     {
         public List<InventoryCell> ingredients = new List<InventoryCell>();
-        public List<InventoryCell> foundIngredients = new List<InventoryCell>();
+        public List<InventoryCell[]> foundIngredients = new List<InventoryCell[]>();
         public InventoryCell result = new InventoryCell(null, 0);
 
         /// <summary>
@@ -20,14 +22,23 @@ namespace InventoryObjects.Crafting
         public bool HasAllComponents(Inventory.Inventory inventory) {
             foundIngredients.Clear();
             foreach (var ingredient in ingredients) {
-                var foundCell = inventory.FindItem(ingredient.item);
-                if (foundCell == null || foundCell.amount < ingredient.amount) {
-                    return false;
+                var foundCells = inventory.FindItems(ingredient.item);
+
+                if (foundCells.Length != 0) {
+                    var count = 0;
+                    foreach (var foundCell in foundCells) {
+                        count += foundCell.amount;
+                    }
+
+                    if (count < ingredient.amount) return false;
+                    Array.Sort(foundCells, (first, second) => second.CompareTo(first));
+                    foundIngredients.Add(foundCells);
                 }
-                foundIngredients.Add(foundCell);
             }
-            return foundIngredients.Count <= ingredients.Count;
+
+            return foundIngredients.Count == ingredients.Count;
         }
+
 
         /// <summary>
         /// Craft an item based on player inventory
@@ -35,9 +46,17 @@ namespace InventoryObjects.Crafting
         /// <param name="inventory">Player inventory</param>
         public void CraftItem(Inventory.Inventory inventory) {
             if (foundIngredients == null || foundIngredients.Count < ingredients.Count) return;
-            
+
             for (var i = 0; i < ingredients.Count; ++i) {
-                inventory.RemoveItem(foundIngredients[i].item, ingredients[i].amount);
+                var ingredientsUsedCount = ingredients[i].amount;
+                for (var j = 0; j < foundIngredients[i].Length; ++j) {
+                    ingredientsUsedCount -= foundIngredients[i][j].amount;
+                    if (ingredientsUsedCount <= 0) {
+                        inventory.RemoveItem(foundIngredients[i][j], foundIngredients[i][j].amount + ingredientsUsedCount);
+                        break;
+                    }
+                    inventory.RemoveItem(foundIngredients[i][j], foundIngredients[i][j].amount);
+                }
             }
 
             var indexToAddTo = inventory.FindFreeCellToAdd(result.item);
