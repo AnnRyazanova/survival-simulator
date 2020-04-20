@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Carrot
   m_EditorClassIdentifier: 
   displayIcon: {fileID: 21300000, guid: 38ce77c56110c80489d3567284d810a4, type: 3}
-  description: 
+  isStackable: 1
+  maxItemsInStack: 10
+  title: "\u041C\u043E\u0440\u043A\u043E\u0432\u043A\u0430"
   id: 2
   durability: 0
   durabilityDecreaseRate: 0
+  description: 
   healthRegen: 2
   hungerRegen: 15

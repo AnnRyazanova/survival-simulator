@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0ce9180fce5f7445978f42734763471, type: 3}
+  m_Name: ThrowingKnifeRecipe
+  m_EditorClassIdentifier: 
+  ingredients:
+  - item: {fileID: 11400000, guid: fc43e0244c2a93b459c9cb82d59c4b45, type: 2}
+    amount: 2
+  - item: {fileID: 11400000, guid: d1652a85421ab2447857400fd93ddc81, type: 2}
+    amount: 1
+  foundIngredients: []
+  result:
+    item: {fileID: 11400000, guid: 926450ae2c83ac445a67ec29e878892f, type: 2}
+    amount: 4

@@ -6,6 +6,7 @@ using InventoryObjects.Inventory;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.WSA;
 
 public class CraftWindow : BaseWindow
 {
@@ -16,13 +17,19 @@ public class CraftWindow : BaseWindow
     [SerializeField] private Button _createButton;
     [SerializeField] private Inventory _inventory;
 
+    [SerializeField] private CraftSlot _activeSlot;
+    
     public override void Show() {
         base.Show();
         Init();
     }
 
     public void OnCreateBtnClick() {
-        Debug.Log("CreateBtn Click");
+        if (_activeSlot != null) {
+            _activeSlot.recipe.CraftItem(_inventory);
+            Init();
+            SelectCraftableItem(_activeSlot);
+        }
     }
 
     private void Awake() {
@@ -37,7 +44,6 @@ public class CraftWindow : BaseWindow
             if (slot.recipe != null) {
                 if (slot.recipe.HasAllComponents(_inventory)) {
                     slot.SetFaderActive(false);
-                    _createButton.enabled = true;
                 }
                 else {
                     slot.SetFaderActive(true);
@@ -46,14 +52,17 @@ public class CraftWindow : BaseWindow
         }
     }
 
-
-    private void SelectCraftableItem(CraftingRecipe recipe) {
-        for (var i = 0; i < recipe.ingredients.Count; i++) {
-            var foundIngredient = recipe.foundIngredients.Find(cell => recipe.ingredients[i].item == cell.item);
-            _resourcesSlots[i].Init(recipe.ingredients[i], foundIngredient == null);
+    private void SelectCraftableItem(CraftSlot slot) {
+        _activeSlot = slot;
+        var hasAllIngredients = true;
+        for (var i = 0; i < slot.recipe.ingredients.Count; i++) {
+            var foundIngredient = slot.recipe.foundIngredients.Find(cell => slot.recipe.ingredients[i].item == cell.item) != null;
+            _resourcesSlots[i].Init(slot.recipe.ingredients[i], !foundIngredient);
+            hasAllIngredients &= foundIngredient;
         }
 
-        _title.text = recipe.result.item.title;
-        _description.text = recipe.result.item.description;
+        _createButton.enabled = hasAllIngredients;
+        _title.text = slot.recipe.result.item.title;
+        _description.text = slot.recipe.result.item.description;
     }
 }

@@ -19,10 +19,10 @@ namespace UI
         [SerializeField] private InventoryCell cell;
         
         public CraftingRecipe recipe;
-        public Action<CraftingRecipe> selectCraftableItem;
-
+        public Action<CraftSlot> selectCraftableItem;
+        
         public void OnSelectCraftableItem() {
-            selectCraftableItem?.Invoke(recipe);
+            selectCraftableItem?.Invoke(this);
         }
 
         private void Awake() {

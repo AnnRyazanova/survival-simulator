@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Knife
   m_EditorClassIdentifier: 
   displayIcon: {fileID: 21300000, guid: a627c766c791cca44a53f8d7e6d0a4ad, type: 3}
-  description: 
+  isStackable: 0
+  maxItemsInStack: 10
+  title: "\u041E\u0445\u043E\u0442\u043D\u0438\u0447\u0438\u0439 \u043D\u043E\u0436"
   id: 4
   durability: 0
   durabilityDecreaseRate: 100
+  description: 
   attackPower: 0
   weaponPrefab: {fileID: 126064, guid: 1e75eeab33a7c1f4982254ee87e734da, type: 3}
