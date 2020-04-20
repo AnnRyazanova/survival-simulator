@@ -18,19 +18,16 @@ public class MainWindow : BaseWindow
     {
         // Open SettingsWindow here
         TestController.Instance.ShowWindow();
-        Debug.Log($"[MainWindow::OnPauseButtonClick] You've clicked on PauseButton");
     }
 
     public void OnInventoryButtonClick()
     {
-        // Open InventoryWindow here
         InventoryController.Instance.ShowWindow();
-        Debug.Log($"[MainWindow::OnInventoryButtonClick] You've clicked on InventoryButton");
     }
 
-    public void OnPickUpButtonClick()
+    public void OnCraftButtonClick()
     {
-        Debug.Log($"[MainWindow::OnPickUpButtonClick] You've clicked on PickUpButton");
+        CraftController.Instance.ShowWindow();
     }
 
     public void OnAttackButtonClick()
@@ -43,7 +40,6 @@ public class MainWindow : BaseWindow
     
     private void Init()
     {
-        // initialize window here
         StartCoroutine(_playerNeeds.Start());
     }
 }
