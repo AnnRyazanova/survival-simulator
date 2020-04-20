@@ -9,7 +9,7 @@ namespace InventoryObjects.Crafting
     public class CraftingRecipe : ScriptableObject
     {
         public List<InventoryCell> ingredients = new List<InventoryCell>();
-        public List<InventoryCell> foundIngredients = null;
+        public List<InventoryCell> foundIngredients = new List<InventoryCell>();
         public InventoryCell result = new InventoryCell(null, 0);
 
         /// <summary>
@@ -18,7 +18,7 @@ namespace InventoryObjects.Crafting
         /// <param name="inventory">Player inventory</param>
         /// <returns>If can craft an item</returns>
         public bool HasAllComponents(Inventory.Inventory inventory) {
-            foundIngredients = new List<InventoryCell>();
+            foundIngredients.Clear();
             foreach (var ingredient in ingredients) {
                 var foundCell = inventory.FindItem(ingredient.item);
                 if (foundCell == null || foundCell.amount < ingredient.amount) {

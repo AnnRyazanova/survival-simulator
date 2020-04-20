@@ -49,7 +49,8 @@ public class CraftWindow : BaseWindow
 
     private void SelectCraftableItem(CraftingRecipe recipe) {
         for (var i = 0; i < recipe.ingredients.Count; i++) {
-            _resourcesSlots[i].Init(recipe.ingredients[i]);
+            var foundIngredient = recipe.foundIngredients.Find(cell => recipe.ingredients[i].item == cell.item);
+            _resourcesSlots[i].Init(recipe.ingredients[i], foundIngredient == null);
         }
 
         _title.text = recipe.result.item.title;

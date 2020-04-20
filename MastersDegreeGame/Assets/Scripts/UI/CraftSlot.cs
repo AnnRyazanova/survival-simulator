@@ -32,7 +32,7 @@ namespace UI
             Init();
         }
 
-        public void Init(InventoryCell newCell = null) {
+        public void Init(InventoryCell newCell = null, bool shouldFadeRed = false) {
             if (newCell == null) {
                 if(recipe == null) return;
                 cell = recipe.result;
@@ -46,6 +46,13 @@ namespace UI
             
             _icon.gameObject.SetActive(true);
             _count.gameObject.SetActive(true);
+            if (shouldFadeRed) {
+                _fader.GetComponent<Image>().color = new Color(1.0f, 0.0f, 0.0f, 0.39f);
+                _fader.SetActive(true);
+            }
+            else {
+                _fader.SetActive(false);
+            }
         }
 
         public void SetFaderActive(bool state) {
