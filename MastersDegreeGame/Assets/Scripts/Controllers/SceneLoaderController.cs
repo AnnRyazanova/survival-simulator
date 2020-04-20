@@ -14,7 +14,12 @@ public sealed class SceneLoaderController : MonoBehaviour
 
     public void LoadStartScene()
     {
-        StartCoroutine(LoadSceneAsync(_testScene));
+        LoadScene(_testScene);
+    }
+    
+    public void LoadMenuScene()
+    {
+        LoadScene(_menuScene);
     }
 
     public void LoadScene(string sceneName)
@@ -22,10 +27,6 @@ public sealed class SceneLoaderController : MonoBehaviour
         StartCoroutine(LoadSceneAsync(sceneName));
     }
     
-    public void LoadMenuScene()
-    {
-        StartCoroutine(LoadSceneAsync(_menuScene));
-    }
     private void Awake()
     {
         _instance = this;
