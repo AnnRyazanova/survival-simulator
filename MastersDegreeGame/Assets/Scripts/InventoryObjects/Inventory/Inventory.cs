@@ -13,14 +13,14 @@ namespace InventoryObjects.Inventory
         // public List<InventoryCell> container = new List<InventoryCell>();
         public InventoryCell[] container = new InventoryCell[9];
 
-        public void AddItem(ItemObject item, int atIndex = -1) {
+        public void AddItem(ItemObject item, int atIndex = -1, int quantity = 1) {
             var firstFreeCellIdx = atIndex == -1 ? FindFreeCellToAdd(item) : atIndex;
             if (container[firstFreeCellIdx].item != null
                 && container[firstFreeCellIdx].item.ItemType == item.ItemType) {
-                container[firstFreeCellIdx].AddAmount(1);
+                container[firstFreeCellIdx].AddAmount(quantity);
             }
             else {
-                container[firstFreeCellIdx] = new InventoryCell(item, 1);
+                container[firstFreeCellIdx] = new InventoryCell(item, quantity);
             }
         }
 
@@ -65,8 +65,8 @@ namespace InventoryObjects.Inventory
             }
         }
 
-        public void RemoveItem(InventoryCell inventoryCell, int quantity = 1) {
-            var containedItemIndex = Array.FindIndex(container, cell => cell.item != null && cell == inventoryCell);
+        public void RemoveItem(ItemObject item, int quantity = 1) {
+            var containedItemIndex = Array.FindIndex(container, cell => cell.item != null && cell.item == item);
             if (containedItemIndex == -1) return;
             var amount = container[containedItemIndex].amount;
             if (amount > 1 && quantity < amount) {
@@ -85,6 +85,8 @@ namespace InventoryObjects.Inventory
 
         public bool HasSpace() => Array.FindAll(container, cell => cell.item != null).Length < maxLength;
 
+        public InventoryCell FindItem(ItemObject item) => Array.Find(container, cell => cell.item == item);
+        
         public bool HasItem(int itemId) =>
             Array.Find(container, cell => cell != null && cell.item.id == itemId) != null;
     }

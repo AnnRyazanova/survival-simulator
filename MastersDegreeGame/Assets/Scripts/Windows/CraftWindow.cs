@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using InventoryObjects.Crafting;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -33,6 +34,13 @@ public class CraftWindow : BaseWindow
 
     private void Init()
     {
-        // initialize window here
+        foreach (var slot in _craftSlots) {
+            slot.selectCraftableItem += SelectCraftableItem;
+        }
+    }
+
+    private void SelectCraftableItem(CraftingRecipe recipe) {
+        for (var i = 0; i < recipe.ingredients.Count; i++) {
+        }
     }
 }

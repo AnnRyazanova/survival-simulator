@@ -59,12 +59,12 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
     }
 
     private void SlotOnThrowOut(InventoryCell inventoryCell) {
-        inventory.RemoveItem(inventoryCell);
+        inventory.RemoveItem(inventoryCell.item);
         Display();
     }
 
     private void SlotOnThrowOutAll(InventoryCell inventoryCell) {
-        inventory.RemoveItem(inventoryCell, inventoryCell.amount);
+        inventory.RemoveItem(inventoryCell.item, inventoryCell.amount);
         Display();
     }
 
@@ -94,7 +94,7 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
             PlayerMainScript.MyPlayer.EquipTool();
         }
 
-        inventory.RemoveItem(inventoryCell);
+        inventory.RemoveItem(inventoryCell.item);
         Display();
     }
 
@@ -115,7 +115,7 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
     private void SlotOnUse(InventoryCell inventoryCell) {
         if (inventoryCell.item.ItemType == ItemObjectType.Consumable) {
             inventoryCell.item.OnUse(PlayerMainScript.MyPlayer.playerObject);
-            inventory.RemoveItem(inventoryCell);
+            inventory.RemoveItem(inventoryCell.item);
         }
 
         Display();
