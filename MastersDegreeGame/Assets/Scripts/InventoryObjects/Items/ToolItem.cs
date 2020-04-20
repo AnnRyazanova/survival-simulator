@@ -6,11 +6,11 @@ namespace InventoryObjects.Items
     [CreateAssetMenu(fileName = "Create New Tool", menuName = "Inventory/Items/Tool")]
     public class ToolItem : ItemObject
     {
-        public GameObject toolPrefab;
         private void Awake() {
             ItemType = ItemObjectType.Tool;
             isStackable = false;
         }
+        public GameObject toolPrefab;
 
         public override void OnUse(Object target) {
             Debug.Log("Entered on use " + ItemType);

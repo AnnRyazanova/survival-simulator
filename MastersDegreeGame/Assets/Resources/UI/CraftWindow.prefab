@@ -889,6 +889,8 @@ MonoBehaviour:
   - {fileID: 2121617751289669280}
   _title: {fileID: 2080408033767517073}
   _description: {fileID: 1873716234549383599}
+  _createButton: {fileID: 1553501633654541639}
+  _inventory: {fileID: 11400000, guid: c31124c69a4b3394d8c128ac5cd63fbe, type: 2}
 --- !u!1001 &2425761827698735865
 PrefabInstance:
   m_ObjectHideFlags: 0
