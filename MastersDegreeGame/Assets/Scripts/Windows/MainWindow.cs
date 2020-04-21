@@ -36,6 +36,11 @@ public class MainWindow : BaseWindow
     {
         PlayerMainScript.MyPlayer.Attack();
     }
+    
+    public void OnPickUpButtonClick()
+    {
+        
+    }
 
     protected override void OnShow() { }
     protected override void OnHide() { }
