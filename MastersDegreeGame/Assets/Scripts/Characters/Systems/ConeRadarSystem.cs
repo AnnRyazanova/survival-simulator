@@ -27,6 +27,7 @@ namespace Characters.Systems
             PickableItem result = null;
 
             foreach (var current in _colliders) {
+                if(current == null) continue;
                 if (current.GetComponent<PickableItem>() == null) continue;
 
                 var curDot = Vector3.Dot((current.transform.position - transform.position).normalized,
