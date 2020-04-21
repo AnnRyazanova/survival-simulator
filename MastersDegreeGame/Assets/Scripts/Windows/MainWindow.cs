@@ -39,7 +39,7 @@ public class MainWindow : BaseWindow
     
     public void OnPickUpButtonClick()
     {
-        
+        PlayerMainScript.MyPlayer.InteractWithClosestItem();
     }
 
     protected override void OnShow() { }

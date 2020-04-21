@@ -2,9 +2,11 @@
 using System.Collections;
 using UnityEngine;
 using Characters.Animations;
+using Characters.Systems;
 using InventoryObjects.Inventory;
 using InventoryObjects.Items;
 using Objects;
+using UnityEditor;
 
 namespace Characters.Controllers
 {
@@ -19,35 +21,41 @@ namespace Characters.Controllers
 
         public Inventory inventory;
         public Equipment equipment;
-
+        public ConeRadarSystem coneRadarSystem;
+        public float r = 0f;
         private Vector2 _inputDirections = Vector2.zero;
 
         private static readonly Quaternion WeaponDockRotation = new Quaternion(0, 0, 0, 0);
         private static readonly Quaternion ToolDockRotation = new Quaternion(0, 0, 180, 0);
 
         private bool _isInited;
-
-        private void OnTriggerEnter(Collider other) {
-            var collidedWith = other.GetComponent<PickableItem>().item;
-            var indexToAddTo = inventory.FindFreeCellToAdd(collidedWith);
-            if (collidedWith == null || indexToAddTo == -1) return;
-            if (other.GetComponent<PickableItem>().isPickable) {
-                inventory.AddItem(collidedWith, indexToAddTo);
-                Destroy(other.gameObject);
+        
+        public void InteractWithClosestItem() {
+            var nearest = coneRadarSystem.CheckForVisibleObjects(transform);
+            if (nearest != null) {
+                var indexToAddTo = inventory.FindFreeCellToAdd(nearest.item);
+                if (indexToAddTo == -1) return;
+                if (nearest.isPickable) {
+                    inventory.AddItem(nearest.item, indexToAddTo);
+                    Destroy(nearest.gameObject);
+                }
             }
         }
-
         private void OnApplicationQuit() {
             inventory.Clear();
             equipment.weapon = null;
             equipment.tool = null;
         }
 
+        public void OnDrawGizmosSelected() {
+            Gizmos.DrawWireSphere(transform.position, r);
+        }
+
         private void Start() {
             MyPlayer = this;
             MovementController = new ManualMovementController(GetComponent<CharacterController>());
             AnimatorController = new PlayerAnimatorController(GetComponent<Animator>());
-            damage = DamageType.Medium;
+            coneRadarSystem = new ConeRadarSystem();
             StartCoroutine(InitJoystick());
         }
 
@@ -61,7 +69,7 @@ namespace Characters.Controllers
 
         private void Update() {
             if (_isInited == false) return;
-            
+
             _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
             MovementController.Move(transform, characterRotationSpeed, characterMovementSpeed, _inputDirections);
             AnimatorController.OnMove(MovementController.CurrentSpeed / characterMovementSpeed, 0.01f);
@@ -74,7 +82,7 @@ namespace Characters.Controllers
                 yield return new WaitForSeconds(.1f);
                 directionalJoystick = MainWindowController.Instance.GetJoystick();
             }
-            
+
             _isInited = true;
         }
 
