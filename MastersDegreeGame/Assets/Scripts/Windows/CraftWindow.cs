@@ -12,13 +12,15 @@ public class CraftWindow : BaseWindow
 {
     [SerializeField] private CraftSlot[] _craftSlots;
     [SerializeField] private CraftSlot[] _resourcesSlots;
+
     [Space(20)] [SerializeField] private Text _title;
     [SerializeField] private Text _description;
+    [SerializeField] private Text notificationText;
     [SerializeField] private Button _createButton;
     [SerializeField] private Inventory _inventory;
-
+    [SerializeField] private GameObject notification;
     [SerializeField] private CraftSlot _activeSlot;
-    
+
     public override void Show() {
         base.Show();
         Init();
@@ -26,17 +28,29 @@ public class CraftWindow : BaseWindow
 
     public void OnCreateBtnClick() {
         if (_activeSlot != null) {
-           
             _activeSlot.recipe.CraftItem(_inventory);
             Init();
             SelectCraftableItem(_activeSlot);
+            notificationText.text = $"1x {_title.text} \n добавлен в инвентарь!";
         }
+        StartCoroutine(ShowNotification(0.8f , 0.35f));
     }
 
+    private IEnumerator ShowNotification(float time, float firstShowFor) {
+        notification.SetActive(true);
+        yield return new WaitForSecondsRealtime(firstShowFor);
+        for (var elapsed = 0f; elapsed < time; elapsed += Time.fixedDeltaTime) {
+            notification.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(1f, 0f,elapsed / time);
+            yield return null;
+        }
+        notification.SetActive(false);
+    }
+    
     private void Awake() {
         _title.text = "";
         _description.text = "";
         _createButton.enabled = false;
+        notification.SetActive(false);
     }
 
     private void Init() {
