@@ -13,16 +13,18 @@ namespace InventoryObjects.Crafting
         public List<InventoryCell> ingredients = new List<InventoryCell>();
         public List<InventoryCell[]> foundIngredients = new List<InventoryCell[]>();
         public InventoryCell result = new InventoryCell(null, 0);
-
+        public int canCraftCount = 0;
+        
         /// <summary>
         /// Check and find all necessary components in player inventory and fill them inside local container
         /// </summary>
         /// <param name="inventory">Player inventory</param>
         /// <returns>If can craft an item</returns>
         public bool HasAllComponents(Inventory.Inventory inventory) {
+            var presentIngredientsCounters = new int[ingredients.Count];
             foundIngredients.Clear();
-            foreach (var ingredient in ingredients) {
-                var foundCells = inventory.FindItems(ingredient.item);
+            for (var i = 0; i < ingredients.Count; ++i) {
+                var foundCells = inventory.FindItems(ingredients[i].item);
 
                 if (foundCells.Length != 0) {
                     var count = 0;
@@ -30,12 +32,14 @@ namespace InventoryObjects.Crafting
                         count += foundCell.amount;
                     }
 
-                    if (count < ingredient.amount) return false;
+                    if (count < ingredients[i].amount) return false;
+                    presentIngredientsCounters[i] = count;
                     Array.Sort(foundCells, (first, second) => second.CompareTo(first));
                     foundIngredients.Add(foundCells);
                 }
             }
 
+            result.amount = foundIngredients.Count == ingredients.Count ? presentIngredientsCounters.Min() : 0;
             return foundIngredients.Count == ingredients.Count;
         }
 
@@ -61,8 +65,10 @@ namespace InventoryObjects.Crafting
 
             var indexToAddTo = inventory.FindFreeCellToAdd(result.item);
             if (indexToAddTo != -1) {
-                inventory.AddItem(result.item, indexToAddTo, result.amount);
+                inventory.AddItem(result.item, indexToAddTo);
             }
+
+            result.amount--;
         }
     }
 }

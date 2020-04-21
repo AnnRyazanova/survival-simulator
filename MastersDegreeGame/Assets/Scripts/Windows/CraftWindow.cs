@@ -43,7 +43,9 @@ public class CraftWindow : BaseWindow
         foreach (var slot in _craftSlots) {
             slot.selectCraftableItem += SelectCraftableItem;
             if (slot.recipe != null) {
-                if (slot.recipe.HasAllComponents(_inventory)) {
+                var canCraft = slot.recipe.HasAllComponents(_inventory);
+                slot.Init();
+                if (canCraft) {
                     slot.SetFaderActive(false);
                 }
                 else {
