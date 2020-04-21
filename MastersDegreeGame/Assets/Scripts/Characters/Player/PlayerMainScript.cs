@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using Characters.Animations;
 using InventoryObjects.Inventory;
@@ -46,6 +47,14 @@ namespace Characters.Controllers
             AnimatorController = new PlayerAnimatorController(GetComponent<Animator>());
             damage = DamageType.Medium;
             InitJoystick();
+        }
+
+        public void Attack() {
+            if (equipment.weapon != null) {
+                if (equipment.weapon.ItemType == ItemObjectType.Weapon) {
+                    AnimatorController.OnAttackMelee();
+                }
+            }
         }
 
         private void Update() {
