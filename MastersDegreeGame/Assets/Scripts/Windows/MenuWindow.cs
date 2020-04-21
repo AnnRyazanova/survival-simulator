@@ -8,8 +8,14 @@ public class MenuWindow : BaseWindow
    public void OnPlayButtonClick()
    {
       MenuController.Instance.HideWindow();
-      MainWindowController.Instance.ShowWindow();
+      
       SceneLoaderController.Instance.LoadStartScene();
+      
+   }
+
+   public void OnQuitApplication()
+   {
+      Application.Quit();
    }
 
    public void OnQuitApplication()

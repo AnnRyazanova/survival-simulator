@@ -25,6 +25,8 @@ namespace Characters.Controllers
         private static readonly Quaternion WeaponDockRotation = new Quaternion(0, 0, 0, 0);
         private static readonly Quaternion ToolDockRotation = new Quaternion(0, 0, 180, 0);
 
+        private bool _isInited;
+
         private void OnTriggerEnter(Collider other) {
             var collidedWith = other.GetComponent<PickableItem>().item;
             var indexToAddTo = inventory.FindFreeCellToAdd(collidedWith);
@@ -46,7 +48,7 @@ namespace Characters.Controllers
             MovementController = new ManualMovementController(GetComponent<CharacterController>());
             AnimatorController = new PlayerAnimatorController(GetComponent<Animator>());
             damage = DamageType.Medium;
-            InitJoystick();
+            StartCoroutine(InitJoystick());
         }
 
         public void Attack() {
@@ -58,13 +60,22 @@ namespace Characters.Controllers
         }
 
         private void Update() {
+            if (_isInited == false) return;
+            
             _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
             MovementController.Move(transform, characterRotationSpeed, characterMovementSpeed, _inputDirections);
             AnimatorController.OnMove(MovementController.CurrentSpeed / characterMovementSpeed, 0.01f);
         }
 
-        private void InitJoystick() {
+        private IEnumerator InitJoystick() {
             directionalJoystick = MainWindowController.Instance.GetJoystick();
+
+            while (directionalJoystick == null) {
+                yield return new WaitForSeconds(.1f);
+                directionalJoystick = MainWindowController.Instance.GetJoystick();
+            }
+            
+            _isInited = true;
         }
 
         #region EquipmentActions

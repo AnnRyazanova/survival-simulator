@@ -33,6 +33,10 @@ public sealed class MainWindowController
 
     public FixedJoystick GetJoystick()
     {
+        if (window == null) {
+            return null;
+        }
+        
         return window.Joystick;
     }
 
