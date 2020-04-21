@@ -17,4 +17,9 @@ public class MenuWindow : BaseWindow
    {
       Application.Quit();
    }
+
+   public void OnQuitApplication()
+   {
+      Application.Quit();
+   }
 }

@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   displayIcon: {fileID: 21300000, guid: bcd48b9dbe201d24fab7a45b3724247b, type: 3}
-  description: 
+  isStackable: 1
+  maxItemsInStack: 10
+  title: "\u0411\u0440\u0435\u0432\u043D\u043E"
   id: 9
   durability: 100
   durabilityDecreaseRate: 0
+  description: 

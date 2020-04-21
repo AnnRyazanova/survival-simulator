@@ -10,17 +10,16 @@ namespace InventoryObjects.Inventory
     {
         public int maxLength = 9;
 
-        // public List<InventoryCell> container = new List<InventoryCell>();
         public InventoryCell[] container = new InventoryCell[9];
 
-        public void AddItem(ItemObject item, int atIndex = -1) {
+        public void AddItem(ItemObject item, int atIndex = -1, int quantity = 1) {
             var firstFreeCellIdx = atIndex == -1 ? FindFreeCellToAdd(item) : atIndex;
             if (container[firstFreeCellIdx].item != null
                 && container[firstFreeCellIdx].item.ItemType == item.ItemType) {
-                container[firstFreeCellIdx].AddAmount(1);
+                container[firstFreeCellIdx].AddAmount(quantity);
             }
             else {
-                container[firstFreeCellIdx] = new InventoryCell(item, 1);
+                container[firstFreeCellIdx] = new InventoryCell(item, quantity);
             }
         }
 
@@ -29,9 +28,11 @@ namespace InventoryObjects.Inventory
         public void TidyLayout() {
             for (var i = 0; i < maxLength; i++) {
                 if (container[i] == null) continue;
+                
                 for (var j = i - 1 < 0 ? 0 : i - 1; j >= 0; --j) {
                     if (container[j].item == null) {
                         if (j != 0 && container[j - 1].item == null) continue;
+                
                         var tmp = container[i];
                         container[i] = container[j];
                         container[j] = tmp;
@@ -65,10 +66,12 @@ namespace InventoryObjects.Inventory
             }
         }
 
-        public void RemoveItem(InventoryCell inventoryCell, int quantity = 1) {
-            var containedItemIndex = Array.FindIndex(container, cell => cell.item != null && cell == inventoryCell);
+        public void RemoveItem(InventoryCell item, int quantity = 1) {
+            var containedItemIndex = Array.FindIndex(container, cell => cell.item != null && cell == item);
+
             if (containedItemIndex == -1) return;
             var amount = container[containedItemIndex].amount;
+
             if (amount > 1 && quantity < amount) {
                 container[containedItemIndex].ReduceAmount(quantity);
             }
@@ -84,6 +87,10 @@ namespace InventoryObjects.Inventory
         }
 
         public bool HasSpace() => Array.FindAll(container, cell => cell.item != null).Length < maxLength;
+
+        public InventoryCell[] FindItems(ItemObject item) {
+            return Array.FindAll(container, cell => cell.item == item);
+        }
 
         public bool HasItem(int itemId) =>
             Array.Find(container, cell => cell != null && cell.item.id == itemId) != null;

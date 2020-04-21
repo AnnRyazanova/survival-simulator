@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Characters.Controllers;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,7 +34,7 @@ public class MainWindow : BaseWindow
 
     public void OnAttackButtonClick()
     {
-        Debug.Log($"[MainWindow::OnAttackButtonClick] You've clicked on AttackButton");
+        PlayerMainScript.MyPlayer.Attack();
     }
 
     protected override void OnShow() { }

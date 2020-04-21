@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Mushroom
   m_EditorClassIdentifier: 
   displayIcon: {fileID: 21300000, guid: 30b661bdf7b5e1541a636d4004635f6e, type: 3}
-  description: 
+  isStackable: 1
+  maxItemsInStack: 10
+  title: "\u0413\u0440\u0438\u0431"
   id: 6
   durability: 1
   durabilityDecreaseRate: 0
+  description: 
   healthRegen: 0
   hungerRegen: 20

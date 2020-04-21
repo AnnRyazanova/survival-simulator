@@ -51,6 +51,14 @@ namespace Characters.Controllers
             StartCoroutine(InitJoystick());
         }
 
+        public void Attack() {
+            if (equipment.weapon != null) {
+                if (equipment.weapon.ItemType == ItemObjectType.Weapon) {
+                    AnimatorController.OnAttackMelee();
+                }
+            }
+        }
+
         private void Update() {
             if (_isInited == false) return;
             

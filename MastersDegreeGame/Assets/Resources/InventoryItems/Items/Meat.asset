@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Meat
   m_EditorClassIdentifier: 
   displayIcon: {fileID: 21300000, guid: 38fd602d7abda9f4f9afb47528549ee4, type: 3}
-  description: 
+  isStackable: 1
+  maxItemsInStack: 10
+  title: "\u041C\u044F\u0441\u043E"
   id: 5
   durability: 0
   durabilityDecreaseRate: 0
+  description: 
   healthRegen: 0
   hungerRegen: 25

@@ -12,9 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e06a104a59e1574c82f0b09f8bcab0c, type: 3}
   m_Name: Torch
   m_EditorClassIdentifier: 
-  displayIcon: {fileID: 21300000, guid: 97de1a5970601a1468925050ba523972, type: 3}
-  description: 
+  displayIcon: {fileID: 21300000, guid: 7c8f65863937faa4786337a8e3440546, type: 3}
+  isStackable: 0
+  maxItemsInStack: 10
+  title: "\u0413\u043E\u043B\u043E\u0432\u0435\u0448\u043A\u0430 \u043D\u0430 \u043F\u0430\u043B\u043A\u0435"
   id: 0
   durability: 0
   durabilityDecreaseRate: 0
+  description: "\u041A\u0443\u0441\u043E\u043A \u0440\u0430\u0441\u043A\u0430\u043B\u0435\u043D\u043D\u043E\u0433\u043E
+    \u0443\u0433\u043E\u043B\u044C\u043A\u0430 \u043D\u0430 \u0434\u043B\u0438\u043D\u043D\u043E\u0439
+    \u043F\u0430\u043B\u043A\u0435. \u0421\u0438\u043B\u044C\u043D\u043E \u0441\u0432\u0435\u0442\u0430
+    \u043D\u0435 \u0434\u0430\u0441\u0442, \u043D\u043E \u043D\u0430\u0439\u0442\u0438
+    \u043A\u043B\u044E\u0447\u0438 \u043E\u0442 \u043C\u0430\u0448\u0438\u043D\u044B
+    \u0432 \u043F\u043E\u043B\u043D\u043E\u0439 \u0442\u0435\u043C\u043D\u043E\u0442\u0435
+    \u043F\u043E\u043C\u043E\u0436\u0435\u0442. "
   toolPrefab: {fileID: 170842, guid: e734b821fea095240b69459a7126b160, type: 3}

@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class InventoryWindow : BaseWindow, IPointerClickHandler
 {
-    
     [SerializeField] private InventorySlot[] _inventorySlots;
     [SerializeField] private InventorySlot[] _weaponSlots;
     [SerializeField] private Text useButtonText;
@@ -33,6 +32,7 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
         for (var i = 0; i < inventory.maxLength; ++i) {
             _inventorySlots[i].Init(this, inventory.container[i]);
         }
+
         // TODO: Fix new to maybe some preallocated value
         _weaponSlots[0].Init(this, new InventoryCell(equipment.weapon, 1));
         _weaponSlots[1].Init(this, new InventoryCell(equipment.tool, 1));
@@ -76,7 +76,7 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
         else {
             if (equipmentObject.id != inventoryCell.item.id) {
                 var tmp = equipmentObject;
-                equipmentObject = (WeaponItem) inventoryCell.item;
+                equipmentObject = inventoryCell.item;
                 inventory.AddItem(tmp);
             }
         }

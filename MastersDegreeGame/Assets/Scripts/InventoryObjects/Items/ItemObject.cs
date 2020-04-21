@@ -16,13 +16,13 @@ namespace InventoryObjects.Items
         public Sprite displayIcon;
         public bool isStackable = true;
         public int maxItemsInStack = 10;
-        
-        [TextArea(20, 50)]
-        public string description;
-        
+        public string title = "Предмет";
         public int id;
         public float durability;
         public float durabilityDecreaseRate;
+        
+        [TextArea(20, 50)]
+        public string description;
         
         public abstract void OnUse(Object target);
     

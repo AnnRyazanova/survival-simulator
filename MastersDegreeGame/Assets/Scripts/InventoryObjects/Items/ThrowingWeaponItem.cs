@@ -3,7 +3,7 @@
 namespace InventoryObjects.Items
 {
     // Weapon items can be used as tools
-    [CreateAssetMenu(fileName = "Create New Weapon", menuName = "Inventory/Items/Weapon")]
+    [CreateAssetMenu(fileName = "Create New Weapon", menuName = "Inventory/Items/Throwable")]
     public class ThrowingWeaponItem : ItemObject
     {
         public float attackPower;
@@ -12,7 +12,7 @@ namespace InventoryObjects.Items
         
         private void Awake() {
             ItemType = ItemObjectType.Weapon;
-            isStackable = false;
+            isStackable = true;
         }
 
         public override void OnUse(Object target) {
