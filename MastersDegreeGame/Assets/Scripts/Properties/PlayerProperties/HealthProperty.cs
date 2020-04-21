@@ -9,7 +9,7 @@ public class HealthProperty : NeedProperty
     {
         base.StartProperty(parent);
 #if  CHEAT
-        Debug.Log("Activate HealthProperty");
+        //Debug.Log("Activate HealthProperty");
 #endif
     }
 }

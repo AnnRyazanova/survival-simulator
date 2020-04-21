@@ -52,6 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c4d07a147e6b7b4cbc0488833792e39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneDropdown: {fileID: 5813682012072124016}
 --- !u!1 &5813682010868461213
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,8 +682,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -24.699951, y: 150.55002}
-  m_SizeDelta: {x: -83.19998, y: -336.9}
+  m_AnchoredPosition: {x: -0.000015258789, y: 150.55002}
+  m_SizeDelta: {x: 0.000030518, y: -336.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5813682011521796900
 CanvasRenderer:
@@ -717,7 +718,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 5
     m_MaxSize: 70
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1029,8 +1030,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -15.525, y: -150.7}
-  m_SizeDelta: {x: -70.55, y: 101.1}
+  m_AnchoredPosition: {x: 0, y: -150.7}
+  m_SizeDelta: {x: -86, y: 101.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5813682011844481145
 CanvasRenderer:
@@ -1665,7 +1666,7 @@ GameObject:
   - component: {fileID: 5813682012072124017}
   - component: {fileID: 5813682012072124016}
   m_Layer: 5
-  m_Name: Dropdown
+  m_Name: SceneDropdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1691,8 +1692,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -15.55, y: -27.25}
-  m_SizeDelta: {x: 369.5, y: 54.5}
+  m_AnchoredPosition: {x: 0.000011444, y: -28.2}
+  m_SizeDelta: {x: 354, y: 90.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5813682012072124014
 CanvasRenderer:
@@ -1774,11 +1775,9 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Option A
+    - m_Text: FirstTestScene
       m_Image: {fileID: 0}
-    - m_Text: Option B
-      m_Image: {fileID: 0}
-    - m_Text: Option C
+    - m_Text: PerlinNoiseTest
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1853,7 +1852,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 4
     m_MaxSize: 70
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1894,8 +1893,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -9.149963, y: 70.25}
-  m_SizeDelta: {x: -18.299988, y: 45.5}
+  m_AnchoredPosition: {x: 0, y: 83.04999}
+  m_SizeDelta: {x: -0.000061035, y: 45.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5813682012159849519
 CanvasRenderer:
@@ -1930,7 +1929,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 70
-    m_Alignment: 3
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2135,8 +2134,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -7.5, y: -0.5}
-  m_SizeDelta: {x: -35, y: -13}
+  m_AnchoredPosition: {x: -1.5, y: -0.5}
+  m_SizeDelta: {x: -23, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5813682012374296215
 CanvasRenderer:
@@ -2166,18 +2165,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 9974a68185212ec47b92790605c41f3f, type: 3}
-    m_FontSize: 30
-    m_FontStyle: 3
+    m_FontSize: 45
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 3
+    m_MaxSize: 45
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Option A
+  m_Text: FirstTestScene
 --- !u!1 &5813682012380924658
 GameObject:
   m_ObjectHideFlags: 0
@@ -2304,11 +2303,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 115341527080473583}
     m_Modifications:
-    - target: {fileID: 4376947243896520899, guid: 7478a71810b034e498a4f97e3d369ac0,
-        type: 3}
-      propertyPath: m_Name
-      value: Fader
-      objectReference: {fileID: 0}
     - target: {fileID: 7485077788015486701, guid: 7478a71810b034e498a4f97e3d369ac0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2413,6 +2407,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376947243896520899, guid: 7478a71810b034e498a4f97e3d369ac0,
+        type: 3}
+      propertyPath: m_Name
+      value: Fader
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7478a71810b034e498a4f97e3d369ac0, type: 3}

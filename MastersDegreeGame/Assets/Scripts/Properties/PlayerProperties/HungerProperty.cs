@@ -9,7 +9,7 @@ public class HungerProperty : DecreaseNeedProperty
     {
         base.StartProperty(parent);
 #if  CHEAT
-        Debug.Log("Activate HungerProperty");
+        //Debug.Log("Activate HungerProperty");
 #endif
     }
 }

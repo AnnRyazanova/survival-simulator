@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestWindow : BaseWindow
+public class DeathWindow : BaseWindow
 {
-    public void OnButtonClick(string name)
+    public void OnMenuButtonClick()
     {
+        Debug.Log($"[TestWindow::OnMenuButtonClick] You've clicked on MenuButton");
         Hide();
         MainWindowController.Instance.HideWindow();
         MenuController.Instance.ShowWindow();
