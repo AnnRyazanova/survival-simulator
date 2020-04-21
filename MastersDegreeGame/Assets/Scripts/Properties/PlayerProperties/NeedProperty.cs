@@ -21,6 +21,11 @@ public class NeedProperty : BaseProperty
     [SerializeField] protected int _recoveryPoints;
 
     /// <summary>
+    /// Не восстанавливать данное свойство от времени (для врагов)
+    /// </summary>
+    [SerializeField] protected bool _skipRecovery;
+    
+    /// <summary>
     /// Текущий уровень поинтов свойства
     /// </summary>
     protected int _currentPoints;
@@ -58,6 +63,15 @@ public class NeedProperty : BaseProperty
     protected override void UpdateProperty()
     {
         base.UpdateProperty();
+        
+        Recovery();
+    }
+
+    protected virtual void Recovery()
+    {
+        if (_skipRecovery) return;
+        
+        // Восстановление свойства
         if ((DateTime.Now - _lastUpdateTime).TotalSeconds >= _recoveryTime && _currentPoints != _previousPoints) {
             _lastUpdateTime = DateTime.Now;
             _previousPoints = _currentPoints;

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MobObject : Object
 {
-    public MobHealthProperty Health { get; private set; }
+    public HealthProperty Health { get; private set; }
     
     protected override void Start()
     {
         base.Start();
-        Health = GetComponent<MobHealthProperty>();
+        Health = GetComponent<HealthProperty>();
     }
 }
