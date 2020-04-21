@@ -29,6 +29,11 @@ public sealed class LoadingWindowController
         window.Hide();
     }
 
+    public void SetProgress(float progress)
+    {
+        window.SetProgress(progress);
+    }
+
     private void OnWindowHide()
     {
         window.OnWindowHide -= OnWindowHide;

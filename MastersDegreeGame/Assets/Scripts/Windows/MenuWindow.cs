@@ -10,7 +10,7 @@ public class MenuWindow : BaseWindow
       MenuController.Instance.HideWindow();
       
       SceneLoaderController.Instance.LoadStartScene();
-      MainWindowController.Instance.ShowWindow();
+      
    }
 
    public void OnQuitApplication()

@@ -22,6 +22,6 @@ public class InitController : MonoBehaviour
     {
         GuiController.Instance.SetCameraClearFlags();
         MenuController.Instance.ShowWindow();
-        SceneLoaderController.Instance.LoadMenuScene();
+        SceneLoaderController.Instance.LoadMenuScene(false, false);
     }
 }

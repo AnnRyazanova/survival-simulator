@@ -8,6 +8,8 @@ public class EnergyProperty : NeedProperty
     public override void StartProperty(Object parent)
     {
         base.StartProperty(parent);
+#if  CHEAT
         Debug.Log("Activate EnergyProperty");
+#endif
     }
 }

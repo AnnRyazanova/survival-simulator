@@ -12,28 +12,26 @@ public sealed class SceneLoaderController : MonoBehaviour
     private readonly string _initScene = "Init";
     private readonly string _menuScene = "Menu/Menu";
     private readonly string _testScene = "MovementTest/MovementTest";
-
-    public LoadingWindow window;
     
     public void LoadStartScene()
     {
         LoadScene(_testScene);
     }
     
-    public void LoadMenuScene()
+    public void LoadMenuScene(bool showLoaderWindow, bool showMenuWindow)
     {
-        LoadScene(_menuScene);
+        LoadScene(_menuScene, showLoaderWindow, showMenuWindow);
     }
 
-    public void LoadScene(string sceneName)
+    public void LoadScene(string sceneName, bool showLoaderWindow = true, bool showMenuWindow = true)
     {
-        StartCoroutine(LoadSceneAsync(sceneName));
+        StartCoroutine(LoadSceneAsync(sceneName, showLoaderWindow, showMenuWindow));
     }
     
     private void Awake()
     {
         _instance = this;
-        GameObject.DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
         Init();
     }
 
@@ -44,19 +42,49 @@ public sealed class SceneLoaderController : MonoBehaviour
 
     private void Init() { }
 
-    private IEnumerator LoadSceneAsync(string sceneName)
+    private IEnumerator LoadSceneAsync(string sceneName, bool showLoaderWindow = true, bool showMenuWindow = true)
     {
         var name = string.Format($"Scenes/{sceneName}");
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name);
-        
-        window.loadingScreen.SetActive(true);
-        
-        while (!asyncLoad.isDone) {
-            float progress = Mathf.Clamp01(asyncLoad.progress / .9f);
-            Debug.Log(progress);
-            window.slider.value = progress;
-            window.progressText.text = progress * 100f + "%";
+
+        if (showLoaderWindow) {
+            LoadingWindowController.Instance.ShowWindow();
+        }
+
+#if CHEAT
+        float delayedProgress = 0;
+        var delay = (showLoaderWindow == true && delayedProgress > .99) || showLoaderWindow == false;
+#endif
+
+        while (asyncLoad.isDone == false 
+#if CHEAT
+         || delay == false
+#endif
+            ) {
+            if (showLoaderWindow) {
+                float progress = Mathf.Clamp01(asyncLoad.progress / .9f);
+                
+#if CHEAT
+                delayedProgress += .01f;
+                progress = delayedProgress;
+                delay = (showLoaderWindow == true && delayedProgress > .99) || showLoaderWindow == false;
+#endif
+                
+                LoadingWindowController.Instance.SetProgress(progress);
+            }
             yield return null;
         }
+
+        OnSceneLoaded(showMenuWindow);
     }
+
+    private void OnSceneLoaded(bool showMenuWindow = true)
+    {
+        LoadingWindowController.Instance.HideWindow();
+
+        if (showMenuWindow) {
+            MainWindowController.Instance.ShowWindow();
+        }
+    }
+    
 }
