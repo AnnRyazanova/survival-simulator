@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public sealed class SceneLoaderController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public sealed class SceneLoaderController : MonoBehaviour
     private readonly string _menuScene = "Menu/Menu";
     private readonly string _testScene = "MovementTest/MovementTest";
 
+    public LoadingWindow window;
+    
     public void LoadStartScene()
     {
         LoadScene(_testScene);
@@ -45,8 +48,14 @@ public sealed class SceneLoaderController : MonoBehaviour
     {
         var name = string.Format($"Scenes/{sceneName}");
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(name);
-
+        
+        window.loadingScreen.SetActive(true);
+        
         while (!asyncLoad.isDone) {
+            float progress = Mathf.Clamp01(asyncLoad.progress / .9f);
+            Debug.Log(progress);
+            window.slider.value = progress;
+            window.progressText.text = progress * 100f + "%";
             yield return null;
         }
     }
