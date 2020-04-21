@@ -8,7 +8,7 @@ public class DamageProperty : BaseProperty
    {
       base.StartProperty(parent);
 #if  CHEAT
-      Debug.Log("Activate DamageProperty");
+      //Debug.Log("Activate DamageProperty");
 #endif
    }
 

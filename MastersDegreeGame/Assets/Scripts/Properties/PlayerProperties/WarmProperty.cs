@@ -9,7 +9,7 @@ public class WarmProperty : DecreaseNeedProperty
     {
         base.StartProperty(parent);
 #if  CHEAT
-        Debug.Log("Activate WarmProperty"); 
+        //Debug.Log("Activate WarmProperty"); 
 #endif
     }
 }
