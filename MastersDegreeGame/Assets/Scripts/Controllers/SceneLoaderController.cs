@@ -12,10 +12,17 @@ public sealed class SceneLoaderController : MonoBehaviour
     private readonly string _initScene = "Init";
     private readonly string _menuScene = "Menu/Menu";
     private readonly string _testScene = "MovementTest/MovementTest";
+    private readonly string _testGenScene = "Generation/Test";
     
-    public void LoadStartScene()
+    public void LoadStartScene(int val)
     {
-        LoadScene(_testScene);
+        if (val == 0) {
+            LoadScene(_testScene);
+        } else if (val == 1) {
+            LoadScene(_testGenScene);
+        } else {
+            LoadScene(_testScene);
+        }
     }
     
     public void LoadMenuScene(bool showLoaderWindow, bool showMenuWindow)
