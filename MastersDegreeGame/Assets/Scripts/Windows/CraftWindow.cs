@@ -55,10 +55,16 @@ public class CraftWindow : BaseWindow
         }
     }
 
+    private void ClearResourceSlots() {
+        foreach (var resourcesSlot in _resourcesSlots) {
+            resourcesSlot.Init();
+        }
+    }
+
     private void SelectCraftableItem(CraftSlot slot) {
         _activeSlot = slot;
         var hasAllIngredients = true;
-
+        ClearResourceSlots();
         for (var i = 0; i < slot.recipe.ingredients.Count; i++) {
             var foundIngredient = slot.recipe.foundIngredients.Find(cell => {
                 return slot.recipe.ingredients[i].item.id == cell[0].item.id;

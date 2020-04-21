@@ -32,10 +32,11 @@ namespace InventoryObjects.Crafting
                         count += foundCell.amount;
                     }
 
-                    if (count < ingredients[i].amount) return false;
-                    presentIngredientsCounters[i] = count;
-                    Array.Sort(foundCells, (first, second) => second.CompareTo(first));
-                    foundIngredients.Add(foundCells);
+                    if (count >= ingredients[i].amount) {
+                        presentIngredientsCounters[i] = count / ingredients[i].amount;
+                        Array.Sort(foundCells, (first, second) => second.CompareTo(first));
+                        foundIngredients.Add(foundCells);
+                    }
                 }
             }
 

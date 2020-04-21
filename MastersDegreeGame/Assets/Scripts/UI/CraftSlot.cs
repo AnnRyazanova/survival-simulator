@@ -24,17 +24,23 @@ namespace UI
         public void OnSelectCraftableItem() {
             selectCraftableItem?.Invoke(this);
         }
-
+        
         private void Awake() {
-            _icon.gameObject.SetActive(false);
-            _count.gameObject.SetActive(false);
-            _fader.SetActive(false);
+            DeactivateComponents();
             Init();
         }
 
+        private void DeactivateComponents() {
+            _icon.gameObject.SetActive(false);
+            _count.gameObject.SetActive(false);
+            _fader.SetActive(false);
+        }
         public void Init(InventoryCell newCell = null, bool shouldFadeRed = false) {
             if (newCell == null) {
-                if(recipe == null) return;
+                if (recipe == null) {
+                    DeactivateComponents();
+                    return;
+                }
                 cell = recipe.result;
             }
             else {

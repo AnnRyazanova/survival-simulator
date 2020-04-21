@@ -10,14 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b0ce9180fce5f7445978f42734763471, type: 3}
-  m_Name: AxeRecipe
+  m_Name: ThrowingStoneRecipe
   m_EditorClassIdentifier: 
   ingredients:
-  - item: {fileID: 11400000, guid: d1652a85421ab2447857400fd93ddc81, type: 2}
-    amount: 2
   - item: {fileID: 11400000, guid: 260b9bad3af87a746aaff97cd431a570, type: 2}
-    amount: 2
+    amount: 4
   result:
-    item: {fileID: 11400000, guid: ad8e268a2f370ba4c97bafb7ff61c778, type: 2}
+    item: {fileID: 11400000, guid: 0c5687c843fa58446bfca4a096c22f57, type: 2}
     amount: 0
   canCraftCount: 0

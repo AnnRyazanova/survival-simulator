@@ -20,3 +20,4 @@ MonoBehaviour:
   result:
     item: {fileID: 11400000, guid: 926450ae2c83ac445a67ec29e878892f, type: 2}
     amount: 0
+  canCraftCount: 0
