@@ -16,7 +16,7 @@ MonoBehaviour:
   isStackable: 1
   maxItemsInStack: 10
   title: "\u0412\u0435\u0442\u043A\u0430"
-  id: 8
+  id: 11
   durability: 100
   durabilityDecreaseRate: 0
   description: 
