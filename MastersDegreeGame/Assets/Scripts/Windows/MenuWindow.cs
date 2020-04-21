@@ -15,7 +15,7 @@ public class MenuWindow : BaseWindow
 
    public void SceneDropdownHandle()
    {
-      Debug.Log("Number of scene:" + sceneDropdown.value);
+      //Debug.Log("Number of scene:" + sceneDropdown.value);
       SceneLoaderController.Instance.LoadStartScene(sceneDropdown.value);
    }
 

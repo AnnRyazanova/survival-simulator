@@ -9,7 +9,7 @@ public class EnergyProperty : NeedProperty
     {
         base.StartProperty(parent);
 #if  CHEAT
-        Debug.Log("Activate EnergyProperty");
+        //Debug.Log("Activate EnergyProperty");
 #endif
     }
 }

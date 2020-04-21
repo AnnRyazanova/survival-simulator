@@ -9,20 +9,27 @@ public sealed class SceneLoaderController : MonoBehaviour
     public static SceneLoaderController Instance => _instance;
     private static SceneLoaderController _instance;
     
-    private readonly string _initScene = "Init";
     private readonly string _menuScene = "Menu/Menu";
     private readonly string _testScene = "MovementTest/MovementTest";
     private readonly string _testGenScene = "Generation/Test";
     
     public void LoadStartScene(int val)
     {
-        if (val == 0) {
-            LoadScene(_testScene);
-        } else if (val == 1) {
-            LoadScene(_testGenScene);
-        } else {
-            LoadScene(_testScene);
+        var scene = "";
+        
+        switch (val) {
+            case 0:
+                scene = _testScene;
+                break;
+            case 1:
+                scene = _testGenScene;
+                break;
+            default:
+                scene = _testScene;
+                break;
         }
+        
+        LoadScene(scene);
     }
     
     public void LoadMenuScene(bool showLoaderWindow, bool showMenuWindow)
