@@ -12,4 +12,12 @@ public class HealthProperty : NeedProperty
         //Debug.Log("Activate HealthProperty");
 #endif
     }
+
+    public override void AddPoints(int points)
+    {
+        base.AddPoints(points);
+        if (parentObject.Type == Object.ObjectType.Player && _currentPoints <= 0) {
+            DeathWindowController.Instance.ShowWindow();
+        }
+    }
 }

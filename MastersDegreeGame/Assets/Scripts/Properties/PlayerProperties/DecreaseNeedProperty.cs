@@ -22,14 +22,15 @@ public class DecreaseNeedProperty : NeedProperty
     /// Единицы, здоровья, которые отнимаются при низких показателях
     /// </summary>
     [SerializeField] protected int _criticalLowHpPoints;
+
+    public bool IsCritical => _currentPoints < _criticalLowBorder;
     
     protected override void UpdateProperty()
     {
         if (CanUpdate() == false) return;
         
-        if ((DateTime.Now - _lastUpdateTime).TotalSeconds >= _decreaseTime && _currentPoints != _previousPoints) {
+        if ((DateTime.Now - _lastUpdateTime).TotalSeconds >= _decreaseTime) {
             _lastUpdateTime = DateTime.Now;
-            _previousPoints = _currentPoints;
             AddPoints(_decreasePoints);
 
             if (_currentPoints < _criticalLowBorder) {
@@ -37,6 +38,4 @@ public class DecreaseNeedProperty : NeedProperty
             }
         }
     }
-    
-    
 }

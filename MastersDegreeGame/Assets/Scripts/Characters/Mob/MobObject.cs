@@ -10,5 +10,6 @@ public class MobObject : Object
     {
         base.Start();
         Health = GetComponent<HealthProperty>();
+        type = ObjectType.Mob;
     }
 }

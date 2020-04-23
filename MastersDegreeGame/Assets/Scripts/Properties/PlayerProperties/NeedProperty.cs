@@ -35,8 +35,6 @@ public class NeedProperty : BaseProperty
     /// </summary>
     protected DateTime _lastUpdateTime;
 
-    protected int _previousPoints;
-
     public int CurrentPoints => _currentPoints;
     public float CurrentPointsNormalized => _currentPoints / (float)_totalPoints;
     public int TotalPoints => _totalPoints;
@@ -72,9 +70,8 @@ public class NeedProperty : BaseProperty
         if (_skipRecovery) return;
         
         // Восстановление свойства
-        if ((DateTime.Now - _lastUpdateTime).TotalSeconds >= _recoveryTime && _currentPoints != _previousPoints) {
+        if ((DateTime.Now - _lastUpdateTime).TotalSeconds >= _recoveryTime) {
             _lastUpdateTime = DateTime.Now;
-            _previousPoints = _currentPoints;
             AddPoints(_recoveryPoints);
         }
     }

@@ -19,6 +19,11 @@ public sealed class PlayerNeedsUiView : MonoBehaviour
     
     [SerializeField] private Image _hungerProgressBar;
     [SerializeField] private Text _hungerText;
+    [Space (20)]
+    
+    [SerializeField] private Image _vignetteBkg;
+
+    private Action OnNeedUpdate = () => { };
 
     private void Awake()
     {
@@ -28,6 +33,8 @@ public sealed class PlayerNeedsUiView : MonoBehaviour
         _warmText.gameObject.SetActive(true);
         _hungerText.gameObject.SetActive(true);
 #endif
+        _vignetteBkg.gameObject.SetActive(false);
+        OnNeedUpdate += CheckVignette;
     }
 
     public IEnumerator Start()
@@ -52,8 +59,9 @@ public sealed class PlayerNeedsUiView : MonoBehaviour
             PlayerMainScript.MyPlayer.playerObject.Energy.OnChange -= UpdateEnergy;
             PlayerMainScript.MyPlayer.playerObject.Hunger.OnChange -= UpdateHunger;
         }
+        OnNeedUpdate -= CheckVignette;
     }
-    
+
     private void UpdateEnergy()
     {
         var energy = PlayerMainScript.MyPlayer.playerObject.Energy;
@@ -70,6 +78,7 @@ public sealed class PlayerNeedsUiView : MonoBehaviour
 #if CHEAT
         _warmText.text = warm.CurrentPoints.ToString();
 #endif
+        OnNeedUpdate();
     }
 
     private void UpdateHealth()
@@ -79,6 +88,7 @@ public sealed class PlayerNeedsUiView : MonoBehaviour
 #if CHEAT
         _healthText.text = health.CurrentPoints.ToString();
 #endif
+        OnNeedUpdate();
     }
 
     private void UpdateHunger()
@@ -88,5 +98,36 @@ public sealed class PlayerNeedsUiView : MonoBehaviour
 #if CHEAT
         _hungerText.text = hunger.CurrentPoints.ToString();
 #endif
+        OnNeedUpdate();
+    }
+
+    private void CheckVignette()
+    {
+        var isCritical = PlayerMainScript.MyPlayer.playerObject.Hunger.IsCritical ||
+            PlayerMainScript.MyPlayer.playerObject.Warm.IsCritical;
+        
+        if (isCritical) {
+
+            if (_vignetteBkg.gameObject.activeSelf == false) {
+                _vignetteBkg.gameObject.SetActive(true);
+            }
+            _vignetteBkg.color = GetColor(_vignetteBkg.color);
+        } 
+        
+        if (isCritical == false && _vignetteBkg.gameObject.activeSelf) {
+            _vignetteBkg.gameObject.SetActive(false);
+        }
+    }
+
+    private Color GetColor(Color color)
+    {
+        var _color = color;
+        var currentHP = PlayerMainScript.MyPlayer.playerObject.Health.CurrentPoints;
+        
+        var alpha = 255 - (currentHP * 2.55f);
+        var res = alpha / 255;
+
+        _color.a = res;
+        return _color;
     }
 }

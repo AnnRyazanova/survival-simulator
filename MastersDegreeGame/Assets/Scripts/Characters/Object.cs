@@ -6,7 +6,17 @@ using UnityEngine;
 
 public class Object: MonoBehaviour
 {
+    public enum ObjectType
+    {
+        Player,
+        Mob,
+    }
+
     public List<BaseProperty> Properties { get; private set; } = new List<BaseProperty>();
+    
+    
+    protected ObjectType type;
+    public ObjectType Type => type;
 
     protected virtual void Start()
     {

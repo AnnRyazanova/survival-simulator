@@ -13,6 +13,7 @@ public class PlayerObject : Object
     protected override void Start()
     {
         base.Start();
+        type = ObjectType.Player;
         Health = GetComponent<HealthProperty>();
         Hunger = GetComponent<HungerProperty>();
         Damage = GetComponent<DamageProperty>();

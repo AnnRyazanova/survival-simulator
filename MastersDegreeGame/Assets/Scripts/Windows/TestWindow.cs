@@ -10,8 +10,5 @@ public class TestWindow : BaseWindow
         MainWindowController.Instance.HideWindow();
         MenuController.Instance.ShowWindow();
         SceneLoaderController.Instance.LoadMenuScene(false, false);
-        
-        
-        
     }
 }

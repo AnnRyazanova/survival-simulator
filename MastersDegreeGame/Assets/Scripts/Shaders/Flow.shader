@@ -27,11 +27,7 @@
 			float2 uv_SpecsTex1;
             float2 uv_SpecsTex2;
             float2 uv_FoamNoise;
-            float eyeDepth;
-            float4 screenPos;
 		};
-
-        sampler2D_float _CameraDepthTexture;
 
 		fixed4 _Color;
 
