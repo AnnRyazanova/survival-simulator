@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Characters.Animations;
 using Characters.Controllers;
+using Characters.NPC;
 using Characters.Systems;
 using InventoryObjects.Inventory;
 using InventoryObjects.Items;
@@ -21,9 +22,8 @@ namespace Characters.Player
         public Inventory inventory;
         public Equipment equipment;
         public ConeRadarSystem coneRadarSystem;
-        public float r = 0f;
         private Vector2 _inputDirections = Vector2.zero;
-
+        
         private bool _isInited;
         
         public void InteractWithClosestItem() {
@@ -44,10 +44,6 @@ namespace Characters.Player
             equipment.tool = null;
         }
 
-        public void OnDrawGizmosSelected() {
-            Gizmos.DrawWireSphere(transform.position, r);
-        }
-
         private void Start() {
             MyPlayer = this;
             MovementController = new ManualMovementController(GetComponent<CharacterController>());
@@ -60,8 +56,22 @@ namespace Characters.Player
             if (equipment.weapon != null) {
                 if (equipment.weapon.ItemType == ItemObjectType.Weapon) {
                     AnimatorController.OnAttackMelee();
+                    var hits = Physics.OverlapSphere(actionSphere.transform.position, radius);
+                    Debug.Log(hits);
+                    if (hits != null) {
+                        foreach (var hit in hits) {
+                            Debug.Log("hit");
+                            if (hit.gameObject.GetComponent<NpcObject>() != null) {
+                                Debug.Log("hit");
+                            }
+                        }
+                    }
                 }
             }
+        }
+        
+        public void OnDrawGizmosSelected() {
+            Gizmos.DrawWireSphere(actionSphere.transform.position, radius);
         }
 
         private void Update() {
