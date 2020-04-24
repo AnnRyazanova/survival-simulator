@@ -1,4 +1,5 @@
 ﻿using Characters.Controllers;
+using Characters.Player;
 using InventoryObjects.Inventory;
 using InventoryObjects.Items;
 using UI;
@@ -67,7 +68,7 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
         inventory.RemoveItem(inventoryCell, inventoryCell.amount);
         Display();
     }
-
+    
     private void EquipSlot(ref ItemObject equipmentObject, InventoryCell inventoryCell) {
         Debug.Log("On equip");
         if (equipmentObject == null) {

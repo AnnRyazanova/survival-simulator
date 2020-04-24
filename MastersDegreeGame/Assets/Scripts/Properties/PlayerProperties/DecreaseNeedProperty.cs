@@ -1,4 +1,5 @@
 ﻿using System;
+using Characters.Player;
 using UnityEngine;
 
 public class DecreaseNeedProperty : NeedProperty

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Characters.Controllers;
+using Characters.Player;
 using UnityEngine;
 using UnityEngine.UI;
 

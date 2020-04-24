@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections;
-using UnityEngine;
+﻿using System.Collections;
 using Characters.Animations;
+using Characters.Controllers;
 using Characters.Systems;
 using InventoryObjects.Inventory;
 using InventoryObjects.Items;
 using Objects;
-using UnityEditor;
+using UnityEngine;
 
-namespace Characters.Controllers
+namespace Characters.Player
 {
     public class PlayerMainScript : GameCharacter
     {
@@ -25,9 +24,6 @@ namespace Characters.Controllers
         public float r = 0f;
         private Vector2 _inputDirections = Vector2.zero;
 
-        private static readonly Quaternion WeaponDockRotation = new Quaternion(0, 0, 0, 0);
-        private static readonly Quaternion ToolDockRotation = new Quaternion(0, 0, 180, 0);
-
         private bool _isInited;
         
         public void InteractWithClosestItem() {
@@ -41,6 +37,7 @@ namespace Characters.Controllers
                 }
             }
         }
+        
         private void OnApplicationQuit() {
             inventory.Clear();
             equipment.weapon = null;

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Object = Characters.Object;
 
 namespace InventoryObjects.Items
 {
