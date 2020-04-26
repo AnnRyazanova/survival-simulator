@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3317226722490808937}
   - component: {fileID: 3317226722493491907}
+  - component: {fileID: 1520468920633486656}
   m_Layer: 0
   m_Name: polySurface1
   m_TagString: Untagged
@@ -147,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3317226722490377801}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3317226722490809307}
@@ -270,6 +271,20 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00000008940697, y: 0.17928879, z: 0.7022597}
     m_Extent: {x: 0.87674475, y: 0.61002564, z: 0.75376505}
   m_DirtyAABB: 0
+--- !u!64 &1520468920633486656
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3317226722490377801}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300004, guid: a58d63122b09e9144938cd6a1ece4824, type: 3}
 --- !u!1 &3317226722490377803
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +498,7 @@ Transform:
   m_Children:
   - {fileID: 3317226722490809309}
   m_Father: {fileID: 3317226722490809307}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3317226722490377833
 GameObject:
@@ -1758,9 +1773,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3317226722490808937}
+  - {fileID: 3934573934762339463}
   - {fileID: 3317226722490809223}
   - {fileID: 751373069856271512}
-  - {fileID: 3934573934762339463}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1810,17 +1825,17 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 2
-  m_Acceleration: 8
+  m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 3000
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 0
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 0
   m_Height: 1.5
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 0
 --- !u!114 &751373069602930259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2402,7 +2417,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3317226722490809307}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7763297231770286190
 PrefabInstance:
@@ -2454,7 +2469,7 @@ PrefabInstance:
     - target: {fileID: 7048604420730459382, guid: 2d434f46a4d64624fa9d26a2c65dd6a4,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7048604420730459382, guid: 2d434f46a4d64624fa9d26a2c65dd6a4,
         type: 3}

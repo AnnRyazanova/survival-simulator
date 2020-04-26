@@ -162,8 +162,8 @@ Transform:
   m_LocalPosition: {x: 0.016, y: 0, z: 0.038}
   m_LocalScale: {x: 0.35, y: 0.4, z: 0.35}
   m_Children:
-  - {fileID: 9157312518520186914}
   - {fileID: 5619418397164735883}
+  - {fileID: 9157312518520186914}
   - {fileID: 5619418397164735913}
   - {fileID: 7925310697921450375}
   m_Father: {fileID: 0}
@@ -218,10 +218,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdef9898afbadd04796a0d4aef87d917, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterMovementSpeed: 4
-  characterRotationSpeed: 0.1
+  characterRunSpeed: 2
+  characterWalkSpeed: 0.9
+  attackRate: 1.5
+  lastAttackTime: 0
   actionSphere: {fileID: 6480165528348724169}
-  radius: 1
+  itemSearchRadius: 1
   npcObject: {fileID: 3506444372825535876}
 --- !u!1 &5619418397164638223
 GameObject:
@@ -693,7 +695,7 @@ Transform:
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 5619418397164735981}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &5619418397169917109
 SkinnedMeshRenderer:
@@ -2113,7 +2115,7 @@ Transform:
   m_LocalScale: {x: 9999.999, y: 9999.998, z: 9999.997}
   m_Children: []
   m_Father: {fileID: 5619418397164735981}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7787990435669589287
 PrefabInstance:

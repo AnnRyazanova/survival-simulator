@@ -18,11 +18,12 @@ namespace Characters.Animations
         }
 
         public override void OnTakeDamage() {
-            throw new System.NotImplementedException();
+            AnimatorController.SetTrigger(TakeDamage);
+
         }
 
         public override void OnDie() {
-            throw new System.NotImplementedException();
+            AnimatorController.SetBool(Die, true);
         }
     }
 }
