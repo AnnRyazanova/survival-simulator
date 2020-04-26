@@ -10,6 +10,9 @@ public class MainWindow : BaseWindow
 {
     public FixedJoystick Joystick;
     [SerializeField] private PlayerNeedsUiView _playerNeeds;
+    [SerializeField] protected float attackRate = 1.5f;
+        
+    protected float LastAttackTime = 0.0f;
     
     public override void Show()
     {
@@ -35,7 +38,10 @@ public class MainWindow : BaseWindow
 
     public void OnAttackButtonClick()
     {
-        PlayerMainScript.MyPlayer.Attack();
+        if (Time.time >= LastAttackTime) {
+            PlayerMainScript.MyPlayer.Attack();
+            LastAttackTime = Time.time + 1f / attackRate;
+        }
     }
     
     public void OnPickUpButtonClick()

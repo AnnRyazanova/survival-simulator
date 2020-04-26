@@ -24,9 +24,9 @@ namespace Characters.Player
         public Equipment equipment;
         public ConeRadarSystem coneRadarSystem;
         private Vector2 _inputDirections = Vector2.zero;
-        
+
         private bool _isInited;
-        
+
         public void InteractWithClosestItem() {
             var nearest = coneRadarSystem.CheckForVisibleObjects(transform);
             if (nearest != null) {
@@ -38,7 +38,7 @@ namespace Characters.Player
                 }
             }
         }
-        
+
         private void OnApplicationQuit() {
             inventory.Clear();
             equipment.weapon = null;
@@ -55,21 +55,19 @@ namespace Characters.Player
 
         public void Attack() {
             if (equipment.weapon != null) {
-                if (equipment.weapon.ItemType == ItemObjectType.Weapon) {
-                    AnimatorController.OnAttackMelee();
-                    var hits = Physics.OverlapSphere(actionSphere.transform.position, radius);
-                    if (hits != null) {
-                        foreach (var hit in hits) {
-                            var test = hit.gameObject.GetComponent<NpcMainScript>();
-                            if (test!= null) {
-                                AttackTarget(test);
-                            }
+                AnimatorController.OnAttackMelee();
+                var hits = Physics.OverlapSphere(actionSphere.transform.position, radius);
+                if (hits != null) {
+                    foreach (var hit in hits) {
+                        var colliderParent = hit.gameObject.transform.parent;
+                        if (colliderParent != null && colliderParent.GetComponent<NpcMainScript>() != null) {
+                            AttackTarget(colliderParent.GetComponent<NpcMainScript>());
                         }
                     }
                 }
             }
         }
-        
+
         public void OnDrawGizmosSelected() {
             Gizmos.DrawWireSphere(actionSphere.transform.position, radius);
         }
@@ -103,7 +101,7 @@ namespace Characters.Player
 
             var instance = Instantiate(itemPrefab);
             instance.GetComponent<PickableItem>().isPickable = false;
-
+            Debug.Log(instance.name);
             return instance;
         }
 
@@ -149,8 +147,7 @@ namespace Characters.Player
         #endregion
 
         public void AttackTarget(ICombatTarget target) {
-            (target as NpcMainScript).TakeDamage(playerObject.Damage);
-            Debug.Log((target as NpcMainScript).npcObject.Health.CurrentPoints);
+            (target as NpcMainScript)?.TakeDamage(playerObject.Damage);
         }
     }
 }
