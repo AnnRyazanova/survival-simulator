@@ -3,6 +3,7 @@
 using Characters.Animations;
 using Characters.Controllers;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 namespace Characters
@@ -11,7 +12,9 @@ namespace Characters
     {
         [SerializeField] protected float characterMovementSpeed = 4f;
         [SerializeField] protected float characterRotationSpeed = 0.1f;
-
+        public float attackRate = 1.5f;
+        
+        public float lastAttackTime = 0.0f;
         
         protected CharacterAnimationController AnimatorController;
         protected MovementController MovementController;

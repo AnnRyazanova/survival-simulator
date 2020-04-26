@@ -10,10 +10,7 @@ public class MainWindow : BaseWindow
 {
     public FixedJoystick Joystick;
     [SerializeField] private PlayerNeedsUiView _playerNeeds;
-    [SerializeField] protected float attackRate = 1.5f;
-        
-    protected float LastAttackTime = 0.0f;
-    
+
     public override void Show()
     {
         base.Show();
@@ -36,11 +33,11 @@ public class MainWindow : BaseWindow
         CraftController.Instance.ShowWindow();
     }
 
-    public void OnAttackButtonClick()
-    {
-        if (Time.time >= LastAttackTime) {
+    public void OnAttackButtonClick() {
+        var player = PlayerMainScript.MyPlayer;
+        if (Time.time >= player.lastAttackTime) {
             PlayerMainScript.MyPlayer.Attack();
-            LastAttackTime = Time.time + 1f / attackRate;
+            player.lastAttackTime = Time.time + 1f / player.attackRate;
         }
     }
     
