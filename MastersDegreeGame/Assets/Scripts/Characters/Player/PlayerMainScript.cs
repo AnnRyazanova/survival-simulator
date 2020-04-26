@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Characters.Animations;
 using Characters.Controllers;
 using Characters.NPC;
@@ -8,6 +9,7 @@ using InventoryObjects.Inventory;
 using InventoryObjects.Items;
 using Objects;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Characters.Player
 {
@@ -22,6 +24,7 @@ namespace Characters.Player
 
         public Inventory inventory;
         public Equipment equipment;
+
         public ConeRadarSystem coneRadarSystem;
         private Vector2 _inputDirections = Vector2.zero;
 
@@ -50,6 +53,8 @@ namespace Characters.Player
             MovementController = new ManualMovementController(GetComponent<CharacterController>());
             AnimatorController = new PlayerAnimatorController(GetComponent<Animator>());
             coneRadarSystem = new ConeRadarSystem();
+            NavMeshController = new NavMeshController(GetComponent<NavMeshAgent>());
+
             StartCoroutine(InitJoystick());
         }
 
@@ -74,10 +79,15 @@ namespace Characters.Player
 
         private void Update() {
             if (_isInited == false) return;
+            NavMeshController.Move(transform, _inputDirections,
+                playerObject.Energy.CurrentPoints > 0 ? characterRunSpeed : characterWalkSpeed);
+            AnimatorController.OnMove(_inputDirections.magnitude, playerObject.Energy.CurrentPoints);
+        }
 
-            _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
-            MovementController.Move(transform, characterRotationSpeed, characterMovementSpeed, _inputDirections);
-            AnimatorController.OnMove(MovementController.CurrentSpeed / characterMovementSpeed, 0.01f);
+        private void FixedUpdate() {
+            if (directionalJoystick != null) {
+                _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
+            }
         }
 
         private IEnumerator InitJoystick() {

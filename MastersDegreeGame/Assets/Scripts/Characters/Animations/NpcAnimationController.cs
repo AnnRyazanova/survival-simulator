@@ -6,9 +6,9 @@ namespace Characters.Animations
     {
         public NpcAnimationController(Animator animatorController) : base(animatorController){}
         
-        public override void OnMove(float speedFactor, float smoothingFactor) {
-            AnimatorController.SetFloat(MovementSpeedFactor, speedFactor, 
-                smoothingFactor, Time.deltaTime);
+        public override void OnMove(float speedFactor, int energy) {
+            // AnimatorController.SetFloat(MovementSpeedFactor, speedFactor, 
+            //     smoothingFactor, Time.deltaTime);
         }
 
         public override void OnAttackMelee() {

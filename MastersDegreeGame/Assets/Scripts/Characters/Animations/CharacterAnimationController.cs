@@ -10,10 +10,13 @@ namespace Characters.Animations
         protected static readonly int AttackMelee = Animator.StringToHash("attackMelee");
         protected static readonly int TakeDamage = Animator.StringToHash("takeDamage");
         protected static readonly int Die = Animator.StringToHash("isDead");
+        protected static readonly int Move = Animator.StringToHash("move");
+        protected static readonly int OnlyWalk = Animator.StringToHash("onlyWalk");
+
         
         protected CharacterAnimationController(Animator animatorController) => AnimatorController = animatorController;
 
-        public abstract void OnMove(float speedFactor, float smoothingFactor);
+        public abstract void OnMove(float speedFactor, int energy);
         
         public abstract void OnAttackMelee();
 

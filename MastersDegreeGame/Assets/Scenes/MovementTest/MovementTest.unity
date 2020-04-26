@@ -97,21 +97,21 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
-    agentHeight: 2
-    agentSlope: 45
+    agentRadius: 0.1
+    agentHeight: 1
+    agentSlope: 40.8
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.033333335
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 4ac33bb3d81b678438d83c0864e6a121, type: 2}
 --- !u!1 &7320253
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +129,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!135 &7320254
 SphereCollider:
@@ -220,6 +220,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon_4 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 189872, guid: a4b2ba08836e8804ab424fc2f3fc16b9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189872, guid: a4b2ba08836e8804ab424fc2f3fc16b9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 489872, guid: a4b2ba08836e8804ab424fc2f3fc16b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.26
@@ -300,6 +308,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: redflower
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 94b3797b071b7c44e96f26e516a95b42, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 94b3797b071b7c44e96f26e516a95b42, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 94b3797b071b7c44e96f26e516a95b42, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.556528
@@ -356,6 +372,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: eda8bcc500d6f4142bd066f377fd23b0, type: 3}
       propertyPath: m_Name
       value: Grass_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: eda8bcc500d6f4142bd066f377fd23b0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: eda8bcc500d6f4142bd066f377fd23b0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: eda8bcc500d6f4142bd066f377fd23b0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -422,6 +446,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom1 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1323904898222815289, guid: 24acd02a99a72d046a9001299ee004b6,
         type: 3}
@@ -609,6 +643,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carrot
       objectReference: {fileID: 0}
+    - target: {fileID: 174028, guid: 7d778c6a61935e74393cd80fa8335495, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 174028, guid: 7d778c6a61935e74393cd80fa8335495, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 481786, guid: 7d778c6a61935e74393cd80fa8335495, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.354
@@ -683,6 +725,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 3851d25bdd9e358459f4637666d5de38, type: 3}
       propertyPath: m_Name
       value: mushroom2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3851d25bdd9e358459f4637666d5de38, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3851d25bdd9e358459f4637666d5de38, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3851d25bdd9e358459f4637666d5de38, type: 3}
       propertyPath: m_LocalPosition.x
@@ -773,6 +823,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Willow_Dead_Snow_1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 57b2de5a9a7a3c845a9bbd4f1b91e927, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 57b2de5a9a7a3c845a9bbd4f1b91e927, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 57b2de5a9a7a3c845a9bbd4f1b91e927, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.681634
@@ -843,6 +901,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 434dc597c2a655a44a56d9bf99941e54, type: 3}
       propertyPath: m_Name
       value: PineTree_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 434dc597c2a655a44a56d9bf99941e54, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 434dc597c2a655a44a56d9bf99941e54, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 434dc597c2a655a44a56d9bf99941e54, type: 3}
       propertyPath: m_LocalPosition.x
@@ -915,7 +981,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &320930782
 Transform:
@@ -1005,6 +1071,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 54a6f76fff06150488e413833678a65f, type: 3}
       propertyPath: m_Name
       value: Willow_Dead_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 54a6f76fff06150488e413833678a65f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 54a6f76fff06150488e413833678a65f, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 54a6f76fff06150488e413833678a65f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1161,6 +1235,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock Type2 02 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 174596, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 174596, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 477016, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.213
@@ -1236,6 +1318,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon_1
       objectReference: {fileID: 0}
+    - target: {fileID: 170842, guid: e734b821fea095240b69459a7126b160, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 170842, guid: e734b821fea095240b69459a7126b160, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 470842, guid: e734b821fea095240b69459a7126b160, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.899
@@ -1305,7 +1395,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &442226526
 Transform:
@@ -1390,6 +1480,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: pine3
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3eb48001de9bb114d86d36a6c7e9d123, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3eb48001de9bb114d86d36a6c7e9d123, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3eb48001de9bb114d86d36a6c7e9d123, type: 3}
       propertyPath: m_LocalPosition.x
       value: 18.698994
@@ -1465,6 +1563,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon_4 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 189872, guid: a4b2ba08836e8804ab424fc2f3fc16b9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189872, guid: a4b2ba08836e8804ab424fc2f3fc16b9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 489872, guid: a4b2ba08836e8804ab424fc2f3fc16b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.012
@@ -1533,6 +1639,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: mushroom1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5660cc89dfaaf4644a88e1fc07c2f8d1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5660cc89dfaaf4644a88e1fc07c2f8d1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5660cc89dfaaf4644a88e1fc07c2f8d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.2164801
@@ -1597,6 +1711,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 07c249aecb2f5ba438a114aa415f2352, type: 3}
       propertyPath: m_Name
       value: oak3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 07c249aecb2f5ba438a114aa415f2352, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 07c249aecb2f5ba438a114aa415f2352, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 07c249aecb2f5ba438a114aa415f2352, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1664,6 +1786,14 @@ PrefabInstance:
     - target: {fileID: 126064, guid: 1e75eeab33a7c1f4982254ee87e734da, type: 3}
       propertyPath: m_Name
       value: Weapon_14 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 126064, guid: 1e75eeab33a7c1f4982254ee87e734da, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 126064, guid: 1e75eeab33a7c1f4982254ee87e734da, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 426064, guid: 1e75eeab33a7c1f4982254ee87e734da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1740,6 +1870,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: mushroom1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5660cc89dfaaf4644a88e1fc07c2f8d1, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5660cc89dfaaf4644a88e1fc07c2f8d1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5660cc89dfaaf4644a88e1fc07c2f8d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.78511
@@ -1811,7 +1949,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &546094757
 Transform:
@@ -1896,6 +2034,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carrot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 174028, guid: 7d778c6a61935e74393cd80fa8335495, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 174028, guid: 7d778c6a61935e74393cd80fa8335495, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 481786, guid: 7d778c6a61935e74393cd80fa8335495, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.642
@@ -1960,6 +2106,14 @@ PrefabInstance:
     - target: {fileID: 129990, guid: f89cb707cc080fe4f93109b17f751eb0, type: 3}
       propertyPath: m_Name
       value: Branch_5 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 129990, guid: f89cb707cc080fe4f93109b17f751eb0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 129990, guid: f89cb707cc080fe4f93109b17f751eb0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 423924, guid: f89cb707cc080fe4f93109b17f751eb0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2029,6 +2183,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 364d6791e33d6f74491327894f417e95, type: 3}
       propertyPath: m_Name
       value: oak2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 364d6791e33d6f74491327894f417e95, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 364d6791e33d6f74491327894f417e95, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 364d6791e33d6f74491327894f417e95, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2105,7 +2267,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &603643246
 Transform:
@@ -2197,6 +2359,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: pine2
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cabdd72cef6dc0c4b883edf0b22db000, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cabdd72cef6dc0c4b883edf0b22db000, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cabdd72cef6dc0c4b883edf0b22db000, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.684169
@@ -2261,6 +2431,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: cae5db93ae3f98d4ca0e658caf03ffc8, type: 3}
       propertyPath: m_Name
       value: PineTree_1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cae5db93ae3f98d4ca0e658caf03ffc8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cae5db93ae3f98d4ca0e658caf03ffc8, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cae5db93ae3f98d4ca0e658caf03ffc8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2333,7 +2511,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &656923391
 Transform:
@@ -2418,6 +2596,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon_1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 170842, guid: e734b821fea095240b69459a7126b160, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 170842, guid: e734b821fea095240b69459a7126b160, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 470842, guid: e734b821fea095240b69459a7126b160, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.0810688
@@ -2480,6 +2666,14 @@ PrefabInstance:
     - target: {fileID: 189872, guid: a4b2ba08836e8804ab424fc2f3fc16b9, type: 3}
       propertyPath: m_Name
       value: Weapon_4
+      objectReference: {fileID: 0}
+    - target: {fileID: 189872, guid: a4b2ba08836e8804ab424fc2f3fc16b9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 189872, guid: a4b2ba08836e8804ab424fc2f3fc16b9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 489872, guid: a4b2ba08836e8804ab424fc2f3fc16b9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2579,6 +2773,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BirchTree_4
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 960179c9bcafb5742be96d07f72ffff9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 960179c9bcafb5742be96d07f72ffff9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 960179c9bcafb5742be96d07f72ffff9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.53895
@@ -2644,6 +2846,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom1 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1323904898222815289, guid: 24acd02a99a72d046a9001299ee004b6,
         type: 3}
@@ -2734,8 +2946,8 @@ GameObject:
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &721709794
 Transform:
@@ -2844,6 +3056,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: mushroom2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3851d25bdd9e358459f4637666d5de38, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3851d25bdd9e358459f4637666d5de38, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3851d25bdd9e358459f4637666d5de38, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.7993333
@@ -2915,6 +3135,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lilypad
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2e97546d5faaa794686ef64d123dd958, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2e97546d5faaa794686ef64d123dd958, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2e97546d5faaa794686ef64d123dd958, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.734278
@@ -2980,6 +3208,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom1 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1323904898222815289, guid: 24acd02a99a72d046a9001299ee004b6,
         type: 3}
@@ -3066,6 +3304,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: mushroom1 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1323904898222815289, guid: 24acd02a99a72d046a9001299ee004b6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3144,6 +3392,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carrot (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 174028, guid: 7d778c6a61935e74393cd80fa8335495, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 174028, guid: 7d778c6a61935e74393cd80fa8335495, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 481786, guid: 7d778c6a61935e74393cd80fa8335495, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.851
@@ -3215,6 +3471,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BushBerries_1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a1ac9055f2376604db38faa2470ce921, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a1ac9055f2376604db38faa2470ce921, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a1ac9055f2376604db38faa2470ce921, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.477306
@@ -3280,6 +3544,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom1 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1323904898222815289, guid: 24acd02a99a72d046a9001299ee004b6,
         type: 3}
@@ -3365,6 +3639,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BirchTree_2
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e90a5afcd97b1ce46a6922dc6695ca43, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e90a5afcd97b1ce46a6922dc6695ca43, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e90a5afcd97b1ce46a6922dc6695ca43, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.1257386
@@ -3430,6 +3712,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom1 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1323904898222815289, guid: 24acd02a99a72d046a9001299ee004b6,
         type: 3}
@@ -3515,6 +3807,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1323904898222815289, guid: 24acd02a99a72d046a9001299ee004b6,
         type: 3}
@@ -3612,6 +3914,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: orangeflower
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 24e23984de6dbf84890f0bee1949311e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 24e23984de6dbf84890f0bee1949311e, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 24e23984de6dbf84890f0bee1949311e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.587679
@@ -3668,6 +3978,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 35407ff837ff6bd4d898a04eef8383ae, type: 3}
       propertyPath: m_Name
       value: BirchTree_Autumn_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 35407ff837ff6bd4d898a04eef8383ae, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 35407ff837ff6bd4d898a04eef8383ae, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 35407ff837ff6bd4d898a04eef8383ae, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3739,6 +4057,14 @@ PrefabInstance:
     - target: {fileID: 174596, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
       propertyPath: m_Name
       value: Rock Type2 02
+      objectReference: {fileID: 0}
+    - target: {fileID: 174596, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 174596, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 477016, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3925,6 +4251,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BirchTree_Dead_Snow_4
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9ba0b71a245111145a291a34fd26b2fe, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9ba0b71a245111145a291a34fd26b2fe, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9ba0b71a245111145a291a34fd26b2fe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.144908
@@ -3989,6 +4323,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 507efb74a53a8cf4f9040a9185d7a13a, type: 3}
       propertyPath: m_Name
       value: PalmTree_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 507efb74a53a8cf4f9040a9185d7a13a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 507efb74a53a8cf4f9040a9185d7a13a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 507efb74a53a8cf4f9040a9185d7a13a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4208,6 +4550,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Willow_Dead_Snow_4
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d2cd2f3c857998144a911c10d9109819, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d2cd2f3c857998144a911c10d9109819, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d2cd2f3c857998144a911c10d9109819, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.76516
@@ -4272,6 +4622,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: c1b276c904e4c2c4da0a605dae9c5989, type: 3}
       propertyPath: m_Name
       value: DeadTree1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c1b276c904e4c2c4da0a605dae9c5989, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c1b276c904e4c2c4da0a605dae9c5989, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c1b276c904e4c2c4da0a605dae9c5989, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4399,6 +4757,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeadTree5
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5306dd8ed63bb3e4192ac79daa234a78, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5306dd8ed63bb3e4192ac79daa234a78, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5306dd8ed63bb3e4192ac79daa234a78, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.774975
@@ -4456,6 +4822,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom1 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1323904898222815289, guid: 24acd02a99a72d046a9001299ee004b6,
         type: 3}
@@ -4607,6 +4983,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PalmTree_2
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0f4163a70cc67554686e34a80cd95312, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0f4163a70cc67554686e34a80cd95312, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0f4163a70cc67554686e34a80cd95312, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.027329
@@ -4677,8 +5061,8 @@ GameObject:
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1386722242
 Transform:
@@ -4820,6 +5204,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Branch_5
       objectReference: {fileID: 0}
+    - target: {fileID: 129990, guid: f89cb707cc080fe4f93109b17f751eb0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 129990, guid: f89cb707cc080fe4f93109b17f751eb0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 423924, guid: f89cb707cc080fe4f93109b17f751eb0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5377684
@@ -4889,7 +5281,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1401337886
 Transform:
@@ -4974,6 +5366,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon_14
       objectReference: {fileID: 0}
+    - target: {fileID: 126064, guid: 1e75eeab33a7c1f4982254ee87e734da, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 126064, guid: 1e75eeab33a7c1f4982254ee87e734da, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 426064, guid: 1e75eeab33a7c1f4982254ee87e734da, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.07
@@ -5048,6 +5448,14 @@ PrefabInstance:
     - target: {fileID: 174596, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
       propertyPath: m_Name
       value: Rock Type2 02 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 174596, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 174596, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 477016, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5156,6 +5564,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WoodLog
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 85bd33b91afab1e4baac6be0f8a791ce, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 85bd33b91afab1e4baac6be0f8a791ce, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 85bd33b91afab1e4baac6be0f8a791ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.91975
@@ -5220,6 +5636,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 17b5d7ab2c9cde747b6956bb95151887, type: 3}
       propertyPath: m_Name
       value: pine1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 17b5d7ab2c9cde747b6956bb95151887, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 17b5d7ab2c9cde747b6956bb95151887, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 17b5d7ab2c9cde747b6956bb95151887, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5388,6 +5812,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BushBerries_1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a1ac9055f2376604db38faa2470ce921, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a1ac9055f2376604db38faa2470ce921, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a1ac9055f2376604db38faa2470ce921, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.26885
@@ -5452,6 +5884,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 3eb48001de9bb114d86d36a6c7e9d123, type: 3}
       propertyPath: m_Name
       value: pine3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3eb48001de9bb114d86d36a6c7e9d123, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 3eb48001de9bb114d86d36a6c7e9d123, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3eb48001de9bb114d86d36a6c7e9d123, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5522,6 +5962,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BirchTree_2 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e90a5afcd97b1ce46a6922dc6695ca43, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e90a5afcd97b1ce46a6922dc6695ca43, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e90a5afcd97b1ce46a6922dc6695ca43, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.985787
@@ -5587,6 +6035,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Weapon_1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 170842, guid: e734b821fea095240b69459a7126b160, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 170842, guid: e734b821fea095240b69459a7126b160, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 470842, guid: e734b821fea095240b69459a7126b160, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.208
@@ -5650,6 +6106,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: purpleflower
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 90ea9a917c4b7a04581fdc4a9a39b7ac, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 90ea9a917c4b7a04581fdc4a9a39b7ac, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 90ea9a917c4b7a04581fdc4a9a39b7ac, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.165344
@@ -5707,6 +6171,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom1 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1323904898222815289, guid: 24acd02a99a72d046a9001299ee004b6,
         type: 3}
@@ -5786,6 +6260,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeadTree3
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1f5e4560a4e6c97449015eaec2d4818a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1f5e4560a4e6c97449015eaec2d4818a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1f5e4560a4e6c97449015eaec2d4818a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.47328
@@ -5844,6 +6326,28 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1133081111}
   m_PrefabAsset: {fileID: 0}
+--- !u!195 &1611442291
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611442290}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &1611442292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5858,6 +6362,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterMovementSpeed: 4
   characterRotationSpeed: 0.1
+  attackRate: 1.5
+  lastAttackTime: 0
   actionSphere: {fileID: 1133081115}
   radius: 1
   directionalJoystick: {fileID: 0}
@@ -5866,24 +6372,22 @@ MonoBehaviour:
   rightHand: {fileID: 1133081113}
   inventory: {fileID: 11400000, guid: c31124c69a4b3394d8c128ac5cd63fbe, type: 2}
   equipment: {fileID: 11400000, guid: 6a7f3fd19d037e043977ab5c473ad38c, type: 2}
---- !u!143 &1611442293
-CharacterController:
+--- !u!54 &1611442293
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611442290}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.35
-  m_Radius: 0.45
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.65, z: 0}
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!95 &1611442294
 Animator:
   serializedVersion: 3
@@ -5894,7 +6398,7 @@ Animator:
   m_GameObject: {fileID: 1611442290}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: a58d63122b09e9144938cd6a1ece4824, type: 3}
-  m_Controller: {fileID: 9100000, guid: e93e157c356589342b4c4077a967afd6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 650e6c77c3aac47418ab7e6fd3a8f0b4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5913,6 +6417,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 85bd33b91afab1e4baac6be0f8a791ce, type: 3}
       propertyPath: m_Name
       value: WoodLog (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 85bd33b91afab1e4baac6be0f8a791ce, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 85bd33b91afab1e4baac6be0f8a791ce, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 85bd33b91afab1e4baac6be0f8a791ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5978,6 +6490,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: d5f3c23ec9f94134f94f1a8ba39818a9, type: 3}
       propertyPath: m_Name
       value: oak1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d5f3c23ec9f94134f94f1a8ba39818a9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: d5f3c23ec9f94134f94f1a8ba39818a9, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d5f3c23ec9f94134f94f1a8ba39818a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6048,6 +6568,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Willow_5
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1de0d07a4b52aca4db595dea7c7ce0c3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 1de0d07a4b52aca4db595dea7c7ce0c3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1de0d07a4b52aca4db595dea7c7ce0c3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.952728
@@ -6113,6 +6641,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom1 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1323904898222815289, guid: 24acd02a99a72d046a9001299ee004b6,
         type: 3}
@@ -6237,6 +6775,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DeadTree4
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4bc7fd0dc11d67e4b92c9572c74b1d35, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4bc7fd0dc11d67e4b92c9572c74b1d35, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4bc7fd0dc11d67e4b92c9572c74b1d35, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.432062
@@ -6293,6 +6839,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 445f9ddbd75d2d84398aaace062e1a3a, type: 3}
       propertyPath: m_Name
       value: Corn_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 445f9ddbd75d2d84398aaace062e1a3a, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 445f9ddbd75d2d84398aaace062e1a3a, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 445f9ddbd75d2d84398aaace062e1a3a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6359,6 +6913,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grass
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bca4caea44e530d4c9769be9d1c25d14, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bca4caea44e530d4c9769be9d1c25d14, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bca4caea44e530d4c9769be9d1c25d14, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.388084
@@ -6424,6 +6986,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BirchTree_3
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c513a8de0c20f3a4292aff05c7162779, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c513a8de0c20f3a4292aff05c7162779, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c513a8de0c20f3a4292aff05c7162779, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.776854
@@ -6488,6 +7058,14 @@ PrefabInstance:
     - target: {fileID: 174596, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
       propertyPath: m_Name
       value: Rock Type2 02 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 174596, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 174596, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 477016, guid: 41dcf1459594f434a8a9bae6ae03eab0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6581,8 +7159,8 @@ GameObject:
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1818341314
 Transform:
@@ -6678,8 +7256,8 @@ GameObject:
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1894666237
 Transform:
@@ -6764,6 +7342,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BushBerries_2
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 610c6830807230749b9a65ba1b7025d0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 610c6830807230749b9a65ba1b7025d0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 610c6830807230749b9a65ba1b7025d0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.835777
@@ -6841,6 +7427,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PineTree_4
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bb7cdd996a3036544b7c7dc4c04b12f4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bb7cdd996a3036544b7c7dc4c04b12f4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb7cdd996a3036544b7c7dc4c04b12f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.231976
@@ -6905,6 +7499,14 @@ PrefabInstance:
     - target: {fileID: 129990, guid: f89cb707cc080fe4f93109b17f751eb0, type: 3}
       propertyPath: m_Name
       value: Branch_5 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 129990, guid: f89cb707cc080fe4f93109b17f751eb0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 129990, guid: f89cb707cc080fe4f93109b17f751eb0, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 423924, guid: f89cb707cc080fe4f93109b17f751eb0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6974,6 +7576,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 4ac8d3127aa155646bf5c5a0596bafe3, type: 3}
       propertyPath: m_Name
       value: Bush_Snow_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4ac8d3127aa155646bf5c5a0596bafe3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4ac8d3127aa155646bf5c5a0596bafe3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4ac8d3127aa155646bf5c5a0596bafe3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7052,6 +7662,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1323904898222815289, guid: 24acd02a99a72d046a9001299ee004b6,
         type: 3}
@@ -7137,6 +7757,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PineTree_1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cae5db93ae3f98d4ca0e658caf03ffc8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cae5db93ae3f98d4ca0e658caf03ffc8, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cae5db93ae3f98d4ca0e658caf03ffc8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.25358
@@ -7220,6 +7848,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom1 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1323904898222815289, guid: 24acd02a99a72d046a9001299ee004b6,
         type: 3}
@@ -7397,6 +8035,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Carrot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 174028, guid: 7d778c6a61935e74393cd80fa8335495, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 174028, guid: 7d778c6a61935e74393cd80fa8335495, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 481786, guid: 7d778c6a61935e74393cd80fa8335495, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.0021157
@@ -7468,6 +8114,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PineTree_1 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cae5db93ae3f98d4ca0e658caf03ffc8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cae5db93ae3f98d4ca0e658caf03ffc8, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cae5db93ae3f98d4ca0e658caf03ffc8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20.268648
@@ -7533,6 +8187,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1323904898222815289, guid: 24acd02a99a72d046a9001299ee004b6,
         type: 3}
@@ -7618,6 +8282,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PineTree_4 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bb7cdd996a3036544b7c7dc4c04b12f4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bb7cdd996a3036544b7c7dc4c04b12f4, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: bb7cdd996a3036544b7c7dc4c04b12f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.348927
@@ -7682,6 +8354,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: cfb0b6c80c1e2ef49995306cafb867f8, type: 3}
       propertyPath: m_Name
       value: DeadTree2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cfb0b6c80c1e2ef49995306cafb867f8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cfb0b6c80c1e2ef49995306cafb867f8, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: cfb0b6c80c1e2ef49995306cafb867f8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7824,6 +8504,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: mushroom1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1323904898223301657, guid: 24acd02a99a72d046a9001299ee004b6,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1323904898222815289, guid: 24acd02a99a72d046a9001299ee004b6,
         type: 3}

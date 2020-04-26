@@ -10,14 +10,16 @@ namespace Characters
 {
     public abstract class GameCharacter : MonoBehaviour
     {
-        [SerializeField] protected float characterMovementSpeed = 4f;
-        [SerializeField] protected float characterRotationSpeed = 0.1f;
+        [SerializeField] protected float characterRunSpeed = 2f;
+        [SerializeField] protected float characterWalkSpeed = .9f;
         public float attackRate = 1.5f;
         
         public float lastAttackTime = 0.0f;
         
         protected CharacterAnimationController AnimatorController;
         protected MovementController MovementController;
+        protected NavMeshController NavMeshController;
+        
         /// <summary>
         /// Character action/attack hitbox
         /// </summary>
