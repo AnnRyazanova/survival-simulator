@@ -178,7 +178,7 @@ Animator:
   m_GameObject: {fileID: 5619418397164638221}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 821a4328d5934b54bb0572746dc17c3f, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 261d120d9336608479b7c297ca4a35e0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -220,6 +220,7 @@ MonoBehaviour:
   characterMovementSpeed: 4
   characterRotationSpeed: 0.1
   actionSphere: {fileID: 6480165528348724169}
+  radius: 1
   npcObject: {fileID: 3506444372825535876}
 --- !u!1 &5619418397164638223
 GameObject:
@@ -2180,6 +2181,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1640960433280677366, guid: 7687883559cf4c14e8c92dc6f8990952,
+        type: 3}
+      propertyPath: _totalPoints
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7687883559cf4c14e8c92dc6f8990952, type: 3}

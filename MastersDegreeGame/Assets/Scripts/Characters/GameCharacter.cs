@@ -12,7 +12,7 @@ namespace Characters
         [SerializeField] protected float characterMovementSpeed = 4f;
         [SerializeField] protected float characterRotationSpeed = 0.1f;
         
-        protected PlayerAnimatorController AnimatorController;
+        protected CharacterAnimationController AnimatorController;
         protected MovementController MovementController;
         /// <summary>
         /// Character action/attack hitbox

@@ -5,6 +5,7 @@ using Object = Characters.Object;
 
 public class DamageProperty : BaseProperty
 {
+   public int value;
    public override void StartProperty(Object parent)
    {
       base.StartProperty(parent);

@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 namespace Characters.Animations
 {
-    public class PlayerAnimatorController: CharacterAnimationController
+    public class NpcAnimationController : CharacterAnimationController
     {
-        public PlayerAnimatorController(Animator animatorController) : base(animatorController){}
+        public NpcAnimationController(Animator animatorController) : base(animatorController){}
         
         public override void OnMove(float speedFactor, float smoothingFactor) {
             AnimatorController.SetFloat(MovementSpeedFactor, speedFactor, 
@@ -16,11 +16,11 @@ namespace Characters.Animations
         }
 
         public override void OnTakeDamage() {
-            throw new System.NotImplementedException();
+            AnimatorController.SetTrigger(TakeDamage);
         }
 
         public override void OnDie() {
-            throw new System.NotImplementedException();
+            AnimatorController.SetBool(Die, true);
         }
     }
 }

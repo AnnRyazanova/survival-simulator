@@ -3,6 +3,7 @@ using Characters.Animations;
 using Characters.Controllers;
 using Characters.NPC;
 using Characters.Systems;
+using Characters.Systems.Combat;
 using InventoryObjects.Inventory;
 using InventoryObjects.Items;
 using Objects;
@@ -10,7 +11,7 @@ using UnityEngine;
 
 namespace Characters.Player
 {
-    public class PlayerMainScript : GameCharacter
+    public class PlayerMainScript : GameCharacter, ICombatAggressor
     {
         public FixedJoystick directionalJoystick;
         public PlayerObject playerObject;
@@ -57,12 +58,11 @@ namespace Characters.Player
                 if (equipment.weapon.ItemType == ItemObjectType.Weapon) {
                     AnimatorController.OnAttackMelee();
                     var hits = Physics.OverlapSphere(actionSphere.transform.position, radius);
-                    Debug.Log(hits);
                     if (hits != null) {
                         foreach (var hit in hits) {
-                            Debug.Log("hit");
-                            if (hit.gameObject.GetComponent<NpcObject>() != null) {
-                                Debug.Log("hit");
+                            var test = hit.gameObject.GetComponent<NpcMainScript>();
+                            if (test!= null) {
+                                AttackTarget(test);
                             }
                         }
                     }
@@ -134,6 +134,7 @@ namespace Characters.Player
                 // Instantiate prefab on scene
                 var instance = InstantiateEquipmentPrefab(rightHand, (equipment.weapon as WeaponItem)?.weaponPrefab);
                 EquipOnPrefab(rightHand, instance);
+                playerObject.Damage.value = (equipment.weapon as WeaponItem).attackPower;
             }
         }
 
@@ -146,5 +147,10 @@ namespace Characters.Player
         }
 
         #endregion
+
+        public void AttackTarget(ICombatTarget target) {
+            (target as NpcMainScript).TakeDamage(playerObject.Damage);
+            Debug.Log((target as NpcMainScript).npcObject.Health.CurrentPoints);
+        }
     }
 }
