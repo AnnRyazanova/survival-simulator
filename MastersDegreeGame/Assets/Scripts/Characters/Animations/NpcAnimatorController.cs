@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace Characters.Animations
 {
-    public class NpcAnimationController : CharacterAnimationController
+    public class NpcAnimatorController : CharacterAnimatorController
     {
-        public NpcAnimationController(Animator animatorController) : base(animatorController){}
+        public NpcAnimatorController(Animator animatorController) : base(animatorController){}
         
         public override void OnMove(float speedFactor, int energy) {
             // AnimatorController.SetFloat(MovementSpeedFactor, speedFactor, 

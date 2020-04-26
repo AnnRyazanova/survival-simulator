@@ -2,10 +2,10 @@
 
 namespace Characters.Animations
 {
-    public abstract class CharacterAnimationController 
+    public abstract class CharacterAnimatorController
     {
         protected readonly Animator AnimatorController;
-        
+
         protected static readonly int MovementSpeedFactor = Animator.StringToHash("movementSpeedFactor");
         protected static readonly int AttackMelee = Animator.StringToHash("attackMelee");
         protected static readonly int TakeDamage = Animator.StringToHash("takeDamage");
@@ -13,11 +13,11 @@ namespace Characters.Animations
         protected static readonly int Move = Animator.StringToHash("move");
         protected static readonly int OnlyWalk = Animator.StringToHash("onlyWalk");
 
-        
-        protected CharacterAnimationController(Animator animatorController) => AnimatorController = animatorController;
+
+        protected CharacterAnimatorController(Animator animatorController) => AnimatorController = animatorController;
 
         public abstract void OnMove(float speedFactor, int energy);
-        
+
         public abstract void OnAttackMelee();
 
         public abstract void OnTakeDamage();

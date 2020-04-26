@@ -2,7 +2,7 @@
 
 namespace Characters.Animations
 {
-    public class PlayerAnimatorController: CharacterAnimationController
+    public class PlayerAnimatorController: CharacterAnimatorController
     {
         public PlayerAnimatorController(Animator animatorController) : base(animatorController){}
         

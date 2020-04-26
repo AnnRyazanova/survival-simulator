@@ -11,7 +11,7 @@ namespace Characters.NPC
         [FormerlySerializedAs("mobObject")] public NpcObject npcObject;
 
         public void Start() {
-            AnimatorController = new NpcAnimationController(GetComponent<Animator>());
+            AnimatorController = new NpcAnimatorController(GetComponent<Animator>());
         }
 
         public void TakeDamage(DamageProperty damage) {

@@ -16,7 +16,7 @@ namespace Characters
         
         public float lastAttackTime = 0.0f;
         
-        protected CharacterAnimationController AnimatorController;
+        protected CharacterAnimatorController AnimatorController;
         protected MovementController MovementController;
         protected NavMeshController NavMeshController;
         
