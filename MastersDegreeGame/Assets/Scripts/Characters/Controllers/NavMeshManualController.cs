@@ -15,7 +15,7 @@ namespace Characters.Controllers
         public float CurrentSpeed { get; set; }
         
 
-        public NavMeshController(NavMeshAgent agent, float speed = 2f, float angularSpeed = 1000f) {
+        public NavMeshController(NavMeshAgent agent, float speed = 2f, float angularSpeed = 3000f) {
             Agent = agent;
             Agent.speed = speed;
             Agent.angularSpeed = angularSpeed;

@@ -61,7 +61,7 @@ namespace Characters.Player
         public void Attack() {
             if (equipment.weapon != null) {
                 AnimatorController.OnAttackMelee();
-                var hits = Physics.OverlapSphere(actionSphere.transform.position, radius);
+                var hits = Physics.OverlapSphere(actionSphere.transform.position, itemSearchRadius);
                 if (hits != null) {
                     foreach (var hit in hits) {
                         var colliderParent = hit.gameObject.transform.parent;
@@ -74,7 +74,7 @@ namespace Characters.Player
         }
 
         public void OnDrawGizmosSelected() {
-            Gizmos.DrawWireSphere(actionSphere.transform.position, radius);
+            Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
         }
 
         private void Update() {

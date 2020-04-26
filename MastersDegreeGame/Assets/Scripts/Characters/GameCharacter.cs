@@ -25,11 +25,11 @@ namespace Characters
         /// </summary>
         public GameObject actionSphere;
         
-        [SerializeField] protected float radius = 1.0f;
+        [FormerlySerializedAs("radius")] [SerializeField] protected float itemSearchRadius = 1.0f;
 
 #if DISPLAY_GIZMOS     
         public void OnDrawGizmosSelected() {
-            Gizmos.DrawWireSphere(actionSphere.transform.position, radius);
+            Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
         }
 #endif
 
