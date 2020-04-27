@@ -1826,7 +1826,7 @@ NavMeshAgent:
   m_Radius: 0.5
   m_Speed: 2
   m_Acceleration: 0
-  avoidancePriority: 2
+  avoidancePriority: 1
   m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 0
@@ -1860,6 +1860,7 @@ MonoBehaviour:
   rightHand: {fileID: 3317226722490377803}
   inventory: {fileID: 11400000, guid: c31124c69a4b3394d8c128ac5cd63fbe, type: 2}
   equipment: {fileID: 11400000, guid: 6a7f3fd19d037e043977ab5c473ad38c, type: 2}
+  hitDelaySeconds: 0.1
 --- !u!1 &3317226722490378173
 GameObject:
   m_ObjectHideFlags: 0
