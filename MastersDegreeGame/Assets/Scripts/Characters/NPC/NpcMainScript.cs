@@ -2,6 +2,7 @@
 using Characters.Animations;
 using Characters.Systems.Combat;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Serialization;
 
 namespace Characters.NPC

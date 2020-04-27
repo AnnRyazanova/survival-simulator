@@ -54,6 +54,7 @@ namespace Characters.Player
             AnimatorController = new PlayerAnimatorController(GetComponent<Animator>());
             coneRadarSystem = new ConeRadarSystem();
             NavMeshController = new NavMeshController(GetComponent<NavMeshAgent>());
+            GetComponent<NavMeshAgent>().updatePosition = true;
 
             StartCoroutine(InitJoystick());
         }

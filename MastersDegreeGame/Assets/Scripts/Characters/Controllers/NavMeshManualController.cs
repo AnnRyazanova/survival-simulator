@@ -14,7 +14,7 @@ namespace Characters.Controllers
         public float CurrentSpeed { get; set; }
 
 
-        public NavMeshController(NavMeshAgent agent, float speed = 2f, float angularSpeed = 3000f) {
+        public NavMeshController(NavMeshAgent agent, float speed = 2f, float angularSpeed = 100f) {
             Agent = agent;
             Agent.speed = speed;
             Agent.angularSpeed = angularSpeed;
@@ -36,8 +36,9 @@ namespace Characters.Controllers
         public void Move(Transform transform, Vector2 inputDirection, float speed) {
             Agent.speed = speed;
             CalculateMovementParameters(Agent.speed, inputDirection);
-            if (Math.Abs(Movement.magnitude) > 1e-4) {
-                Debug.Log(Movement);
+            if (Movement != Vector3.zero) {
+                transform.rotation = Quaternion.Slerp(transform.rotation,
+                    Quaternion.LookRotation(Movement), 0.1f);
             }
 
             Agent.Move(Movement * (Time.deltaTime * CurrentSpeed));
