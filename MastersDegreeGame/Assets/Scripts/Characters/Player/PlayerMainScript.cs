@@ -162,7 +162,7 @@ namespace Characters.Player
         }
 
         public void TakeDamage(DamageProperty damage) {
-            // playerObject.Health.AddPoints(-damage.value);
+            playerObject.Health.AddPoints(-damage.value);
             AnimatorController.OnTakeDamage();
             if (playerObject.Health.CurrentPoints == 0) {
                 AnimatorController.OnDie();
