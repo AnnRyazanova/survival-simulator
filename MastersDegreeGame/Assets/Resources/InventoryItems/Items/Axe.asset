@@ -29,5 +29,5 @@ MonoBehaviour:
     \u043B\u0430\u043F\u0438\u0449 \u043D\u0435\u043A\u043E\u0442\u043E\u0440\u044B\u0445
     \u043D\u0435\u0441\u043E\u0433\u043B\u0430\u0441\u043D\u044B\u0445 \u0441 \u043D\u0430\u0448\u0438\u043C
     \u043F\u0440\u0435\u0431\u044B\u0432\u0430\u043D\u0438\u0435\u043C \u0442\u0443\u0442.\n"
-  attackPower: 10
+  attackPower: 25
   weaponPrefab: {fileID: 189872, guid: a4b2ba08836e8804ab424fc2f3fc16b9, type: 3}

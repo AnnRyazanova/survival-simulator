@@ -1787,10 +1787,10 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3317226722490378171}
   serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 1
+  m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
@@ -1825,9 +1825,9 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 2
-  m_Acceleration: 100
-  avoidancePriority: 1
-  m_AngularSpeed: 100
+  m_Acceleration: 0
+  avoidancePriority: 2
+  m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 0
@@ -1853,7 +1853,7 @@ MonoBehaviour:
   attackRate: 1.5
   lastAttackTime: 0
   actionSphere: {fileID: 8817934690631979657}
-  itemSearchRadius: 1
+  itemSearchRadius: 0.5
   directionalJoystick: {fileID: 0}
   playerObject: {fileID: 1137147814869747267}
   leftHand: {fileID: 3317226722490377829}

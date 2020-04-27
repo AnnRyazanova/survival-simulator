@@ -13,7 +13,7 @@ using UnityEngine.AI;
 
 namespace Characters.Player
 {
-    public class PlayerMainScript : GameCharacter, ICombatAggressor
+    public class PlayerMainScript : GameCharacter, ICombatAggressor, ICombatTarget
     {
         public FixedJoystick directionalJoystick;
         public PlayerObject playerObject;
@@ -54,8 +54,6 @@ namespace Characters.Player
             AnimatorController = new PlayerAnimatorController(GetComponent<Animator>());
             coneRadarSystem = new ConeRadarSystem();
             NavMeshController = new NavMeshController(GetComponent<NavMeshAgent>());
-            GetComponent<NavMeshAgent>().updatePosition = true;
-
             StartCoroutine(InitJoystick());
         }
 
@@ -158,6 +156,16 @@ namespace Characters.Player
 
         public void AttackTarget(ICombatTarget target) {
             (target as NpcMainScript)?.TakeDamage(playerObject.Damage);
+        }
+
+        public void TakeDamage(DamageProperty damage) {
+            Debug.Log("Damage taken");
+            playerObject.Health.AddPoints(-damage.value);
+            AnimatorController.OnTakeDamage();
+            if (playerObject.Health.CurrentPoints == 0) {
+                AnimatorController.OnDie();
+                transform.GetChild(0).GetComponent<MeshCollider>().enabled = false;
+            }
         }
     }
 }
