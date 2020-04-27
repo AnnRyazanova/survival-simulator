@@ -48,13 +48,16 @@ namespace Characters.Player
             equipment.tool = null;
         }
 
+        private void Awake() {
+            StartCoroutine(InitJoystick());
+        }
+
         private void Start() {
             MyPlayer = this;
             MovementController = new ManualMovementController(GetComponent<CharacterController>());
             AnimatorController = new PlayerAnimatorController(GetComponent<Animator>());
             coneRadarSystem = new ConeRadarSystem();
             NavMeshController = new NavMeshController(GetComponent<NavMeshAgent>());
-            StartCoroutine(InitJoystick());
         }
 
         public void Attack() {
@@ -78,15 +81,10 @@ namespace Characters.Player
 
         private void Update() {
             if (_isInited == false) return;
+            _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
             NavMeshController.Move(transform, _inputDirections,
                 playerObject.Energy.CurrentPoints > 0 ? characterRunSpeed : characterWalkSpeed);
             AnimatorController.OnMove(_inputDirections.magnitude, playerObject.Energy.CurrentPoints);
-        }
-
-        private void FixedUpdate() {
-            if (directionalJoystick != null) {
-                _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
-            }
         }
 
         private IEnumerator InitJoystick() {
