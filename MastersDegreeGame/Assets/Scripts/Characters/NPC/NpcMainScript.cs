@@ -12,7 +12,7 @@ namespace Characters.NPC
     public class NpcMainScript : GameCharacter, ICombatTarget, ICombatAggressor
     {
         [FormerlySerializedAs("mobObject")] public NpcObject npcObject;
-        
+        public float a = 0.1f;
         public void Start() {
             AnimatorController = new NpcAnimatorController(GetComponent<Animator>());
             attackRate = 1f;
@@ -50,7 +50,7 @@ namespace Characters.NPC
 
         public void AttackTarget(ICombatTarget target) {
             AnimatorController.OnAttackMelee();
-            StartCoroutine(DoDamage(target, 0.1f));
+            StartCoroutine(DoDamage(target, a));
         }
 
         public IEnumerator DoDamage(ICombatTarget player, float delay) {

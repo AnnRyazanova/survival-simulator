@@ -24,7 +24,7 @@ namespace Characters.Player
 
         public Inventory inventory;
         public Equipment equipment;
-        public float hitDelaySeconds = 0.5f;
+        public float hitDelaySeconds = 0.1f;
         public ConeRadarSystem coneRadarSystem;
         private Vector2 _inputDirections = Vector2.zero;
 
@@ -164,7 +164,7 @@ namespace Characters.Player
         }
 
         public void TakeDamage(DamageProperty damage) {
-            playerObject.Health.AddPoints(-damage.value);
+            // playerObject.Health.AddPoints(-damage.value);
             AnimatorController.OnTakeDamage();
             if (playerObject.Health.CurrentPoints == 0) {
                 AnimatorController.OnDie();
