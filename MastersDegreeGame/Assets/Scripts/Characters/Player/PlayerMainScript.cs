@@ -24,7 +24,7 @@ namespace Characters.Player
 
         public Inventory inventory;
         public Equipment equipment;
-
+        public float hitDelaySeconds = 0.5f;
         public ConeRadarSystem coneRadarSystem;
         private Vector2 _inputDirections = Vector2.zero;
 
@@ -155,11 +155,15 @@ namespace Characters.Player
         #endregion
 
         public void AttackTarget(ICombatTarget target) {
-            (target as NpcMainScript)?.TakeDamage(playerObject.Damage);
+            StartCoroutine(DoDamage(target, hitDelaySeconds));
+        }
+        
+        public IEnumerator DoDamage(ICombatTarget target, float delay) {
+            yield return new WaitForSecondsRealtime(delay);
+            target.TakeDamage(playerObject.Damage);
         }
 
         public void TakeDamage(DamageProperty damage) {
-            Debug.Log("Damage taken");
             playerObject.Health.AddPoints(-damage.value);
             AnimatorController.OnTakeDamage();
             if (playerObject.Health.CurrentPoints == 0) {

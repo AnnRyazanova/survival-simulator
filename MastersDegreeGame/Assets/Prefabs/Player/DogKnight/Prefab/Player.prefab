@@ -1853,7 +1853,7 @@ MonoBehaviour:
   attackRate: 1.5
   lastAttackTime: 0
   actionSphere: {fileID: 8817934690631979657}
-  itemSearchRadius: 0.5
+  itemSearchRadius: 0.7
   directionalJoystick: {fileID: 0}
   playerObject: {fileID: 1137147814869747267}
   leftHand: {fileID: 3317226722490377829}

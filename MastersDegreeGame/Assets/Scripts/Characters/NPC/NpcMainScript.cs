@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Characters.Animations;
 using Characters.Player;
 using Characters.Systems.Combat;
@@ -15,13 +16,12 @@ namespace Characters.NPC
         public void Start() {
             AnimatorController = new NpcAnimatorController(GetComponent<Animator>());
             attackRate = 1f;
-            Debug.Log(GetComponent<NavMeshAgent>().updatePosition);
             GetComponent<NavMeshAgent>().updatePosition = false;
         }
 
         public void tmpAiControllerFunc() {
             var hits = Physics.OverlapSphere(actionSphere.transform.position, itemSearchRadius);
-            if (hits != null) {
+            if (hits != null && AnimatorController != null) {
                 foreach (var hit in hits) {
                     var colliderParent = hit.gameObject.transform.parent;
                     if (colliderParent != null && colliderParent.GetComponent<PlayerMainScript>() != null) {
@@ -44,15 +44,18 @@ namespace Characters.NPC
             if (npcObject.Health.CurrentPoints == 0) {
                 AnimatorController.OnDie();
                 transform.GetChild(0).GetComponent<MeshCollider>().enabled = false;
+                AnimatorController = null;
             }
         }
 
         public void AttackTarget(ICombatTarget target) {
             AnimatorController.OnAttackMelee();
-            if (target is PlayerMainScript player)
-            {
-                player.TakeDamage(npcObject.Damage);
-            }
+            StartCoroutine(DoDamage(target, 0.1f));
+        }
+
+        public IEnumerator DoDamage(ICombatTarget player, float delay) {
+            yield return new WaitForSecondsRealtime(delay);
+            player.TakeDamage(npcObject.Damage);
         }
     }
 }
