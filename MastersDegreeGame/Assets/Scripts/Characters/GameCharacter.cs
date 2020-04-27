@@ -10,8 +10,8 @@ namespace Characters
 {
     public abstract class GameCharacter : MonoBehaviour
     {
-        [SerializeField] protected float characterRunSpeed = 2f;
-        [SerializeField] protected float characterWalkSpeed = .9f;
+        [SerializeField] protected float characterRunSpeed = 4f;
+        [SerializeField] protected float characterWalkSpeed = 1.5f;
         public float attackRate = 1.5f;
         
         public float lastAttackTime = 0.0f;

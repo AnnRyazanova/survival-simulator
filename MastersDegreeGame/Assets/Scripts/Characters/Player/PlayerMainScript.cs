@@ -112,7 +112,6 @@ namespace Characters.Player
 
             var instance = Instantiate(itemPrefab);
             instance.GetComponent<PickableItem>().isPickable = false;
-            Debug.Log(instance.name);
             return instance;
         }
 

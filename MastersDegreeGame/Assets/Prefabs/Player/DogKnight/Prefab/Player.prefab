@@ -1848,8 +1848,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5025644a512871649ad571f04a27591e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterRunSpeed: 2
-  characterWalkSpeed: 0.9
+  characterRunSpeed: 4
+  characterWalkSpeed: 1.5
   attackRate: 1.5
   lastAttackTime: 0
   actionSphere: {fileID: 8817934690631979657}
