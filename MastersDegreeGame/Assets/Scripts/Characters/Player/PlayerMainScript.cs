@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections;
-using UnityEngine;
 using Characters.Animations;
+using Characters.Controllers;
+using Characters.NPC;
 using Characters.Systems;
+using Characters.Systems.Combat;
 using InventoryObjects.Inventory;
 using InventoryObjects.Items;
 using Objects;
-using UnityEditor;
+using UnityEngine;
+using UnityEngine.AI;
 
-namespace Characters.Controllers
+namespace Characters.Player
 {
-    public class PlayerMainScript : GameCharacter
+    public class PlayerMainScript : GameCharacter, ICombatAggressor, ICombatTarget
     {
         public FixedJoystick directionalJoystick;
         public PlayerObject playerObject;
@@ -21,15 +24,12 @@ namespace Characters.Controllers
 
         public Inventory inventory;
         public Equipment equipment;
+        public float hitDelaySeconds = 0.1f;
         public ConeRadarSystem coneRadarSystem;
-        public float r = 0f;
         private Vector2 _inputDirections = Vector2.zero;
 
-        private static readonly Quaternion WeaponDockRotation = new Quaternion(0, 0, 0, 0);
-        private static readonly Quaternion ToolDockRotation = new Quaternion(0, 0, 180, 0);
-
         private bool _isInited;
-        
+
         public void InteractWithClosestItem() {
             var nearest = coneRadarSystem.CheckForVisibleObjects(transform);
             if (nearest != null) {
@@ -41,14 +41,15 @@ namespace Characters.Controllers
                 }
             }
         }
+
         private void OnApplicationQuit() {
             inventory.Clear();
             equipment.weapon = null;
             equipment.tool = null;
         }
 
-        public void OnDrawGizmosSelected() {
-            Gizmos.DrawWireSphere(transform.position, r);
+        private void Awake() {
+            StartCoroutine(InitJoystick());
         }
 
         private void Start() {
@@ -56,23 +57,34 @@ namespace Characters.Controllers
             MovementController = new ManualMovementController(GetComponent<CharacterController>());
             AnimatorController = new PlayerAnimatorController(GetComponent<Animator>());
             coneRadarSystem = new ConeRadarSystem();
-            StartCoroutine(InitJoystick());
+            NavMeshController = new NavMeshController(GetComponent<NavMeshAgent>());
         }
 
         public void Attack() {
             if (equipment.weapon != null) {
-                if (equipment.weapon.ItemType == ItemObjectType.Weapon) {
-                    AnimatorController.OnAttackMelee();
+                AnimatorController.OnAttackMelee();
+                var hits = Physics.OverlapSphere(actionSphere.transform.position, itemSearchRadius);
+                if (hits != null) {
+                    foreach (var hit in hits) {
+                        var colliderParent = hit.gameObject.transform.parent;
+                        if (colliderParent != null && colliderParent.GetComponent<NpcMainScript>() != null) {
+                            AttackTarget(colliderParent.GetComponent<NpcMainScript>());
+                        }
+                    }
                 }
             }
         }
 
+        public void OnDrawGizmosSelected() {
+            Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
+        }
+
         private void Update() {
             if (_isInited == false) return;
-
             _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
-            MovementController.Move(transform, characterRotationSpeed, characterMovementSpeed, _inputDirections);
-            AnimatorController.OnMove(MovementController.CurrentSpeed / characterMovementSpeed, 0.01f);
+            NavMeshController.Move(transform, _inputDirections,
+                playerObject.Energy.CurrentPoints > 0 ? characterRunSpeed : characterWalkSpeed);
+            AnimatorController.OnMove(_inputDirections.magnitude, playerObject.Energy.CurrentPoints);
         }
 
         private IEnumerator InitJoystick() {
@@ -96,7 +108,6 @@ namespace Characters.Controllers
 
             var instance = Instantiate(itemPrefab);
             instance.GetComponent<PickableItem>().isPickable = false;
-
             return instance;
         }
 
@@ -127,6 +138,7 @@ namespace Characters.Controllers
                 // Instantiate prefab on scene
                 var instance = InstantiateEquipmentPrefab(rightHand, (equipment.weapon as WeaponItem)?.weaponPrefab);
                 EquipOnPrefab(rightHand, instance);
+                playerObject.Damage.value = (equipment.weapon as WeaponItem).attackPower;
             }
         }
 
@@ -139,5 +151,23 @@ namespace Characters.Controllers
         }
 
         #endregion
+
+        public void AttackTarget(ICombatTarget target) {
+            StartCoroutine(DoDamage(target, hitDelaySeconds));
+        }
+        
+        public IEnumerator DoDamage(ICombatTarget target, float delay) {
+            yield return new WaitForSecondsRealtime(delay);
+            target.TakeDamage(playerObject.Damage);
+        }
+
+        public void TakeDamage(DamageProperty damage) {
+            playerObject.Health.AddPoints(-damage.value);
+            AnimatorController.OnTakeDamage();
+            if (playerObject.Health.CurrentPoints == 0) {
+                AnimatorController.OnDie();
+                transform.GetChild(0).GetComponent<MeshCollider>().enabled = false;
+            }
+        }
     }
 }

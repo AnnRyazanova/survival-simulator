@@ -62,3 +62,10 @@ MastersDegreeGame/Assets/Plugins/Editor/JetBrains.meta
 MastersDegreeGame/.idea.meta
 MastersDegreeGame/.idea/*
 # --------------------------------------
+
+# -------------- Plugins --------------
+MastersDegreeGame/Assets/MTE/*
+MastersDegreeGame/Assets/MTE.meta
+MastersDegreeGame/Assets/PolarisStarter/*
+MastersDegreeGame/Assets/PolarisStarter.meta
+# --------------------------------------

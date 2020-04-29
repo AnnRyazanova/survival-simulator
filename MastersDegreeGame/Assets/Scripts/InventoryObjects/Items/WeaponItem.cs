@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Object = Characters.Object;
 
 namespace InventoryObjects.Items
 {
@@ -6,7 +7,7 @@ namespace InventoryObjects.Items
     [CreateAssetMenu(fileName = "Create New Weapon", menuName = "Inventory/Items/Weapon")]
     public class WeaponItem : ItemObject
     {
-        public float attackPower;
+        public int attackPower;
 
         public GameObject weaponPrefab;
         

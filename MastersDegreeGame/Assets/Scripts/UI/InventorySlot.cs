@@ -22,7 +22,7 @@ namespace UI
         [SerializeField] private TextMeshProUGUI _count;
         [SerializeField] private GameObject popupPanel;
         [SerializeField] private Text actionButtonText;
-        [SerializeField] private Button actionButton;
+        [SerializeField] private Button[] actionButton;
 
         private InventoryCell _cell;
 
@@ -60,7 +60,7 @@ namespace UI
             _window = window;
             _cell = inventoryCell;
             slotType = _slotType == InventorySlotType.PrevSet ? slotType : _slotType;
-            actionButton.gameObject.SetActive(true);
+            actionButton[0].gameObject.SetActive(true);
             SetupFromCell();
             _count.SetText(_cell.amount > 1 ? _cell.amount.ToString() : "");
         }
@@ -70,11 +70,21 @@ namespace UI
                 _icon.sprite =  _cell.item.displayIcon;
                 _icon.gameObject.SetActive(true);
                 if (_cell.item.ItemType == ItemObjectType.Weapon || _cell.item.ItemType == ItemObjectType.Tool) {
-                    actionButtonText.text = slotType == InventorySlotType.Inventory
-                        ? "НАДЕТЬ"
-                        : "СНЯТЬ";
+                    if (slotType == InventorySlotType.Inventory) {
+                        actionButtonText.text = "НАДЕТЬ";
+                        for (var i = 1; i < actionButton.Length; ++i) {
+                            actionButton[i].gameObject.SetActive(true);
+                        }
+                    }
+                    else {
+                        actionButtonText.text = "СНЯТЬ";
+                        for (var i = 1; i < actionButton.Length; ++i) {
+                            actionButton[i].gameObject.SetActive(false);
+                        }
+                    }
+
                 } else if (_cell.item.ItemType == ItemObjectType.Material) {
-                    actionButton.gameObject.SetActive(false);
+                    actionButton[0].gameObject.SetActive(false);
                 }
                 else {
                     actionButtonText.text = "ИСПОЛЬЗОВАТЬ";

@@ -1,5 +1,7 @@
 ﻿using System;
+using Characters.Player;
 using UnityEngine;
+using Object = Characters.Object;
 
 namespace InventoryObjects.Items
 {

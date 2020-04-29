@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = Characters.Object;
 
 public class HealthProperty : NeedProperty
 {
@@ -11,5 +12,13 @@ public class HealthProperty : NeedProperty
 #if  CHEAT
         //Debug.Log("Activate HealthProperty");
 #endif
+    }
+
+    public override void AddPoints(int points)
+    {
+        base.AddPoints(points);
+        if (parentObject.Type == Object.ObjectType.Player && _currentPoints <= 0) {
+            DeathWindowController.Instance.ShowWindow();
+        }
     }
 }

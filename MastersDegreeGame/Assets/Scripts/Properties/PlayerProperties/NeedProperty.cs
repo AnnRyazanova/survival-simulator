@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = Characters.Object;
 
 public class NeedProperty : BaseProperty
 {
@@ -34,8 +35,6 @@ public class NeedProperty : BaseProperty
     /// Последнее время обновления поинтов свойства
     /// </summary>
     protected DateTime _lastUpdateTime;
-
-    protected int _previousPoints;
 
     public int CurrentPoints => _currentPoints;
     public float CurrentPointsNormalized => _currentPoints / (float)_totalPoints;
@@ -72,9 +71,8 @@ public class NeedProperty : BaseProperty
         if (_skipRecovery) return;
         
         // Восстановление свойства
-        if ((DateTime.Now - _lastUpdateTime).TotalSeconds >= _recoveryTime && _currentPoints != _previousPoints) {
+        if ((DateTime.Now - _lastUpdateTime).TotalSeconds >= _recoveryTime) {
             _lastUpdateTime = DateTime.Now;
-            _previousPoints = _currentPoints;
             AddPoints(_recoveryPoints);
         }
     }

@@ -489,7 +489,10 @@ MonoBehaviour:
   _count: {fileID: 2413985901302283678}
   popupPanel: {fileID: 441146698541300261}
   actionButtonText: {fileID: 6306909027255171504}
-  actionButton: {fileID: 3725168917745409177}
+  actionButton:
+  - {fileID: 3725168917745409177}
+  - {fileID: 1795909512680130997}
+  - {fileID: 6634367502747293399}
   slotType: 0
 --- !u!114 &3801711662131843614
 MonoBehaviour:

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Characters.Controllers;
+using Characters.Player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class MainWindow : BaseWindow
 {
     public FixedJoystick Joystick;
     [SerializeField] private PlayerNeedsUiView _playerNeeds;
-    
+
     public override void Show()
     {
         base.Show();
@@ -32,9 +33,12 @@ public class MainWindow : BaseWindow
         CraftController.Instance.ShowWindow();
     }
 
-    public void OnAttackButtonClick()
-    {
-        PlayerMainScript.MyPlayer.Attack();
+    public void OnAttackButtonClick() {
+        var player = PlayerMainScript.MyPlayer;
+        if (Time.time >= player.lastAttackTime) {
+            PlayerMainScript.MyPlayer.Attack();
+            player.lastAttackTime = Time.time + 1f / player.attackRate;
+        }
     }
     
     public void OnPickUpButtonClick()

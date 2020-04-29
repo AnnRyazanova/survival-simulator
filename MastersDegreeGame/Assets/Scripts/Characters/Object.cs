@@ -1,26 +1,36 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Object: MonoBehaviour
+namespace Characters
 {
-    public List<BaseProperty> Properties { get; private set; } = new List<BaseProperty>();
-
-    protected virtual void Start()
+    public class Object: MonoBehaviour
     {
-        GetProperties();
-    }
+        public enum ObjectType
+        {
+            Player,
+            Mob,
+        }
 
-    private void GetProperties()
-    {
-         var props = GetComponents<BaseProperty>();
-         foreach (var prop in props) {
-             if (prop.IsDeferred == false) {
-                 prop.StartProperty(this);
-                 Properties.Add(prop);
-             }
-         }
+        public List<BaseProperty> Properties { get; private set; } = new List<BaseProperty>();
+    
+    
+        protected ObjectType type;
+        public ObjectType Type => type;
+
+        protected virtual void Start()
+        {
+            GetProperties();
+        }
+
+        private void GetProperties()
+        {
+            var props = GetComponents<BaseProperty>();
+            foreach (var prop in props) {
+                if (prop.IsDeferred == false) {
+                    prop.StartProperty(this);
+                    Properties.Add(prop);
+                }
+            }
+        }
     }
 }

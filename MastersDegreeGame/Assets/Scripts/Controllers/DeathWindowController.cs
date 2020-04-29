@@ -20,15 +20,8 @@ public sealed class DeathWindowController
             window.OnWindowHide += OnWindowHide;
             window.Show();
         }
-    }
-
-    public void HideWindow()
-    {
-        if (window == null) {
-            return;
-        }
         
-        window.Hide();
+        MainWindowController.Instance.HideWindow();
     }
 
     private void OnWindowHide()

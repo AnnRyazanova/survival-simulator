@@ -2,20 +2,28 @@
 
 namespace Characters.Animations
 {
-    public class PlayerAnimatorController: CharacterAnimationController
+    public class PlayerAnimatorController: CharacterAnimatorController
     {
         public PlayerAnimatorController(Animator animatorController) : base(animatorController){}
         
-        private static readonly int MovementSpeedFactor = Animator.StringToHash("movementSpeedFactor");
-        private static readonly int AttackMelee = Animator.StringToHash("attackMelee");
-
-        public override void OnMove(float speedFactor, float smoothingFactor) {
-            AnimatorController.SetFloat(MovementSpeedFactor, speedFactor, 
-                smoothingFactor, Time.deltaTime);
+        public override void OnMove(float speedFactor, int energy) {
+            // AnimatorController.SetFloat(MovementSpeedFactor, speedFactor, 
+            //     smoothingFactor, Time.deltaTime);
+            AnimatorController.SetBool(OnlyWalk, energy == 0);
+            AnimatorController.SetBool(Move, speedFactor > 0.0f);
         }
 
         public override void OnAttackMelee() {
             AnimatorController.SetTrigger(AttackMelee);
+        }
+
+        public override void OnTakeDamage() {
+            AnimatorController.SetTrigger(TakeDamage);
+
+        }
+
+        public override void OnDie() {
+            AnimatorController.SetBool(Die, true);
         }
     }
 }
