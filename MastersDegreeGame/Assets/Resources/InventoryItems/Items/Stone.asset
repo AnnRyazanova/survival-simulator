@@ -17,6 +17,6 @@ MonoBehaviour:
   maxItemsInStack: 10
   title: "\u041F\u0440\u0435\u0434\u043C\u0435\u0442"
   id: 7
-  durability: 100
-  durabilityDecreaseRate: 0
+  maxDurability: 100
+  durabilityDecreaseRate: 1
   description: 

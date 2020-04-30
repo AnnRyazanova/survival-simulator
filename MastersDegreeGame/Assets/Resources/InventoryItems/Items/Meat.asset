@@ -17,8 +17,8 @@ MonoBehaviour:
   maxItemsInStack: 10
   title: "\u041C\u044F\u0441\u043E"
   id: 5
-  durability: 0
-  durabilityDecreaseRate: 0
+  maxDurability: 100
+  durabilityDecreaseRate: 1
   description: 
   healthRegen: 0
   hungerRegen: 25

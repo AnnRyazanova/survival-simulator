@@ -85,6 +85,7 @@ namespace Characters.Player
             NavMeshController.Move(transform, _inputDirections,
                 playerObject.Energy.CurrentPoints > 0 ? characterRunSpeed : characterWalkSpeed);
             AnimatorController.OnMove(_inputDirections.magnitude, playerObject.Energy.CurrentPoints);
+            inventory.UpdateItems();
         }
 
         private IEnumerator InitJoystick() {
@@ -136,16 +137,16 @@ namespace Characters.Player
         public void EquipWeapon() {
             if (equipment.weapon != null) {
                 // Instantiate prefab on scene
-                var instance = InstantiateEquipmentPrefab(rightHand, (equipment.weapon as WeaponItem)?.weaponPrefab);
+                var instance = InstantiateEquipmentPrefab(rightHand, (equipment.weapon.item as WeaponItem)?.weaponPrefab);
                 EquipOnPrefab(rightHand, instance);
-                playerObject.Damage.value = (equipment.weapon as WeaponItem).attackPower;
+                playerObject.Damage.value = (equipment.weapon.item as WeaponItem).attackPower;
             }
         }
 
         public void EquipTool() {
             if (equipment.tool != null) {
                 // Instantiate prefab on scene
-                var instance = InstantiateEquipmentPrefab(leftHand, (equipment.tool as ToolItem)?.toolPrefab);
+                var instance = InstantiateEquipmentPrefab(leftHand, (equipment.tool.item as ToolItem)?.toolPrefab);
                 EquipOnPrefab(leftHand, instance);
             }
         }

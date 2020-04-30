@@ -19,12 +19,13 @@ namespace UI
     public sealed class InventorySlot : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField] private Image _icon;
+        [SerializeField] private Image _durability;
         [SerializeField] private TextMeshProUGUI _count;
         [SerializeField] private GameObject popupPanel;
         [SerializeField] private Text actionButtonText;
         [SerializeField] private Button[] actionButton;
 
-        private InventoryCell _cell;
+        public InventoryCell _cell;
 
         private InventoryWindow _window;
 
@@ -49,8 +50,9 @@ namespace UI
 
         private void Awake() {
             _icon.gameObject.SetActive(false);
-            popupPanel.SetActive(false);
+            _durability.gameObject.SetActive(false);
 
+            popupPanel.SetActive(false);
             _uiPopup = GameObject.FindWithTag("UiPopUp").transform;
             _originalParent = transform.parent;
         }
@@ -62,36 +64,51 @@ namespace UI
             slotType = _slotType == InventorySlotType.PrevSet ? slotType : _slotType;
             actionButton[0].gameObject.SetActive(true);
             SetupFromCell();
-            _count.SetText(_cell.amount > 1 ? _cell.amount.ToString() : "");
+            if (_cell != null) {
+                _count.SetText(_cell.amount > 1 ? _cell.amount.ToString() : "");
+            }
         }
 
         private void SetupFromCell() {
-            if (_cell.item != null) {
+            if (_cell != null && _cell.item != null) {
                 _icon.sprite =  _cell.item.displayIcon;
                 _icon.gameObject.SetActive(true);
-                if (_cell.item.ItemType == ItemObjectType.Weapon || _cell.item.ItemType == ItemObjectType.Tool) {
-                    if (slotType == InventorySlotType.Inventory) {
-                        actionButtonText.text = "НАДЕТЬ";
-                        for (var i = 1; i < actionButton.Length; ++i) {
-                            actionButton[i].gameObject.SetActive(true);
+                _durability.gameObject.SetActive(true);
+                
+                _durability.fillAmount = _cell.NormalizedCurrentDurability;
+                Debug.Log(_cell.NormalizedCurrentDurability);
+                Debug.Log(_durability.fillAmount);
+                switch (_cell.item.ItemType) {
+                    case ItemObjectType.Weapon:
+                    case ItemObjectType.Tool:
+                    {
+                        if (slotType == InventorySlotType.Inventory) {
+                            actionButtonText.text = "НАДЕТЬ";
+                            for (var i = 1; i < actionButton.Length; ++i) {
+                                actionButton[i].gameObject.SetActive(true);
+                            }
                         }
-                    }
-                    else {
-                        actionButtonText.text = "СНЯТЬ";
-                        for (var i = 1; i < actionButton.Length; ++i) {
-                            actionButton[i].gameObject.SetActive(false);
+                        else {
+                            actionButtonText.text = "СНЯТЬ";
+                            for (var i = 1; i < actionButton.Length; ++i) {
+                                actionButton[i].gameObject.SetActive(false);
+                            }
                         }
-                    }
 
-                } else if (_cell.item.ItemType == ItemObjectType.Material) {
-                    actionButton[0].gameObject.SetActive(false);
-                }
-                else {
-                    actionButtonText.text = "ИСПОЛЬЗОВАТЬ";
+                        break;
+                    }
+                    case ItemObjectType.Material:
+                        actionButton[0].gameObject.SetActive(false);
+                        _durability.gameObject.SetActive(false);
+                        break;
+                    default:
+                        actionButtonText.text = "ИСПОЛЬЗОВАТЬ";
+                        break;
                 }
             }
             else {
                 _icon.gameObject.SetActive(false);
+                _durability.gameObject.SetActive(false);
             }
         }
 

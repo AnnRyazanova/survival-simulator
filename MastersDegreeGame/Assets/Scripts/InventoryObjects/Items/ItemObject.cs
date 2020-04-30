@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Object = Characters.Object;
 
 namespace InventoryObjects.Items
@@ -19,18 +20,17 @@ namespace InventoryObjects.Items
         public int maxItemsInStack = 10;
         public string title = "Предмет";
         public int id;
-        public float durability;
-        public float durabilityDecreaseRate;
+        
+        public float maxDurability = 100f;
+        public float durabilityDecreaseRate = 10f;
+
         
         [TextArea(20, 50)]
         public string description;
-        
-        public abstract void OnUse(Object target);
-    
-        public abstract void OnThrowOut();
-    
-        public abstract void OnPickUp();
-    
-        public abstract void OnUpdate();
+
+        public void Awake() {
+            maxDurability = 100f;
+            durabilityDecreaseRate = 1f;
+        }
     }
 }
