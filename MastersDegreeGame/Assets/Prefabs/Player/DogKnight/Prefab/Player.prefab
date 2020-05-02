@@ -132,7 +132,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3317226722490808937}
   - component: {fileID: 3317226722493491907}
-  - component: {fileID: 1520468920633486656}
   m_Layer: 0
   m_Name: polySurface1
   m_TagString: Untagged
@@ -271,20 +270,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00000008940697, y: 0.17928879, z: 0.7022597}
     m_Extent: {x: 0.87674475, y: 0.61002564, z: 0.75376505}
   m_DirtyAABB: 0
---- !u!64 &1520468920633486656
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3317226722490377801}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 14
-  m_Mesh: {fileID: 4300004, guid: a58d63122b09e9144938cd6a1ece4824, type: 3}
 --- !u!1 &3317226722490377803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,6 +1739,7 @@ GameObject:
   - component: {fileID: 751373069602930257}
   - component: {fileID: 751373069602930260}
   - component: {fileID: 751373069602930259}
+  - component: {fileID: 3989612077218997873}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1861,6 +1847,20 @@ MonoBehaviour:
   inventory: {fileID: 11400000, guid: c31124c69a4b3394d8c128ac5cd63fbe, type: 2}
   equipment: {fileID: 11400000, guid: 6a7f3fd19d037e043977ab5c473ad38c, type: 2}
   hitDelaySeconds: 0.1
+--- !u!136 &3989612077218997873
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3317226722490378171}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &3317226722490378173
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,6 +2,6 @@
 {
     public interface ICombatTarget
     {
-        void TakeDamage(DamageProperty damage);
+        void TakeDamage(ICombatAggressor aggressor);
     }
 }

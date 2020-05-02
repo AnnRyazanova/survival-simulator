@@ -13,11 +13,12 @@ using UnityEngine.AI;
 
 namespace Characters.Player
 {
-    public class PlayerMainScript : GameCharacter, ICombatAggressor, ICombatTarget
+    public class PlayerMainScript : GameCharacter
     {
         public FixedJoystick directionalJoystick;
         public PlayerObject playerObject;
         public static PlayerMainScript MyPlayer { get; private set; }
+
 
         public GameObject leftHand;
         public GameObject rightHand;
@@ -49,31 +50,36 @@ namespace Characters.Player
         }
 
         private void Awake() {
+            coneRadarSystem = new ConeRadarSystem();
+            animatorController = new PlayerAnimatorController(GetComponent<Animator>());
+            NavMeshController = new NavMeshController(GetComponent<NavMeshAgent>());
             StartCoroutine(InitJoystick());
         }
 
         private void Start() {
             MyPlayer = this;
-            MovementController = new ManualMovementController(GetComponent<CharacterController>());
-            AnimatorController = new PlayerAnimatorController(GetComponent<Animator>());
-            coneRadarSystem = new ConeRadarSystem();
-            NavMeshController = new NavMeshController(GetComponent<NavMeshAgent>());
+            playerObject.animatorController = animatorController;
         }
 
+        #region Combat
+        
         public void Attack() {
-            if (equipment.weapon != null) {
-                AnimatorController.OnAttackMelee();
+            if (equipment.weapon.item != null) {
+                animatorController.OnAttackMelee();
                 var hits = Physics.OverlapSphere(actionSphere.transform.position, itemSearchRadius);
                 if (hits != null) {
                     foreach (var hit in hits) {
                         var colliderParent = hit.gameObject.transform.parent;
                         if (colliderParent != null && colliderParent.GetComponent<NpcMainScript>() != null) {
-                            AttackTarget(colliderParent.GetComponent<NpcMainScript>());
+                            playerObject.AttackTarget(colliderParent.GetComponent<NpcObject>());
                         }
                     }
                 }
             }
         }
+
+        #endregion
+
 
         public void OnDrawGizmosSelected() {
             Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
@@ -84,7 +90,7 @@ namespace Characters.Player
             _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
             NavMeshController.Move(transform, _inputDirections,
                 playerObject.Energy.CurrentPoints > 0 ? characterRunSpeed : characterWalkSpeed);
-            AnimatorController.OnMove(_inputDirections.magnitude, playerObject.Energy.CurrentPoints);
+            animatorController.OnMove(_inputDirections.magnitude, playerObject.Energy.CurrentPoints);
             inventory.UpdateItems();
         }
 
@@ -137,7 +143,8 @@ namespace Characters.Player
         public void EquipWeapon() {
             if (equipment.weapon != null) {
                 // Instantiate prefab on scene
-                var instance = InstantiateEquipmentPrefab(rightHand, (equipment.weapon.item as WeaponItem)?.weaponPrefab);
+                var instance =
+                    InstantiateEquipmentPrefab(rightHand, (equipment.weapon.item as WeaponItem)?.weaponPrefab);
                 EquipOnPrefab(rightHand, instance);
                 playerObject.Damage.value = (equipment.weapon.item as WeaponItem).attackPower;
             }
@@ -152,23 +159,5 @@ namespace Characters.Player
         }
 
         #endregion
-
-        public void AttackTarget(ICombatTarget target) {
-            StartCoroutine(DoDamage(target, hitDelaySeconds));
-        }
-        
-        public IEnumerator DoDamage(ICombatTarget target, float delay) {
-            yield return new WaitForSecondsRealtime(delay);
-            target.TakeDamage(playerObject.Damage);
-        }
-
-        public void TakeDamage(DamageProperty damage) {
-            playerObject.Health.AddPoints(-damage.value);
-            AnimatorController.OnTakeDamage();
-            if (playerObject.Health.CurrentPoints == 0) {
-                AnimatorController.OnDie();
-                transform.GetChild(0).GetComponent<MeshCollider>().enabled = false;
-            }
-        }
     }
 }

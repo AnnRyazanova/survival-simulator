@@ -59,6 +59,14 @@ public class NeedProperty : BaseProperty
         OnChange();
     }
     
+    public override void RemovePoints(int points)
+    {
+        base.RemovePoints(points);
+        _currentPoints = Math.Min(_totalPoints, _currentPoints - points);
+        _currentPoints = Math.Max(0, _currentPoints);
+        OnChange();
+    }
+
     protected override void UpdateProperty()
     {
         base.UpdateProperty();

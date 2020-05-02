@@ -1,7 +1,9 @@
 ﻿#define DISPLAY_GIZMOS
 
+using System;
 using Characters.Animations;
 using Characters.Controllers;
+using Characters.Systems.Combat;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -14,9 +16,10 @@ namespace Characters
         [SerializeField] protected float characterWalkSpeed = 1.5f;
         public float attackRate = 1.5f;
         
+        
         public float lastAttackTime = 0.0f;
         
-        protected CharacterAnimatorController AnimatorController;
+        public CharacterAnimatorController animatorController;
         protected MovementController MovementController;
         protected NavMeshController NavMeshController;
         
