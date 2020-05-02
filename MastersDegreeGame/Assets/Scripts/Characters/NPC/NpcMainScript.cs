@@ -16,7 +16,6 @@ namespace Characters.NPC
         public void Start() {
             AnimatorController = new NpcAnimatorController(GetComponent<Animator>());
             attackRate = 1f;
-            GetComponent<NavMeshAgent>().updatePosition = false;
         }
 
         public void tmpAiControllerFunc() {
