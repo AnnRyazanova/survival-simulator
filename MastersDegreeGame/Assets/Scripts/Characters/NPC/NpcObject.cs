@@ -20,11 +20,14 @@ namespace Characters.NPC
         }
 
         public void TakeDamage(ICombatAggressor aggressor) {
+            animatorController.OnTakeDamage();
             Health.RemovePoints(aggressor.GetDamage().value);
             if (Health.CurrentPoints == 0) {
                 animatorController.OnDie();
-                transform.GetChild(0).GetComponent<MeshCollider>().enabled = false;
-                GetComponent<NavMeshAgent>().enabled = false;
+                var parent = transform.parent;
+                parent.GetComponent<NpcMainScript>().enabled = false;
+                parent.GetComponent<NavMeshAgent>().enabled = false;
+                parent.GetChild(0).GetComponent<MeshCollider>().enabled = false;
             }
         }
     }

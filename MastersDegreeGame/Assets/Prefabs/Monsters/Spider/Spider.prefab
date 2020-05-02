@@ -161,7 +161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5619418397164638221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.016, y: 0, z: 0.038}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.35, y: 0.4, z: 0.35}
   m_Children:
   - {fileID: 5619418397164735883}
@@ -2163,6 +2163,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpiderObject
       objectReference: {fileID: 0}
+    - target: {fileID: 2958479864784799321, guid: 7687883559cf4c14e8c92dc6f8990952,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 137601814807686304, guid: 7687883559cf4c14e8c92dc6f8990952,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2218,7 +2223,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2958479864784799321, guid: 7687883559cf4c14e8c92dc6f8990952,
+    - target: {fileID: 6393210503230187448, guid: 7687883559cf4c14e8c92dc6f8990952,
         type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -2233,9 +2238,9 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6393210503230187448, guid: 7687883559cf4c14e8c92dc6f8990952,
+    - target: {fileID: 1640960433280677366, guid: 7687883559cf4c14e8c92dc6f8990952,
         type: 3}
-      propertyPath: m_Enabled
+      propertyPath: _skipRecovery
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

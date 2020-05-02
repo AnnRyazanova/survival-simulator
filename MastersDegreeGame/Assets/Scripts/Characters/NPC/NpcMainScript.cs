@@ -45,7 +45,6 @@ namespace Characters.NPC
         private void Update() {
             tmpAiControllerFunc();
             animatorController.OnMove(_agent.velocity.magnitude, 100);
-            Debug.Log(_agent.velocity.magnitude);
         }
     }
 }

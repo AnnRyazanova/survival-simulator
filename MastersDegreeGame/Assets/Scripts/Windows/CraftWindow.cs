@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using InventoryObjects.Crafting;
+﻿using System.Collections;
 using InventoryObjects.Inventory;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.WSA;
 
 public class CraftWindow : BaseWindow
 {

@@ -62,7 +62,7 @@ namespace Characters.Player
         }
 
         #region Combat
-        
+
         public void Attack() {
             if (equipment.weapon.item != null) {
                 animatorController.OnAttackMelee();
@@ -70,8 +70,10 @@ namespace Characters.Player
                 if (hits != null) {
                     foreach (var hit in hits) {
                         var colliderParent = hit.gameObject.transform.parent;
-                        if (colliderParent != null && colliderParent.GetComponent<NpcMainScript>() != null) {
-                            playerObject.AttackTarget(colliderParent.GetComponent<NpcObject>());
+                        if (colliderParent != null) {
+                            if (colliderParent.GetComponent<NpcMainScript>() != null) {
+                                playerObject.AttackTarget(colliderParent.GetComponent<NpcMainScript>().npcObject);
+                            }
                         }
                     }
                 }
@@ -81,83 +83,83 @@ namespace Characters.Player
         #endregion
 
 
-        public void OnDrawGizmosSelected() {
-            Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
-        }
+            public void OnDrawGizmosSelected() {
+                Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
+            }
 
-        private void Update() {
-            if (_isInited == false) return;
-            _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
-            NavMeshController.Move(transform, _inputDirections,
-                playerObject.Energy.CurrentPoints > 0 ? characterRunSpeed : characterWalkSpeed);
-            animatorController.OnMove(_inputDirections.magnitude, playerObject.Energy.CurrentPoints);
-            inventory.UpdateItems();
-        }
+            private void Update() {
+                if (_isInited == false) return;
+                _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
+                NavMeshController.Move(transform, _inputDirections,
+                    playerObject.Energy.CurrentPoints > 0 ? characterRunSpeed : characterWalkSpeed);
+                animatorController.OnMove(_inputDirections.magnitude, playerObject.Energy.CurrentPoints);
+                inventory.UpdateItems();
+            }
 
-        private IEnumerator InitJoystick() {
-            directionalJoystick = MainWindowController.Instance.GetJoystick();
-
-            while (directionalJoystick == null) {
-                yield return new WaitForSeconds(.1f);
+            private IEnumerator InitJoystick() {
                 directionalJoystick = MainWindowController.Instance.GetJoystick();
+
+                while (directionalJoystick == null) {
+                    yield return new WaitForSeconds(.1f);
+                    directionalJoystick = MainWindowController.Instance.GetJoystick();
+                }
+
+                _isInited = true;
             }
 
-            _isInited = true;
-        }
+            #region EquipmentActions
 
-        #region EquipmentActions
+            private static GameObject InstantiateEquipmentPrefab(GameObject hand, GameObject itemPrefab) {
+                var handTransform = hand.transform;
+                if (handTransform.childCount > 0) {
+                    Destroy(handTransform.GetChild(0).gameObject);
+                }
 
-        private static GameObject InstantiateEquipmentPrefab(GameObject hand, GameObject itemPrefab) {
-            var handTransform = hand.transform;
-            if (handTransform.childCount > 0) {
-                Destroy(handTransform.GetChild(0).gameObject);
+                var instance = Instantiate(itemPrefab);
+                instance.GetComponent<PickableItem>().isPickable = false;
+                return instance;
             }
 
-            var instance = Instantiate(itemPrefab);
-            instance.GetComponent<PickableItem>().isPickable = false;
-            return instance;
-        }
-
-        private void EquipOnPrefab(GameObject hand, GameObject itemPrefabInstance) {
-            itemPrefabInstance.transform.parent = hand.transform;
-            itemPrefabInstance.transform.localPosition = Vector3.zero;
-            if (hand == rightHand) {
-                itemPrefabInstance.transform.rotation = new Quaternion(0, 0, 0, 0);
+            private void EquipOnPrefab(GameObject hand, GameObject itemPrefabInstance) {
+                itemPrefabInstance.transform.parent = hand.transform;
+                itemPrefabInstance.transform.localPosition = Vector3.zero;
+                if (hand == rightHand) {
+                    itemPrefabInstance.transform.rotation = new Quaternion(0, 0, 0, 0);
+                }
             }
-        }
 
-        private static void UnequipOnPrefab(GameObject hand) {
-            foreach (Transform child in hand.transform) {
-                Destroy(child.gameObject);
+            private static void UnequipOnPrefab(GameObject hand) {
+                foreach (Transform child in hand.transform) {
+                    Destroy(child.gameObject);
+                }
             }
-        }
 
-        public void UnequipWeapon() {
-            UnequipOnPrefab(rightHand);
-        }
-
-        public void UnequipTool() {
-            UnequipOnPrefab(leftHand);
-        }
-
-        public void EquipWeapon() {
-            if (equipment.weapon != null) {
-                // Instantiate prefab on scene
-                var instance =
-                    InstantiateEquipmentPrefab(rightHand, (equipment.weapon.item as WeaponItem)?.weaponPrefab);
-                EquipOnPrefab(rightHand, instance);
-                playerObject.Damage.value = (equipment.weapon.item as WeaponItem).attackPower;
+            public void UnequipWeapon() {
+                UnequipOnPrefab(rightHand);
             }
-        }
 
-        public void EquipTool() {
-            if (equipment.tool != null) {
-                // Instantiate prefab on scene
-                var instance = InstantiateEquipmentPrefab(leftHand, (equipment.tool.item as ToolItem)?.toolPrefab);
-                EquipOnPrefab(leftHand, instance);
+            public void UnequipTool() {
+                UnequipOnPrefab(leftHand);
             }
-        }
 
-        #endregion
+            public void EquipWeapon() {
+                if (equipment.weapon != null) {
+                    // Instantiate prefab on scene
+                    var instance =
+                        InstantiateEquipmentPrefab(rightHand, (equipment.weapon.item as WeaponItem)?.weaponPrefab);
+                    EquipOnPrefab(rightHand, instance);
+                    playerObject.Damage.value = (equipment.weapon.item as WeaponItem).attackPower;
+                }
+            }
+
+            public void EquipTool() {
+                if (equipment.tool != null) {
+                    // Instantiate prefab on scene
+                    var instance = InstantiateEquipmentPrefab(leftHand, (equipment.tool.item as ToolItem)?.toolPrefab);
+                    EquipOnPrefab(leftHand, instance);
+                }
+            }
+
+            #endregion
+        }
     }
-}
