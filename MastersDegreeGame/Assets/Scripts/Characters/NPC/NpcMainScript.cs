@@ -12,12 +12,13 @@ namespace Characters.NPC
     public class NpcMainScript : GameCharacter, ICombatTarget, ICombatAggressor
     {
         [FormerlySerializedAs("mobObject")] public NpcObject npcObject;
+        
         public float a = 0.1f;
         public void Start() {
             AnimatorController = new NpcAnimatorController(GetComponent<Animator>());
             attackRate = 1f;
         }
-
+        
         public void tmpAiControllerFunc() {
             var hits = Physics.OverlapSphere(actionSphere.transform.position, itemSearchRadius);
             if (hits != null && AnimatorController != null) {
