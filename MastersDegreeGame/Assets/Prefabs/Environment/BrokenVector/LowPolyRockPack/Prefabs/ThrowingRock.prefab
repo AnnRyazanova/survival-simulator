@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 451560}
   - component: {fileID: 3308840}
   - component: {fileID: 2380810}
+  - component: {fileID: 9082445774195227232}
+  - component: {fileID: 4116283229793464699}
   m_Layer: 0
-  m_Name: Rock Type2 04
+  m_Name: ThrowingRock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,3 +79,30 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &9082445774195227232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8149a31a05dc3641b6d5132590581cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 0c5687c843fa58446bfca4a096c22f57, type: 2}
+  isPickable: 1
+--- !u!135 &4116283229793464699
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119512}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.075926
+  m_Center: {x: 0.084005564, y: 0.28504598, z: -0.009593248}

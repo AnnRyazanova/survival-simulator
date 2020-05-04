@@ -34,7 +34,6 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
             _inventorySlots[i].Init(this, inventory.container[i]);
         }
 
-        // TODO: Fix new to maybe some preallocated value
         _weaponSlots[0].Init(this, equipment.weapon);
         _weaponSlots[1].Init(this, equipment.tool);
     }
@@ -72,6 +71,7 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
     private void EquipSlot(ref InventoryCell equipmentObject, InventoryCell inventoryCell) {
         Debug.Log("On equip");
         if (equipmentObject == null || equipmentObject.item == null) {
+            Debug.Log(inventoryCell.amount);
             equipmentObject = inventoryCell;
         }
         else {
@@ -96,7 +96,7 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
             PlayerMainScript.MyPlayer.EquipTool();
         }
 
-        inventory.RemoveItem(inventoryCell);
+        inventory.RemoveItem(inventoryCell, inventoryCell.amount);
         Display();
     }
 

@@ -7,7 +7,7 @@ namespace InventoryObjects.Items
     [CreateAssetMenu(fileName = "Create New Weapon", menuName = "Inventory/Items/Throwable")]
     public class ThrowingWeaponItem : ItemObject
     {
-        public float attackPower;
+        public int attackPower;
 
         public GameObject weaponPrefab;
         

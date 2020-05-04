@@ -65,7 +65,11 @@ namespace UI
             actionButton[0].gameObject.SetActive(true);
             SetupFromCell();
             if (_cell != null) {
+                _count.gameObject.SetActive(true);
                 _count.SetText(_cell.amount > 1 ? _cell.amount.ToString() : "");
+            }
+            else {
+                _count.gameObject.SetActive(false);
             }
         }
 
@@ -76,8 +80,6 @@ namespace UI
                 _durability.gameObject.SetActive(true);
                 
                 _durability.fillAmount = _cell.NormalizedCurrentDurability;
-                Debug.Log(_cell.NormalizedCurrentDurability);
-                Debug.Log(_durability.fillAmount);
                 switch (_cell.item.ItemType) {
                     case ItemObjectType.Weapon:
                     case ItemObjectType.Tool:
