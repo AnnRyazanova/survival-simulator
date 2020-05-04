@@ -23,6 +23,11 @@ namespace Characters.Controllers
             MoveDirection.y = 0;
         }
 
+        public void LookAt(Transform transform, Vector3 point, float characterRotationSpeed) {
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+                Quaternion.LookRotation(MoveDirection), characterRotationSpeed);
+        }
+        
         public override void Move(Transform transform, float characterRotationSpeed, float characterMovementSpeed,
             Vector2 inputDirection) {
             CalculateMovementParameters(characterMovementSpeed, inputDirection);
@@ -32,8 +37,7 @@ namespace Characters.Controllers
             }
 
             if (MoveDirection != Vector3.zero) {
-                transform.rotation = Quaternion.Slerp(transform.rotation,
-                    Quaternion.LookRotation(MoveDirection), characterRotationSpeed);
+               LookAt(transform, MoveDirection, characterRotationSpeed);
             }
 
             // Move the character using computed values for speed and direction

@@ -18,6 +18,6 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: d1652a85421ab2447857400fd93ddc81, type: 2}
     amount: 1
   result:
-    item: {fileID: 11400000, guid: 926450ae2c83ac445a67ec29e878892f, type: 2}
-    amount: 0
+    item: {fileID: 11400000, guid: 2c1746eaee9a3a54a9e80aad3308ccd4, type: 2}
+    amount: 1
   canCraftCount: 0

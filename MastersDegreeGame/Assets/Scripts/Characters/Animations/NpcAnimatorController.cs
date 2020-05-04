@@ -14,6 +14,10 @@ namespace Characters.Animations
             AnimatorController.SetTrigger(AttackMelee);
         }
 
+        public override void OnAttackRanged() {
+            throw new System.NotImplementedException();
+        }
+
         public override void OnTakeDamage() {
             AnimatorController.SetTrigger(TakeDamage);
         }

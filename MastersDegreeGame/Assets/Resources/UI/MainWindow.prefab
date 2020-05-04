@@ -533,6 +533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Joystick: {fileID: 5650216051384070118}
   _playerNeeds: {fileID: 4032936152560551281}
+  _attakcButton: {fileID: 1045509306258300728}
 --- !u!1 &2455019585418744029
 GameObject:
   m_ObjectHideFlags: 0

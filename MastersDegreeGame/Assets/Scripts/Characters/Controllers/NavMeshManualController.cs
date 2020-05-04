@@ -22,6 +22,11 @@ namespace Characters.Controllers
             Agent.angularSpeed = angularSpeed;
         }
 
+        public static void LookAt(Transform transform, Vector3 point, float characterRotationSpeed = 0.9f) {
+            transform.rotation = Quaternion.Slerp(transform.rotation,
+                Quaternion.LookRotation(point), characterRotationSpeed);
+        }
+        
         protected void CalculateMovementParameters(float characterMovementSpeed, Vector2 inputDirection) {
             // Calculate character target speed
             var targetSpeed = characterMovementSpeed * inputDirection.magnitude;
@@ -39,8 +44,7 @@ namespace Characters.Controllers
             Agent.speed = speed;
             CalculateMovementParameters(Agent.speed, inputDirection);
             if (Movement != Vector3.zero) {
-                transform.rotation = Quaternion.Slerp(transform.rotation,
-                    Quaternion.LookRotation(Movement), 0.1f);
+                LookAt(transform, Movement, 0.1f);
             }
 
             Agent.Move(Movement * (Time.deltaTime * CurrentSpeed));
