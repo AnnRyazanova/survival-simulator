@@ -1812,14 +1812,14 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 2
-  m_Acceleration: 0
+  m_Speed: 4
+  m_Acceleration: 100
   avoidancePriority: 0
-  m_AngularSpeed: 0
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 0
+  m_AngularSpeed: 9e+12
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
-  m_AutoRepath: 0
+  m_AutoRepath: 1
   m_Height: 1.5
   m_BaseOffset: 0
   m_WalkableMask: 1
@@ -1849,6 +1849,11 @@ MonoBehaviour:
   inventory: {fileID: 11400000, guid: c31124c69a4b3394d8c128ac5cd63fbe, type: 2}
   equipment: {fileID: 11400000, guid: 6a7f3fd19d037e043977ab5c473ad38c, type: 2}
   hitDelaySeconds: 0.1
+  circleRadar:
+    searchRadius: 0
+  pickableMask:
+    serializedVersion: 2
+    m_Bits: 2048
   isRangedEquipped: 0
 --- !u!136 &3989612077218997873
 CapsuleCollider:

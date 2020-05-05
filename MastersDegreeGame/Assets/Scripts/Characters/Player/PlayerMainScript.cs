@@ -5,6 +5,7 @@ using Characters.Controllers;
 using Characters.NPC;
 using Characters.Systems;
 using Characters.Systems.Combat;
+using Characters.Systems.Searching;
 using InventoryObjects.Inventory;
 using InventoryObjects.Items;
 using Objects;
@@ -26,11 +27,14 @@ namespace Characters.Player
         public Equipment equipment;
         public float hitDelaySeconds = 0.1f;
         public ConeRadarSystem coneRadarSystem;
+        public CircleRadarSystem circleRadar;
         private Vector2 _inputDirections = Vector2.zero;
 
+        public LayerMask pickableMask;
+        
         public bool isRangedEquipped;
         private bool _isInited;
-
+        
         public void InteractWithClosestItem() {
             var nearest = coneRadarSystem.CheckForVisibleObjects(transform);
             if (nearest != null) {
@@ -51,6 +55,7 @@ namespace Characters.Player
 
         private void Awake() {
             coneRadarSystem = new ConeRadarSystem();
+            circleRadar = new CircleRadarSystem();
             animatorController = new PlayerAnimatorController(GetComponent<Animator>());
             NavMeshController = new NavMeshController(GetComponent<NavMeshAgent>());
             StartCoroutine(InitJoystick());
@@ -105,19 +110,13 @@ namespace Characters.Player
         }
 
         #endregion
-
-
+        
         public void OnDrawGizmosSelected() {
             Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
         }
 
         private void Update() {
             if (_isInited == false) return;
-            
-            // if (isRangedEquipped) {
-            //     AttackRanged();
-            // }
-            //
             _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
             NavMeshController.Move(transform, _inputDirections,
                 playerObject.Energy.CurrentPoints > 0 ? characterRunSpeed : characterWalkSpeed);
