@@ -18,8 +18,7 @@ namespace Characters.Player
         public FixedJoystick directionalJoystick;
         public PlayerObject playerObject;
         public static PlayerMainScript MyPlayer { get; private set; }
-
-
+        
         public GameObject leftHand;
         public GameObject rightHand;
 
@@ -55,7 +54,7 @@ namespace Characters.Player
             animatorController = new PlayerAnimatorController(GetComponent<Animator>());
             NavMeshController = new NavMeshController(GetComponent<NavMeshAgent>());
             StartCoroutine(InitJoystick());
-            GetComponent<RangedAttacker>().enabled = true;
+            GetComponent<RangedAttacker>().enabled = false;
         }
 
         private void Start() {
@@ -186,12 +185,11 @@ namespace Characters.Player
                     playerObject.Damage.value = weapon.attackPower;
                 }
                 else if (equipment.weapon.item is ThrowingWeaponItem throwingWeapon) {
+                    instance = InstantiateEquipmentPrefab(rightHand, throwingWeapon.weaponPrefab);
+                    playerObject.Damage.value = throwingWeapon.attackPower;
                     // TODO: Refactor and null checks
                     isRangedEquipped = true;
                     GetComponent<RangedAttacker>().enabled = true;
-                    
-                    instance = InstantiateEquipmentPrefab(rightHand, throwingWeapon.weaponPrefab);
-                    playerObject.Damage.value = throwingWeapon.attackPower;
                 }
 
                 EquipOnPrefab(rightHand, instance);

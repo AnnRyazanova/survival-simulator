@@ -1,9 +1,13 @@
-﻿using Characters.Animations;
+﻿using System;
+using System.Collections;
+using Characters.Animations;
 using Characters.Controllers;
 using Characters.NPC;
 using Characters.Player;
 using InventoryObjects.Inventory;
+using InventoryObjects.Items;
 using UnityEngine;
+using UnityEngine.Experimental.UIElements;
 
 namespace Characters.Systems.Combat
 {
@@ -13,54 +17,88 @@ namespace Characters.Systems.Combat
         private RaycastHit _hit;
         private RaycastHit _directRay;
         private CharacterAnimatorController _animatorController;
-        private InventoryCell _rangedWeapon;
-        private NpcObject _targetObject;
+
+        private Object _ownerObject;
         private Vector3 _myPosition;
         private Vector3 _npcPosition;
         private float _lastAttackTime;
-        
-        public float maxDistanceToTarget = 100f;
+
+        public float maxDistanceToTarget = 6f;
         public float minDistanceToTarget = 1f;
         public float attackSpeedPerSecond = 1f;
-        public float projectileSpeed = 10f;
+        public float projectileSpeed = 30f;
+
         public LayerMask rayCastLayer;
-        
+        public InventoryCell _rangedWeapon;
+        public GameObject throwingPoint;
+        public Quaternion instanceAngles = Quaternion.Euler(90, 0, 0);
+
         private void Start() {
+            instanceAngles = Quaternion.Euler(90, 180, -10);
             var playerMainScript = GetComponent<PlayerMainScript>();
             if (playerMainScript != null) {
                 _animatorController = playerMainScript.animatorController;
                 _rangedWeapon = playerMainScript.equipment.weapon;
+                _ownerObject = playerMainScript.playerObject;
             }
             else {
-                _animatorController = GetComponent<NpcMainScript>().animatorController;
+                var npc = GetComponent<NpcMainScript>();
+                _animatorController = npc.animatorController;
+                _ownerObject = npc.npcObject;
                 // Set ranged to null, because enemies do not have a projectile limit
                 _rangedWeapon = null;
             }
+
+            _lastAttackTime = Time.time + 1f / attackSpeedPerSecond;
         }
+
 
         private void Update() {
             if (Input.GetMouseButtonDown(0) && Time.time >= _lastAttackTime) {
-                AttackRanged();
+                FindAndAttackTarget();
                 _lastAttackTime = Time.time + 1f / attackSpeedPerSecond;
             }
         }
 
+        private IEnumerator AttackRanged(ICombatTarget target) {
+            var forward = throwingPoint.transform.forward;
+            NavMeshController.LookAt(transform, _hit.transform.position - _myPosition);
+            _animatorController.OnAttackRanged();
+            yield return new WaitForSeconds(.4f);
 
-        private void AttackRanged() {
+            var instance = Instantiate((_rangedWeapon.item as ThrowingWeaponItem)?.weaponPrefab,
+                throwingPoint.transform.position, instanceAngles);
+            instance.transform.parent = throwingPoint.transform;
+            var rigidbody = instance.GetComponent<Rigidbody>();
+
+            rigidbody.isKinematic = false;
+
+            rigidbody.AddForce((_hit.transform.position - _myPosition).normalized * projectileSpeed,
+                ForceMode.Impulse);
+
+            (_ownerObject as ICombatAggressor)?.AttackTarget(target);
+
+            _rangedWeapon.ReduceAmount(1);
+            if (_rangedWeapon.amount == 0) {
+                _rangedWeapon.item = null;
+                PlayerMainScript.MyPlayer.UnequipWeapon();
+            }
+        }
+
+        // TODO: Scale to NPC-Player attacking
+        private void FindAndAttackTarget() {
             _myPosition = transform.position;
             var clickedPosition = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(clickedPosition.origin, clickedPosition.direction, out _hit)) {
                 if (Physics.Linecast(_myPosition, _hit.point, out _directRay, rayCastLayer)) {
+                    Debug.Log(_directRay.distance);
                     var parent = _directRay.collider.gameObject.transform.parent;
                     var npc = parent != null ? parent.GetComponent<NpcMainScript>() : null;
                     if (npc != null) {
-                        NavMeshController.LookAt(transform, _hit.point - _myPosition);
-                        _animatorController.OnAttackRanged();
+                        Debug.Log(npc.name);
+                        StartCoroutine(AttackRanged(npc.npcObject));
                     }
                 }
-            }
-            else {
-                _targetObject = null;
             }
         }
     }

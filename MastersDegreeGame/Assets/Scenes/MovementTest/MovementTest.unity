@@ -9318,16 +9318,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 1071787602554709788, guid: fff8369d98b0852428064777f8d1edfe,
-        type: 3}
-      propertyPath: maxDistanceToTarget
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1071787602554709788, guid: fff8369d98b0852428064777f8d1edfe,
-        type: 3}
-      propertyPath: filterLayer.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fff8369d98b0852428064777f8d1edfe, type: 3}
 --- !u!1 &2622293399164580252 stripped
