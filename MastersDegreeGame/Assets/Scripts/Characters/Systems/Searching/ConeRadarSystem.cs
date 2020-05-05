@@ -13,7 +13,7 @@ namespace Characters.Systems
         private float _radius;
         private float _angleCos;
 
-        public ConeRadarSystem(float radius = 1.3f, float angle = 30f, int preAllocatedSize = 10) {
+        public ConeRadarSystem(float radius = 1.3f, float angle = 15f, int preAllocatedSize = 10) {
             _colliders = new Collider[preAllocatedSize];
             _radius = radius;
             _angleCos = Mathf.Cos(angle);

@@ -4,7 +4,7 @@ namespace Characters.Animations
 {
     public abstract class CharacterAnimatorController
     {
-        protected readonly Animator AnimatorController;
+        public readonly Animator AnimatorController;
 
         protected static readonly int MovementSpeedFactor = Animator.StringToHash("movementSpeedFactor");
         protected static readonly int AttackMelee = Animator.StringToHash("attackMelee");
@@ -26,5 +26,9 @@ namespace Characters.Animations
         public abstract void OnTakeDamage();
 
         public abstract void OnDie();
+        
+        public void OnPickup() {
+            AnimatorController.SetTrigger("pickup");
+        }
     }
 }

@@ -23,9 +23,10 @@ namespace Characters.Animations
 
         public override void OnTakeDamage() {
             AnimatorController.SetTrigger(TakeDamage);
-
         }
 
+
+        
         public override void OnDie() {
             AnimatorController.SetBool(Die, true);
         }

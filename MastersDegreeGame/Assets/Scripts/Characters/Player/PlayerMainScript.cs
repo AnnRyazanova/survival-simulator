@@ -36,13 +36,16 @@ namespace Characters.Player
         private bool _isInited;
         
         public void InteractWithClosestItem() {
+            // var state = animatorController.AnimatorController.GetCurrentAnimatorStateInfo(0);
             var nearest = coneRadarSystem.CheckForVisibleObjects(transform);
             if (nearest != null) {
+                animatorController.OnPickup();
                 var indexToAddTo = inventory.FindFreeCellToAdd(nearest.item);
-                if (indexToAddTo == -1) return;
-                if (nearest.isPickable) {
-                    inventory.AddItem(nearest.item, indexToAddTo);
-                    Destroy(nearest.gameObject);
+                if (indexToAddTo != -1) {
+                    if (nearest.isPickable) {
+                        inventory.AddItem(nearest.item, indexToAddTo);
+                        Destroy(nearest.gameObject);
+                    }
                 }
             }
         }
