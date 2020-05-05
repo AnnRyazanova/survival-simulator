@@ -16,6 +16,9 @@ public class MainWindow : BaseWindow
     public override void Show() {
         base.Show();
         Init();
+    }
+
+    private void Update() {
         _attakcButton.interactable = PlayerMainScript.MyPlayer.equipment.weapon != null &&
                                      PlayerMainScript.MyPlayer.equipment.weapon.item is WeaponItem;
     }
