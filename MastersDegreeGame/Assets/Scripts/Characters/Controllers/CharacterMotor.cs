@@ -21,9 +21,7 @@ namespace Characters.Controllers
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             // Check raycast and that we didnt click on joystick
             if (Physics.Raycast(ray.origin, ray.direction, out _hitInfo)) {
-                if (_planeToTouch.Contains(new Vector2(_hitInfo.point.x, _hitInfo.point.z))) {
                     _agent.destination = _hitInfo.point;
-                }
             }
         }
 
