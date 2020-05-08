@@ -32,7 +32,7 @@ namespace Characters.Systems.Combat
         public InventoryCell _rangedWeapon;
         public GameObject throwingPoint;
         public Quaternion instanceAngles = Quaternion.Euler(90, 0, 0);
-
+        
         private void Start() {
             instanceAngles = Quaternion.Euler(90, 180, -10);
             var playerMainScript = GetComponent<PlayerMainScript>();
@@ -61,8 +61,8 @@ namespace Characters.Systems.Combat
         }
 
         private IEnumerator AttackRanged(ICombatTarget target) {
-            var forward = throwingPoint.transform.forward;
-            NavMeshController.LookAt(transform, _hit.transform.position - _myPosition);
+            var position = _hit.transform.position;
+            NavMeshController.LookAt(transform, position - _myPosition);
             _animatorController.OnAttackRanged();
             yield return new WaitForSeconds(.4f);
 
@@ -73,7 +73,7 @@ namespace Characters.Systems.Combat
 
             rigidbody.isKinematic = false;
 
-            rigidbody.AddForce((_hit.transform.position - _myPosition).normalized * projectileSpeed,
+            rigidbody.AddForce((position - _myPosition).normalized * projectileSpeed,
                 ForceMode.Impulse);
 
             (_ownerObject as ICombatAggressor)?.AttackTarget(target);
@@ -87,16 +87,20 @@ namespace Characters.Systems.Combat
 
         // TODO: Scale to NPC-Player attacking
         private void FindAndAttackTarget() {
-            _myPosition = transform.position;
-            var clickedPosition = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(clickedPosition.origin, clickedPosition.direction, out _hit)) {
-                if (Physics.Linecast(_myPosition, _hit.point, out _directRay, rayCastLayer)) {
-                    Debug.Log(_directRay.distance);
-                    var parent = _directRay.collider.gameObject.transform.parent;
-                    var npc = parent != null ? parent.GetComponent<NpcMainScript>() : null;
-                    if (npc != null) {
-                        Debug.Log(npc.name);
-                        StartCoroutine(AttackRanged(npc.npcObject));
+            if (_rangedWeapon != null && _rangedWeapon.item != null) {
+                _myPosition = transform.position;
+                var clickedPosition = Camera.main.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(clickedPosition.origin, clickedPosition.direction, out _hit)) {
+                    if (Physics.Linecast(_myPosition, _hit.point, out _directRay, rayCastLayer)) {
+                        if (_directRay.distance <= maxDistanceToTarget) {
+                            Debug.Log(_directRay.distance);
+                            var parent = _directRay.collider.gameObject.transform.parent;
+                            var npc = parent != null ? parent.GetComponent<NpcMainScript>() : null;
+                            if (npc != null) {
+                                Debug.Log(npc.name);
+                                StartCoroutine(AttackRanged(npc.npcObject));
+                            }
+                        }
                     }
                 }
             }

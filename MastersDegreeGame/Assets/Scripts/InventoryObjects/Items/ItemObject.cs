@@ -9,7 +9,8 @@ namespace InventoryObjects.Items
         Consumable,
         Weapon,
         Material,
-        Tool
+        Tool,
+        Heat
     }
 
     public abstract class ItemObject : ScriptableObject
