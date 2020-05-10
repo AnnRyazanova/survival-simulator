@@ -9,23 +9,7 @@ namespace AI.ResponseCurves
     /// <typeparam name="T">curve axis data type</typeparam>
     public abstract class ResponseCurve<T>: IResponseCurve<T>
     {
-        /// <summary>
-        /// Curve slope (direction)
-        /// </summary>
-        public float Slope { get; set; }
-        /// <summary>
-        /// Curve exponent (bend)
-        /// </summary>
-        public float Exponent { get; set; }
-        /// <summary>
-        /// Curve Vertical starting point
-        /// </summary>
-        public float VerticalShift { get; set; }
-        /// <summary>
-        /// Curve horizontal staring point
-        /// </summary>
-        public float HorizontalShift { get; set; }
-        
-        public abstract void EvaluateAt(T parameter);
+        public abstract T EvaluateAt(T parameter);
+        public abstract T CurveFunction(T parameter);
     }
 }
