@@ -18,6 +18,7 @@ public sealed class CraftController
         window = BaseWindow.LoadWindow("CraftWindow") as CraftWindow;
         if (window != null) {
             window.OnWindowHide += OnWindowHide;
+            window.id = BaseWindow.WindowId.Craft;
             window.Show();
         }
     }

@@ -153,8 +153,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u0417\u0434\u0435\u0441\u044C \u0434\u043E\u043B\u0436\u043D\u043E \u0431\u044B\u0442\u044C
-    \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
+  m_Text: "\u0412\u044B \u043E\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u043B\u0438
+    \u0438\u0433\u0440\u0443"
 --- !u!1 &1680670223170436362
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6676857f2351c814890a71b853e4dd22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
 --- !u!1001 &3693795817700863776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -430,6 +431,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4717858302495670760}
     m_Modifications:
+    - target: {fileID: 4376947243896520899, guid: 7478a71810b034e498a4f97e3d369ac0,
+        type: 3}
+      propertyPath: m_Name
+      value: Fader
+      objectReference: {fileID: 0}
     - target: {fileID: 7485077788015486701, guid: 7478a71810b034e498a4f97e3d369ac0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -534,11 +540,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4376947243896520899, guid: 7478a71810b034e498a4f97e3d369ac0,
-        type: 3}
-      propertyPath: m_Name
-      value: Fader
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7478a71810b034e498a4f97e3d369ac0, type: 3}
