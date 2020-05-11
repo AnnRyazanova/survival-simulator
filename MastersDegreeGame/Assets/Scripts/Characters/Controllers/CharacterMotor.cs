@@ -12,16 +12,21 @@ namespace Characters.Controllers
         private NavMeshAgent _agent;
         private Rect _planeToTouch = new Rect(-13, 24, 1128, 645);
 
+        public bool shouldMove;
+
         private void Start() {
+            shouldMove = false;
             _agent = GetComponent<NavMeshAgent>();
         }
 
         private void Update() {
-            if (!Input.GetMouseButtonDown(0)) return;
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            // Check raycast and that we didnt click on joystick
-            if (Physics.Raycast(ray.origin, ray.direction, out _hitInfo)) {
+            if (shouldMove) {
+                if (!Input.GetMouseButtonDown(0)) return;
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                // Check raycast and that we didnt click on joystick
+                if (Physics.Raycast(ray.origin, ray.direction, out _hitInfo)) {
                     _agent.destination = _hitInfo.point;
+                }
             }
         }
 
