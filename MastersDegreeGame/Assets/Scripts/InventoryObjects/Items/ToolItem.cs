@@ -8,12 +8,13 @@ namespace InventoryObjects.Items
     [CreateAssetMenu(fileName = "Create New Tool", menuName = "Inventory/Items/Tool")]
     public class ToolItem : ItemObject
     {
-        private void Awake() {
+        protected override void Awake() 
+        {
             base.Awake();
             ItemType = ItemObjectType.Tool;
             isStackable = false;
-
         }
+        
         public GameObject toolPrefab;
     }
 }

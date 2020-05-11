@@ -31,7 +31,8 @@ namespace Characters
         [FormerlySerializedAs("radius")] [SerializeField] protected float itemSearchRadius = 1.0f;
 
 #if DISPLAY_GIZMOS     
-        public void OnDrawGizmosSelected() {
+        public void OnDrawGizmosSelected() 
+        {
             Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
         }
 #endif

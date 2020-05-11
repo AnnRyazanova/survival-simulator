@@ -6,9 +6,10 @@ namespace InventoryObjects.Items
     [CreateAssetMenu(fileName = "Create New Material", menuName = "Inventory/Items/Material")]
     public class MaterialItem : ItemObject
     {
-        private void Awake() {
+        protected override void Awake() 
+        {
             base.Awake();
-                ItemType = ItemObjectType.Material;
+            ItemType = ItemObjectType.Material;
             // Materials don't have durability decrease, they cannot be broken or stale
         }
     }
