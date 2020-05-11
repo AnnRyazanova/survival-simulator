@@ -1,9 +1,8 @@
-﻿using AI.Contexts;
-using AI.Contexts.Interfaces;
+﻿using AI.Contexts.Interfaces;
 
 namespace AI.Considerations.Interfaces
 {
-    public interface IConsideration
+    public interface IConsideration<T>
     {
         /// <summary>
         /// Evaluate current consideration based on a response curve

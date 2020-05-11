@@ -6,7 +6,7 @@ namespace AI.Actions.Interfaces
     /// <summary>
     /// Primitive Action representation
     /// </summary>
-    public interface IAction
+    public interface IAction<T>
     {
         /// <summary>
         ///  Evaluate absolute (raw) utility score of performing action from Considerations utilities
@@ -26,5 +26,16 @@ namespace AI.Actions.Interfaces
         /// </summary>
         /// <param name="seconds"> seconds to halt execution for</param>
         void Halt(float seconds);
+
+        /// <summary>
+        /// Check if current action is already in execution
+        /// </summary>
+        /// <returns>if action is being executed</returns>
+        bool IsInExecution();
+        /// <summary>
+        /// Check if action can be invoked
+        /// </summary>
+        /// <returns>If action can be invoked</returns>
+        bool CanBeInvoked();
     }
 }
