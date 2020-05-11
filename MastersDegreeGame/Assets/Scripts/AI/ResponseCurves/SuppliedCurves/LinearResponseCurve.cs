@@ -4,7 +4,7 @@ namespace AI.ResponseCurves.SuppliedCurves
     /// Linear-style response curve with float datatype
     /// Slope-intercept representation  y = m(x - c) + b  
     /// </summary>
-    public class LinearResponseCurve : ResponseCurve<float>
+    public class LinearResponseCurve : ResponseCurve
     {
         #region public properties
 

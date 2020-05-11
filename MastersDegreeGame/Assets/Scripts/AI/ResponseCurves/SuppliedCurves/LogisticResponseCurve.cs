@@ -6,7 +6,7 @@ namespace AI.ResponseCurves.SuppliedCurves
     /// Logistic sigmoid-style response curve with float datatype
     /// Slope-intercept representation  y = k * 1/(1 + e^-(mx+c)) + b   
     /// </summary>
-    public class LogisticResponseCurve : ResponseCurve<float>
+    public class LogisticResponseCurve : ResponseCurve
     {
         #region public properties
 

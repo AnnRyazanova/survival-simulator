@@ -11,9 +11,8 @@ namespace AI.Actions
     /// Action base class
     /// All actions should inherit this
     /// </summary>
-    /// <typeparam name="T"></typeparam>
     [Serializable]
-    public abstract class Action<T> : IAction<T>
+    public abstract class Action : IAction
     {
         /// <summary>
         /// How much time should pass before action can be invoked again 
@@ -25,7 +24,7 @@ namespace AI.Actions
         /// </summary>
         private bool _inExecution = false;
         
-        private readonly List<IConsideration<T>> _considerations = new List<IConsideration<T>>();
+        private readonly List<IConsideration> _considerations = new List<IConsideration>();
 
         public abstract float EvaluateAbsoluteUtility(IAiContext context);
         public abstract void Execute(IAiContext context);

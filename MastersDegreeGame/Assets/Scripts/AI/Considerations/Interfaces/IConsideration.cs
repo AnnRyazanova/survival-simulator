@@ -2,7 +2,7 @@
 
 namespace AI.Considerations.Interfaces
 {
-    public interface IConsideration<T>
+    public interface IConsideration
     {
         /// <summary>
         /// Evaluate current consideration based on a response curve

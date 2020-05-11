@@ -7,9 +7,9 @@ namespace AI.ResponseCurves
     /// All custom utility curves must implement this class 
     /// </summary>
     /// <typeparam name="T">curve axis data type</typeparam>
-    public abstract class ResponseCurve<T> : IResponseCurve<T>
+    public abstract class ResponseCurve : IResponseCurve
     {
-        public abstract float EvaluateAt(T parameter);
-        public abstract float CurveFunction(T parameter);
+        public abstract float EvaluateAt(float parameter);
+        public abstract float CurveFunction(float parameter);
     }
 }

@@ -10,14 +10,14 @@ namespace AI.Considerations
     /// All considerations should implement this class instead of an interface 
     /// </summary>
     [Serializable]
-    public abstract class Consideration<T> : IConsideration<T>
+    public abstract class Consideration : IConsideration
     {
         /// <summary>
         /// Utility curve to evaluate current consideration
         /// </summary>
-        public IResponseCurve<T> UtilityCurve { get; }
+        public IResponseCurve UtilityCurve { get; }
 
-        public Consideration(IResponseCurve<T> utilityCurve) {
+        public Consideration(IResponseCurve utilityCurve) {
             UtilityCurve = utilityCurve;
         }
 

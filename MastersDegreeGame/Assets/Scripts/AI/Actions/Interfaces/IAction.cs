@@ -6,7 +6,7 @@ namespace AI.Actions.Interfaces
     /// <summary>
     /// Primitive Action representation
     /// </summary>
-    public interface IAction<T>
+    public interface IAction
     {
         /// <summary>
         ///  Evaluate absolute (raw) utility score of performing action from Considerations utilities

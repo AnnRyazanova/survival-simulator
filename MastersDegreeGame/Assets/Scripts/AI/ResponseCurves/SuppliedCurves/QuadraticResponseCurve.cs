@@ -6,7 +6,7 @@ namespace AI.ResponseCurves.SuppliedCurves
     /// Exponential-style response curve
     /// Slope-intercept representation  y = m(x - c) ^ k + b  
     /// </summary>
-    public class QuadraticResponseCurve : ResponseCurve<float>
+    public class QuadraticResponseCurve : ResponseCurve
     {
         #region public properties
 
