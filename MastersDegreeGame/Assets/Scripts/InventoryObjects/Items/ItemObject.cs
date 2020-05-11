@@ -29,7 +29,7 @@ namespace InventoryObjects.Items
         [TextArea(20, 50)]
         public string description;
 
-        public void Awake() {
+        protected virtual void Awake() {
             maxDurability = 100f;
             durabilityDecreaseRate = 1f;
         }

@@ -11,7 +11,7 @@ namespace InventoryObjects.Items
         public int healthRegen = 2;
         public int hungerRegen = 10;
         
-        private void Awake() {
+        protected override void Awake() {
             base.Awake();
             ItemType = ItemObjectType.Consumable;
         }

@@ -114,9 +114,10 @@ namespace Characters.Player
 
         #endregion
         
-        public void OnDrawGizmosSelected() {
-            Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
-        }
+        // public void OnDrawGizmosSelected() 
+        // {
+        //     Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
+        // }
 
         private void Update() {
             if (_isInited == false) return;
