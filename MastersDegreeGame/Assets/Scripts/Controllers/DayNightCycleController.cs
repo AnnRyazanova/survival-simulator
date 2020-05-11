@@ -18,32 +18,21 @@ public class DayNightCycleController : MonoBehaviour
     // 0.75 is sunset
     [SerializeField] [Range(0,1)] private float _currentTimeOfDay = 0;
     
-    private static DayNightCycleController _instance;
-    public static DayNightCycleController Get => _instance ?? (_instance = new DayNightCycleController());
+    public static DayNightCycleController Get { get; private set; }
+
+    public int DaysAmount { get; private set; }
     
     private float _timeMultiplier = 1f;
     private float _sunStartIntensity;
-    private GameObject _gameObj;
 
-    public void CreatePrefabOnScene()
+    private void Awake()
     {
-        if (_gameObj != null) {
-            Debug.LogError("[DayNightCycleController::CreatePrefabOnScene] ERROR _gameObj is not empty");
-            return;
-        }
-        
-        _gameObj = null;
-        var prefabPath = string.Format($"Environment/TimeOfDay");  
-        var prefab = Resources.Load(prefabPath) as GameObject;
-        if (prefab == null) {
-            Debug.LogError("[DayNightCycleController::CreatePrefabOnScene] ERROR prefab is null");
-            return;
-        }
-        
-        _gameObj = GameObject.Instantiate(prefab) as GameObject;
-        var vec = Vector3.zero;
-        _gameObj.transform.localPosition = vec;
-        _gameObj.transform.localScale = vec;
+        Get = this;
+    }
+
+    private void OnDestroy()
+    {
+        Get = null;
     }
     
     private void Start()
@@ -52,6 +41,7 @@ public class DayNightCycleController : MonoBehaviour
 
         // При старте сцены всегда будет рассвет, потом можно поменять
         _currentTimeOfDay = 0.3f;
+        DaysAmount = 1;
         
         RenderSettings.ambientMode = AmbientMode.Trilight;
     }
@@ -64,6 +54,7 @@ public class DayNightCycleController : MonoBehaviour
  
         if (_currentTimeOfDay >= 1) {
             _currentTimeOfDay = 0;
+            DaysAmount++;
         }
     }
 

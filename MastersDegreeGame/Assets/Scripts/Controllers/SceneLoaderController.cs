@@ -98,7 +98,7 @@ public sealed class SceneLoaderController : MonoBehaviour
 
         if (showMenuWindow) {
             MainWindowController.Instance.ShowWindow();
-            DayNightCycleController.Get.CreatePrefabOnScene();
+            DayNightControllerCreator.Get.CreatePrefabOnScene();
         }
     }
     
