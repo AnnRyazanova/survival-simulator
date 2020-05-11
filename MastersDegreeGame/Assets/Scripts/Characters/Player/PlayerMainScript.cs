@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using AI.Agents.Interfaces;
 using Characters.Animations;
 using Characters.Controllers;
 using Characters.NPC;
@@ -14,7 +15,7 @@ using UnityEngine.AI;
 
 namespace Characters.Player
 {
-    public class PlayerMainScript : GameCharacter
+    public class PlayerMainScript : GameCharacter, IAgent
     {
         public FixedJoystick directionalJoystick;
         public PlayerObject playerObject;
@@ -207,5 +208,17 @@ namespace Characters.Player
         }
 
         #endregion
+
+        public bool IsActive() {
+            throw new NotImplementedException();
+        }
+
+        public Vector3 GetCurrentWorldPosition() {
+            return transform.position;
+        }
+
+        public Vector3 GetCurrentVelocity() {
+            throw new NotImplementedException();
+        }
     }
 }

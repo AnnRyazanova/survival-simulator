@@ -5,8 +5,9 @@ using AI.Contexts.Interfaces;
 namespace AI.Contexts
 {
     [Serializable]
-    public abstract class AiContext : IAiContext
+    public class AiContext : IAiContext
     {
         public IAgent owner;
+        public IAgent target;
     }
 }
