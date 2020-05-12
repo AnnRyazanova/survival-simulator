@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Diagnostics;
 using Characters.Animations;
 using Characters.Controllers;
 using Characters.NPC;
@@ -8,6 +9,7 @@ using InventoryObjects.Inventory;
 using InventoryObjects.Items;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
+using Debug = UnityEngine.Debug;
 
 namespace Characters.Systems.Combat
 {
@@ -32,7 +34,14 @@ namespace Characters.Systems.Combat
         public InventoryCell _rangedWeapon;
         public GameObject throwingPoint;
         public Quaternion instanceAngles = Quaternion.Euler(90, 0, 0);
-        
+
+        private void OnEnable() {
+            var playerMainScript = GetComponent<PlayerMainScript>();
+            if (playerMainScript != null) {
+                _rangedWeapon = playerMainScript.equipment.weapon;
+            }
+        }
+
         private void Start() {
             instanceAngles = Quaternion.Euler(90, 180, -10);
             var playerMainScript = GetComponent<PlayerMainScript>();
@@ -64,6 +73,8 @@ namespace Characters.Systems.Combat
             var position = _hit.transform.position;
             NavMeshController.LookAt(transform, position - _myPosition);
             _animatorController.OnAttackRanged();
+            (_ownerObject as ICombatAggressor)?.AttackTarget(target);
+
             yield return new WaitForSeconds(.4f);
 
             var instance = Instantiate((_rangedWeapon.item as ThrowingWeaponItem)?.weaponPrefab,
@@ -75,9 +86,7 @@ namespace Characters.Systems.Combat
 
             rigidbody.AddForce((position - _myPosition).normalized * projectileSpeed,
                 ForceMode.Impulse);
-
-            (_ownerObject as ICombatAggressor)?.AttackTarget(target);
-
+            
             _rangedWeapon.ReduceAmount(1);
             if (_rangedWeapon.amount == 0) {
                 _rangedWeapon.item = null;
@@ -93,7 +102,6 @@ namespace Characters.Systems.Combat
                 if (Physics.Raycast(clickedPosition.origin, clickedPosition.direction, out _hit)) {
                     if (Physics.Linecast(_myPosition, _hit.point, out _directRay, rayCastLayer)) {
                         if (_directRay.distance <= maxDistanceToTarget) {
-                            Debug.Log(_directRay.distance);
                             var parent = _directRay.collider.gameObject.transform.parent;
                             var npc = parent != null ? parent.GetComponent<NpcMainScript>() : null;
                             if (npc != null) {

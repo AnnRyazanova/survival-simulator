@@ -18,6 +18,7 @@ public sealed class InventoryController
         window = BaseWindow.LoadWindow("InventoryWindow") as InventoryWindow;
         if (window != null) {
             window.OnWindowHide += OnWindowHide;
+            window.id = BaseWindow.WindowId.Inventory;
             window.Show();
         }
     }

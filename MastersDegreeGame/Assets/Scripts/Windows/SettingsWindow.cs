@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestWindow : BaseWindow
+public class SettingsWindow : BaseWindow
 {
     public void OnButtonClick(string name)
     {

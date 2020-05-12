@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class TestController 
+public sealed class SettingsController 
 {
-    public static TestController Instance => _instance ?? (_instance = new TestController());
-    private static TestController _instance;
+    public static SettingsController Instance => _instance ?? (_instance = new SettingsController());
+    private static SettingsController _instance;
 
-    private TestWindow window;
+    private SettingsWindow window;
 
     public void ShowWindow()
     {
@@ -15,9 +15,10 @@ public sealed class TestController
             return;
         }
         
-        window = BaseWindow.LoadWindow("TestWindow") as TestWindow;
+        window = BaseWindow.LoadWindow("SettingsWindow") as SettingsWindow;
         if (window != null) {
             window.OnWindowHide += OnWindowHide;
+            window.id = BaseWindow.WindowId.Settings;
             window.Show();
         }
     }

@@ -11,7 +11,8 @@ namespace InventoryObjects.Items
 
         public GameObject weaponPrefab;
         
-        private void Awake() {
+        protected override void Awake() 
+        {
             base.Awake();
             ItemType = ItemObjectType.Weapon;
             isStackable = true;

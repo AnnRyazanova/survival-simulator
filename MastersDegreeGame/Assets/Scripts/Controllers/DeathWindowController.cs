@@ -18,6 +18,7 @@ public sealed class DeathWindowController
         window = BaseWindow.LoadWindow("DeathWindow") as DeathWindow;
         if (window != null) {
             window.OnWindowHide += OnWindowHide;
+            window.id = BaseWindow.WindowId.DeathWindow;
             window.Show();
         }
         

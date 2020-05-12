@@ -25,7 +25,7 @@ public class MainWindow : BaseWindow
 
     public void OnPauseButtonClick() {
         // Open SettingsWindow here
-        TestController.Instance.ShowWindow();
+        SettingsController.Instance.ShowWindow();
     }
 
     public void OnInventoryButtonClick() {
