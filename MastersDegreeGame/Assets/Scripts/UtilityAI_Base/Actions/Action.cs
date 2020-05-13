@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
-using AI.Actions.Interfaces;
-using AI.Considerations.Interfaces;
-using AI.Contexts.Interfaces;
-using UnityEngine;
+using UtilityAI_Base.Actions.Interfaces;
+using UtilityAI_Base.Considerations.Interfaces;
+using UtilityAI_Base.Contexts.Interfaces;
 
-namespace AI.Actions
+namespace UtilityAI_Base.Actions
 {
     /// <summary>
     /// Action base class

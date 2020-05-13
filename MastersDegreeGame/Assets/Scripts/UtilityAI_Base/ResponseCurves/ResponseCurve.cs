@@ -1,6 +1,6 @@
-using AI.ResponseCurves.Interfaces;
+using UtilityAI_Base.ResponseCurves.Interfaces;
 
-namespace AI.ResponseCurves
+namespace UtilityAI_Base.ResponseCurves
 {
     /// <summary>
     /// Abstract class for utility curve representation

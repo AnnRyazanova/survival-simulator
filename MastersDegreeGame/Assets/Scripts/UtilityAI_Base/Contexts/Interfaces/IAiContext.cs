@@ -1,6 +1,4 @@
-﻿using Characters.Systems.Combat;
-
-namespace AI.Contexts.Interfaces
+﻿namespace UtilityAI_Base.Contexts.Interfaces
 {
     /// <summary>
     /// world and object state representation

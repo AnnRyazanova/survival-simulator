@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AI.Agents.Interfaces
+namespace UtilityAI_Base.Agents.Interfaces
 {
     /// <summary>
     /// Interface for Character Agents visible by AI

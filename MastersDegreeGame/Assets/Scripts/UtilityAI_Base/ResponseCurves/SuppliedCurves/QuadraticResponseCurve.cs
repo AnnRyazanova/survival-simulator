@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AI.ResponseCurves.SuppliedCurves
+namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
 {
     /// <summary>
     /// Exponential-style response curve

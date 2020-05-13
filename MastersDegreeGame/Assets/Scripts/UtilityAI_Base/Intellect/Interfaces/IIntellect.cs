@@ -1,4 +1,4 @@
-﻿namespace AI.Intellect.Interfaces
+﻿namespace UtilityAI_Base.Intellect.Interfaces
 {
     /// <summary>
     /// Behaviour selector 

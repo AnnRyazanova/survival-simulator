@@ -1,9 +1,9 @@
 using System;
-using AI.Considerations.Interfaces;
-using AI.Contexts.Interfaces;
-using AI.ResponseCurves.Interfaces;
+using UtilityAI_Base.Considerations.Interfaces;
+using UtilityAI_Base.Contexts.Interfaces;
+using UtilityAI_Base.ResponseCurves.Interfaces;
 
-namespace AI.Considerations
+namespace UtilityAI_Base.Considerations
 {
     /// <summary>
     /// Abstract Consideration implementation

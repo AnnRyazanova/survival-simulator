@@ -1,4 +1,4 @@
-namespace AI.ResponseCurves.SuppliedCurves
+namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
 {
     /// <summary>
     /// Linear-style response curve with float datatype

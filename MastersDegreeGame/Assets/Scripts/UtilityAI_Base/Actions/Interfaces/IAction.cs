@@ -1,7 +1,6 @@
-﻿using AI.Contexts;
-using AI.Contexts.Interfaces;
+﻿using UtilityAI_Base.Contexts.Interfaces;
 
-namespace AI.Actions.Interfaces
+namespace UtilityAI_Base.Actions.Interfaces
 {
     /// <summary>
     /// Primitive Action representation

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using AI.Agents.Interfaces;
 using Characters.Animations;
 using Characters.Controllers;
 using Characters.NPC;
@@ -12,6 +11,7 @@ using InventoryObjects.Items;
 using Objects;
 using UnityEngine;
 using UnityEngine.AI;
+using UtilityAI_Base.Agents.Interfaces;
 
 namespace Characters.Player
 {
@@ -26,14 +26,18 @@ namespace Characters.Player
 
         public Inventory inventory;
         public Equipment equipment;
+        
         public float hitDelaySeconds = 0.1f;
+        
         public ConeRadarSystem coneRadarSystem;
         public CircleRadarSystem circleRadar;
-        private Vector2 _inputDirections = Vector2.zero;
+        
 
         public LayerMask pickableMask;
         
         public bool isRangedEquipped;
+        
+        private Vector2 _inputDirections = Vector2.zero;
         private bool _isInited;
         
         public void InteractWithClosestItem() {
@@ -115,10 +119,11 @@ namespace Characters.Player
 
         #endregion
         
-        // public void OnDrawGizmosSelected() 
-        // {
-        //     Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
-        // }
+        public void OnDrawGizmosSelected() 
+        {
+            Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
+            Gizmos.DrawWireSphere(transform.position, 10f);
+        }
 
         private void Update() {
             if (_isInited == false) return;

@@ -1,6 +1,6 @@
-﻿using AI.Contexts.Interfaces;
+﻿using UtilityAI_Base.Contexts.Interfaces;
 
-namespace AI.Considerations.Interfaces
+namespace UtilityAI_Base.Considerations.Interfaces
 {
     public interface IConsideration
     {

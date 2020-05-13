@@ -1,4 +1,4 @@
-﻿namespace AI.ResponseCurves.Interfaces
+﻿namespace UtilityAI_Base.ResponseCurves.Interfaces
 {
     /// <summary>
     /// Interface for a response curve used in calculating consideration utility score

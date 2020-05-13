@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace AI.ResponseCurves.SuppliedCurves
+namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
 {
     /// <summary>
     /// Logistic sigmoid-style response curve with float datatype
