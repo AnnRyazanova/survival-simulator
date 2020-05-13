@@ -1,7 +1,11 @@
 using System;
+using UnityEngine;
 using UtilityAI_Base.Considerations.Interfaces;
 using UtilityAI_Base.Contexts.Interfaces;
+using UtilityAI_Base.ResponseCurves;
 using UtilityAI_Base.ResponseCurves.Interfaces;
+using UtilityAI_Base.ResponseCurves.SuppliedCurves;
+using Object = System.Object;
 
 namespace UtilityAI_Base.Considerations
 {
@@ -10,18 +14,20 @@ namespace UtilityAI_Base.Considerations
     /// All considerations should implement this class instead of an interface 
     /// </summary>
     [Serializable]
-    public abstract class Consideration : IConsideration
+    // [CreateAssetMenu(fileName = "New Consideration", menuName = "Utility_AI/Consideration")]
+    public sealed class Consideration
     {
+        public string trata = "sosi";
         /// <summary>
         /// Utility curve to evaluate current consideration
         /// </summary>
-        public IResponseCurve UtilityCurve { get; }
+        public ResponseCurve utilityCurve;
 
-        public Consideration(IResponseCurve utilityCurve) {
-            UtilityCurve = utilityCurve;
+        public void Awake() {
+            utilityCurve = new LinearResponseCurve();
         }
 
-        public virtual float Evaluate(IAiContext context) {
+        public float Evaluate(IAiContext context) {
             throw new System.NotImplementedException();
         }
     }

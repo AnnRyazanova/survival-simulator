@@ -1,9 +1,15 @@
+using System;
+using System.Runtime.CompilerServices;
+using UnityEngine;
+
 namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
 {
     /// <summary>
     /// Linear-style response curve with float datatype
     /// Slope-intercept representation  y = m(x - c) + b  
     /// </summary>
+    /// 
+    [Serializable]
     public class LinearResponseCurve : ResponseCurve
     {
         #region public properties
@@ -11,22 +17,22 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
         /// <summary>
         /// Curve slope (direction)
         /// </summary>
-        public float Slope { get; set; }
+        public float slope;
 
         /// <summary>
         /// Curve exponent (bend)
         /// </summary>
-        public float Exponent { get; set; }
+        public float exponent;
 
         /// <summary>
         /// Curve Vertical starting point
         /// </summary>
-        public float VerticalShift { get; set; }
+        public float verticalShift;
 
         /// <summary>
         /// Curve horizontal staring point
         /// </summary>
-        public float HorizontalShift { get; set; }
+        public float horizontalShift;
 
         #endregion
 
@@ -36,17 +42,17 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
         /// Default preset constructor
         /// </summary>
         public LinearResponseCurve() {
-            Slope = 1f;
-            VerticalShift = 1f;
-            HorizontalShift = 1f;
-            Exponent = 1f;
+            slope = 1f;
+            verticalShift = 1f;
+            horizontalShift = 1f;
+            exponent = 1f;
         }
 
         public LinearResponseCurve(float slope, float exponent, float verticalShift, float horizontalShift) {
-            Slope = slope;
-            Exponent = exponent;
-            VerticalShift = verticalShift;
-            HorizontalShift = horizontalShift;
+            this.slope = slope;
+            this.exponent = exponent;
+            this.verticalShift = verticalShift;
+            this.horizontalShift = horizontalShift;
         }
 
         #endregion
@@ -55,7 +61,7 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
 
         public override float EvaluateAt(float parameter) => CurveFunction(parameter);
 
-        public override float CurveFunction(float parameter) => Slope * (parameter - HorizontalShift) + VerticalShift;
+        public override float CurveFunction(float parameter) => slope * (parameter - horizontalShift) + verticalShift;
 
         #endregion
     }

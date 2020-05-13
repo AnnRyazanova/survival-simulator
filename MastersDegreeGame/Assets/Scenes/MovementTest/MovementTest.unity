@@ -1626,7 +1626,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389628576}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 555087bb6d61ece46ac2c581b44a1236, type: 3}
   m_Name: 
@@ -9452,6 +9452,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 751373069602930259, guid: fff8369d98b0852428064777f8d1edfe,
+        type: 3}
+      propertyPath: curve
+      value: 
+      objectReference: {fileID: 11400000, guid: 9a72b03f025f30f429d35f4c486512ec,
+        type: 2}
+    - target: {fileID: 1071787602554709788, guid: fff8369d98b0852428064777f8d1edfe,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fff8369d98b0852428064777f8d1edfe, type: 3}
