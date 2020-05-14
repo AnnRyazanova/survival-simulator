@@ -12,30 +12,6 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
     [Serializable]
     public class LinearResponseCurve : ResponseCurve
     {
-        #region public properties
-
-        /// <summary>
-        /// Curve slope (direction)
-        /// </summary>
-        public float slope;
-
-        /// <summary>
-        /// Curve exponent (bend)
-        /// </summary>
-        public float exponent;
-
-        /// <summary>
-        /// Curve Vertical starting point
-        /// </summary>
-        public float verticalShift;
-
-        /// <summary>
-        /// Curve horizontal staring point
-        /// </summary>
-        public float horizontalShift;
-
-        #endregion
-
         #region constructors
 
         /// <summary>

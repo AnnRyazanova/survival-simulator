@@ -11,11 +11,6 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
         #region public properties
 
         /// <summary>
-        /// Curve slope (direction)
-        /// </summary>
-        public float Slope { get; set; }
-
-        /// <summary>
         /// Curve exponent (bend)
         /// </summary>
         public float Exponent { get; set; }
@@ -32,10 +27,10 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
 
         #endregion
 
-        #region constructora
+        #region constructors
 
         public QuadraticResponseCurve() {
-            Slope = 1f;
+            slope = 1f;
             Exponent = 2f;
             HorizontalShift = 0f;
             VerticalShift = 0f;
@@ -48,7 +43,7 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
         public override float EvaluateAt(float parameter) => CurveFunction(parameter);
 
         public override float CurveFunction(float parameter) =>
-            Slope * Mathf.Pow(parameter - HorizontalShift, Exponent) + VerticalShift;
+            slope * Mathf.Pow(parameter - HorizontalShift, Exponent) + VerticalShift;
 
         #endregion
     }

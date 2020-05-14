@@ -1,4 +1,6 @@
 using System;
+using System.Runtime.Serialization;
+using UnityEditor;
 using UnityEngine;
 using UtilityAI_Base.Considerations.Interfaces;
 using UtilityAI_Base.Contexts.Interfaces;
@@ -14,15 +16,18 @@ namespace UtilityAI_Base.Considerations
     /// All considerations should implement this class instead of an interface 
     /// </summary>
     [Serializable]
-    // [CreateAssetMenu(fileName = "New Consideration", menuName = "Utility_AI/Consideration")]
-    public sealed class Consideration
+    public class Consideration
     {
-        public string trata = "sosi";
+        public string description = "consideration";
+        [SerializeField] private bool isEnabled = true;
+
         /// <summary>
         /// Utility curve to evaluate current consideration
         /// </summary>
         public ResponseCurve utilityCurve;
+        public int curveId = 0;
 
+        
         public void Awake() {
             utilityCurve = new LinearResponseCurve();
         }

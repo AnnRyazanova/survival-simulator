@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UtilityAI_Base.Considerations;
+using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
+using UtilityAI_Base.Qualifiers;
 
 namespace UtilityAI_Base.Actions
 {
@@ -11,49 +14,67 @@ namespace UtilityAI_Base.Actions
     /// All actions should inherit this
     /// </summary>
     [Serializable]
-    public abstract class UtilityAction
+    [CreateAssetMenu(fileName = "New Action", menuName = "UtilityAI/Empty Action")]
+    public class UtilityAction : ScriptableObject
     {
         /// <summary>
         /// How much time should pass before action can be invoked again 
         /// </summary>
         public float cooldownTime = 0f;
+
+        public string description = "Action";
         
         /// <summary>
         /// Action is being executed 
         /// </summary>
         private bool _inExecution = false;
 
+        public ConsiderationsQualifier qualifier = new ProductQualifier();
         public List<Consideration> considerations = new List<Consideration>();
-        
+
         /// <summary>
         ///  Evaluate absolute (raw) utility score of performing action from Considerations utilities
         /// </summary>
         /// <param name="context">AI Context (game world state)</param>
         /// <returns>Absolute (raw) utility score of performing this action</returns>
-        public abstract float EvaluateAbsoluteUtility(IAiContext context);
-        
+        public virtual float EvaluateAbsoluteUtility(IAiContext context) {
+            return qualifier.Qualify(considerations);
+        }
+
+        public void Awake() {
+            considerations = new List<Consideration>();
+        }
+
         /// <summary>
         /// Execute current action in current context
         /// </summary>
         /// <param name="context">AI Context (game world state)</param>
-        public abstract void Execute(IAiContext context);
-        
+        public virtual void Execute(IAiContext context) {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Halt executing for specified seconds 
         /// </summary>
         /// <param name="seconds"> seconds to halt execution for</param>
-        public abstract void Halt(float seconds);
-        
+        public virtual void Halt(float seconds) {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Check if current action is already in execution
         /// </summary>
         /// <returns>if action is being executed</returns>
-        public abstract bool IsInExecution();
-        
+        public virtual bool IsInExecution() {
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Check if action can be invoked
         /// </summary>
         /// <returns>If action can be invoked</returns>
-        public abstract bool CanBeInvoked();
+        public virtual bool CanBeInvoked() {
+            throw new NotImplementedException();
+        }
     }
 }
