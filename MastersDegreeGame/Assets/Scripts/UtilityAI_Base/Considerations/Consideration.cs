@@ -28,7 +28,7 @@ namespace UtilityAI_Base.Considerations
         public int curveId = 0;
 
         
-        public void Awake() {
+        public Consideration() {
             utilityCurve = new LinearResponseCurve();
         }
 

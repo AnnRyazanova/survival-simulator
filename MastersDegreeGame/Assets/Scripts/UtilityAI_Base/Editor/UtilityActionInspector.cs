@@ -26,14 +26,23 @@ namespace UtilityAI_Base.Editor
 
         private void ConsiderationsListDrawCallback(Rect rect, int index, bool isactive, bool isfocused) {
             var consideration = _considerationsDisplay.serializedProperty.GetArrayElementAtIndex(index);
+            var quarterW = EditorGUIUtility.currentViewWidth / 4;
+ 
+            EditorGUI.BeginChangeCheck();
+            
             EditorGUI.PropertyField(rect, consideration);
             
-            EditorGUI.BeginChangeCheck();
-
+            if (GUI.Button(new Rect(rect.width - quarterW / 2,
+                rect.y,
+                60,
+                EditorGUIUtility.singleLineHeight), "Edit")) {
+                CurveEditor.Open( SelectedAction.considerations[index].utilityCurve);
+            }
+            (target as UtilityAction).considerations[index].utilityCurve =
+                _curves[SelectedAction.considerations[index].curveId];
             if (EditorGUI.EndChangeCheck()) {
-                SelectedAction.considerations[index].utilityCurve =
-                    _curves[SelectedAction.considerations[index].curveId];
-                EditorUtility.SetDirty(target);
+
+                Debug.Log("Result  " +  (target as UtilityAction).considerations[index].utilityCurve);
             }
         }
 
@@ -49,6 +58,7 @@ namespace UtilityAI_Base.Editor
             SetConsiderationsListDrawCallback();
             
             _considerationsDisplay.onAddCallback += AddItem;
+            _considerationsDisplay.onRemoveCallback += RemoveItem;
         }
 
         private void AddItem(ReorderableList list) {
@@ -56,13 +66,18 @@ namespace UtilityAI_Base.Editor
             EditorUtility.SetDirty(target);
         }
 
+        private void RemoveItem(ReorderableList list) {
+            SelectedAction.considerations.RemoveAt(list.index);
+            EditorUtility.SetDirty(target);
+        }
+        
         public override void OnInspectorGUI() {
             serializedObject.Update();
 
             _considerationsDisplay.DoLayoutList();
             serializedObject.ApplyModifiedProperties();
 
-            DrawDefaultInspector();
+            // DrawDefaultInspector();
         }
     }
 }

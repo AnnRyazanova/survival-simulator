@@ -7,13 +7,19 @@ namespace UtilityAI_Base.Editor
 {
     public class CurveEditor : EditorWindow
     {
-        private ResponseCurve _currentCurve = new LogisticResponseCurve();
+        private static ResponseCurve _currentCurve = new LogisticResponseCurve();
 
         [MenuItem("Window/CurveEditor")]
         public static void ShowWindow() {
             EditorWindow.GetWindow<CurveEditor>().Show();
         }
 
+        public static void Open(ResponseCurve curve) {
+            _currentCurve = curve;
+            Debug.Log(curve);
+            ShowWindow();
+        }
+        
         private void OnGUI() {
             EditorGUILayout.BeginVertical();
 

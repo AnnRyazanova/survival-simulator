@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UtilityAI_Base.Considerations;
+using UtilityAI_Base.ResponseCurves;
 using EditorGUILayout = UnityEditor.Experimental.Networking.PlayerConnection.EditorGUILayout;
 
 namespace UtilityAI_Base.Editor
@@ -10,28 +11,39 @@ namespace UtilityAI_Base.Editor
     {
         private readonly string[] _curveOptions = {"linear", "logistic", "quadratic"};
 
+        private static readonly float VerticalSpacing = 2 * EditorGUIUtility.singleLineHeight;
+
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             var quarterW = EditorGUIUtility.currentViewWidth / 4;
-            
+            var halfW = EditorGUIUtility.currentViewWidth / 2;
+            position.x += 10;
+
             EditorGUI.BeginProperty(position, label, property);
-            
+            property.FindPropertyRelative("description").stringValue = EditorGUI.TextField(
+                new Rect(position.x, position.y, position.width - quarterW, EditorGUIUtility.singleLineHeight),
+                property.FindPropertyRelative("description").stringValue);
+
+            position.y += VerticalSpacing;
             var isEnabled = property.FindPropertyRelative("isEnabled").boolValue;
-            EditorGUI.LabelField(new Rect(position.x + 10, position.y, position.width, EditorGUIUtility.singleLineHeight), new GUIContent("Enabled"));
-            
+            EditorGUI.LabelField(new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight),
+                new GUIContent("Enabled"));
+
             property.FindPropertyRelative("isEnabled").boolValue = EditorGUI.Toggle(
                 new Rect(position.x + 60, position.y, position.width - quarterW, EditorGUIUtility.singleLineHeight),
                 GUIContent.none, isEnabled);
 
-            EditorGUI.LabelField(new Rect(position.x + 10, position.y + EditorGUIUtility.singleLineHeight,position.width - 70f, 
+            position.y += VerticalSpacing;
+            EditorGUI.LabelField(new Rect(position.x, position.y, position.width - 70f,
                     EditorGUIUtility.singleLineHeight),
                 new GUIContent("Response Curve"));
 
             property.FindPropertyRelative("curveId").intValue = EditorGUI.Popup(
-                new Rect(position.x + quarterW, position.y + EditorGUIUtility.singleLineHeight,position.width - quarterW, 
+                new Rect(position.x + quarterW, position.y,
+                    position.width - 2 * quarterW,
                     EditorGUIUtility.singleLineHeight),
                 property.FindPropertyRelative("curveId").intValue, _curveOptions);
-
-                EditorGUI.EndProperty();
+            
+            EditorGUI.EndProperty();
         }
     }
 }
