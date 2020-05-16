@@ -5,6 +5,7 @@ using UnityEngine;
 using UtilityAI_Base.Considerations;
 using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
+using UtilityAI_Base.CustomAttributes;
 using UtilityAI_Base.Qualifiers;
 
 namespace UtilityAI_Base.Actions
@@ -28,7 +29,6 @@ namespace UtilityAI_Base.Actions
         /// Action is being executed 
         /// </summary>
         private bool _inExecution = false;
-
         public ConsiderationsQualifier qualifier = new ProductQualifier();
         public List<Consideration> considerations = new List<Consideration>();
 
@@ -38,7 +38,7 @@ namespace UtilityAI_Base.Actions
         /// <param name="context">AI Context (game world state)</param>
         /// <returns>Absolute (raw) utility score of performing this action</returns>
         public virtual float EvaluateAbsoluteUtility(IAiContext context) {
-            return qualifier.Qualify(considerations);
+            return qualifier.Qualify(context, considerations);
         }
 
         public void Awake() {
