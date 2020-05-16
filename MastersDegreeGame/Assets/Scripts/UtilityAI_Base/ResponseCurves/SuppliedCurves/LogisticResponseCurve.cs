@@ -15,10 +15,10 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
         #region constructors
 
         public LogisticResponseCurve() {
-            slope = 20f;
-            exponent = .5f;
-            verticalShift = 1f;
-            horizontalShift = 0f;
+            slope = new CurveParameter(20f, 0f, 100f);
+            exponent = new CurveParameter(.5f, 0f, 1f);
+            verticalShift = new CurveParameter(1f, -1f, 2f);
+            horizontalShift = new CurveParameter(0f, -1f, 1f);
         }
 
         #endregion
@@ -28,8 +28,8 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
         public override float EvaluateAt(float parameter) => CurveFunction(parameter);
 
         public override float CurveFunction(float parameter) {
-            var denominator = 1f + Mathf.Exp(-slope * (parameter - exponent));
-            return Mathf.Clamp(verticalShift / denominator + horizontalShift, 0f, 1f);
+            var denominator = 1f + Mathf.Exp(-slope.Value * (parameter - exponent.Value));
+            return Mathf.Clamp(verticalShift.Value / denominator + horizontalShift.Value, 0f, 1f);
         }
 
         #endregion

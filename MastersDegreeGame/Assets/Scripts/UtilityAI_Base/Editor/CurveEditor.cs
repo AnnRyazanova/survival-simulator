@@ -25,54 +25,71 @@ namespace UtilityAI_Base.Editor
         }
 
         private void OnGUI() {
-            var horizontalSplit = position.width - position.width / 4f;
+            var horizontalSplit = position.width - position.width / 3f;
             var rectOutline = new Rect(0, 0, horizontalSplit, position.height);
             var rect = new Rect(10, 10, horizontalSplit - 20, position.height - 20);
-
+            
             EditorGUILayout.BeginHorizontal();
 
-            EditorGUI.DrawRect(rectOutline, Color.black);
-            EditorGUI.DrawRect(rect, Color.black);
+           DrawAxis(rectOutline, rect);
 
             if (_currentCurve != null) {
                 DrawCurve(rect);
-                var lhsRect = new Rect(horizontalSplit + 10, 10, position.width / 4f - 20,
+                var lhsRect = new Rect(horizontalSplit + 10, 10, position.width / 3f - 20,
                     EditorGUIUtility.singleLineHeight);
-
+                
                 EditorGUI.BeginChangeCheck();
+                
                 DrawLeftSideSliders(lhsRect);
+                
                 EditorGUI.EndChangeCheck();
             }
 
             EditorGUILayout.EndHorizontal();
         }
 
+        public void DrawAxis(Rect outline, Rect rect) {
+            EditorGUI.DrawRect(outline, Color.black);
+            EditorGUI.DrawRect(rect, Color.black);
+
+            var start = new Vector3(0f, rect.y);
+            var end = new Vector3(0f, rect.height + 10);
+            for (var i = 0f; i < rect.width; i += rect.width / 15f) {
+                start.x = i;
+                end.x = i;
+                Handles.DrawLine(start, end);
+            }
+        }
+        
+        
         public void DrawLeftSideSliders(Rect lhsRect) {
             EditorGUI.LabelField(lhsRect, new GUIContent("Slope"));
             lhsRect.y += EditorGUIUtility.singleLineHeight;
-            _currentCurve.slope = EditorGUI.Slider(lhsRect, _currentCurve.slope, 0f, 100f);
+            _currentCurve.slope.Value = EditorGUI.Slider(lhsRect, _currentCurve.slope.Value,
+                _currentCurve.slope.MinValue, _currentCurve.slope.MaxValue);
             lhsRect.y += 2 * EditorGUIUtility.singleLineHeight;
 
             EditorGUI.LabelField(lhsRect, new GUIContent("Exponent"));
             lhsRect.y += EditorGUIUtility.singleLineHeight;
 
-            _currentCurve.exponent = EditorGUI.Slider(lhsRect, _currentCurve.exponent, 0f, 100f);
+            _currentCurve.exponent.Value = EditorGUI.Slider(lhsRect, _currentCurve.exponent.Value,
+                _currentCurve.exponent.MinValue, _currentCurve.exponent.MaxValue);
 
             lhsRect.y += 2 * EditorGUIUtility.singleLineHeight;
 
             EditorGUI.LabelField(lhsRect, new GUIContent("HShift"));
             lhsRect.y += EditorGUIUtility.singleLineHeight;
 
-            _currentCurve.horizontalShift = EditorGUI.Slider(lhsRect, _currentCurve.horizontalShift,
-                -1f, 1f);
+            _currentCurve.horizontalShift.Value = EditorGUI.Slider(lhsRect, _currentCurve.horizontalShift.Value,
+                _currentCurve.horizontalShift.MinValue, _currentCurve.horizontalShift.MaxValue);
 
             lhsRect.y += 2 * EditorGUIUtility.singleLineHeight;
 
             EditorGUI.LabelField(lhsRect, new GUIContent("VShift"));
             lhsRect.y += EditorGUIUtility.singleLineHeight;
 
-            _currentCurve.verticalShift = EditorGUI.Slider(lhsRect, _currentCurve.verticalShift,
-                -1f, 1f);
+            _currentCurve.verticalShift.Value = EditorGUI.Slider(lhsRect, _currentCurve.verticalShift.Value,
+                _currentCurve.verticalShift.MinValue, _currentCurve.verticalShift.MaxValue);
             lhsRect.y += 2 * EditorGUIUtility.singleLineHeight;
 
             if (GUI.Button(lhsRect, "default")) {

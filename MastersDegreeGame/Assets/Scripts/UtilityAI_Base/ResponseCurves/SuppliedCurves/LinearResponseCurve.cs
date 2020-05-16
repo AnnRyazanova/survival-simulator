@@ -18,17 +18,17 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
         /// Default preset constructor
         /// </summary>
         public LinearResponseCurve() {
-            slope = 1f;
-            verticalShift = 1f;
-            horizontalShift = 1f;
-            exponent = 1f;
+            slope = new CurveParameter(1f, -50f, 50f);
+            verticalShift = new CurveParameter(1f,  0f, 2f);
+            horizontalShift = new CurveParameter(1f, 0f, 2f);
+            exponent = new CurveParameter(1f);
         }
 
         public LinearResponseCurve(float slope, float exponent, float verticalShift, float horizontalShift) {
-            this.slope = slope;
-            this.exponent = exponent;
-            this.verticalShift = verticalShift;
-            this.horizontalShift = horizontalShift;
+            this.slope = new CurveParameter(slope);
+            this.exponent = new CurveParameter(exponent);
+            this.verticalShift = new CurveParameter(verticalShift);
+            this.horizontalShift = new CurveParameter(horizontalShift);
         }
 
         #endregion
@@ -37,7 +37,8 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
 
         public override float EvaluateAt(float parameter) => CurveFunction(parameter);
 
-        public override float CurveFunction(float parameter) => slope * (parameter - horizontalShift) + verticalShift;
+        public override float CurveFunction(float parameter) =>
+            Mathf.Clamp(slope.Value * (parameter - horizontalShift.Value) + verticalShift.Value, 0f, 1f);
 
         #endregion
     }

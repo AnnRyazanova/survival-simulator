@@ -15,23 +15,22 @@ namespace UtilityAI_Base.ResponseCurves
         /// <summary>
         /// Curve slope (direction)
         /// </summary>
-        public float slope;
+        public CurveParameter slope = new CurveParameter();
 
         /// <summary>
         /// Curve exponent (bend)
         /// </summary>
-        public float exponent;
+        public CurveParameter exponent = new CurveParameter();
 
         /// <summary>
         /// Curve Vertical starting point
         /// </summary>
-        public float verticalShift;
+        public CurveParameter verticalShift = new CurveParameter();
 
         /// <summary>
         /// Curve horizontal staring point
         /// </summary>
-        public float horizontalShift;
-
+        public CurveParameter horizontalShift = new CurveParameter();
         
         public abstract float EvaluateAt(float parameter);
         public abstract float CurveFunction(float parameter);

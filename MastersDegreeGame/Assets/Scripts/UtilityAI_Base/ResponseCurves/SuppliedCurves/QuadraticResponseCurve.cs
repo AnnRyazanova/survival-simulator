@@ -15,10 +15,10 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
         #region constructors
 
         public QuadraticResponseCurve() {
-            slope = 1f;
-            exponent = 2f;
-            horizontalShift = 0f;
-            verticalShift = 0f;
+            slope = new CurveParameter(1f, -50f, 50f);
+            verticalShift = new CurveParameter(0f,  -1f, 2f);
+            horizontalShift = new CurveParameter(0f, -1f, 2f);
+            exponent = new CurveParameter(2f, 0f, 10f);
         }
 
         #endregion
@@ -28,7 +28,9 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
         public override float EvaluateAt(float parameter) => CurveFunction(parameter);
 
         public override float CurveFunction(float parameter) =>
-            slope * Mathf.Pow(parameter - horizontalShift, exponent) + verticalShift;
+            Mathf.Clamp(
+                slope.Value * Mathf.Pow(Mathf.Clamp(parameter + horizontalShift.Value, 0f, 1f), 
+                    exponent.Value) + verticalShift.Value, 0f, 1f);
 
         #endregion
     }
