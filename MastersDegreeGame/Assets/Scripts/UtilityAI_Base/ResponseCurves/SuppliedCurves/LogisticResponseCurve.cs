@@ -10,35 +10,15 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
     {
         #region public properties
 
-        /// <summary>
-        /// Curve steepness (bend)
-        /// </summary>
-        public float Steepness { get; set; }
-
-        /// <summary>
-        /// Curve top max value 
-        /// </summary>
-        public float MaxValue { get; set; }
-
-        /// <summary>
-        /// Curve midpoint
-        /// </summary>
-        public float Midpoint { get; set; }
-
-        /// <summary>
-        /// Curve horizontal staring point
-        /// </summary>
-        public float HorizontalShift { get; set; }
-
         #endregion
 
         #region constructors
 
         public LogisticResponseCurve() {
-            Steepness = 20f;
-            Midpoint = .5f;
-            MaxValue = 1f;
-            HorizontalShift = 0f;
+            slope = 20f;
+            exponent = .5f;
+            verticalShift = 1f;
+            horizontalShift = 0f;
         }
 
         #endregion
@@ -48,8 +28,8 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
         public override float EvaluateAt(float parameter) => CurveFunction(parameter);
 
         public override float CurveFunction(float parameter) {
-            var denominator = 1f + Mathf.Exp(-Steepness * (parameter - Midpoint));
-            return MaxValue / denominator + HorizontalShift;
+            var denominator = 1f + Mathf.Exp(-slope * (parameter - exponent));
+            return Mathf.Clamp(verticalShift / denominator + horizontalShift, 0f, 1f);
         }
 
         #endregion

@@ -1,5 +1,3 @@
-using System;
-using Boo.Lang;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -14,6 +12,7 @@ namespace UtilityAI_Base.Editor
     public class UtilityActionInspector : UnityEditor.Editor
     {
         private ReorderableList _considerationsDisplay;
+        private static readonly float VerticalSpacing = 2 * EditorGUIUtility.singleLineHeight;
 
         private readonly ResponseCurve[] _curves =
             {new LinearResponseCurve(), new LogisticResponseCurve(), new QuadraticResponseCurve()};
@@ -27,23 +26,17 @@ namespace UtilityAI_Base.Editor
         private void ConsiderationsListDrawCallback(Rect rect, int index, bool isactive, bool isfocused) {
             var consideration = _considerationsDisplay.serializedProperty.GetArrayElementAtIndex(index);
             var quarterW = EditorGUIUtility.currentViewWidth / 4;
- 
-            EditorGUI.BeginChangeCheck();
             
             EditorGUI.PropertyField(rect, consideration);
             
             if (GUI.Button(new Rect(rect.width - quarterW / 2,
-                rect.y,
+                rect.y + VerticalSpacing,
                 60,
                 EditorGUIUtility.singleLineHeight), "Edit")) {
-                CurveEditor.Open( SelectedAction.considerations[index].utilityCurve);
+                CurveEditor.Open( SelectedAction.considerations[index].utilityCurve, SelectedAction.considerations[index].curveId);
             }
             (target as UtilityAction).considerations[index].utilityCurve =
                 _curves[SelectedAction.considerations[index].curveId];
-            if (EditorGUI.EndChangeCheck()) {
-
-                Debug.Log("Result  " +  (target as UtilityAction).considerations[index].utilityCurve);
-            }
         }
 
         private void OnEnable() {
@@ -76,7 +69,7 @@ namespace UtilityAI_Base.Editor
 
             _considerationsDisplay.DoLayoutList();
             serializedObject.ApplyModifiedProperties();
-
+            
             // DrawDefaultInspector();
         }
     }
