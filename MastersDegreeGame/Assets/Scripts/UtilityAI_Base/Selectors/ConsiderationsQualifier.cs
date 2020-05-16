@@ -7,6 +7,12 @@ using UtilityAI_Base.CustomAttributes;
 
 namespace UtilityAI_Base.Selectors
 {
+    public enum QualifierType
+    {
+        Product,
+        Sum
+    }
+    
     [Serializable]
     public abstract class ConsiderationsQualifier
     {
@@ -16,11 +22,9 @@ namespace UtilityAI_Base.Selectors
     
     /**
      * CUSTOM CONSIDERATION QUALIFIERS
-     * 
      */
 
     [Serializable]
-    [ConsiderationsQualifier("product", typeof(ProductQualifier))]
     public class ProductQualifier : ConsiderationsQualifier
     {
         public new string description = "product qualifier";
@@ -32,7 +36,6 @@ namespace UtilityAI_Base.Selectors
     }
     
     [Serializable]
-    [ConsiderationsQualifier("sum", typeof(SumQualifier))]
     public class SumQualifier : ConsiderationsQualifier
     {
         public new string description = "sum qualifier";

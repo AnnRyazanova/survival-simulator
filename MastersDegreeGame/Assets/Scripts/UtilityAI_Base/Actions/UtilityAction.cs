@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UtilityAI_Base.Considerations;
 using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
@@ -38,9 +39,22 @@ namespace UtilityAI_Base.Actions
         /// Action is being executed 
         /// </summary>
         private bool _inExecution = false;
+        
+        /// <summary>
+        /// Qualifier to calculate utility of ALL considerations for this action
+        /// </summary>
+        [FormerlySerializedAs("qualifierType")] public QualifierType qualifierTypeType;
         public ConsiderationsQualifier qualifier = new ProductQualifier();
+        
+        /// <summary>
+        /// List of all considerations needed to evaluate this actions' utility score 
+        /// </summary>
         public List<Consideration> considerations = new List<Consideration>();
-
+        
+        public void Awake() {
+            considerations = new List<Consideration>();
+        }
+        
         /// <summary>
         ///  Evaluate absolute (raw) utility score of performing action from Considerations utilities
         /// </summary>
@@ -48,10 +62,6 @@ namespace UtilityAI_Base.Actions
         /// <returns>Absolute (raw) utility score of performing this action</returns>
         public virtual float EvaluateAbsoluteUtility(IAiContext context) {
             return qualifier.Qualify(context, considerations);
-        }
-
-        public void Awake() {
-            considerations = new List<Consideration>();
         }
 
         /// <summary>
