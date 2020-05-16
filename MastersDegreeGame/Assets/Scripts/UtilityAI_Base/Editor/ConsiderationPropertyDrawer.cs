@@ -17,21 +17,17 @@ namespace UtilityAI_Base.Editor
             var quarterW = EditorGUIUtility.currentViewWidth / 4;
             var halfW = EditorGUIUtility.currentViewWidth / 2;
             position.x += 10;
-            
+            EditorGUI.BeginProperty(position, label, property);
             var isEnabled = property.FindPropertyRelative("isEnabled").boolValue;
-            // EditorGUI.LabelField(new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight),
-            //     new GUIContent("Enabled"));
-
+            
             property.FindPropertyRelative("isEnabled").boolValue = EditorGUI.Toggle(
-                new Rect(position.x , position.y, position.width - quarterW, EditorGUIUtility.singleLineHeight),
+                new Rect(position.x , position.y, 10, EditorGUIUtility.singleLineHeight),
                 GUIContent.none, isEnabled);
             
-            EditorGUI.BeginProperty(position, label, property);
             property.FindPropertyRelative("description").stringValue = EditorGUI.TextField(
                 new Rect(position.x + 25, position.y, position.width - quarterW, EditorGUIUtility.singleLineHeight),
                 property.FindPropertyRelative("description").stringValue);
 
-            
             position.y += VerticalSpacing;
             EditorGUI.LabelField(new Rect(position.x, position.y, position.width - 70f,
                     EditorGUIUtility.singleLineHeight),

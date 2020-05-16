@@ -15,7 +15,8 @@ namespace UtilityAI_Base.Qualifiers
     }
     
     /**
-     * CUSTOM CONSIDERATION QUALIFIERS 
+     * CUSTOM CONSIDERATION QUALIFIERS
+     * 
      */
 
     [Serializable]
