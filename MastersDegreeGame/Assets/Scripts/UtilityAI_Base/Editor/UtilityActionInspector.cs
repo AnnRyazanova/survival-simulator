@@ -3,8 +3,6 @@ using UnityEditorInternal;
 using UnityEngine;
 using UtilityAI_Base.Actions;
 using UtilityAI_Base.Considerations;
-using UtilityAI_Base.ResponseCurves;
-using UtilityAI_Base.ResponseCurves.SuppliedCurves;
 
 namespace UtilityAI_Base.Editor
 {
@@ -13,9 +11,6 @@ namespace UtilityAI_Base.Editor
     {
         private ReorderableList _considerationsDisplay;
         private static readonly float VerticalSpacing = 2 * EditorGUIUtility.singleLineHeight;
-
-        private readonly ResponseCurve[] _curves =
-            {new LinearResponseCurve(), new LogisticResponseCurve(), new QuadraticResponseCurve()};
 
         private UtilityAction SelectedAction => target as UtilityAction;
 
@@ -26,17 +21,16 @@ namespace UtilityAI_Base.Editor
         private void ConsiderationsListDrawCallback(Rect rect, int index, bool isactive, bool isfocused) {
             var consideration = _considerationsDisplay.serializedProperty.GetArrayElementAtIndex(index);
             var quarterW = EditorGUIUtility.currentViewWidth / 4;
-            
+
             EditorGUI.PropertyField(rect, consideration);
-            
+
             if (GUI.Button(new Rect(rect.width - quarterW / 2,
                 rect.y + VerticalSpacing,
                 60,
                 EditorGUIUtility.singleLineHeight), "Edit")) {
-                CurveEditor.Open( SelectedAction.considerations[index].utilityCurve, SelectedAction.considerations[index].curveId);
+                CurveEditor.Open(SelectedAction.considerations[index]
+                    .Curves[SelectedAction.considerations[index].responseCurveType]);
             }
-            (target as UtilityAction).considerations[index].utilityCurve =
-                _curves[SelectedAction.considerations[index].curveId];
         }
 
         private void OnEnable() {
@@ -49,7 +43,7 @@ namespace UtilityAI_Base.Editor
             };
 
             SetConsiderationsListDrawCallback();
-            
+
             _considerationsDisplay.onAddCallback += AddItem;
             _considerationsDisplay.onRemoveCallback += RemoveItem;
         }
@@ -63,13 +57,13 @@ namespace UtilityAI_Base.Editor
             SelectedAction.considerations.RemoveAt(list.index);
             EditorUtility.SetDirty(target);
         }
-        
+
         public override void OnInspectorGUI() {
             serializedObject.Update();
 
             _considerationsDisplay.DoLayoutList();
             serializedObject.ApplyModifiedProperties();
-            
+
             // DrawDefaultInspector();
         }
     }

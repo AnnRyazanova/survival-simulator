@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
@@ -10,7 +9,7 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
     /// </summary>
     /// 
     [Serializable]
-    public class LinearResponseCurve : ResponseCurve
+    public sealed class LinearResponseCurve : ResponseCurve
     {
         #region constructors
 
@@ -18,10 +17,8 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
         /// Default preset constructor
         /// </summary>
         public LinearResponseCurve() {
-            slope = new CurveParameter(1f, -50f, 50f);
-            verticalShift = new CurveParameter(1f,  0f, 2f);
-            horizontalShift = new CurveParameter(1f, 0f, 2f);
-            exponent = new CurveParameter(1f);
+            SetDefaults();
+            responseCurveType = CurveType.Linear;
         }
 
         public LinearResponseCurve(float slope, float exponent, float verticalShift, float horizontalShift) {
@@ -29,6 +26,7 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
             this.exponent = new CurveParameter(exponent);
             this.verticalShift = new CurveParameter(verticalShift);
             this.horizontalShift = new CurveParameter(horizontalShift);
+            responseCurveType = CurveType.Linear;
         }
 
         #endregion
@@ -39,6 +37,13 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
 
         public override float CurveFunction(float parameter) =>
             Mathf.Clamp(slope.Value * (parameter - horizontalShift.Value) + verticalShift.Value, 0f, 1f);
+
+        public override void SetDefaults() {
+            slope = new CurveParameter(1f, -50f, 50f);
+            verticalShift = new CurveParameter(1f,  0f, 2f);
+            horizontalShift = new CurveParameter(1f, 0f, 2f);
+            exponent = new CurveParameter(1f);
+        }
 
         #endregion
     }
