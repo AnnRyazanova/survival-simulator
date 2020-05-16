@@ -5,7 +5,7 @@ using UtilityAI_Base.Considerations;
 using UtilityAI_Base.Contexts.Interfaces;
 using UtilityAI_Base.CustomAttributes;
 
-namespace UtilityAI_Base.Qualifiers
+namespace UtilityAI_Base.Selectors
 {
     [Serializable]
     public abstract class ConsiderationsQualifier
@@ -20,7 +20,7 @@ namespace UtilityAI_Base.Qualifiers
      */
 
     [Serializable]
-    [ConsiderationsQualifierAttribute("product", typeof(ProductQualifier))]
+    [ConsiderationsQualifier("product", typeof(ProductQualifier))]
     public class ProductQualifier : ConsiderationsQualifier
     {
         public new string description = "product qualifier";
@@ -32,7 +32,7 @@ namespace UtilityAI_Base.Qualifiers
     }
     
     [Serializable]
-    [ConsiderationsQualifierAttribute("sum", typeof(SumQualifier))]
+    [ConsiderationsQualifier("sum", typeof(SumQualifier))]
     public class SumQualifier : ConsiderationsQualifier
     {
         public new string description = "sum qualifier";

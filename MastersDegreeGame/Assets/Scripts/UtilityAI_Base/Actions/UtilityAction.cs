@@ -6,7 +6,7 @@ using UtilityAI_Base.Considerations;
 using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
 using UtilityAI_Base.CustomAttributes;
-using UtilityAI_Base.Qualifiers;
+using UtilityAI_Base.Selectors;
 
 namespace UtilityAI_Base.Actions
 {
@@ -22,8 +22,17 @@ namespace UtilityAI_Base.Actions
         /// How much time should pass before action can be invoked again 
         /// </summary>
         public float cooldownTime = 0f;
-
+        
+        /// <summary>
+        /// Action description
+        /// </summary>
         public string description = "Action";
+
+        /// <summary>
+        /// Action weight to be applied after Utility calculation. Adjusting weights make this action
+        /// Less/more probable to be executed 
+        /// </summary>
+        public float actionWeight = 1f;
         
         /// <summary>
         /// Action is being executed 
