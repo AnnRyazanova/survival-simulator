@@ -1,10 +1,14 @@
 using System;
-using UnityEditor;
-using UnityEngine;
-using UtilityAI_Base.ResponseCurves.Interfaces;
 
 namespace UtilityAI_Base.ResponseCurves
 {
+    public enum CurveType
+    {
+        Linear,
+        Logistic,
+        Quadratic
+    }
+    
     /// <summary>
     /// Abstract class for utility curve representation
     /// All custom utility curves must implement this class 
@@ -31,8 +35,12 @@ namespace UtilityAI_Base.ResponseCurves
         /// Curve horizontal staring point
         /// </summary>
         public CurveParameter horizontalShift = new CurveParameter();
+
+        public CurveType responseCurveType;
         
         public abstract float EvaluateAt(float parameter);
         public abstract float CurveFunction(float parameter);
+
+        public abstract void SetDefaults();
     }
 }

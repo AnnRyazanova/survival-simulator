@@ -6,7 +6,7 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
     /// Exponential-style response curve
     /// Slope-intercept representation  y = m(x - c) ^ k + b  
     /// </summary>
-    public class QuadraticResponseCurve : ResponseCurve
+    public sealed class QuadraticResponseCurve : ResponseCurve
     {
         #region public properties
 
@@ -15,10 +15,8 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
         #region constructors
 
         public QuadraticResponseCurve() {
-            slope = new CurveParameter(1f, -50f, 50f);
-            verticalShift = new CurveParameter(0f,  -1f, 2f);
-            horizontalShift = new CurveParameter(0f, -1f, 2f);
-            exponent = new CurveParameter(2f, 0f, 10f);
+            SetDefaults();
+            responseCurveType = CurveType.Quadratic;
         }
 
         #endregion
@@ -31,6 +29,13 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
             Mathf.Clamp(
                 slope.Value * Mathf.Pow(Mathf.Clamp(parameter + horizontalShift.Value, 0f, 1f), 
                     exponent.Value) + verticalShift.Value, 0f, 1f);
+
+        public override void SetDefaults() {
+            slope = new CurveParameter(1f, -50f, 50f);
+            verticalShift = new CurveParameter(0f,  -1f, 2f);
+            horizontalShift = new CurveParameter(0f, -1f, 2f);
+            exponent = new CurveParameter(2f, 0f, 10f);
+        }
 
         #endregion
     }
