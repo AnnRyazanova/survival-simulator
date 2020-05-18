@@ -186,6 +186,7 @@ namespace Characters.Player
 
         public void UnequipTool() {
             UnequipOnPrefab(leftHand);
+            leftHand.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
         }
 
         public void EquipWeapon() {
@@ -213,6 +214,7 @@ namespace Characters.Player
                 // Instantiate prefab on scene
                 var instance = InstantiateEquipmentPrefab(leftHand, (equipment.tool.item as ToolItem)?.toolPrefab);
                 EquipOnPrefab(leftHand, instance);
+                instance.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
 
