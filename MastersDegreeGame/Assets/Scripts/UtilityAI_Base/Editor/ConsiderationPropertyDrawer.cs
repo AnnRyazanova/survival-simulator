@@ -8,8 +8,6 @@ namespace UtilityAI_Base.Editor
     [CustomPropertyDrawer(typeof(Consideration))]
     public class ConsiderationPropertyDrawer : PropertyDrawer
     {
-        private readonly string[] _curveOptions = {"linear", "logistic", "quadratic"};
-
         private static readonly float VerticalSpacing = 2 * EditorGUIUtility.singleLineHeight;
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
@@ -19,7 +17,7 @@ namespace UtilityAI_Base.Editor
             var isEnabled = property.FindPropertyRelative("isEnabled").boolValue;
 
             property.FindPropertyRelative("isEnabled").boolValue = EditorGUI.Toggle(
-                new Rect(position.x , position.y, position.width - quarterW, EditorGUIUtility.singleLineHeight),
+                new Rect(position.x , position.y, 10, EditorGUIUtility.singleLineHeight),
                 GUIContent.none, isEnabled);
             
             EditorGUI.BeginProperty(position, label, property);
@@ -31,7 +29,7 @@ namespace UtilityAI_Base.Editor
             
             EditorGUI.PropertyField(new Rect(position.x, position.y,
                 position.width - quarterW,
-                EditorGUIUtility.singleLineHeight), property.FindPropertyRelative("responseCurveType"), new GUIContent("Curve"));
+                EditorGUIUtility.singleLineHeight), property.FindPropertyRelative("responseCurveType"), new GUIContent("Utility response curve"));
             
             EditorGUI.EndProperty();
         }

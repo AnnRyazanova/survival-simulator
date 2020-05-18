@@ -18,6 +18,7 @@ namespace UtilityAI_Base.Selectors
     [ActionSelectorAttribute("Highest Score Wins")]
     public sealed class HighestScoreWins : ActionSelector
     {
+        public string Name;
         public override UtilityAction Select(IAiContext context, List<UtilityAction> actions) {
             var maxUtility = 0f;
             UtilityAction highestScoreAction = null;

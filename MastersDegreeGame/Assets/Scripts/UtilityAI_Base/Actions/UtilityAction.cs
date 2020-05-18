@@ -22,18 +22,31 @@ namespace UtilityAI_Base.Actions
         /// <summary>
         /// How much time should pass before action can be invoked again 
         /// </summary>
-        public float cooldownTime = 0f;
-        
+        private float _cooldownTime = 0f;
+        public float CooldownTime
+        {
+            get => _cooldownTime;
+            set => _cooldownTime = Mathf.Clamp(value, 0f, 1e+10f);
+        }
+
+            
+        /// <summary>
+        /// Action weight to be applied after Utility calculation. Adjusting weights make this action
+        /// Less/more probable to be executed 
+        /// </summary>
+        private float _actionWeight = 1f;
+
+        public float ActionWeight
+        {
+            get => _actionWeight;
+            set => _actionWeight = Mathf.Clamp(value, 0f, 100f);
+        }
+
         /// <summary>
         /// Action description
         /// </summary>
         public string description = "Action";
 
-        /// <summary>
-        /// Action weight to be applied after Utility calculation. Adjusting weights make this action
-        /// Less/more probable to be executed 
-        /// </summary>
-        public float actionWeight = 1f;
         
         /// <summary>
         /// Action is being executed 

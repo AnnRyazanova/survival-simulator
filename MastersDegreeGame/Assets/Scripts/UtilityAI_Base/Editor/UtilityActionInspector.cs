@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using DefaultNamespace;
 using UnityEditor;
@@ -7,6 +8,7 @@ using UnityEditorInternal;
 using UnityEngine;
 using UtilityAI_Base.Actions;
 using UtilityAI_Base.Considerations;
+using UtilityAI_Base.CustomAttributes;
 using UtilityAI_Base.Selectors;
 
 namespace UtilityAI_Base.Editor
@@ -16,7 +18,6 @@ namespace UtilityAI_Base.Editor
     {
         private ReorderableList _considerationsDisplay;
         private static readonly float VerticalSpacing = 2 * EditorGUIUtility.singleLineHeight;
-        private readonly List<string> _qualifierOptions = new List<string>();
 
         private UtilityAction SelectedAction => target as UtilityAction;
 
@@ -48,6 +49,16 @@ namespace UtilityAI_Base.Editor
             };
 
             SetConsiderationsListDrawCallback();
+            var selectors = typeof(ActionSelector).Assembly.GetTypes()
+                .Where(type => type.IsClass && type.IsSubclassOf(typeof(ActionSelector)));
+            foreach (var selector in selectors) {
+                if (selector.GetCustomAttribute(typeof(ActionSelectorAttribute)) != null) {
+                    Debug.Log(selector.GetFields().Length);
+                    foreach (var memberInfo in selector.GetFields()) {
+                        Debug.Log(memberInfo.Name);
+                    }
+                }
+            }
         }
 
         private void AddItem(ReorderableList list) {
@@ -68,16 +79,19 @@ namespace UtilityAI_Base.Editor
 
             if (EditorGUI.EndChangeCheck()) {
                 // TODO: Possible GC issue. Revise later
-                SelectedAction.qualifier = ConsiderationsQualifierFactory.GetQualifier(SelectedAction.qualifierTypeType);
+                SelectedAction.qualifier =
+                    ConsiderationsQualifierFactory.GetQualifier(SelectedAction.qualifierTypeType);
                 Debug.Log(SelectedAction.qualifier);
             }
 
             EditorGUILayout.Separator();
 
-            SelectedAction.cooldownTime =
-                EditorGUILayout.FloatField(new GUIContent("Cooldown"), SelectedAction.cooldownTime);
-            SelectedAction.actionWeight =
-                EditorGUILayout.FloatField(new GUIContent("Weight"), SelectedAction.actionWeight);
+            SelectedAction.CooldownTime = Mathf.Clamp(
+                EditorGUILayout.FloatField(new GUIContent("Cooldown (ms)"), SelectedAction.CooldownTime),
+                0f,
+                100f);
+            SelectedAction.ActionWeight =
+                EditorGUILayout.FloatField(new GUIContent("Weight"), SelectedAction.ActionWeight);
 
             EditorGUILayout.Separator();
         }
