@@ -5,6 +5,7 @@
     /// </summary>
     public interface IAiContext
     {
+        float GetParameter(string paramName);
     }
 }
 

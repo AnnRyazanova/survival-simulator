@@ -22,7 +22,7 @@ namespace UtilityAI_Base.Editor
         private readonly List<List<string>> _contexts = new List<List<string>>();
         private int _contextIndex = 0;
         private int _contextVarIndex = 0;
-        
+
         private UtilityAction SelectedAction => target as UtilityAction;
 
         private void SetConsiderationsListDrawCallback() {
@@ -40,9 +40,14 @@ namespace UtilityAI_Base.Editor
                 CurveEditor.Open(SelectedAction.considerations[index].utilityCurve);
             }
 
-            _contextVarIndex = UnityEditor.EditorGUI.Popup(
-                new Rect(rect.x + 10, rect.y + 2 * VerticalSpacing, rect.width / 3f, EditorGUIUtility.singleLineHeight),
-                _contextVarIndex, _contexts[_contextIndex].ToArray());
+            SelectedAction.considerations[index].evaluatedContextVariableId = EditorGUI.Popup(
+                new Rect(rect.x + 10, rect.y + 2 * VerticalSpacing, rect.width - quarterW,
+                    EditorGUIUtility.singleLineHeight),
+                "Target parameter",
+                SelectedAction.considerations[index].evaluatedContextVariableId, _contexts[_contextIndex].ToArray());
+            
+            SelectedAction.considerations[index].evaluatedContextVariable =
+                _contexts[_contextIndex][SelectedAction.considerations[index].evaluatedContextVariableId];
         }
 
         private void OnEnable() {
@@ -71,11 +76,12 @@ namespace UtilityAI_Base.Editor
                     foreach (var memberInfo in ctx.GetProperties()) {
                         _contexts[ctxId].Add(memberInfo.Name);
                     }
+
                     ctxId++;
                 }
             }
         }
-        
+
         private void AddItem(ReorderableList list) {
             SelectedAction.considerations.Add(new Consideration());
             EditorUtility.SetDirty(target);
@@ -91,7 +97,7 @@ namespace UtilityAI_Base.Editor
             SelectedAction.qualifierType =
                 (QualifierType) UnityEditor.EditorGUILayout.EnumPopup(new GUIContent("Considerations Qualifier"),
                     SelectedAction.qualifierType);
-            
+
             if (EditorGUI.EndChangeCheck()) {
                 // TODO: Possible GC issue. Revise later
                 SelectedAction.qualifier =
@@ -101,7 +107,7 @@ namespace UtilityAI_Base.Editor
 
             EditorGUILayout.Separator();
 
-           _contextIndex = EditorGUILayout.Popup(new GUIContent("Context"), _contextIndex, _contextTypes.ToArray());
+            _contextIndex = EditorGUILayout.Popup(new GUIContent("Context"), _contextIndex, _contextTypes.ToArray());
 
             SelectedAction.CooldownTime = Mathf.Clamp(
                 EditorGUILayout.FloatField(new GUIContent("Cooldown (ms)"), SelectedAction.CooldownTime),
@@ -125,8 +131,6 @@ namespace UtilityAI_Base.Editor
             _considerationsDisplay.DoLayoutList();
             ShowDescription();
             serializedObject.ApplyModifiedProperties();
-
-            // DrawDefaultInspector();
         }
     }
 }

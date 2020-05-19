@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UtilityAI_Base.Contexts.Interfaces;
 using UtilityAI_Base.ResponseCurves;
 using UtilityAI_Base.ResponseCurves.SuppliedCurves;
@@ -15,11 +16,14 @@ namespace UtilityAI_Base.Considerations
     [Serializable]
     public class Consideration
     {
-        public string description = "consideration";
+        [SerializeField] private string description = "consideration";
         [SerializeField] private bool isEnabled = true;
-
-        public List<string> contextOptions = new List<string>();
         
+        [HideInInspector]
+        public int evaluatedContextVariableId = 0;
+       
+        public string evaluatedContextVariable = null;
+        public CurveType responseCurveType = CurveType.Linear;
         public Dictionary<CurveType, ResponseCurve> Curves = new Dictionary<CurveType, ResponseCurve>()
         {
             {
@@ -42,16 +46,15 @@ namespace UtilityAI_Base.Considerations
             get => Curves[responseCurveType];
             set => Curves[responseCurveType] = value;
         }
-
-        public int curveId = 0;
-        public CurveType responseCurveType = CurveType.Linear;
-
+        
         public Consideration() {
             utilityCurve = new LinearResponseCurve();
         }
 
         public float Evaluate(IAiContext context) {
-            throw new System.NotImplementedException();
+            return evaluatedContextVariable != null
+                ? utilityCurve.EvaluateAt(context.GetParameter(evaluatedContextVariable))
+                : 0f;
         }
     }
 }
