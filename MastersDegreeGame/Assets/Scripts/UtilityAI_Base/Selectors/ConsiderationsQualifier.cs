@@ -31,7 +31,6 @@ namespace UtilityAI_Base.Selectors
         public new string description = "product qualifier";
         
         public override float Qualify(IAiContext context, IEnumerable<Consideration> considerations) {
-            Debug.Log(considerations.Count());
             return considerations.Aggregate(1f, (current, consideration) =>
                 current * consideration.Evaluate(context));
         }
