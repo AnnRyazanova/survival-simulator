@@ -9,7 +9,7 @@ namespace UtilityAI_Base.Editor
     public class ConsiderationPropertyDrawer : PropertyDrawer
     {
         private static readonly float VerticalSpacing = 2 * EditorGUIUtility.singleLineHeight;
-
+        
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
             var quarterW = EditorGUIUtility.currentViewWidth / 4;
             position.x += 10;

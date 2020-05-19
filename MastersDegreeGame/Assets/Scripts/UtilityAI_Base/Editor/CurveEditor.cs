@@ -54,6 +54,21 @@ namespace UtilityAI_Base.Editor
                 end.x = i;
                 Handles.DrawLine(start, end);
             }
+            start = new Vector3(rect.x, 0);
+            end = new Vector3(rect.width + 10, 0);
+            for (var i = 0f; i < rect.height; i += rect.height / 15f) {
+                start.y = i;
+                end.y = i;
+                Handles.DrawLine(start, end);
+            }
+        }
+
+        private void DrawLines(Rect rect, Vector3 start, Vector3 end) {
+            for (var i = 0f; i < rect.width; i += rect.width / 15f) {
+                start.y = i;
+                end.y = i;
+                Handles.DrawLine(start, end);
+            }
         }
 
 
@@ -106,7 +121,7 @@ namespace UtilityAI_Base.Editor
                 var end = new Vector3(rect.xMin + pos.x * rect.width,
                     rect.yMax - ((pos.y - minYAxes) / (maxYAxes - minYAxes)) * rect.height, 0);
 
-                Handles.DrawBezier(start, end, start, end, Color.green, null, 4);
+                Handles.DrawBezier(start, end, start, end, Color.green, null, 10);
 
                 previousPosition = pos;
             }

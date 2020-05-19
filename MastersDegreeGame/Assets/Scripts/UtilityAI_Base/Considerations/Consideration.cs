@@ -18,6 +18,8 @@ namespace UtilityAI_Base.Considerations
         public string description = "consideration";
         [SerializeField] private bool isEnabled = true;
 
+        public List<string> contextOptions = new List<string>();
+        
         public Dictionary<CurveType, ResponseCurve> Curves = new Dictionary<CurveType, ResponseCurve>()
         {
             {

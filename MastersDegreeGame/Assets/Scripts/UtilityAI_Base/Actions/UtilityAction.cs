@@ -56,7 +56,7 @@ namespace UtilityAI_Base.Actions
         /// <summary>
         /// Qualifier to calculate utility of ALL considerations for this action
         /// </summary>
-        [FormerlySerializedAs("qualifierType")] public QualifierType qualifierTypeType;
+        [FormerlySerializedAs("qualifierTypeType")] public QualifierType qualifierType;
         public ConsiderationsQualifier qualifier = new ProductQualifier();
         
         /// <summary>

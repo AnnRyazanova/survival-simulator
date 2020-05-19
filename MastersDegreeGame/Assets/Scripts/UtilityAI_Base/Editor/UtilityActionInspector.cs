@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -8,6 +7,7 @@ using UnityEditorInternal;
 using UnityEngine;
 using UtilityAI_Base.Actions;
 using UtilityAI_Base.Considerations;
+using UtilityAI_Base.Contexts;
 using UtilityAI_Base.CustomAttributes;
 using UtilityAI_Base.Selectors;
 
@@ -18,7 +18,11 @@ namespace UtilityAI_Base.Editor
     {
         private ReorderableList _considerationsDisplay;
         private static readonly float VerticalSpacing = 2 * EditorGUIUtility.singleLineHeight;
-
+        private readonly List<string> _contextTypes = new List<string>();
+        private readonly List<List<string>> _contexts = new List<List<string>>();
+        private int _contextIndex = 0;
+        private int _contextVarIndex = 0;
+        
         private UtilityAction SelectedAction => target as UtilityAction;
 
         private void SetConsiderationsListDrawCallback() {
@@ -35,6 +39,10 @@ namespace UtilityAI_Base.Editor
                 rect.y + VerticalSpacing, 60, EditorGUIUtility.singleLineHeight), "Edit")) {
                 CurveEditor.Open(SelectedAction.considerations[index].utilityCurve);
             }
+
+            _contextVarIndex = UnityEditor.EditorGUI.Popup(
+                new Rect(rect.x + 10, rect.y + 2 * VerticalSpacing, rect.width / 3f, EditorGUIUtility.singleLineHeight),
+                _contextVarIndex, _contexts[_contextIndex].ToArray());
         }
 
         private void OnEnable() {
@@ -47,20 +55,27 @@ namespace UtilityAI_Base.Editor
                 onAddCallback = AddItem,
                 onRemoveCallback = RemoveItem
             };
-
             SetConsiderationsListDrawCallback();
-            var selectors = typeof(ActionSelector).Assembly.GetTypes()
-                .Where(type => type.IsClass && type.IsSubclassOf(typeof(ActionSelector)));
-            foreach (var selector in selectors) {
-                if (selector.GetCustomAttribute(typeof(ActionSelectorAttribute)) != null) {
-                    Debug.Log(selector.GetFields().Length);
-                    foreach (var memberInfo in selector.GetFields()) {
-                        Debug.Log(memberInfo.Name);
+            FillCtxVariablesList();
+        }
+
+        public void FillCtxVariablesList() {
+            var contexts = typeof(AiContext).Assembly.GetTypes()
+                .Where(type => type.IsClass && type.IsSubclassOf(typeof(AiContext)));
+            var ctxId = 0;
+            foreach (var ctx in contexts) {
+                var ctxAttribute = ctx.GetCustomAttribute(typeof(NpcContext));
+                if (ctxAttribute != null) {
+                    _contexts.Add(new List<string>());
+                    _contextTypes.Add((ctxAttribute as NpcContext)?.Name);
+                    foreach (var memberInfo in ctx.GetProperties()) {
+                        _contexts[ctxId].Add(memberInfo.Name);
                     }
+                    ctxId++;
                 }
             }
         }
-
+        
         private void AddItem(ReorderableList list) {
             SelectedAction.considerations.Add(new Consideration());
             EditorUtility.SetDirty(target);
@@ -73,18 +88,20 @@ namespace UtilityAI_Base.Editor
 
         private void ShowProperties() {
             EditorGUI.BeginChangeCheck();
-            SelectedAction.qualifierTypeType =
+            SelectedAction.qualifierType =
                 (QualifierType) UnityEditor.EditorGUILayout.EnumPopup(new GUIContent("Considerations Qualifier"),
-                    SelectedAction.qualifierTypeType);
-
+                    SelectedAction.qualifierType);
+            
             if (EditorGUI.EndChangeCheck()) {
                 // TODO: Possible GC issue. Revise later
                 SelectedAction.qualifier =
-                    ConsiderationsQualifierFactory.GetQualifier(SelectedAction.qualifierTypeType);
+                    ConsiderationsQualifierFactory.GetQualifier(SelectedAction.qualifierType);
                 Debug.Log(SelectedAction.qualifier);
             }
 
             EditorGUILayout.Separator();
+
+           _contextIndex = EditorGUILayout.Popup(new GUIContent("Context"), _contextIndex, _contextTypes.ToArray());
 
             SelectedAction.CooldownTime = Mathf.Clamp(
                 EditorGUILayout.FloatField(new GUIContent("Cooldown (ms)"), SelectedAction.CooldownTime),
