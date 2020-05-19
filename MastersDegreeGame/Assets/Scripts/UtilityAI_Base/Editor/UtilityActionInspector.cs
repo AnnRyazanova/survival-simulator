@@ -37,7 +37,7 @@ namespace UtilityAI_Base.Editor
 
             if (GUI.Button(new Rect(rect.width - quarterW / 2,
                 rect.y + VerticalSpacing, 60, EditorGUIUtility.singleLineHeight), "Edit")) {
-                CurveEditor.Open(SelectedAction.considerations[index].utilityCurve);
+                CurveEditor.Open(SelectedAction.considerations[index].UtilityCurve);
             }
 
             SelectedAction.considerations[index].evaluatedContextVariableId = EditorGUI.Popup(

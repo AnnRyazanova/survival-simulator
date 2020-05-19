@@ -15,23 +15,8 @@ MonoBehaviour:
   description: Action
   qualifierType: 0
   considerations:
-  - description: ShouldHeal
-    isEnabled: 1
-    contextOptions: []
-    curveId: 0
-    responseCurveType: 2
   - description: consideration
     isEnabled: 1
-    contextOptions: []
-    curveId: 0
-    responseCurveType: 0
-  - description: consideration
-    isEnabled: 1
-    contextOptions: []
-    curveId: 0
-    responseCurveType: 0
-  - description: consideration
-    isEnabled: 1
-    contextOptions: []
-    curveId: 0
+    evaluatedContextVariableId: 2
+    evaluatedContextVariable: DistanceToTarget
     responseCurveType: 0

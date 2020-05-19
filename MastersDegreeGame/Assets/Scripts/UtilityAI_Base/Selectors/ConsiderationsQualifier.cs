@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using UtilityAI_Base.Considerations;
 using UtilityAI_Base.Contexts.Interfaces;
 using UtilityAI_Base.CustomAttributes;
@@ -30,6 +31,7 @@ namespace UtilityAI_Base.Selectors
         public new string description = "product qualifier";
         
         public override float Qualify(IAiContext context, IEnumerable<Consideration> considerations) {
+            Debug.Log(considerations.Count());
             return considerations.Aggregate(1f, (current, consideration) =>
                 current * consideration.Evaluate(context));
         }
