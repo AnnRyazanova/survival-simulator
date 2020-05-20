@@ -20,6 +20,12 @@ namespace UtilityAI_Base.Editor
         }
 
         private void OnGUI() {
+            if (_currentCurve.responseCurveType != CurveType.Animation) {
+                OnSuppliedCurveGui();
+            }
+        }
+        
+        private void OnSuppliedCurveGui() {
             var horizontalSplit = position.width - position.width / 3f;
             var rectOutline = new Rect(0, 0, horizontalSplit, position.height);
             var rect = new Rect(10, 10, horizontalSplit - 20, position.height - 20);
@@ -42,7 +48,8 @@ namespace UtilityAI_Base.Editor
 
             EditorGUILayout.EndHorizontal();
         }
-
+        
+        
         private void DrawAxis(Rect outline, Rect rect) {
             EditorGUI.DrawRect(outline, Color.black);
             EditorGUI.DrawRect(rect, Color.black);

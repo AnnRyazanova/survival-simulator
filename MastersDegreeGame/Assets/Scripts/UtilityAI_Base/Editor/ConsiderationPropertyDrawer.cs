@@ -31,7 +31,7 @@ namespace UtilityAI_Base.Editor
                     position.width - quarterW,
                     EditorGUIUtility.singleLineHeight), property.FindPropertyRelative("responseCurveType"),
                 new GUIContent("Utility response curve"));
-
+            
             EditorGUI.EndProperty();
         }
     }

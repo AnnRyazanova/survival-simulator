@@ -9,6 +9,8 @@ using UtilityAI_Base.Actions;
 using UtilityAI_Base.Considerations;
 using UtilityAI_Base.Contexts;
 using UtilityAI_Base.CustomAttributes;
+using UtilityAI_Base.ResponseCurves;
+using UtilityAI_Base.ResponseCurves.SuppliedCurves;
 using UtilityAI_Base.Selectors;
 
 namespace UtilityAI_Base.Editor
@@ -34,7 +36,10 @@ namespace UtilityAI_Base.Editor
             var quarterW = EditorGUIUtility.currentViewWidth / 4;
 
             EditorGUI.PropertyField(rect, consideration);
-
+            if (SelectedAction.considerations[index].UtilityCurve is AnimationResponseCurve anim) {
+                EditorGUI.CurveField(new Rect(rect.width - quarterW / 2,
+                    rect.y + VerticalSpacing, 100, EditorGUIUtility.singleLineHeight), anim.curve);
+            }else
             if (GUI.Button(new Rect(rect.width - quarterW / 2,
                 rect.y + VerticalSpacing, 60, EditorGUIUtility.singleLineHeight), "Edit")) {
                 CurveEditor.Open(SelectedAction.considerations[index].UtilityCurve);
