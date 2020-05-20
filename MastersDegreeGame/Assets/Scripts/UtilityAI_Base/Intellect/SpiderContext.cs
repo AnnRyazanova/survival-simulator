@@ -12,7 +12,7 @@ namespace UtilityAI_Base.Intellect
     [NpcContext("Spider")]
     public class SpiderContext : AiContext
     {
-        private Collider[] colliders;
+        private Collider[] _colliders;
         public LayerMask visibleLayers;
         public SpiderContext(IAgent owner) : base(owner) {
             EnemiesNearby = 0.4f;
@@ -21,13 +21,13 @@ namespace UtilityAI_Base.Intellect
 
         public void Awake() {
             PropertyValues = new Dictionary<string, float>();
-            colliders = new Collider[50];
+            _colliders = new Collider[50];
             _td = new CurveParameter(0f, 0f, 10f);
             Fill();
         }
 
         private void Update() {
-            foreach (var c in colliders) {
+            foreach (var c in _colliders) {
                 if (c != null) {
                     if (c.gameObject.GetComponent<PlayerMainScript>() != null) {
                         _targetPosition = c.transform.position;
@@ -38,14 +38,19 @@ namespace UtilityAI_Base.Intellect
         }
 
         private void FixedUpdate() {
-            Physics.OverlapSphereNonAlloc(transform.position, 10f, colliders, visibleLayers);
+            Physics.OverlapSphereNonAlloc(transform.position, 10f, _colliders, visibleLayers);
         }
 
         private Vector3 _targetPosition;
         private CurveParameter _td;
+        
+        [NpcContextVar]
         public float EnemiesNearby { get; set; }
+        
+        [NpcContextVar]
         public float Energy { get; set; }
-
+        
+        [NpcContextVar]
         public float DistanceToTarget
         {
             get

@@ -45,7 +45,7 @@ namespace UtilityAI_Base.Editor
                     EditorGUIUtility.singleLineHeight),
                 "Target parameter",
                 SelectedAction.considerations[index].evaluatedContextVariableId, _contexts[_contextIndex].ToArray());
-            
+
             SelectedAction.considerations[index].evaluatedContextVariable =
                 _contexts[_contextIndex][SelectedAction.considerations[index].evaluatedContextVariableId];
         }
@@ -69,16 +69,15 @@ namespace UtilityAI_Base.Editor
                 .Where(type => type.IsClass && type.IsSubclassOf(typeof(AiContext)));
             var ctxId = 0;
             foreach (var ctx in contexts) {
-                var ctxAttribute = ctx.GetCustomAttribute(typeof(NpcContext));
-                if (ctxAttribute != null) {
-                    _contexts.Add(new List<string>());
-                    _contextTypes.Add((ctxAttribute as NpcContext)?.Name);
-                    foreach (var memberInfo in ctx.GetProperties()) {
+                _contexts.Add(new List<string>());
+                _contextTypes.Add(ctx.Name);
+                foreach (var memberInfo in ctx.GetProperties()) {
+                    if (memberInfo.GetCustomAttribute(typeof(NpcContextVar)) != null) {
                         _contexts[ctxId].Add(memberInfo.Name);
                     }
-
-                    ctxId++;
                 }
+
+                ctxId++;
             }
         }
 
