@@ -115,7 +115,8 @@ namespace UtilityAI_Base.Editor
                 100f);
             SelectedAction.ActionWeight =
                 EditorGUILayout.FloatField(new GUIContent("Weight"), SelectedAction.ActionWeight);
-
+            SelectedAction.maxConsecutiveInvocations = (int) EditorGUILayout.IntField(
+                new GUIContent("Max Consecutive Invocations"), SelectedAction.maxConsecutiveInvocations);
             EditorGUILayout.Separator();
         }
 

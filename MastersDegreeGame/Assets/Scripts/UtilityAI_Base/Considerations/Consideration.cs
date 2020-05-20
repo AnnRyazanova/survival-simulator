@@ -18,7 +18,8 @@ namespace UtilityAI_Base.Considerations
     {
         [SerializeField] private string description = "consideration";
         [SerializeField] private bool isEnabled = true;
-
+        [SerializeField] private float weight = 0f;
+        
         [HideInInspector] public int evaluatedContextVariableId = 0;
 
         public string evaluatedContextVariable = null;

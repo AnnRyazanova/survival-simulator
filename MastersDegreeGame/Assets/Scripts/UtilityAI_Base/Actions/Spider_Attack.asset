@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Spider_Attack
   m_EditorClassIdentifier: 
   description: Action
+  maxConsecutiveInvocations: 0
   qualifierType: 0
   considerations:
   - description: consideration
     isEnabled: 1
-    evaluatedContextVariableId: 2
-    evaluatedContextVariable: DistanceToTarget
+    evaluatedContextVariableId: 0
+    evaluatedContextVariable: EnemiesNearby
     responseCurveType: 0
