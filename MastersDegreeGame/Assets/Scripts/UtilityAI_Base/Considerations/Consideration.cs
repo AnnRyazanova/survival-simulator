@@ -16,7 +16,7 @@ namespace UtilityAI_Base.Considerations
     [Serializable]
     public class Consideration
     {
-        [SerializeField] private string description = "consideration";
+        [SerializeField] private string description = "New consideration";
         [SerializeField] private bool isEnabled = true;
         [SerializeField] private float weight = 0f;
         

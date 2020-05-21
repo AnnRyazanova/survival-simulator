@@ -29,6 +29,7 @@ namespace Characters.NPC
         }
 
         public void OnStart(IAiContext owner) {
+            Debug.Log("OnStart");
             var current = ((owner as SpiderContext)?.owner as NpcMainScript);
             if (current != null && current._agent != null) {
                 current._agent.destination = PlayerMainScript.MyPlayer.transform.position;
@@ -36,6 +37,7 @@ namespace Characters.NPC
         }
         
         public void OnEnd(IAiContext owner) {
+            Debug.Log("OnEnd");
             var current = ((owner as SpiderContext)?.owner as NpcMainScript);
             if (current != null && current._agent != null) {
                 current._agent.destination = new Vector3(10f, 0, 10f);

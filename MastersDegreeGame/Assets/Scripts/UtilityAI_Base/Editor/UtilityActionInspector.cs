@@ -60,10 +60,11 @@ namespace UtilityAI_Base.Editor
                 serializedObject.FindProperty("considerations"), true, true,
                 true, true)
             {
-                drawHeaderCallback = rect => { EditorGUI.LabelField(rect, "Considerations", EditorStyles.boldLabel); },
+                drawHeaderCallback = rect => { EditorGUI.LabelField(rect, "", EditorStyles.boldLabel); },
                 elementHeight = EditorGUIUtility.singleLineHeight * 5 + 5,
                 onAddCallback = AddItem,
-                onRemoveCallback = RemoveItem
+                onRemoveCallback = RemoveItem,
+                headerHeight = 10
             };
             SetConsiderationsListDrawCallback();
             FillCtxVariablesList();
@@ -97,6 +98,9 @@ namespace UtilityAI_Base.Editor
         }
 
         private void ShowProperties() {
+            EditorGUILayout.LabelField(new GUIContent("Utility Action Parameters:"),EditorStyles.boldLabel);
+            EditorGUILayout.Separator();
+            
             EditorGUI.BeginChangeCheck();
             SelectedAction.qualifierType =
                 (QualifierType) UnityEditor.EditorGUILayout.EnumPopup(new GUIContent("Considerations Qualifier"),
@@ -112,22 +116,29 @@ namespace UtilityAI_Base.Editor
             EditorGUILayout.Separator();
 
             _contextIndex = EditorGUILayout.Popup(new GUIContent("Context"), _contextIndex, _contextTypes.ToArray());
+            EditorGUILayout.Separator();
 
             SelectedAction.CooldownTime = Mathf.Clamp(
-                EditorGUILayout.FloatField(new GUIContent("Cooldown (ms)"), SelectedAction.CooldownTime),
+                EditorGUILayout.FloatField(new GUIContent("Cooldown (s)"), SelectedAction.CooldownTime),
                 0f,
                 100f);
+            EditorGUILayout.Separator();
+
             SelectedAction.ActionWeight =
                 EditorGUILayout.FloatField(new GUIContent("Weight"), SelectedAction.ActionWeight);
+            EditorGUILayout.Separator();
+
             SelectedAction.maxConsecutiveInvocations = (int) EditorGUILayout.IntField(
                 new GUIContent("Max Consecutive Invocations"), SelectedAction.maxConsecutiveInvocations);
             EditorGUILayout.Separator();
-
+            EditorGUILayout.LabelField(new GUIContent("Action To Be Performed:"),EditorStyles.boldLabel);
+            EditorGUILayout.Separator();
+            
             EditorGUILayout.PropertyField(serializedObject.FindProperty("actionTask"));
         }
 
         public void ShowDescription() {
-            EditorGUILayout.LabelField(new GUIContent("Description"), EditorStyles.boldLabel);
+            EditorGUILayout.LabelField(new GUIContent("Description:"), EditorStyles.boldLabel);
             EditorGUILayout.Separator();
             SelectedAction.description = EditorGUILayout.TextArea(SelectedAction.description, GUILayout.Height(100));
         }
@@ -135,6 +146,8 @@ namespace UtilityAI_Base.Editor
         public override void OnInspectorGUI() {
             serializedObject.Update();
             ShowProperties();
+            EditorGUILayout.LabelField(new GUIContent("Considerations List:"), EditorStyles.boldLabel);
+            EditorGUILayout.Separator();
             _considerationsDisplay.DoLayoutList();
             ShowDescription();
             serializedObject.ApplyModifiedProperties();
