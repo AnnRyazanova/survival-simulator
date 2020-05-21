@@ -12,12 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9388da7a65a14aceaf1751c612bdd614, type: 3}
   m_Name: Spider_Attack
   m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4712786132671204694, guid: 5ad61e3911d49ad45ae167b66e86a325,
+          type: 3}
+        m_MethodName: OnStart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
   description: Action
   maxConsecutiveInvocations: 0
   qualifierType: 0
   considerations:
   - description: consideration
     isEnabled: 1
-    evaluatedContextVariableId: 0
-    evaluatedContextVariable: EnemiesNearby
-    responseCurveType: 0
+    weight: 0
+    evaluatedContextVariableId: 2
+    evaluatedContextVariable: DistanceToTarget
+    responseCurveType: 3

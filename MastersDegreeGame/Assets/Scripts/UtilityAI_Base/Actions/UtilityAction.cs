@@ -1,16 +1,22 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Characters.NPC;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UtilityAI_Base.Considerations;
-using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
-using UtilityAI_Base.CustomAttributes;
+using UtilityAI_Base.Intellect;
 using UtilityAI_Base.Selectors;
 
 namespace UtilityAI_Base.Actions
 {
+    [Serializable]
+    public class ActionTask : UnityEvent<IAiContext>
+    {
+        
+    }
+    
     /// <summary>
     /// Action base class
     /// All actions should inherit this
@@ -19,6 +25,8 @@ namespace UtilityAI_Base.Actions
     [CreateAssetMenu(fileName = "New Action", menuName = "UtilityAI/Empty Action")]
     public class UtilityAction : ScriptableObject
     {
+        public ActionTask actionTask;
+        
         /// <summary>
         /// How much time should pass before action can be invoked again 
         /// </summary>
@@ -92,7 +100,7 @@ namespace UtilityAI_Base.Actions
         /// </summary>
         /// <param name="context">AI Context (game world state)</param>
         public virtual void Execute(IAiContext context) {
-            throw new NotImplementedException();
+            actionTask.Invoke(context);
         }
 
         /// <summary>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Characters.NPC;
 using Characters.Player;
 using UnityEngine;
 using UtilityAI_Base.Agents.Interfaces;
@@ -14,12 +15,9 @@ namespace UtilityAI_Base.Intellect
     {
         private Collider[] _colliders;
         public LayerMask visibleLayers;
-        public SpiderContext(IAgent owner) : base(owner) {
-            EnemiesNearby = 0.4f;
-            Energy = 0f;
-        }
 
-        public void Awake() {
+        protected override void Awake() {
+            base.Awake();
             PropertyValues = new Dictionary<string, float>();
             _colliders = new Collider[50];
             _td = new CurveParameter(0f, 0f, 10f);
@@ -41,7 +39,7 @@ namespace UtilityAI_Base.Intellect
             Physics.OverlapSphereNonAlloc(transform.position, 10f, _colliders, visibleLayers);
         }
 
-        private Vector3 _targetPosition;
+        public Vector3 _targetPosition;
         private CurveParameter _td;
         
         [NpcContextVar]

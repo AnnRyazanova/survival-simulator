@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Characters.NPC;
 using UnityEngine.UI;
 using UnityEngine;
 using UtilityAI_Base.Agents.Interfaces;
@@ -16,8 +17,8 @@ namespace UtilityAI_Base.Contexts
         public IAgent owner;
         protected Dictionary<string, float> PropertyValues = new Dictionary<string, float>();
 
-        public AiContext(IAgent owner) {
-            this.owner = owner;
+        protected virtual void Awake() {
+            owner = GetComponent<NpcMainScript>();
         }
 
         public float GetParameter(string paramName) {

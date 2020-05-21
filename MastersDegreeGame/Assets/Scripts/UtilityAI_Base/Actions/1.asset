@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9388da7a65a14aceaf1751c612bdd614, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
+  Event:
+    m_PersistentCalls:
+      m_Calls: []
   description: Action
+  maxConsecutiveInvocations: 0
   qualifierType: 0
   considerations:
   - description: consideration
     isEnabled: 1
-    contextOptions: []
-    curveId: 0
-    responseCurveType: 0
-  - description: consideration
-    isEnabled: 1
-    contextOptions: []
-    curveId: 0
-    responseCurveType: 0
+    weight: 0
+    evaluatedContextVariableId: 0
+    evaluatedContextVariable: EnemiesNearby
+    responseCurveType: 3

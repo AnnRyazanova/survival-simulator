@@ -38,9 +38,9 @@ namespace UtilityAI_Base.Editor
             EditorGUI.PropertyField(rect, consideration);
             if (SelectedAction.considerations[index].UtilityCurve is AnimationResponseCurve anim) {
                 EditorGUI.CurveField(new Rect(rect.width - quarterW / 2,
-                    rect.y + VerticalSpacing, 100, EditorGUIUtility.singleLineHeight), anim.curve);
-            }else
-            if (GUI.Button(new Rect(rect.width - quarterW / 2,
+                    rect.y + VerticalSpacing, 60, EditorGUIUtility.singleLineHeight), anim.curve);
+            }
+            else if (GUI.Button(new Rect(rect.width - quarterW / 2,
                 rect.y + VerticalSpacing, 60, EditorGUIUtility.singleLineHeight), "Edit")) {
                 CurveEditor.Open(SelectedAction.considerations[index].UtilityCurve);
             }
@@ -122,6 +122,8 @@ namespace UtilityAI_Base.Editor
             SelectedAction.maxConsecutiveInvocations = (int) EditorGUILayout.IntField(
                 new GUIContent("Max Consecutive Invocations"), SelectedAction.maxConsecutiveInvocations);
             EditorGUILayout.Separator();
+
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("actionTask"));
         }
 
         public void ShowDescription() {

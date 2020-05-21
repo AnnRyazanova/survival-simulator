@@ -13,7 +13,7 @@ namespace UtilityAI_Base.Intellect
     [RequireComponent(typeof(NavMeshAgent)), RequireComponent(typeof(AiContext))]
     public class NpcIntellect : MonoBehaviour, IIntellect
     {
-        [SerializeField] private List<UtilityAction> actions = new List<UtilityAction>();
+        [SerializeField] public List<UtilityAction> actions = new List<UtilityAction>();
         [SerializeField] private ActionSelector selector = new HighestScoreWins();
         
         [SerializeField] private float updateTimesPerSecond = 1f;
@@ -35,11 +35,10 @@ namespace UtilityAI_Base.Intellect
                 
                 // CALL ACTION SELECTION HERE
                 
-                actions[0].EvaluateAbsoluteUtility(_context);
-                // UtilityAction currentAction = selector.Select(_context, actions);
-                // if (currentAction != null && currentAction.CanBeInvoked()) {
-                //     currentAction.Execute(_context);
-                // }
+                UtilityAction currentAction = selector.Select(_context, actions);
+                if (currentAction != null && currentAction.CanBeInvoked()) {
+                    currentAction.Execute(_context);
+                }
             }
         }
 
