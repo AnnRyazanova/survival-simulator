@@ -5,12 +5,13 @@ using UnityEngine.AI;
 using UtilityAI_Base.Actions;
 using UtilityAI_Base.Agents.Interfaces;
 using UtilityAI_Base.Contexts;
+using UtilityAI_Base.Intellect.Interfaces;
 using UtilityAI_Base.Selectors;
 
 namespace UtilityAI_Base.Intellect
 {
     [RequireComponent(typeof(NavMeshAgent)), RequireComponent(typeof(AiContext))]
-    public class NpcIntellect : MonoBehaviour
+    public class NpcIntellect : MonoBehaviour, IIntellect
     {
         [SerializeField] private List<UtilityAction> actions = new List<UtilityAction>();
         [SerializeField] private ActionSelector selector = new HighestScoreWins();

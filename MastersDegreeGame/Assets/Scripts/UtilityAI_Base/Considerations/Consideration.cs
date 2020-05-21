@@ -36,6 +36,9 @@ namespace UtilityAI_Base.Considerations
 
             {
                 CurveType.Logistic, new LogisticResponseCurve()
+            },
+            {
+                CurveType.Animation, new AnimationResponseCurve()
             }
         };
 

@@ -10,4 +10,9 @@ namespace UtilityAI_Base.CustomAttributes
             Name = name;
         }
     }
+
+    public class NpcContextVar : Attribute
+    {
+        
+    }
 }

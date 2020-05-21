@@ -6,7 +6,8 @@ namespace UtilityAI_Base.ResponseCurves
     {
         Linear,
         Logistic,
-        Quadratic
+        Quadratic,
+        Animation
     }
     
     /// <summary>

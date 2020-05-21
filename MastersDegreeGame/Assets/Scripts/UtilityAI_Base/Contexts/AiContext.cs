@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEngine.UI;
 using UnityEngine;
 using UtilityAI_Base.Agents.Interfaces;
@@ -13,29 +15,24 @@ namespace UtilityAI_Base.Contexts
     {
         public IAgent owner;
         protected Dictionary<string, float> PropertyValues = new Dictionary<string, float>();
-        
+
         public AiContext(IAgent owner) {
             this.owner = owner;
         }
-        
+
         public float GetParameter(string paramName) {
             return PropertyValues[paramName];
         }
-        
-        public virtual void Fill() {
-            foreach (var property in this.GetType().GetProperties()) {
-                var f = 0f;
-                try {
-                    f = Convert.ToSingle(property.GetValue(this));
-                }
-                catch (Exception e) {
-                }
 
+        public virtual void Fill() {
+            var properties = GetType().GetProperties().Where(p => p.GetCustomAttribute(typeof(NpcContextVar)) != null);
+            foreach (var property in properties) {
+                var value = (float) property.GetValue(this);
                 if (PropertyValues.ContainsKey(property.Name)) {
-                    PropertyValues[property.Name] = f;
+                    PropertyValues[property.Name] = value;
                 }
                 else {
-                    PropertyValues.Add(property.Name, f);
+                    PropertyValues.Add(property.Name, value);
                 }
             }
         }
