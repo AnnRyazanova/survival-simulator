@@ -28,21 +28,6 @@ namespace Characters.NPC
             attackRate = 1f;
         }
 
-        public void OnStart(IAiContext owner) {
-            Debug.Log("OnStart");
-            var current = ((owner as SpiderContext)?.owner as NpcMainScript);
-            if (current != null && current._agent != null) {
-                current._agent.destination = PlayerMainScript.MyPlayer.transform.position;
-            }
-        }
-        
-        public void OnEnd(IAiContext owner) {
-            Debug.Log("OnEnd");
-            var current = ((owner as SpiderContext)?.owner as NpcMainScript);
-            if (current != null && current._agent != null) {
-                current._agent.destination = new Vector3(10f, 0, 10f);
-            }
-        }
         
         public void TmpAiControllerFunc() {
             var hits = Physics.OverlapSphere(actionSphere.transform.position, itemSearchRadius);

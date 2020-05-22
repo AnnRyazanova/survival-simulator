@@ -55,7 +55,7 @@ namespace UtilityAI_Base.Actions
         /// <summary>
         /// Action description
         /// </summary>
-        public string description = "Action";
+        public string description = "New Action Description";
 
         /// <summary>
         /// Max number of times current action can be invoked in a row

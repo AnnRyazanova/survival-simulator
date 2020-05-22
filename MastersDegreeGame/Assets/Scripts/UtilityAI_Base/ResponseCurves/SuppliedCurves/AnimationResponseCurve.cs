@@ -13,7 +13,7 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
             responseCurveType = CurveType.Animation;
         }
         public override float EvaluateAt(float parameter) {
-            return curve.Evaluate(parameter);
+            return Mathf.Clamp(curve.Evaluate(parameter), 0f, 1f);
         }
 
         public override float CurveFunction(float parameter) {

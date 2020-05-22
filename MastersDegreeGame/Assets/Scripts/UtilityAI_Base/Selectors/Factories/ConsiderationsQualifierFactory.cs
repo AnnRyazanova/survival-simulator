@@ -7,6 +7,7 @@ namespace DefaultNamespace
     {
         private static readonly ProductQualifier Product = new ProductQualifier();
         private static readonly SumQualifier Sum = new SumQualifier();
+        private static readonly AverageQualifier Average = new AverageQualifier();
         
         public static ConsiderationsQualifier GetQualifier(QualifierType type) {
             switch (type) {
@@ -14,6 +15,8 @@ namespace DefaultNamespace
                     return Product;
                 case QualifierType.Sum:
                     return Sum;
+                case QualifierType.Average:
+                    return Average;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }

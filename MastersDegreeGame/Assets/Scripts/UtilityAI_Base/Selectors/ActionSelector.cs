@@ -24,7 +24,7 @@ namespace UtilityAI_Base.Selectors
             UtilityAction highestScoreAction = null;
             foreach (var action in actions) {
                 if (action.CanBeInvoked()) {
-                    var utility = action.EvaluateAbsoluteUtility(context);
+                    var utility = action.ActionWeight * action.EvaluateAbsoluteUtility(context);
                     if (utility >= maxUtility) {
                         maxUtility = utility;
                         highestScoreAction = action;
@@ -41,7 +41,7 @@ namespace UtilityAI_Base.Selectors
     public sealed class DualUtilityReasoner : ActionSelector
     {
         private class UtilityWeights
-        {
+        { 
             public float Weight = 0f;
             public float Rank = 0f;
             public UtilityAction UAction = null;

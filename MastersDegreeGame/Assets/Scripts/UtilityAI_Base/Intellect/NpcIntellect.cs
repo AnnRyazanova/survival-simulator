@@ -20,6 +20,7 @@ namespace UtilityAI_Base.Intellect
         
         private AiContext _context;
         private NavMeshAgent _navMeshAgent;
+        
         private float _lastUpdated = 0f;
         
         private void Awake() {
