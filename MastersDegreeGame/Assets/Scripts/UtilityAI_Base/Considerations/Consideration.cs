@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UtilityAI_Base.Contexts.Interfaces;
 using UtilityAI_Base.ResponseCurves;
 using UtilityAI_Base.ResponseCurves.SuppliedCurves;
@@ -19,7 +17,8 @@ namespace UtilityAI_Base.Considerations
         [SerializeField] private string description = "New consideration";
         [SerializeField] private bool isEnabled = true;
         [SerializeField] private float weight = 0f;
-        
+        [SerializeField] private Vector2 valueRange = new Vector2(0f, 100f);
+
         [HideInInspector] public int evaluatedContextVariableId = 0;
 
         public string evaluatedContextVariable = null;
@@ -57,7 +56,9 @@ namespace UtilityAI_Base.Considerations
 
         public float Evaluate(IAiContext context) {
             if (evaluatedContextVariable != null) {
-                var utility = UtilityCurve.EvaluateAt(context.GetParameter(evaluatedContextVariable));
+                var paramValue = context.GetParameter(evaluatedContextVariable);
+                var rangedValue = (paramValue - valueRange.x) / (valueRange.y - valueRange.x);
+                var utility = UtilityCurve.EvaluateAt(Mathf.Clamp(rangedValue, 0f, 1f));
                 return utility;
             }
 

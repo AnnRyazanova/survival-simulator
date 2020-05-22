@@ -23,7 +23,6 @@ namespace UtilityAI_Base.Editor
         private readonly List<string> _contextTypes = new List<string>();
         private readonly List<List<string>> _contexts = new List<List<string>>();
         private int _contextIndex = 0;
-        private int _contextVarIndex = 0;
 
         private UtilityAction SelectedAction => target as UtilityAction;
 
@@ -46,7 +45,7 @@ namespace UtilityAI_Base.Editor
             }
 
             SelectedAction.considerations[index].evaluatedContextVariableId = EditorGUI.Popup(
-                new Rect(rect.x + 10, rect.y + 2 * VerticalSpacing, rect.width - quarterW,
+                new Rect(rect.x + 10, rect.y + 3 * VerticalSpacing, rect.width - quarterW,
                     EditorGUIUtility.singleLineHeight),
                 "Target parameter",
                 SelectedAction.considerations[index].evaluatedContextVariableId, _contexts[_contextIndex].ToArray());
@@ -66,6 +65,7 @@ namespace UtilityAI_Base.Editor
                 onRemoveCallback = RemoveItem,
                 headerHeight = 10
             };
+            _considerationsDisplay.elementHeight = EditorGUIUtility.singleLineHeight * 8f;
             SetConsiderationsListDrawCallback();
             FillCtxVariablesList();
         }
@@ -98,9 +98,9 @@ namespace UtilityAI_Base.Editor
         }
 
         private void ShowProperties() {
-            EditorGUILayout.LabelField(new GUIContent("Utility Action Parameters:"),EditorStyles.boldLabel);
+            EditorGUILayout.LabelField(new GUIContent("Utility Action Parameters:"), EditorStyles.boldLabel);
             EditorGUILayout.Separator();
-            
+
             EditorGUI.BeginChangeCheck();
             SelectedAction.qualifierType =
                 (QualifierType) UnityEditor.EditorGUILayout.EnumPopup(new GUIContent("Considerations Qualifier"),
@@ -131,9 +131,9 @@ namespace UtilityAI_Base.Editor
             SelectedAction.maxConsecutiveInvocations = (int) EditorGUILayout.IntField(
                 new GUIContent("Max Consecutive Invocations"), SelectedAction.maxConsecutiveInvocations);
             EditorGUILayout.Separator();
-            EditorGUILayout.LabelField(new GUIContent("Action To Be Performed:"),EditorStyles.boldLabel);
+            EditorGUILayout.LabelField(new GUIContent("Action To Be Performed:"), EditorStyles.boldLabel);
             EditorGUILayout.Separator();
-            
+
             EditorGUILayout.PropertyField(serializedObject.FindProperty("actionTask"));
         }
 

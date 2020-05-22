@@ -31,7 +31,12 @@ namespace UtilityAI_Base.Editor
                     position.width - quarterW,
                     EditorGUIUtility.singleLineHeight), property.FindPropertyRelative("responseCurveType"),
                 new GUIContent("Utility response curve"));
-            
+
+            position.y += VerticalSpacing;
+            EditorGUI.PropertyField(new Rect(position.x, position.y,
+                    position.width,
+                    EditorGUIUtility.singleLineHeight), property.FindPropertyRelative("valueRange"),
+                new GUIContent("Value normalization range"));
             EditorGUI.EndProperty();
         }
     }

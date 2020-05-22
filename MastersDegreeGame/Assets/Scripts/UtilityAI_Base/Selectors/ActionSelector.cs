@@ -35,4 +35,32 @@ namespace UtilityAI_Base.Selectors
             return highestScoreAction;
         }
     }
+
+    [Serializable]
+    [ActionSelectorAttribute("Dual Reasoner")]
+    public sealed class DualUtilityReasoner : ActionSelector
+    {
+        private class UtilityWeights
+        {
+            public float Weight = 0f;
+            public float Rank = 0f;
+            public UtilityAction UAction = null;
+        }
+        
+        public override UtilityAction Select(IAiContext context, List<UtilityAction> actions) {
+            var utilities = new UtilityWeights[actions.Count];
+            var cumulativeWeight = 0f;
+            for (var i = 0; i < actions.Count; i++) {
+                utilities[i].Weight = actions[i].EvaluateAbsoluteUtility(context);
+                utilities[i].UAction = actions[i];
+                cumulativeWeight += utilities[i].Weight;
+            }
+
+            foreach (var utilityWeight in utilities) {
+                utilityWeight.Rank = utilityWeight.Weight / cumulativeWeight;
+            }
+
+            return null;
+        }
+    }
 }
