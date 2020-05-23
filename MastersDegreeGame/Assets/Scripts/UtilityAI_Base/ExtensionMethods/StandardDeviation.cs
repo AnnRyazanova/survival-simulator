@@ -1,21 +1,21 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UtilityAI_Base.Selectors;
 
-namespace DefaultNamespace
+namespace UtilityAI_Base.ExtensionMethods
 {
     public static class StandardDeviation
     {
-        public static float GetStd(this IEnumerable<float> values)
+        public static float GetStd(this IEnumerable<DualUtilityReasoner.UtilityWeights> values)
         {
             float standardDeviation = 0;
-            var enumerable = values as float[] ?? values.ToArray();
+            var enumerable = values.ToArray();
             var count = enumerable.Length;
             if (count > 1)
             {
-                var avg = enumerable.Average();
-                var sum = enumerable.Sum(d => (d - avg) * (d - avg));
+                var avg = enumerable.Average(d => d.Rank);
+                var sum = enumerable.Sum(d => (d.Rank - avg) * (d.Rank - avg));
                 standardDeviation = Mathf.Sqrt(sum / count);
             }
             return standardDeviation;
