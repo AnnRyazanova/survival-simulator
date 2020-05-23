@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using SceneGeneration.PerlinNoise;
 using UnityEditor;
 
 [CustomEditor (typeof (MapGenerator))]
