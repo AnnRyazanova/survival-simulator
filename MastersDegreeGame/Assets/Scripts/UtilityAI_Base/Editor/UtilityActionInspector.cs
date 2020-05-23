@@ -35,6 +35,7 @@ namespace UtilityAI_Base.Editor
             var quarterW = EditorGUIUtility.currentViewWidth / 4;
 
             EditorGUI.PropertyField(rect, consideration);
+            
             if (SelectedAction.considerations[index].UtilityCurve is AnimationResponseCurve anim) {
                 EditorGUI.CurveField(new Rect(rect.width - quarterW / 2,
                     rect.y + VerticalSpacing, 60, EditorGUIUtility.singleLineHeight), anim.curve);
@@ -44,14 +45,16 @@ namespace UtilityAI_Base.Editor
                 CurveEditor.Open(SelectedAction.considerations[index].UtilityCurve);
             }
 
-            SelectedAction.considerations[index].evaluatedContextVariableId = EditorGUI.Popup(
-                new Rect(rect.x + 10, rect.y + 3 * VerticalSpacing, rect.width - quarterW,
-                    EditorGUIUtility.singleLineHeight),
-                "Target parameter",
-                SelectedAction.considerations[index].evaluatedContextVariableId, _contexts[_contextIndex].ToArray());
+            if (_contexts.Count > 0 && _contexts[_contextIndex].Count > 0) {
+                SelectedAction.considerations[index].evaluatedContextVariableId = EditorGUI.Popup(
+                    new Rect(rect.x + 10, rect.y + 3 * VerticalSpacing, rect.width - quarterW,
+                        EditorGUIUtility.singleLineHeight),
+                    "Target parameter",
+                    SelectedAction.considerations[index].evaluatedContextVariableId, _contexts[_contextIndex].ToArray());
 
-            SelectedAction.considerations[index].evaluatedContextVariable =
-                _contexts[_contextIndex][SelectedAction.considerations[index].evaluatedContextVariableId];
+                SelectedAction.considerations[index].evaluatedContextVariable =
+                    _contexts[_contextIndex][SelectedAction.considerations[index].evaluatedContextVariableId];
+            }
         }
 
         private void OnEnable() {

@@ -38,4 +38,10 @@ namespace UtilityAI_Base.Contexts
             }
         }
     }
+
+    [Serializable]
+    public class SpiderContext : AiContext
+    {
+        
+    }
 }

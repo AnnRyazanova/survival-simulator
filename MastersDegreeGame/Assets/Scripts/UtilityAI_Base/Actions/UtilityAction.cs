@@ -100,6 +100,9 @@ namespace UtilityAI_Base.Actions
         /// </summary>
         /// <param name="context">AI Context (game world state)</param>
         public virtual void Execute(IAiContext context) {
+            _lastInvokedTime = Time.time;
+            _invokedTimes++;
+            _inExecution = true;
             actionTask.Invoke(context);
         }
 

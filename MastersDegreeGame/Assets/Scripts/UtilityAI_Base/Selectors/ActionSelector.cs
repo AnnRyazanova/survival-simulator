@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 using UtilityAI_Base.Actions;
 using UtilityAI_Base.Contexts.Interfaces;
 using UtilityAI_Base.CustomAttributes;
+using Random = UnityEngine.Random;
 
 namespace UtilityAI_Base.Selectors
 {
@@ -19,6 +22,7 @@ namespace UtilityAI_Base.Selectors
     public sealed class HighestScoreWins : ActionSelector
     {
         public string Name;
+
         public override UtilityAction Select(IAiContext context, List<UtilityAction> actions) {
             var maxUtility = 0f;
             UtilityAction highestScoreAction = null;
@@ -41,23 +45,31 @@ namespace UtilityAI_Base.Selectors
     public sealed class DualUtilityReasoner : ActionSelector
     {
         private class UtilityWeights
-        { 
+        {
             public float Weight = 0f;
-            public float Rank = 0f;
-            public UtilityAction UAction = null;
-        }
-        
-        public override UtilityAction Select(IAiContext context, List<UtilityAction> actions) {
-            var utilities = new UtilityWeights[actions.Count];
-            var cumulativeWeight = 0f;
-            for (var i = 0; i < actions.Count; i++) {
-                utilities[i].Weight = actions[i].EvaluateAbsoluteUtility(context);
-                utilities[i].UAction = actions[i];
-                cumulativeWeight += utilities[i].Weight;
-            }
+            public readonly float Rank = 0f;
+            public readonly UtilityAction UAction = null;
 
-            foreach (var utilityWeight in utilities) {
-                utilityWeight.Rank = utilityWeight.Weight / cumulativeWeight;
+            public UtilityWeights(float rank, UtilityAction action) {
+                Rank = rank;
+                UAction = action;
+            }
+        }
+
+        public override UtilityAction Select(IAiContext context, List<UtilityAction> actions) {
+            var utilities = new List<UtilityWeights>();
+            var maxRank = 0f;
+            foreach (var action in actions) {
+                float utility = action.EvaluateAbsoluteUtility(context);
+                if (utility > 0f) {
+                    utilities.Add(new UtilityWeights(utility, action));
+                }
+            }
+            
+            var count = utilities.Count;
+            if (count > 0) {
+                // TODO: Check if sorting is correct
+                utilities.Sort((first, second) => first.Rank.CompareTo(second));
             }
 
             return null;
