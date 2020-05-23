@@ -18,6 +18,7 @@ public sealed class MainWindowController
         window = BaseWindow.LoadWindow("MainWindow") as MainWindow;
         if (window != null) {
             window.OnWindowHide += OnWindowHide;
+            window.id = BaseWindow.WindowId.MainWindow;
             window.Show();
         }
     }

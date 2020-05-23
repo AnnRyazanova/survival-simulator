@@ -98,6 +98,7 @@ public sealed class SceneLoaderController : MonoBehaviour
 
         if (showMenuWindow) {
             MainWindowController.Instance.ShowWindow();
+            PrefabsCreator.Get.LoadPrefab("Environment/TimeOfDay");
         }
     }
     

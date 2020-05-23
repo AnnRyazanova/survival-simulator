@@ -5,8 +5,19 @@ using UnityEngine;
 
 public class BaseWindow : MonoBehaviour
 {
+    public enum WindowId
+    {
+        Menu = 0,
+        MainWindow = 1,
+        Inventory = 2,
+        Craft = 3,
+        DeathWindow = 4, 
+        Settings = 5,
+    }
+    
     public Action OnWindowShow = delegate { };
     public Action OnWindowHide = delegate { };
+    public WindowId id;
     
     public virtual void Show()
     {
@@ -23,12 +34,16 @@ public class BaseWindow : MonoBehaviour
 
     protected virtual void OnShow()
     {
-        GameSettingsController.Instance.IsPaused = true;
+        if (id != WindowId.Menu) {
+            GameSettingsController.Instance.IsPaused = true;
+        }
     }
 
     protected virtual void OnHide()
     {
-        GameSettingsController.Instance.IsPaused = false;
+        if (id != WindowId.Menu) {
+            GameSettingsController.Instance.IsPaused = false;
+        }
     }
     
     public static BaseWindow LoadWindow(string prefabName)

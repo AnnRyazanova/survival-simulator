@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Characters.Controllers;
 using Characters.Player;
+using InventoryObjects.Items;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,26 +11,28 @@ public class MainWindow : BaseWindow
 {
     public FixedJoystick Joystick;
     [SerializeField] private PlayerNeedsUiView _playerNeeds;
+    [SerializeField] private Button _attakcButton;
 
-    public override void Show()
-    {
+    public override void Show() {
         base.Show();
         Init();
     }
-    
-    public void OnPauseButtonClick()
-    {
-        // Open SettingsWindow here
-        TestController.Instance.ShowWindow();
+
+    private void Update() {
+        _attakcButton.interactable = PlayerMainScript.MyPlayer.equipment.weapon != null &&
+                                     PlayerMainScript.MyPlayer.equipment.weapon.item is WeaponItem;
     }
 
-    public void OnInventoryButtonClick()
-    {
+    public void OnPauseButtonClick() {
+        // Open SettingsWindow here
+        SettingsController.Instance.ShowWindow();
+    }
+
+    public void OnInventoryButtonClick() {
         InventoryController.Instance.ShowWindow();
     }
 
-    public void OnCraftButtonClick()
-    {
+    public void OnCraftButtonClick() {
         CraftController.Instance.ShowWindow();
     }
 
@@ -40,17 +43,18 @@ public class MainWindow : BaseWindow
             player.lastAttackTime = Time.time + 1f / player.attackRate;
         }
     }
-    
-    public void OnPickUpButtonClick()
-    {
-        PlayerMainScript.MyPlayer.InteractWithClosestItem();
+
+    public void OnPickUpButtonClick() {
+       PlayerMainScript.MyPlayer.InteractWithClosestItem();
     }
 
-    protected override void OnShow() { }
-    protected override void OnHide() { }
-    
-    private void Init()
-    {
+    protected override void OnShow() {
+    }
+
+    protected override void OnHide() {
+    }
+
+    private void Init() {
         StartCoroutine(_playerNeeds.Start());
     }
 }

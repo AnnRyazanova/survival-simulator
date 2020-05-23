@@ -21,4 +21,12 @@ public class HealthProperty : NeedProperty
             DeathWindowController.Instance.ShowWindow();
         }
     }
+    
+    public override void RemovePoints(int points)
+    {
+        base.RemovePoints(points);
+        if (parentObject.Type == Object.ObjectType.Player && _currentPoints <= 0) {
+            DeathWindowController.Instance.ShowWindow();
+        }
+    }
 }

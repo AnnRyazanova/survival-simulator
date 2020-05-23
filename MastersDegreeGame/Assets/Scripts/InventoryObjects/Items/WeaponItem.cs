@@ -11,25 +11,11 @@ namespace InventoryObjects.Items
 
         public GameObject weaponPrefab;
         
-        private void Awake() {
+        protected override void Awake() 
+        {
+            base.Awake();
             ItemType = ItemObjectType.Weapon;
             isStackable = false;
-        }
-
-        public override void OnUse(Object target) {
-            throw new System.NotImplementedException();
-        }
-
-        public override void OnThrowOut() {
-            throw new System.NotImplementedException();
-        }
-
-        public override void OnPickUp() {
-            throw new System.NotImplementedException();
-        }
-
-        public override void OnUpdate() {
-            throw new System.NotImplementedException();
         }
     }
 }

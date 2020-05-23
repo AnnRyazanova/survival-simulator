@@ -34,9 +34,8 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
             _inventorySlots[i].Init(this, inventory.container[i]);
         }
 
-        // TODO: Fix new to maybe some preallocated value
-        _weaponSlots[0].Init(this, new InventoryCell(equipment.weapon, 1));
-        _weaponSlots[1].Init(this, new InventoryCell(equipment.tool, 1));
+        _weaponSlots[0].Init(this, equipment.weapon);
+        _weaponSlots[1].Init(this, equipment.tool);
     }
 
     private void SubscribeToCommonItemEvents(InventorySlot slot) {
@@ -49,13 +48,13 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
 
     private void Init() {
         foreach (var slot in _inventorySlots) {
-            slot.Init(this, new InventoryCell(null, 0), InventorySlotType.Inventory);
-            SubscribeToCommonItemEvents(slot);
+                slot.Init(this, new InventoryCell(null, 0), InventorySlotType.Inventory);
+                SubscribeToCommonItemEvents(slot);
         }
 
         foreach (var slot in _weaponSlots) {
-            slot.Init(this, new InventoryCell(null, 0), InventorySlotType.Equipment);
-            SubscribeToCommonItemEvents(slot);
+                slot.Init(this, new InventoryCell(null, 0), InventorySlotType.Equipment);
+                SubscribeToCommonItemEvents(slot);
         }
     }
 
@@ -69,16 +68,15 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
         Display();
     }
     
-    private void EquipSlot(ref ItemObject equipmentObject, InventoryCell inventoryCell) {
-        Debug.Log("On equip");
-        if (equipmentObject == null) {
-            equipmentObject = inventoryCell.item;
+    private void EquipSlot(ref InventoryCell equipmentObject, InventoryCell inventoryCell) {
+        if (equipmentObject == null || equipmentObject.item == null) {
+            equipmentObject = inventoryCell;
         }
         else {
-            if (equipmentObject.id != inventoryCell.item.id) {
+            if (equipmentObject.item.id != inventoryCell.item.id) {
                 var tmp = equipmentObject;
-                equipmentObject = inventoryCell.item;
-                inventory.AddItem(tmp);
+                equipmentObject = inventoryCell;
+                inventory.AddCell(tmp);
             }
         }
     }
@@ -86,21 +84,22 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
     private void SlotOnEquip(InventoryCell inventoryCell) {
         if (inventoryCell.item.ItemType == ItemObjectType.Weapon) {
             EquipSlot(ref equipment.weapon, inventoryCell);
-            _weaponSlots[0].Init(this, new InventoryCell(equipment.weapon, 1));
+            _weaponSlots[0].Init(this, equipment.weapon);
+
             PlayerMainScript.MyPlayer.EquipWeapon();
         }
         else {
             EquipSlot(ref equipment.tool, inventoryCell);
-            _weaponSlots[1].Init(this, new InventoryCell(equipment.tool, 1));
+            _weaponSlots[1].Init(this, equipment.tool);
             PlayerMainScript.MyPlayer.EquipTool();
         }
 
-        inventory.RemoveItem(inventoryCell);
+        inventory.RemoveItem(inventoryCell, inventoryCell.amount);
         Display();
     }
 
     private void SlotOnUnequip(InventoryCell inventoryCell) {
-        inventory.AddItem(inventoryCell.item);
+        inventory.AddCell(inventoryCell);
         if (inventoryCell.item.ItemType == ItemObjectType.Weapon) {
             PlayerMainScript.MyPlayer.UnequipWeapon();
             equipment.weapon = null;
@@ -115,7 +114,7 @@ public class InventoryWindow : BaseWindow, IPointerClickHandler
 
     private void SlotOnUse(InventoryCell inventoryCell) {
         if (inventoryCell.item.ItemType == ItemObjectType.Consumable) {
-            inventoryCell.item.OnUse(PlayerMainScript.MyPlayer.playerObject);
+            inventoryCell.Use(PlayerMainScript.MyPlayer.playerObject);
             inventory.RemoveItem(inventoryCell);
         }
 

@@ -4,10 +4,11 @@ namespace Characters.Animations
 {
     public abstract class CharacterAnimatorController
     {
-        protected readonly Animator AnimatorController;
+        public readonly Animator AnimatorController;
 
         protected static readonly int MovementSpeedFactor = Animator.StringToHash("movementSpeedFactor");
         protected static readonly int AttackMelee = Animator.StringToHash("attackMelee");
+        protected static readonly int AttackRanged = Animator.StringToHash("attackRanged");
         protected static readonly int TakeDamage = Animator.StringToHash("takeDamage");
         protected static readonly int Die = Animator.StringToHash("isDead");
         protected static readonly int Move = Animator.StringToHash("move");
@@ -20,8 +21,14 @@ namespace Characters.Animations
 
         public abstract void OnAttackMelee();
 
+        public abstract void OnAttackRanged();
+
         public abstract void OnTakeDamage();
 
         public abstract void OnDie();
+        
+        public void OnPickup() {
+            AnimatorController.SetTrigger("pickup");
+        }
     }
 }

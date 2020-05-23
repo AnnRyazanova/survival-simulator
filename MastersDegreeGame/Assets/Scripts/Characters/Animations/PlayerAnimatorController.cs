@@ -17,11 +17,16 @@ namespace Characters.Animations
             AnimatorController.SetTrigger(AttackMelee);
         }
 
-        public override void OnTakeDamage() {
-            AnimatorController.SetTrigger(TakeDamage);
-
+        public override void OnAttackRanged() {
+            AnimatorController.SetTrigger(AttackRanged);
         }
 
+        public override void OnTakeDamage() {
+            AnimatorController.SetTrigger(TakeDamage);
+        }
+
+
+        
         public override void OnDie() {
             AnimatorController.SetBool(Die, true);
         }

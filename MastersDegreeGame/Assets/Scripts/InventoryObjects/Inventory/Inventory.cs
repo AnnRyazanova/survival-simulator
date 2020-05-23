@@ -11,6 +11,8 @@ namespace InventoryObjects.Inventory
         public int maxLength = 9;
 
         public InventoryCell[] container = new InventoryCell[9];
+        private float _lastUpdateTime = 0f;
+        [SerializeField] private float updatesInSecond = 1f;
 
         public void AddItem(ItemObject item, int atIndex = -1, int quantity = 1) {
             var firstFreeCellIdx = atIndex == -1 ? FindFreeCellToAdd(item) : atIndex;
@@ -20,6 +22,15 @@ namespace InventoryObjects.Inventory
             }
             else {
                 container[firstFreeCellIdx] = new InventoryCell(item, quantity);
+            }
+        }
+
+        public void AddCell(InventoryCell cell, int atIndex = -1, int quantity = 1) {
+            for (var i = 0; i < container.Length; ++i) {
+                if (container[i] == null || container[i].item == null) {
+                    container[i] = cell;
+                    break;
+                }
             }
         }
 
@@ -61,8 +72,12 @@ namespace InventoryObjects.Inventory
         #endregion
 
         public void UpdateItems() {
-            foreach (var cell in container) {
-                cell.item.OnUpdate();
+            if (Time.time >= _lastUpdateTime) {
+                foreach (var cell in container) {
+                    if (cell == null || cell.item == null) continue;
+                    cell.Update();
+                    _lastUpdateTime = Time.time + 1f / updatesInSecond;
+                }    
             }
         }
 

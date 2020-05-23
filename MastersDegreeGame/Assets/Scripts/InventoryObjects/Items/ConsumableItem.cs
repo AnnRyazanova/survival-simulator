@@ -11,28 +11,9 @@ namespace InventoryObjects.Items
         public int healthRegen = 2;
         public int hungerRegen = 10;
         
-        private void Awake() {
+        protected override void Awake() {
+            base.Awake();
             ItemType = ItemObjectType.Consumable;
-        }
-
-        public override void OnUse(Object target) {
-            Debug.Log("Entered on use " + ItemType);
-            if (target is PlayerObject playerObject) {
-                playerObject.Health.AddPoints(healthRegen);
-                playerObject.Hunger.AddPoints(hungerRegen);
-            }
-        }
-
-        public override void OnThrowOut() {
-            throw new System.NotImplementedException();
-        }
-
-        public override void OnPickUp() {
-            throw new System.NotImplementedException();
-        }
-
-        public override void OnUpdate() {
-            throw new System.NotImplementedException();
         }
     }
 }

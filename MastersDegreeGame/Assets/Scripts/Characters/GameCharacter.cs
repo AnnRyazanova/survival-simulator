@@ -1,7 +1,9 @@
 ﻿#define DISPLAY_GIZMOS
 
+using System;
 using Characters.Animations;
 using Characters.Controllers;
+using Characters.Systems.Combat;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -14,9 +16,10 @@ namespace Characters
         [SerializeField] protected float characterWalkSpeed = 1.5f;
         public float attackRate = 1.5f;
         
+        
         public float lastAttackTime = 0.0f;
         
-        protected CharacterAnimatorController AnimatorController;
+        public CharacterAnimatorController animatorController;
         protected MovementController MovementController;
         protected NavMeshController NavMeshController;
         
@@ -28,7 +31,8 @@ namespace Characters
         [FormerlySerializedAs("radius")] [SerializeField] protected float itemSearchRadius = 1.0f;
 
 #if DISPLAY_GIZMOS     
-        public void OnDrawGizmosSelected() {
+        public void OnDrawGizmosSelected() 
+        {
             Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
         }
 #endif

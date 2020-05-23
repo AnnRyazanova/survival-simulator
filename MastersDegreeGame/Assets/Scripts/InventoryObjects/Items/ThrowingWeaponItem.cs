@@ -7,29 +7,15 @@ namespace InventoryObjects.Items
     [CreateAssetMenu(fileName = "Create New Weapon", menuName = "Inventory/Items/Throwable")]
     public class ThrowingWeaponItem : ItemObject
     {
-        public float attackPower;
+        public int attackPower;
 
         public GameObject weaponPrefab;
         
-        private void Awake() {
+        protected override void Awake() 
+        {
+            base.Awake();
             ItemType = ItemObjectType.Weapon;
             isStackable = true;
-        }
-
-        public override void OnUse(Object target) {
-            throw new System.NotImplementedException();
-        }
-
-        public override void OnThrowOut() {
-            throw new System.NotImplementedException();
-        }
-
-        public override void OnPickUp() {
-            throw new System.NotImplementedException();
-        }
-
-        public override void OnUpdate() {
-            throw new System.NotImplementedException();
         }
     }
 }

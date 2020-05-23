@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Characters.Animations;
+using Characters.Controllers;
 using Characters.Player;
 using Characters.Systems.Combat;
 using UnityEngine;
@@ -9,24 +10,31 @@ using UnityEngine.Serialization;
 
 namespace Characters.NPC
 {
-    public class NpcMainScript : GameCharacter, ICombatTarget, ICombatAggressor
+    public class NpcMainScript : GameCharacter
     {
         [FormerlySerializedAs("mobObject")] public NpcObject npcObject;
-        public float a = 0.1f;
+
+        private NavMeshAgent _agent;
+
+        private void Awake() {
+            animatorController = new NpcAnimatorController(GetComponent<Animator>());
+            _agent = GetComponent<NavMeshAgent>();
+        }
+
         public void Start() {
-            AnimatorController = new NpcAnimatorController(GetComponent<Animator>());
+            npcObject.animatorController = animatorController;
             attackRate = 1f;
-            GetComponent<NavMeshAgent>().updatePosition = false;
         }
 
         public void tmpAiControllerFunc() {
             var hits = Physics.OverlapSphere(actionSphere.transform.position, itemSearchRadius);
-            if (hits != null && AnimatorController != null) {
+            if (hits != null && animatorController != null) {
                 foreach (var hit in hits) {
-                    var colliderParent = hit.gameObject.transform.parent;
-                    if (colliderParent != null && colliderParent.GetComponent<PlayerMainScript>() != null) {
+                    var hitGameObject = hit.gameObject;
+                    if (hitGameObject != null && hitGameObject.GetComponent<PlayerMainScript>() != null) {
                         if (Time.time >= lastAttackTime) {
-                            AttackTarget(colliderParent.GetComponent<PlayerMainScript>());
+                            (npcObject as ICombatAggressor).AttackTarget(hitGameObject.GetComponent<PlayerMainScript>()
+                                .playerObject);
                             lastAttackTime = Time.time + 1f / attackRate;
                         }
                     }
@@ -36,26 +44,7 @@ namespace Characters.NPC
 
         private void Update() {
             tmpAiControllerFunc();
-        }
-
-        public void TakeDamage(DamageProperty damage) {
-            npcObject.Health.AddPoints(-damage.value);
-            AnimatorController.OnTakeDamage();
-            if (npcObject.Health.CurrentPoints == 0) {
-                AnimatorController.OnDie();
-                transform.GetChild(0).GetComponent<MeshCollider>().enabled = false;
-                AnimatorController = null;
-            }
-        }
-
-        public void AttackTarget(ICombatTarget target) {
-            AnimatorController.OnAttackMelee();
-            StartCoroutine(DoDamage(target, a));
-        }
-
-        public IEnumerator DoDamage(ICombatTarget player, float delay) {
-            yield return new WaitForSecondsRealtime(delay);
-            player.TakeDamage(npcObject.Damage);
+            animatorController.OnMove(_agent.velocity.magnitude, 100);
         }
     }
 }

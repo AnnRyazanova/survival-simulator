@@ -24,6 +24,8 @@ public class BaseProperty: MonoBehaviour
     }
     
     public virtual void AddPoints(int points) { }
+    public virtual void RemovePoints(int points) { }
+
     protected virtual void UpdateProperty() { }
 
     protected virtual bool CanUpdate()

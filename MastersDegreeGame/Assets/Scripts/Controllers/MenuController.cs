@@ -17,6 +17,7 @@ public sealed class MenuController
         if (window != null)
         {
             window.OnWindowHide += OnWindowHide;
+            window.id = BaseWindow.WindowId.Menu;
             window.Show();
         }
     }

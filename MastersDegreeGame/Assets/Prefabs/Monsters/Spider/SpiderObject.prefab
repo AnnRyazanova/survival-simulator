@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 137601814807686304}
-  - component: {fileID: 6682748787914918051}
+  - component: {fileID: 2958479864784799321}
   - component: {fileID: 1640960433280677366}
+  - component: {fileID: 6393210503230187448}
   m_Layer: 0
   m_Name: SpiderObject
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6682748787914918051
+--- !u!114 &2958479864784799321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5201485673633628420}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f9761e32b464194e9a88992c57c2e63, type: 3}
+  m_Script: {fileID: 11500000, guid: 1478b9b1baafa834db4e54466c78850a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1640960433280677366
@@ -57,7 +58,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isDeferred: 0
-  _totalPoints: 0
+  _totalPoints: 100
   _recoveryTime: 0
   _recoveryPoints: 0
   _skipRecovery: 0
+--- !u!114 &6393210503230187448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5201485673633628420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865f4a852ea8b88498e88fb3f171d3e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isDeferred: 0
+  value: 10

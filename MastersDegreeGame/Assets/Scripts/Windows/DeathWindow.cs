@@ -23,6 +23,6 @@ public class DeathWindow : BaseWindow
 
     private void Init()
     {
-        _description.text = string.Format(_description.text, 23);
+        _description.text = string.Format(_description.text, DayNightCycleController.Get.DaysAmount);
     }
 }

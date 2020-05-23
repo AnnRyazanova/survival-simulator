@@ -5,6 +5,7 @@ using Characters.Controllers;
 using Characters.NPC;
 using Characters.Systems;
 using Characters.Systems.Combat;
+using Characters.Systems.Searching;
 using InventoryObjects.Inventory;
 using InventoryObjects.Items;
 using Objects;
@@ -13,12 +14,12 @@ using UnityEngine.AI;
 
 namespace Characters.Player
 {
-    public class PlayerMainScript : GameCharacter, ICombatAggressor, ICombatTarget
+    public class PlayerMainScript : GameCharacter
     {
         public FixedJoystick directionalJoystick;
         public PlayerObject playerObject;
         public static PlayerMainScript MyPlayer { get; private set; }
-
+        
         public GameObject leftHand;
         public GameObject rightHand;
 
@@ -26,18 +27,25 @@ namespace Characters.Player
         public Equipment equipment;
         public float hitDelaySeconds = 0.1f;
         public ConeRadarSystem coneRadarSystem;
+        public CircleRadarSystem circleRadar;
         private Vector2 _inputDirections = Vector2.zero;
 
+        public LayerMask pickableMask;
+        
+        public bool isRangedEquipped;
         private bool _isInited;
-
+        
         public void InteractWithClosestItem() {
+            // var state = animatorController.AnimatorController.GetCurrentAnimatorStateInfo(0);
             var nearest = coneRadarSystem.CheckForVisibleObjects(transform);
             if (nearest != null) {
+                animatorController.OnPickup();
                 var indexToAddTo = inventory.FindFreeCellToAdd(nearest.item);
-                if (indexToAddTo == -1) return;
-                if (nearest.isPickable) {
-                    inventory.AddItem(nearest.item, indexToAddTo);
-                    Destroy(nearest.gameObject);
+                if (indexToAddTo != -1) {
+                    if (nearest.isPickable) {
+                        inventory.AddItem(nearest.item, indexToAddTo);
+                        Destroy(nearest.gameObject);
+                    }
                 }
             }
         }
@@ -49,42 +57,77 @@ namespace Characters.Player
         }
 
         private void Awake() {
+            coneRadarSystem = new ConeRadarSystem();
+            circleRadar = new CircleRadarSystem();
+            animatorController = new PlayerAnimatorController(GetComponent<Animator>());
+            NavMeshController = new NavMeshController(GetComponent<NavMeshAgent>());
             StartCoroutine(InitJoystick());
+            GetComponent<RangedAttacker>().enabled = false;
         }
 
         private void Start() {
             MyPlayer = this;
-            MovementController = new ManualMovementController(GetComponent<CharacterController>());
-            AnimatorController = new PlayerAnimatorController(GetComponent<Animator>());
-            coneRadarSystem = new ConeRadarSystem();
-            NavMeshController = new NavMeshController(GetComponent<NavMeshAgent>());
+            playerObject.animatorController = animatorController;
         }
 
+        #region Combat
+
         public void Attack() {
-            if (equipment.weapon != null) {
-                AnimatorController.OnAttackMelee();
-                var hits = Physics.OverlapSphere(actionSphere.transform.position, itemSearchRadius);
-                if (hits != null) {
-                    foreach (var hit in hits) {
-                        var colliderParent = hit.gameObject.transform.parent;
-                        if (colliderParent != null && colliderParent.GetComponent<NpcMainScript>() != null) {
-                            AttackTarget(colliderParent.GetComponent<NpcMainScript>());
+            if (equipment.weapon.item != null) {
+                if (equipment.weapon.item is WeaponItem melee) {
+                    AttackMelee();
+                }
+                else {
+                    // Defaults to ThrowingWeaponItem
+                }
+            }
+        }
+
+        public void AttackMelee() {
+            animatorController.OnAttackMelee();
+            var hits = Physics.OverlapSphere(actionSphere.transform.position, itemSearchRadius);
+            if (hits != null) {
+                foreach (var hit in hits) {
+                    var colliderParent = hit.gameObject.transform.parent;
+                    if (colliderParent != null) {
+                        if (colliderParent.GetComponent<NpcMainScript>() != null) {
+                            playerObject.AttackTarget(colliderParent.GetComponent<NpcMainScript>().npcObject);
                         }
                     }
                 }
             }
         }
 
-        public void OnDrawGizmosSelected() {
-            Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
+        public void AttackRanged() {
+            if (!Input.GetMouseButtonDown(0)) return;
+            RaycastHit hitInfo;
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray.origin, ray.direction, out hitInfo)) {
+                var npc = hitInfo.collider.gameObject.transform.parent.GetComponent<NpcMainScript>();
+                if (npc != null) {
+                    NavMeshController.LookAt(transform, npc.transform.position);
+                    animatorController.OnAttackRanged();
+                    Debug.Log($"HIT {npc.npcObject.name}");
+                }
+            }
         }
+
+        #endregion
+        
+        // public void OnDrawGizmosSelected() 
+        // {
+        //     Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
+        // }
 
         private void Update() {
             if (_isInited == false) return;
             _inputDirections = new Vector2(directionalJoystick.Horizontal, directionalJoystick.Vertical);
             NavMeshController.Move(transform, _inputDirections,
                 playerObject.Energy.CurrentPoints > 0 ? characterRunSpeed : characterWalkSpeed);
-            AnimatorController.OnMove(_inputDirections.magnitude, playerObject.Energy.CurrentPoints);
+            
+            animatorController.OnMove(_inputDirections.magnitude, playerObject.Energy.CurrentPoints);
+            
+            inventory.UpdateItems();
         }
 
         private IEnumerator InitJoystick() {
@@ -126,48 +169,46 @@ namespace Characters.Player
         }
 
         public void UnequipWeapon() {
+            // TODO: Fix 
+            isRangedEquipped = false;
+            GetComponent<RangedAttacker>().enabled = false;
             UnequipOnPrefab(rightHand);
         }
 
         public void UnequipTool() {
             UnequipOnPrefab(leftHand);
+            leftHand.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
         }
 
         public void EquipWeapon() {
             if (equipment.weapon != null) {
                 // Instantiate prefab on scene
-                var instance = InstantiateEquipmentPrefab(rightHand, (equipment.weapon as WeaponItem)?.weaponPrefab);
+                GameObject instance = null;
+                if (equipment.weapon.item is WeaponItem weapon) {
+                    instance = InstantiateEquipmentPrefab(rightHand, weapon.weaponPrefab);
+                    playerObject.Damage.value = weapon.attackPower;
+                }
+                else if (equipment.weapon.item is ThrowingWeaponItem throwingWeapon) {
+                    instance = InstantiateEquipmentPrefab(rightHand, throwingWeapon.weaponPrefab);
+                    playerObject.Damage.value = throwingWeapon.attackPower;
+                    // TODO: Refactor and null checks
+                    isRangedEquipped = true;
+                    GetComponent<RangedAttacker>().enabled = true;
+                }
+
                 EquipOnPrefab(rightHand, instance);
-                playerObject.Damage.value = (equipment.weapon as WeaponItem).attackPower;
             }
         }
 
         public void EquipTool() {
             if (equipment.tool != null) {
                 // Instantiate prefab on scene
-                var instance = InstantiateEquipmentPrefab(leftHand, (equipment.tool as ToolItem)?.toolPrefab);
+                var instance = InstantiateEquipmentPrefab(leftHand, (equipment.tool.item as ToolItem)?.toolPrefab);
                 EquipOnPrefab(leftHand, instance);
+                instance.transform.GetChild(0).gameObject.SetActive(true);
             }
         }
 
         #endregion
-
-        public void AttackTarget(ICombatTarget target) {
-            StartCoroutine(DoDamage(target, hitDelaySeconds));
-        }
-        
-        public IEnumerator DoDamage(ICombatTarget target, float delay) {
-            yield return new WaitForSecondsRealtime(delay);
-            target.TakeDamage(playerObject.Damage);
-        }
-
-        public void TakeDamage(DamageProperty damage) {
-            playerObject.Health.AddPoints(-damage.value);
-            AnimatorController.OnTakeDamage();
-            if (playerObject.Health.CurrentPoints == 0) {
-                AnimatorController.OnDie();
-                transform.GetChild(0).GetComponent<MeshCollider>().enabled = false;
-            }
-        }
     }
 }

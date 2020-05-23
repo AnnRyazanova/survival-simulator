@@ -17,8 +17,8 @@ MonoBehaviour:
   maxItemsInStack: 10
   title: "\u041E\u0445\u043E\u0442\u043D\u0438\u0447\u0438\u0439 \u043D\u043E\u0436"
   id: 4
-  durability: 0
-  durabilityDecreaseRate: 100
+  maxDurability: 100
+  durabilityDecreaseRate: 1
   description: "\u041F\u0440\u0435\u043A\u0440\u0430\u0441\u043D\u044B\u0439 \u043D\u043E\u0436"
   attackPower: 0
   weaponPrefab: {fileID: 126064, guid: 1e75eeab33a7c1f4982254ee87e734da, type: 3}
