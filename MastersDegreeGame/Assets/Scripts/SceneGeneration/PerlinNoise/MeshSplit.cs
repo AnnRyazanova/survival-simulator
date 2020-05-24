@@ -55,6 +55,8 @@ public class MeshSplit : MonoBehaviour
     private Vector2[] baseUvs;
     private Vector3[] baseNormals;
 
+    public RegionsData data;
+
     // this dictionary holds a list of triangle indices for every grid node
     private Dictionary<GridCoordinates, List<int>> triDictionary;
     private Dictionary<string, List<int>> triangles;
@@ -63,6 +65,7 @@ public class MeshSplit : MonoBehaviour
     [HideInInspector] public List<GameObject> childen = new List<GameObject>();
 
     private void MapTrianglesToGridNodes() {
+        var a = data.regions;
         /* Create a list of triangle indices from our mesh for every grid node */
 
         triDictionary = new Dictionary<GridCoordinates, List<int>>();

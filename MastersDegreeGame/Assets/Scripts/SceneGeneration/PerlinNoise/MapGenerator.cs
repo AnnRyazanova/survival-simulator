@@ -17,7 +17,7 @@ namespace SceneGeneration.PerlinNoise
         };
 
         public DrawMode drawMode;
-
+        public RegionsData data;
         public Noise.NormalizeMode normalizeMode;
 
         public const int MapChunkSize = 256;
