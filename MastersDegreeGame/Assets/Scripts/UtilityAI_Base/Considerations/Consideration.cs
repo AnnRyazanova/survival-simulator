@@ -15,12 +15,14 @@ namespace UtilityAI_Base.Considerations
     public class Consideration
     {
         [SerializeField] private string description = "New consideration";
-        [SerializeField] private bool isEnabled = true;
         [SerializeField] private float weight = 0f;
         [SerializeField] private Vector2 valueRange = new Vector2(0f, 100f);
-
+        
         [HideInInspector] public int evaluatedContextVariableId = 0;
 
+        public bool canApplyVeto = false;
+        public bool isEnabled = true;
+        
         public string evaluatedContextVariable = null;
         public CurveType responseCurveType = CurveType.Linear;
 

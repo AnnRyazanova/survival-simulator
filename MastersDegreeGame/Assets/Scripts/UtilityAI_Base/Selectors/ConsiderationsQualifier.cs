@@ -32,8 +32,10 @@ namespace UtilityAI_Base.Selectors
         public new string description = "product qualifier";
         
         public override float Qualify(IAiContext context, List<Consideration> considerations) {
-            var product = considerations.Aggregate(1f, (current, consideration) =>
-                current * consideration.Evaluate(context));
+            var product = 1f;
+            foreach (var consideration in considerations) {
+                if (consideration.isEnabled) product *= consideration.Evaluate(context);
+            }
             var modificationFactor = 1f - 1f / considerations.Count;
             var makeUpValue = (1f - product) * modificationFactor;
             return product + makeUpValue * product;
@@ -57,7 +59,18 @@ namespace UtilityAI_Base.Selectors
         public new string description = "avg qualifier";
         
         public override float Qualify(IAiContext context, List<Consideration> considerations) {
-            return considerations.Average(consideration => consideration.Evaluate(context));
+            var averageScore = 0f;
+            foreach (var consideration in considerations) {
+                if (consideration.isEnabled) {
+                    var score = consideration.Evaluate(context);
+                    if (consideration.canApplyVeto && Math.Abs(score) < 1e-3) {
+                        return 0f;
+                    }
+
+                    averageScore += score;
+                }
+            }
+            return averageScore / considerations.Count;
         }
     }
 }
