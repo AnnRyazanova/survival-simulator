@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -20,7 +21,8 @@ namespace UtilityAI_Base.Intellect
         
         private AiContext _context;
         private NavMeshAgent _navMeshAgent;
-        
+        private UtilityAction _currentAction = null;
+
         private float _lastUpdated = 0f;
         
         private void Awake() {
@@ -36,9 +38,17 @@ namespace UtilityAI_Base.Intellect
                 
                 // CALL ACTION SELECTION HERE
                 
-                UtilityAction currentAction = selector.Select(_context, actions);
-                if (currentAction != null && currentAction.CanBeInvoked()) {
-                    currentAction.Execute(_context);
+                UtilityAction action = selector.Select(_context, actions);
+                if (action != null) {
+                    if (_currentAction == null || _currentAction.Utility < action.Utility) {
+                        StartCoroutine(_currentAction.SetInCooldown());
+                        _currentAction = action;
+                    }
+                }
+
+                if (_currentAction != null) {
+                    _currentAction.Execute(_context);
+                    StartCoroutine(_currentAction.AddInertia());
                 }
             }
         }

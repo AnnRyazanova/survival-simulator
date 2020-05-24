@@ -35,7 +35,7 @@ namespace UtilityAI_Base.Editor
             var quarterW = EditorGUIUtility.currentViewWidth / 4;
 
             EditorGUI.PropertyField(rect, consideration);
-            
+
             if (SelectedAction.considerations[index].UtilityCurve is AnimationResponseCurve anim) {
                 EditorGUI.CurveField(new Rect(rect.width - quarterW / 2,
                     rect.y + VerticalSpacing, 60, EditorGUIUtility.singleLineHeight), anim.curve);
@@ -50,7 +50,8 @@ namespace UtilityAI_Base.Editor
                     new Rect(rect.x + 10, rect.y + 3 * VerticalSpacing, rect.width - quarterW,
                         EditorGUIUtility.singleLineHeight),
                     "Target parameter",
-                    SelectedAction.considerations[index].evaluatedContextVariableId, _contexts[_contextIndex].ToArray());
+                    SelectedAction.considerations[index].evaluatedContextVariableId,
+                    _contexts[_contextIndex].ToArray());
 
                 SelectedAction.considerations[index].evaluatedContextVariable =
                     _contexts[_contextIndex][SelectedAction.considerations[index].evaluatedContextVariableId];
@@ -131,9 +132,6 @@ namespace UtilityAI_Base.Editor
                 EditorGUILayout.FloatField(new GUIContent("Weight"), SelectedAction.ActionWeight);
             EditorGUILayout.Separator();
 
-            SelectedAction.maxConsecutiveInvocations = (int) EditorGUILayout.IntField(
-                new GUIContent("Max Consecutive Invocations"), SelectedAction.maxConsecutiveInvocations);
-            EditorGUILayout.Separator();
             EditorGUILayout.LabelField(new GUIContent("Action To Be Performed:"), EditorStyles.boldLabel);
             EditorGUILayout.Separator();
 

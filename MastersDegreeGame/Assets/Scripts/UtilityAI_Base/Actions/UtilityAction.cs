@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Characters.NPC;
 using UnityEngine;
@@ -45,13 +46,16 @@ namespace UtilityAI_Base.Actions
         /// Less/more probable to be executed 
         /// </summary>
         private float _actionWeight = 1f;
-
+        
         public float ActionWeight
         {
             get => _actionWeight;
             set => _actionWeight = Mathf.Clamp(value, 0f, 100f);
         }
 
+        private float _utility = 0f;
+        public float Utility => _utility;
+        
         /// <summary>
         /// Action description
         /// </summary>
@@ -87,12 +91,37 @@ namespace UtilityAI_Base.Actions
         }
 
         /// <summary>
+        /// Callback for inertia coroutine
+        /// Used to add weight to action, so it wont be disrupted unless found action with much higher priority
+        /// </summary>
+        /// <returns> WaitForSeconds coroutine object </returns>
+        public IEnumerator AddInertia() {
+            var oldWeight = _actionWeight;
+            _actionWeight *= 2f;
+            yield return new WaitForSeconds(_cooldownTime);
+            _actionWeight = oldWeight;
+        }
+
+        /// <summary>
+        /// Callback for cooldown coroutine
+        /// Used to add "trace" to action, so it wont be called consecutively 
+        /// </summary>
+        /// <returns> WaitForSeconds coroutine object </returns>
+        public IEnumerator SetInCooldown() {
+            var oldWeight = _actionWeight;
+            _actionWeight = 0f;
+            yield return new WaitForSeconds(_cooldownTime);
+            _actionWeight = oldWeight;
+        }
+        
+        /// <summary>
         ///  Evaluate absolute (raw) utility score of performing action from Considerations utilities
         /// </summary>
         /// <param name="context">AI Context (game world state)</param>
         /// <returns>Absolute (raw) utility score of performing this action</returns>
         public virtual float EvaluateAbsoluteUtility(IAiContext context) {
-            return qualifier.Qualify(context, considerations);
+            _utility = qualifier.Qualify(context, considerations);
+            return _utility;
         }
 
         /// <summary>
