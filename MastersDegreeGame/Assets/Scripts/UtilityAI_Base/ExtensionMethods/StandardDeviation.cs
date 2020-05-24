@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UtilityAI_Base.Selectors;
+using UtilityAI_Base.Selectors.ActionSelectors;
 
 namespace UtilityAI_Base.ExtensionMethods
 {

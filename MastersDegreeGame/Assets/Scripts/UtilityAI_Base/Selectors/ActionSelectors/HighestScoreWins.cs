@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using UtilityAI_Base.Actions;
+using UtilityAI_Base.Contexts.Interfaces;
+using UtilityAI_Base.CustomAttributes;
+
+namespace UtilityAI_Base.Selectors.ActionSelectors
+{
+    /// <summary>
+    /// Highest scored action wins and shall be executed
+    /// </summary>
+    [Serializable]
+    [ActionSelector("Highest Score Wins")]
+    public sealed class HighestScoreWins : ActionSelector
+    {
+        public string Name;
+
+        public override UtilityAction Select(IAiContext context, List<UtilityAction> actions) {
+            var maxUtility = 0f;
+            UtilityAction highestScoreAction = null;
+            foreach (var action in actions) {
+                if (action.CanBeInvoked()) {
+                    var utility = action.ActionWeight * action.EvaluateAbsoluteUtility(context);
+                    if (utility >= maxUtility) {
+                        maxUtility = utility;
+                        highestScoreAction = action;
+                    }
+                }
+            }
+
+            return highestScoreAction;
+        }
+    }
+}

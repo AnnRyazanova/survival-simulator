@@ -1,20 +1,17 @@
 using System;
-using UtilityAI_Base.Selectors;
+using UtilityAI_Base.Selectors.ConsiderationQualifiers;
 
-namespace DefaultNamespace
+namespace UtilityAI_Base.Selectors.Factories
 {
     public sealed class ConsiderationsQualifierFactory
     {
         private static readonly ProductQualifier Product = new ProductQualifier();
-        private static readonly SumQualifier Sum = new SumQualifier();
         private static readonly AverageQualifier Average = new AverageQualifier();
         
         public static ConsiderationsQualifier GetQualifier(QualifierType type) {
             switch (type) {
                 case QualifierType.Product:
                     return Product;
-                case QualifierType.Sum:
-                    return Sum;
                 case QualifierType.Average:
                     return Average;
                 default:

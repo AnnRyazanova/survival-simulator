@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using DefaultNamespace;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -9,9 +8,9 @@ using UtilityAI_Base.Actions;
 using UtilityAI_Base.Considerations;
 using UtilityAI_Base.Contexts;
 using UtilityAI_Base.CustomAttributes;
-using UtilityAI_Base.ResponseCurves;
 using UtilityAI_Base.ResponseCurves.SuppliedCurves;
 using UtilityAI_Base.Selectors;
+using UtilityAI_Base.Selectors.Factories;
 
 namespace UtilityAI_Base.Editor
 {

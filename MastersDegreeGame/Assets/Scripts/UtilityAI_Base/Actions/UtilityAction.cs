@@ -1,23 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Characters.NPC;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UtilityAI_Base.Considerations;
 using UtilityAI_Base.Contexts.Interfaces;
-using UtilityAI_Base.Intellect;
 using UtilityAI_Base.Selectors;
+using UtilityAI_Base.Selectors.ConsiderationQualifiers;
 
 namespace UtilityAI_Base.Actions
 {
     [Serializable]
     public class ActionTask : UnityEvent<IAiContext>
     {
-        
     }
-    
+
     /// <summary>
     /// Action base class
     /// All actions should inherit this
@@ -27,7 +25,7 @@ namespace UtilityAI_Base.Actions
     public class UtilityAction : ScriptableObject
     {
         public ActionTask actionTask;
-        
+
         /// <summary>
         /// How much time should pass before action can be invoked again 
         /// </summary>
@@ -46,7 +44,7 @@ namespace UtilityAI_Base.Actions
         /// Less/more probable to be executed 
         /// </summary>
         private float _actionWeight = 1f;
-        
+
         public float ActionWeight
         {
             get => _actionWeight;
@@ -55,7 +53,7 @@ namespace UtilityAI_Base.Actions
 
         private float _utility = 0f;
         public float Utility => _utility;
-        
+
         /// <summary>
         /// Action description
         /// </summary>
@@ -113,7 +111,7 @@ namespace UtilityAI_Base.Actions
             yield return new WaitForSeconds(_cooldownTime);
             _actionWeight = oldWeight;
         }
-        
+
         /// <summary>
         ///  Evaluate absolute (raw) utility score of performing action from Considerations utilities
         /// </summary>
