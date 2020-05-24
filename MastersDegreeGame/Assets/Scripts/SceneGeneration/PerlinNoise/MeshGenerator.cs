@@ -1,12 +1,26 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SceneGeneration.PerlinNoise
 {
     public static class MeshGenerator
     {
+        public static Dictionary<string, List<int>> Triangles = new Dictionary<string, List<int>>();
+
+        private static void AddSubmeshTriangle(string name, int a, int b, int c) {
+            Triangles.TryGetValue(name, out var value);
+            if (value == null) {
+                value = new List<int>();
+            }
+            value.Add(a);
+            value.Add(b);
+            value.Add(c);
+        }
+        
         public static MeshData GenerateTerrainMesh(float[,] heightMap, float heightMultiplier,
-            AnimationCurve heightCurve, int levelOfDetail) {
+            AnimationCurve heightCurve, int levelOfDetail, TerrainType[] regions = null) {
+
             var myheightCurve = new AnimationCurve(heightCurve.keys);
 
             var width = heightMap.GetLength(0);
@@ -31,6 +45,18 @@ namespace SceneGeneration.PerlinNoise
                         meshData.AddTriangle(vertexIndex, vertexIndex + verticesPerLine + 1,
                             vertexIndex + verticesPerLine);
                         meshData.AddTriangle(vertexIndex + verticesPerLine + 1, vertexIndex, vertexIndex + 1);
+                       
+                        for (var i = 0; i < regions.Length; i++) {
+                            // TODO: Range instead of height
+                            if (heightMap[x, y] >= regions[i].height) {
+                                Debug.Log("a");
+                                AddSubmeshTriangle(regions[i].name, vertexIndex, vertexIndex + verticesPerLine + 1,
+                                    vertexIndex + verticesPerLine);
+                                AddSubmeshTriangle(regions[i].name, vertexIndex + verticesPerLine + 1, vertexIndex, vertexIndex + 1);
+                            } else {
+                                break;
+                            }
+                        }
                     }
 
                     vertexIndex++;

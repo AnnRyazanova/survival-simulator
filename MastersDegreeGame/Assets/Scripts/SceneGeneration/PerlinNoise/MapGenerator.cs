@@ -20,7 +20,7 @@ namespace SceneGeneration.PerlinNoise
 
         public Noise.NormalizeMode normalizeMode;
 
-        public const int MapChunkSize = 241;
+        public const int MapChunkSize = 256;
         [Range(0, 6)] public int editorPreviewLod;
         public float noiseScale;
 
@@ -64,7 +64,7 @@ namespace SceneGeneration.PerlinNoise
                 case DrawMode.Mesh:
                     display.DrawMesh(
                         MeshGenerator.GenerateTerrainMesh(mapData.HeightMap, meshHeightMultiplier, meshHeightCurve,
-                            editorPreviewLod),
+                            editorPreviewLod, regions),
                         TextureGenerator.TextureFromColourMap(mapData.ColourMap, MapChunkSize, MapChunkSize));
                     break;
                 case DrawMode.FalloffMap:
@@ -95,7 +95,7 @@ namespace SceneGeneration.PerlinNoise
 
         private void MeshDataThread(MapData mapData, int lod, Action<MeshData> callback) {
             var meshData =
-                MeshGenerator.GenerateTerrainMesh(mapData.HeightMap, meshHeightMultiplier, meshHeightCurve, lod);
+                MeshGenerator.GenerateTerrainMesh(mapData.HeightMap, meshHeightMultiplier, meshHeightCurve, lod, regions);
             lock (_meshDataThreadInfoQueue) {
                 _meshDataThreadInfoQueue.Enqueue(new MapThreadInfo<MeshData>(callback, meshData));
             }
@@ -124,6 +124,7 @@ namespace SceneGeneration.PerlinNoise
                 lacunarity, centre + offset, normalizeMode);
 
             var colourMap = new Color[MapChunkSize * MapChunkSize];
+
             for (var y = 0; y < MapChunkSize; y++) {
                 for (var x = 0; x < MapChunkSize; x++) {
                     if (useFalloff) {
