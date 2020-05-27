@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using Characters.Animations;
 using Characters.Controllers;
 using Characters.NPC;
@@ -11,10 +12,13 @@ using InventoryObjects.Items;
 using Objects;
 using UnityEngine;
 using UnityEngine.AI;
+using UtilityAI_Base.Actions;
+using UtilityAI_Base.Agents.Interfaces;
+
 
 namespace Characters.Player
 {
-    public class PlayerMainScript : GameCharacter
+    public class PlayerMainScript : GameCharacter, IAgent
     {
         public FixedJoystick directionalJoystick;
         public PlayerObject playerObject;
@@ -25,14 +29,18 @@ namespace Characters.Player
 
         public Inventory inventory;
         public Equipment equipment;
+        
         public float hitDelaySeconds = 0.1f;
+        
         public ConeRadarSystem coneRadarSystem;
         public CircleRadarSystem circleRadar;
-        private Vector2 _inputDirections = Vector2.zero;
+        
 
         public LayerMask pickableMask;
         
         public bool isRangedEquipped;
+        
+        private Vector2 _inputDirections = Vector2.zero;
         private bool _isInited;
         
         public void InteractWithClosestItem() {
@@ -114,10 +122,11 @@ namespace Characters.Player
 
         #endregion
         
-        // public void OnDrawGizmosSelected() 
-        // {
-        //     Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
-        // }
+        public void OnDrawGizmosSelected() 
+        {
+            Gizmos.DrawWireSphere(actionSphere.transform.position, itemSearchRadius);
+            Gizmos.DrawWireSphere(transform.position, 10f);
+        }
 
         private void Update() {
             if (_isInited == false) return;
@@ -210,5 +219,17 @@ namespace Characters.Player
         }
 
         #endregion
+
+        public bool IsActive() {
+            throw new NotImplementedException();
+        }
+
+        public Vector3 GetCurrentWorldPosition() {
+            return transform.position;
+        }
+
+        public Vector3 GetCurrentVelocity() {
+            throw new NotImplementedException();
+        }
     }
 }
