@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9388da7a65a14aceaf1751c612bdd614, type: 3}
-  m_Name: New Action
+  m_Name: 1
   m_EditorClassIdentifier: 
   actionTask:
     m_PersistentCalls:
       m_Calls: []
   contextIndex: 0
-  description: FIRST
+  description: Second
   maxConsecutiveInvocations: 0
   qualifierType: 0
   considerations:
-  - description: 0
+  - description: n
     weight: 0
     valueRange: {x: 1, y: 10}
     evaluatedContextVariableId: 0
@@ -31,31 +31,31 @@ MonoBehaviour:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0005912781
-        value: 1.0622406
-        inSlope: -3.146014
-        outSlope: -3.146014
-        tangentMode: 34
+        time: 0
+        value: -0.0011291504
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.33333334
+        outWeight: 0
       - serializedVersion: 3
-        time: 0.23193239
-        value: 0.33443826
-        inSlope: -1.1807812
-        outSlope: -1.1807812
+        time: 0.8205199
+        value: 0.37491828
+        inSlope: 1.4261315
+        outSlope: 1.4261315
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.03379524
+        outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.0000336
-        value: 0.003473401
-        inSlope: -0.43088704
-        outSlope: -0.43088704
-        tangentMode: 34
+        time: 1
+        value: 0.99887085
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
+        inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2

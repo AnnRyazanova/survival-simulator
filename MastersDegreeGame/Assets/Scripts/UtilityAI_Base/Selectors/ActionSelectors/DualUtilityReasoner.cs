@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UtilityAI_Base.Actions;
+using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
 using UtilityAI_Base.CustomAttributes;
 using UtilityAI_Base.ExtensionMethods;
@@ -24,7 +25,7 @@ namespace UtilityAI_Base.Selectors.ActionSelectors
             }
         }
 
-        public override UtilityAction Select(IAiContext context, List<UtilityAction> actions) {
+        public override UtilityAction Select(AiContext context, List<UtilityAction> actions) {
             var utilities = new List<UtilityWeights>();
             foreach (var action in actions) {
                 float utility = action.EvaluateAbsoluteUtility(context);

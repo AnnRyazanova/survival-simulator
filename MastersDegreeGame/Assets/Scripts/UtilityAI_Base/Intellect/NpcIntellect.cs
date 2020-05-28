@@ -57,11 +57,15 @@ namespace UtilityAI_Base.Intellect
         private void Update() {
             if (Time.time >= _lastUpdated) {
                 _lastUpdated = Time.time + 1f / _updateTimesPerSecond;
-
+                
                 // Update context
                 Sense();
                 // Think about next action to be taken
-                Think();
+                var elapsed = Time.time;
+                for (int i = 0; i < 1000; ++i) {
+                    Think();
+                }
+                Debug.Log((Time.time - elapsed));
                 // Perform selected action
                 Act();
             }
@@ -73,24 +77,29 @@ namespace UtilityAI_Base.Intellect
         }
 
         private void Think() {
-            UtilityAction action = selector.Select(_context, actions);
-            if (action != null) {
-                if (_currentAction != null && _currentAction.Utility < action.Utility) {
-                    StartCoroutine(_currentAction.SetInCooldown());
-                    _currentAction = action;
-                }
-                else if (_currentAction == null) {
-                    _currentAction = action;
-                }
-            }
-            else {
-                // if (_currentAction != null) StartCoroutine(_currentAction.SetInCooldown());
-                // if (fallBackActions.Count > 0) _currentAction = fallbackSelector.Select(_context, fallBackActions);
-            }
+                UtilityAction action = selector.Select(_context, actions);
+                _currentAction = action;
+
+            // if (action != null) {
+            //     _currentAction = action;
+            //
+            //     // if (_currentAction != null && _currentAction.Utility < action.Utility) {
+            //     //     StartCoroutine(_currentAction.SetInCooldown());
+            //     //     _currentAction = action;
+            //     // }
+            //     // if (_currentAction == null) {
+            //     //     _currentAction = action;
+            //     // }
+            // }
+            // else {
+            //     // if (_currentAction != null) StartCoroutine(_currentAction.SetInCooldown());
+            //     // if (fallBackActions.Count > 0) _currentAction = fallbackSelector.Select(_context, fallBackActions);
+            // }
         }
 
         private void Act() {
             if (_currentAction != null) {
+                Debug.Log(_currentAction.description);
                 _currentAction.Execute(_context);
                 StartCoroutine(_currentAction.AddInertia());
             }

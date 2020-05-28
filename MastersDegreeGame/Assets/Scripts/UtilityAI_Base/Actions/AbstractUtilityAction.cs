@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UtilityAI_Base.Considerations;
+using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
 using UtilityAI_Base.Selectors;
 using UtilityAI_Base.Selectors.ConsiderationQualifiers;
@@ -116,7 +117,7 @@ namespace UtilityAI_Base.Actions
         /// </summary>
         /// <param name="context">AI Context (game world state)</param>
         /// <returns>Absolute (raw) utility score of performing this action</returns>
-        public abstract float EvaluateAbsoluteUtility(IAiContext context);
+        public abstract float EvaluateAbsoluteUtility(AiContext context);
 
         public virtual float EvaluateAbsoluteUtility(float param) {
             throw new NotImplementedException("Should implement Evaluation of absolute utility with param");
@@ -126,7 +127,7 @@ namespace UtilityAI_Base.Actions
         /// Execute current action in current context
         /// </summary>
         /// <param name="context">AI Context (game world state)</param>
-        public abstract void Execute(IAiContext context);
+        public abstract void Execute(AiContext context);
 
         public virtual bool IsInExecution() => _inExecution;
 

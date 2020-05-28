@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UtilityAI_Base.Considerations;
+using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
 
 namespace UtilityAI_Base.Selectors
@@ -15,6 +16,6 @@ namespace UtilityAI_Base.Selectors
     public abstract class ConsiderationsQualifier
     {
         public string description = "qualifier";
-        public abstract float Qualify(IAiContext context, List<Consideration> considerations);
+        public abstract float Qualify(AiContext context, List<Consideration> considerations);
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UtilityAI_Base.Actions;
+using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
 using UtilityAI_Base.CustomAttributes;
 
@@ -16,7 +17,7 @@ namespace UtilityAI_Base.Selectors.ActionSelectors
     {
         public string name;
 
-        public override UtilityAction Select(IAiContext context, List<UtilityAction> actions) {
+        public override UtilityAction Select(AiContext context, List<UtilityAction> actions) {
             var maxUtility = 0f;
             UtilityAction highestScoreAction = null;
             foreach (var action in actions) {
@@ -26,6 +27,7 @@ namespace UtilityAI_Base.Selectors.ActionSelectors
                     highestScoreAction = action;
                 }
             }
+            // Debug.Log(maxUtility);
             return highestScoreAction;
         }
     }

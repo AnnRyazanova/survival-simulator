@@ -293,6 +293,7 @@ MonoBehaviour:
   fallbackSelectorType: 0
   actions:
   - {fileID: 11400000, guid: 977d6421a8bde2d4b8a134622ef5a7b8, type: 2}
+  - {fileID: 11400000, guid: 5efeeff12bd4f1745bc163569a0d3e3c, type: 2}
   fallBackActions: []
 --- !u!1 &5619418397164638223
 GameObject:
@@ -2198,16 +2199,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpiderObject
       objectReference: {fileID: 0}
-    - target: {fileID: 2958479864784799321, guid: 7687883559cf4c14e8c92dc6f8990952,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6393210503230187448, guid: 7687883559cf4c14e8c92dc6f8990952,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 137601814807686304, guid: 7687883559cf4c14e8c92dc6f8990952,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2263,6 +2254,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2958479864784799321, guid: 7687883559cf4c14e8c92dc6f8990952,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1640960433280677366, guid: 7687883559cf4c14e8c92dc6f8990952,
         type: 3}
       propertyPath: _totalPoints
@@ -2276,6 +2272,11 @@ PrefabInstance:
     - target: {fileID: 1640960433280677366, guid: 7687883559cf4c14e8c92dc6f8990952,
         type: 3}
       propertyPath: _skipRecovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393210503230187448, guid: 7687883559cf4c14e8c92dc6f8990952,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
