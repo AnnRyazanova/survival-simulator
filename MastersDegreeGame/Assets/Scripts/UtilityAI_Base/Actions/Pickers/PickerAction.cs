@@ -1,25 +1,31 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UtilityAI_Base.Actions.Base;
 using UtilityAI_Base.Considerations;
 using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
 
 namespace UtilityAI_Base.Actions.Pickers
-{ 
-    public sealed class Pick<T>
-    {
-        public float Utility { get; set; }
-        public T Target { get; set; }
-
-        public Pick(float utility, T target) {
-            Utility = utility;
-            Target = target;
-        }
-    }
-    
-    public abstract class PickerAction<T> : AbstractUtilityAction
+{
+    [Serializable]
+    [CreateAssetMenu(fileName = "New Picker", menuName = "UtilityAI/Picker")]
+    public class PickerAction : AbstractUtilityAction
     {
         public string evaluatedParamName = null;
-        public abstract Pick<T> GetBest(AiContext context);
+
+        public List<InputConsideration> considerations;
+
+        public void Awake() {
+            considerations = new List<InputConsideration>();
+        }
+        
+        public override float EvaluateAbsoluteUtility(AiContext context) {
+            throw new NotImplementedException();
+        }
+
+        public override void Execute(AiContext context, UtilityPick pick) {
+            throw new NotImplementedException();
+        }
     }
 }

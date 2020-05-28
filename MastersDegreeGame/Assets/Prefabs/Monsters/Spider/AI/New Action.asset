@@ -15,47 +15,45 @@ MonoBehaviour:
   actionTask:
     m_PersistentCalls:
       m_Calls: []
-  contextIndex: 0
-  description: FIRST
+  description: First
   maxConsecutiveInvocations: 0
   qualifierType: 0
   considerations:
-  - description: 0
-    weight: 0
-    valueRange: {x: 1, y: 10}
-    evaluatedContextVariableId: 0
+  - description: n
+    weight: 1
+    valueRange: {x: 0, y: 10}
     canApplyVeto: 0
     isEnabled: 1
-    evaluatedContextVariable: DistanceToEnemy
+    evaluatedContextVariable: 1
     utilityCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0005912781
-        value: 1.0622406
-        inSlope: -3.146014
-        outSlope: -3.146014
-        tangentMode: 34
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0.33333334
+        outWeight: 0
       - serializedVersion: 3
-        time: 0.23193239
-        value: 0.33443826
-        inSlope: -1.1807812
-        outSlope: -1.1807812
+        time: 0.91439587
+        value: 0.3056054
+        inSlope: 0.91713214
+        outSlope: 0.91713214
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.03379524
+        outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.0000336
-        value: 0.003473401
-        inSlope: -0.43088704
-        outSlope: -0.43088704
-        tangentMode: 34
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
+        inWeight: 0
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2

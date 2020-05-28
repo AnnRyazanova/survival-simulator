@@ -1,7 +1,6 @@
 ﻿using System;
 using Characters.Player;
 using UnityEngine;
-using UtilityAI_Base.Agents.Interfaces;
 using UtilityAI_Base.Contexts;
 using UtilityAI_Base.CustomAttributes;
 
@@ -21,7 +20,6 @@ namespace Prefabs.Monsters.Spider.AI
                     }
                 }
             }
-            Fill();
         }
 
         private void FixedUpdate() {
@@ -29,7 +27,6 @@ namespace Prefabs.Monsters.Spider.AI
         }
 
         private float _distanceToEnemy = 100f;
-
         [NpcContextVar]
         public float DistanceToEnemy
         {
@@ -38,5 +35,21 @@ namespace Prefabs.Monsters.Spider.AI
         }
 
         [NpcContextVar] public float QuantityEnemiesNearby { get; set; }
+        public override object GetParameter(AiContextVariable param) {
+            switch (param) {
+                case AiContextVariable.DistanceToTarget:
+                    return DistanceToEnemy;
+                case AiContextVariable.Enemies:
+                    return QuantityEnemiesNearby;
+                case AiContextVariable.None:
+                    return null;
+                case AiContextVariable.Target:
+                    return target;
+                case AiContextVariable.Owner:
+                    return owner;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(param), param, null);
+            }
+        }
     }
 }

@@ -8,8 +8,6 @@ namespace UtilityAI_Base.Contexts.Interfaces
     /// </summary>
     public interface IAiContext
     {
-        float GetParameter(string paramName);
-        IEnumerable<T> GetSequenceParameter<T>(string paramName);
     }
 }
 

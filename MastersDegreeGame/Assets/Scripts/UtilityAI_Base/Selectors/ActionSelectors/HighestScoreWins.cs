@@ -17,9 +17,9 @@ namespace UtilityAI_Base.Selectors.ActionSelectors
     {
         public string name;
 
-        public override UtilityAction Select(AiContext context, List<UtilityAction> actions) {
+        public override AtomicUtilityAction Select(AiContext context, List<AtomicUtilityAction> actions) {
             var maxUtility = 0f;
-            UtilityAction highestScoreAction = null;
+            AtomicUtilityAction highestScoreAction = null;
             foreach (var action in actions) {
                 var utility = action.EvaluateAbsoluteUtility(context);
                 if (utility >= maxUtility) {

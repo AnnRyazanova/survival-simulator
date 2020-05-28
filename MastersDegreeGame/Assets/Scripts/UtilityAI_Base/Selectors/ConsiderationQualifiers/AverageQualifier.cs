@@ -11,7 +11,7 @@ namespace UtilityAI_Base.Selectors.ConsiderationQualifiers
     {
         public new string description = "avg qualifier";
         
-        public override float Qualify(AiContext context, List<Consideration> considerations) {
+        public override float Qualify(AiContext context, List<ContextConsideration> considerations) {
             var averageScore = 0f;
             foreach (var consideration in considerations) {
                 if (consideration.isEnabled) {

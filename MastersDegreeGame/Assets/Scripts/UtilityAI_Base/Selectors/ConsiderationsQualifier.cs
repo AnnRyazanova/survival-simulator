@@ -16,6 +16,6 @@ namespace UtilityAI_Base.Selectors
     public abstract class ConsiderationsQualifier
     {
         public string description = "qualifier";
-        public abstract float Qualify(AiContext context, List<Consideration> considerations);
+        public abstract float Qualify(AiContext context, List<ContextConsideration> considerations);
     }
 }

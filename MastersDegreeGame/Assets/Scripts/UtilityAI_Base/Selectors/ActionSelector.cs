@@ -7,6 +7,6 @@ namespace UtilityAI_Base.Selectors
 {
     public abstract class ActionSelector
     {
-        public abstract UtilityAction Select(AiContext context, List<UtilityAction> actions);
+        public abstract AtomicUtilityAction Select(AiContext context, List<AtomicUtilityAction> actions);
     }
 }

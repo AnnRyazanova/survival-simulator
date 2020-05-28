@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using Characters.NPC;
+using Characters.Player;
 using UnityEngine;
 using UnityEngine.AI;
 using UtilityAI_Base.Actions;
@@ -16,11 +18,12 @@ namespace UtilityAI_Base.Intellect
     {
         #region Public members
 
+        public bool shouldGo = false;
         [HideInInspector] public ActionSelectorType actionSelectorType = ActionSelectorType.HighestScoreWins;
         [HideInInspector] public ActionSelectorType fallbackSelectorType = ActionSelectorType.Random;
 
-        [SerializeField] public List<UtilityAction> actions = new List<UtilityAction>();
-        [SerializeField] public List<UtilityAction> fallBackActions = new List<UtilityAction>();
+        [SerializeField] public List<AtomicUtilityAction> actions = new List<AtomicUtilityAction>();
+        [SerializeField] public List<AtomicUtilityAction> fallBackActions = new List<AtomicUtilityAction>();
         
         [HideInInspector] public ActionSelector fallbackSelector = new RandomActionSelector();
         [HideInInspector] public ActionSelector selector = new HighestScoreWins();
@@ -31,7 +34,7 @@ namespace UtilityAI_Base.Intellect
 
         private AiContext _context;
         private NavMeshAgent _navMeshAgent;
-        private UtilityAction _currentAction = null;
+        private AtomicUtilityAction _currentAction = null;
 
         private float _lastUpdated = 0f;
         private float _updateTimesPerSecond = 1;
@@ -60,14 +63,16 @@ namespace UtilityAI_Base.Intellect
                 
                 // Update context
                 Sense();
+
                 // Think about next action to be taken
-                var elapsed = Time.time;
-                for (int i = 0; i < 1000; ++i) {
-                    Think();
-                }
-                Debug.Log((Time.time - elapsed));
+                Think();
+                
                 // Perform selected action
                 Act();
+                if (shouldGo) {
+                    (_context.GetParameter(AiContextVariable.Owner) as NpcMainScript)._agent.destination =
+                        PlayerMainScript.MyPlayer.transform.position;
+                }
             }
         }
         
@@ -77,7 +82,7 @@ namespace UtilityAI_Base.Intellect
         }
 
         private void Think() {
-                UtilityAction action = selector.Select(_context, actions);
+                AtomicUtilityAction action = selector.Select(_context, actions);
                 _currentAction = action;
 
             // if (action != null) {
@@ -100,7 +105,7 @@ namespace UtilityAI_Base.Intellect
         private void Act() {
             if (_currentAction != null) {
                 Debug.Log(_currentAction.description);
-                _currentAction.Execute(_context);
+                // _currentAction.Execute(_context);
                 StartCoroutine(_currentAction.AddInertia());
             }
         }

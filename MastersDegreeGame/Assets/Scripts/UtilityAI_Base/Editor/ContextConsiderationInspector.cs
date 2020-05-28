@@ -5,8 +5,8 @@ using UtilityAI_Base.Considerations;
 
 namespace UtilityAI_Base.Editor
 {
-    [CustomPropertyDrawer(typeof(Consideration))]
-    public class ConsiderationPropertyDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(ContextConsideration))]
+    public class ContextConsiderationInspector : PropertyDrawer
     {
         private static readonly float VerticalSpacing = 2 * EditorGUIUtility.singleLineHeight;
 

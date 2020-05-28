@@ -1,21 +1,30 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
-using UtilityAI_Base.Considerations;
 using UtilityAI_Base.Contexts;
-using UtilityAI_Base.Contexts.Interfaces;
 using UtilityAI_Base.Selectors;
 using UtilityAI_Base.Selectors.ConsiderationQualifiers;
 
-namespace UtilityAI_Base.Actions
+namespace UtilityAI_Base.Actions.Base
 {
     [Serializable]
-    public class ActionTask : UnityEvent<IAiContext>
+    public class ActionTask : UnityEvent<AiContext, UtilityPick>
     {
     }
+    
+    public sealed class Pick<T>
+    {
+        public float Utility { get; set; }
+        public T Target { get; set; }
+
+        public Pick(float utility, T target) {
+            Utility = utility;
+            Target = target;
+        }
+    }
+    
     /// <summary>
     /// Action base class
     /// All actions should inherit this
@@ -23,7 +32,6 @@ namespace UtilityAI_Base.Actions
     public abstract class AbstractUtilityAction : ScriptableObject
     {
         public ActionTask actionTask;
-        public int contextIndex;
         
         /// <summary>
         /// How much time should pass before action can be invoked again 
@@ -50,9 +58,6 @@ namespace UtilityAI_Base.Actions
             set => _actionWeight = Mathf.Clamp(value, 0f, 100f);
         }
 
-        protected float _utility = 0f;
-        public float Utility => _utility;
-
         /// <summary>
         /// Action description
         /// </summary>
@@ -77,16 +82,6 @@ namespace UtilityAI_Base.Actions
         public QualifierType qualifierType;
 
         public ConsiderationsQualifier qualifier = new ProductQualifier();
-
-        /// <summary>
-        /// List of all considerations needed to evaluate this actions' utility score 
-        /// </summary>
-        public List<Consideration> considerations;
-
-        private void Awake() {
-            considerations = new List<Consideration>();
-        }
-
 
         /// <summary>
         /// Callback for inertia coroutine
@@ -119,15 +114,12 @@ namespace UtilityAI_Base.Actions
         /// <returns>Absolute (raw) utility score of performing this action</returns>
         public abstract float EvaluateAbsoluteUtility(AiContext context);
 
-        public virtual float EvaluateAbsoluteUtility(float param) {
-            throw new NotImplementedException("Should implement Evaluation of absolute utility with param");
-        }
-        
         /// <summary>
         /// Execute current action in current context
         /// </summary>
         /// <param name="context">AI Context (game world state)</param>
-        public abstract void Execute(AiContext context);
+        /// <param name="pick"> utility pick</param>
+        public abstract void Execute(AiContext context, UtilityPick pick);
 
         public virtual bool IsInExecution() => _inExecution;
 

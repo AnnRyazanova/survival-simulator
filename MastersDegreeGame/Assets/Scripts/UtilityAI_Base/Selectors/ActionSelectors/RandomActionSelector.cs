@@ -9,7 +9,7 @@ namespace UtilityAI_Base.Selectors.ActionSelectors
     public sealed  class RandomActionSelector : ActionSelector
     {
         private readonly Random _engine = new Random(42);
-        public override UtilityAction Select(AiContext context, List<UtilityAction> actions) {
+        public override AtomicUtilityAction Select(AiContext context, List<AtomicUtilityAction> actions) {
             return actions[_engine.Next(0, actions.Count)];
         }
     }

@@ -17,15 +17,15 @@ namespace UtilityAI_Base.Selectors.ActionSelectors
         {
             public float Weight = 0f;
             public readonly float Rank = 0f;
-            public readonly UtilityAction UAction = null;
+            public readonly AtomicUtilityAction UAction = null;
 
-            public UtilityWeights(float rank, UtilityAction action) {
+            public UtilityWeights(float rank, AtomicUtilityAction action) {
                 Rank = rank;
                 UAction = action;
             }
         }
 
-        public override UtilityAction Select(AiContext context, List<UtilityAction> actions) {
+        public override AtomicUtilityAction Select(AiContext context, List<AtomicUtilityAction> actions) {
             var utilities = new List<UtilityWeights>();
             foreach (var action in actions) {
                 float utility = action.EvaluateAbsoluteUtility(context);

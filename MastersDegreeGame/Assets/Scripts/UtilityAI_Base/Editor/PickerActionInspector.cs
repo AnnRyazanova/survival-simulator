@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 using UtilityAI_Base.Actions;
+using UtilityAI_Base.Actions.Pickers;
 using UtilityAI_Base.Considerations;
 using UtilityAI_Base.Contexts;
 using UtilityAI_Base.CustomAttributes;
@@ -14,18 +15,13 @@ using UtilityAI_Base.Selectors.Factories;
 
 namespace UtilityAI_Base.Editor
 {
-    [CustomEditor(typeof(UtilityAction))]
-    public class UtilityActionInspector : UnityEditor.Editor
+    [CustomEditor(typeof(PickerAction))]
+    public class PickerActionInspector : UnityEditor.Editor
     {
         private ReorderableList _considerationsDisplay;
         private static readonly float VerticalSpacing = 2 * EditorGUIUtility.singleLineHeight;
-
-        private readonly List<string> _contextTypes = new List<string>();
-        private readonly List<List<string>> _contexts = new List<List<string>>();
-
-        private int _contextIndex = 0;
-
-        private UtilityAction SelectedAction => target as UtilityAction;
+        
+        private PickerAction SelectedAction => target as PickerAction;
 
         private void SetConsiderationsListDrawCallback() {
             _considerationsDisplay.drawElementCallback = ConsiderationsListDrawCallback;
@@ -46,19 +42,11 @@ namespace UtilityAI_Base.Editor
                 r,
                 SelectedAction.considerations[index].utilityCurve);
             EditorUtility.SetDirty(target);
-            
-            if (_contexts.Count > 0 && _contexts[SelectedAction.contextIndex].Count > 0) {
-                SelectedAction.considerations[index].evaluatedContextVariableId = EditorGUI.Popup(
-                    new Rect(rect.x + 10, rect.y + 3.1f * VerticalSpacing, rect.width - quarterW,
-                        EditorGUIUtility.singleLineHeight),
-                    "Target parameter",
-                    SelectedAction.considerations[index].evaluatedContextVariableId,
-                    _contexts[SelectedAction.contextIndex].ToArray());
 
-                SelectedAction.considerations[index].evaluatedContextVariable =
-                    _contexts[SelectedAction.contextIndex][
-                        SelectedAction.considerations[index].evaluatedContextVariableId];
-            }
+            SelectedAction.considerations[index].evaluatedContextVariable = (AiContextVariable)EditorGUI.EnumPopup(
+                new Rect(rect.x + 10, rect.y + 3.2f * VerticalSpacing, rect.width - quarterW,
+                    EditorGUIUtility.singleLineHeight), new GUIContent("Target Sequence"),
+                SelectedAction.considerations[index].evaluatedContextVariable);
             if(EditorGUI.EndChangeCheck()) EditorUtility.SetDirty(target);
         }
 
@@ -77,29 +65,10 @@ namespace UtilityAI_Base.Editor
                 _considerationsDisplay.elementHeight = EditorGUIUtility.singleLineHeight * 8f;
                 SetConsiderationsListDrawCallback();
             }
-
-            FillCtxVariablesList();
         }
-
-        public void FillCtxVariablesList() {
-            var contexts = typeof(AiContext).Assembly.GetTypes()
-                .Where(type => type.IsClass && type.IsSubclassOf(typeof(AiContext)));
-            var ctxId = 0;
-            foreach (var ctx in contexts) {
-                _contexts.Add(new List<string>());
-                _contextTypes.Add(ctx.Name);
-                foreach (var memberInfo in ctx.GetProperties()) {
-                    if (memberInfo.GetCustomAttribute(typeof(NpcContextVar)) != null) {
-                        _contexts[ctxId].Add(memberInfo.Name);
-                    }
-                }
-
-                ctxId++;
-            }
-        }
-
+        
         private void AddItem(ReorderableList list) {
-            SelectedAction.considerations.Add(new Consideration());
+            SelectedAction.considerations.Add(new InputConsideration());
         }
 
         private void RemoveItem(ReorderableList list) {
@@ -121,11 +90,7 @@ namespace UtilityAI_Base.Editor
                     ConsiderationsQualifierFactory.GetQualifier(SelectedAction.qualifierType);
                 Debug.Log(SelectedAction.qualifier);
             }
-
-            EditorGUILayout.Separator();
-
-            SelectedAction.contextIndex = EditorGUILayout.Popup(new GUIContent("Context"), SelectedAction.contextIndex,
-                _contextTypes.ToArray());
+            
             EditorGUILayout.Separator();
 
             SelectedAction.CooldownTime = Mathf.Clamp(
@@ -160,7 +125,6 @@ namespace UtilityAI_Base.Editor
 
             ShowDescription();
             serializedObject.ApplyModifiedProperties();
-            // DrawDefaultInspector();
         }
     }
 }
