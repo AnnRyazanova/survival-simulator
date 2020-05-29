@@ -24,7 +24,6 @@ namespace SceneGeneration.PerlinNoise
                 for (var x = 0; x < width; x += meshSimplificationIncrement) {
                     meshData.Vertices[vertexIndex] = new Vector3(topLeftX + x,
                         myheightCurve.Evaluate(heightMap[x, y]) * heightMultiplier, topLeftZ - y);
-                    //TODO: move cast выше
                     meshData.Uvs[vertexIndex] = new Vector2(x / (float) width, y / (float) height);
 
                     if (x < width - 1 && y < height - 1) {

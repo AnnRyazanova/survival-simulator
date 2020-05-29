@@ -20,7 +20,7 @@ namespace SceneGeneration.PerlinNoise
 
         public Noise.NormalizeMode normalizeMode;
 
-        public const int MapChunkSize = 241;
+        public const int MapChunkSize = 141;
         [Range(0, 6)] public int editorPreviewLod;
         public float noiseScale;
 

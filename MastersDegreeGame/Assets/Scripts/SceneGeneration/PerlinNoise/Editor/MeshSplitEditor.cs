@@ -9,8 +9,8 @@ public class MeshSplitEditor : Editor
 
         MeshSplit myScript = (MeshSplit)target;
 
-        if (myScript.childen != null && myScript.childen.Count != 0)
-        EditorGUILayout.HelpBox("Submesh count: " + myScript.childen.Count, MessageType.Info, true);
+        if (myScript.children != null && myScript.children.Count != 0)
+        EditorGUILayout.HelpBox("Submesh count: " + myScript.children.Count, MessageType.Info, true);
         else
         EditorGUILayout.HelpBox("Submesh count: none", MessageType.Info, true);
 
