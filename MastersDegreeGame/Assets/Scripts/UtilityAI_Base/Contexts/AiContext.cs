@@ -15,17 +15,14 @@ namespace UtilityAI_Base.Contexts
     {
         public IAgent owner;
         public GameObject target;
-        
-        protected Dictionary<string, float> PropertyValues = new Dictionary<string, float>();
 
-        public abstract object GetParameter(AiContextVariable param); 
+        [SerializeField] protected int bufferSize = 50;
+        protected Collider[] Colliders;
         
-        protected virtual void Awake() {
-            owner = GetComponent<NpcMainScript>();
-            target = null;
-            // Fill();
-        }
+        public abstract object GetParameter(AiContextVariable param);
 
+        public abstract void UpdateContext();
+        
         #region REFLECTION
         
         public object this[string paramName]

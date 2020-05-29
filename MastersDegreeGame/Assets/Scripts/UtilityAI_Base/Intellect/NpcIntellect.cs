@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using System.Linq;
+using Characters;
 using Characters.NPC;
 using Characters.Player;
+using Prefabs.Monsters.Spider.AI;
 using UnityEngine;
 using UnityEngine.AI;
 using UtilityAI_Base.Actions;
+using UtilityAI_Base.Actions.Base;
 using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Intellect.Interfaces;
 using UtilityAI_Base.Selectors;
@@ -18,15 +21,14 @@ namespace UtilityAI_Base.Intellect
     {
         #region Public members
 
-        public bool shouldGo = false;
-        [HideInInspector] public ActionSelectorType actionSelectorType = ActionSelectorType.HighestScoreWins;
-        [HideInInspector] public ActionSelectorType fallbackSelectorType = ActionSelectorType.Random;
+        public ActionSelectorType actionSelectorType;
+        public ActionSelectorType fallbackSelectorType;
 
-        [SerializeField] public List<AtomicUtilityAction> actions = new List<AtomicUtilityAction>();
+        [SerializeField] public List<AbstractUtilityAction> actions = new List<AbstractUtilityAction>();
         [SerializeField] public List<AtomicUtilityAction> fallBackActions = new List<AtomicUtilityAction>();
-        
-        [HideInInspector] public ActionSelector fallbackSelector = new RandomActionSelector();
-        [HideInInspector] public ActionSelector selector = new HighestScoreWins();
+
+        [HideInInspector] public ActionSelector fallbackSelector;
+        [HideInInspector] public ActionSelector selector;
 
         #endregion
 
@@ -34,8 +36,8 @@ namespace UtilityAI_Base.Intellect
 
         private AiContext _context;
         private NavMeshAgent _navMeshAgent;
-        private AtomicUtilityAction _currentAction = null;
-
+        private UtilityPick _currentAction = null;
+        
         private float _lastUpdated = 0f;
         private float _updateTimesPerSecond = 1;
 
@@ -52,9 +54,9 @@ namespace UtilityAI_Base.Intellect
         #endregion
         
         private void Awake() {
-            Debug.Log("Intellect " + actions.Count);
             _navMeshAgent = GetComponent<NavMeshAgent>();
             _context = GetComponent<AiContext>();
+            if (selector == null) selector = ActionSelectorFactory.GetSelector(actionSelectorType);
         }
         
         private void Update() {
@@ -69,21 +71,18 @@ namespace UtilityAI_Base.Intellect
                 
                 // Perform selected action
                 Act();
-                if (shouldGo) {
-                    (_context.GetParameter(AiContextVariable.Owner) as NpcMainScript)._agent.destination =
-                        PlayerMainScript.MyPlayer.transform.position;
-                }
             }
         }
         
         #region Intellect methods
 
         private void Sense() {
+            _context.UpdateContext();
         }
 
         private void Think() {
-                AtomicUtilityAction action = selector.Select(_context, actions);
-                _currentAction = action;
+            UtilityPick action = selector.Select(_context, actions);
+            _currentAction = action;
 
             // if (action != null) {
             //     _currentAction = action;
@@ -104,9 +103,9 @@ namespace UtilityAI_Base.Intellect
 
         private void Act() {
             if (_currentAction != null) {
-                Debug.Log(_currentAction.description);
-                // _currentAction.Execute(_context);
-                StartCoroutine(_currentAction.AddInertia());
+                Debug.Log(_currentAction.UtilityAction.description + " " + _currentAction.ActionType);
+                // _currentAction.UtilityAction.Execute(_context, _currentAction);
+                StartCoroutine(_currentAction.UtilityAction.AddInertia());
             }
         }
 

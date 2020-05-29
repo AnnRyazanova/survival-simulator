@@ -32,7 +32,6 @@ namespace UtilityAI_Base.Actions.Base
     public abstract class AbstractUtilityAction : ScriptableObject
     {
         public ActionTask actionTask;
-        
         /// <summary>
         /// How much time should pass before action can be invoked again 
         /// </summary>
@@ -112,7 +111,7 @@ namespace UtilityAI_Base.Actions.Base
         /// </summary>
         /// <param name="context">AI Context (game world state)</param>
         /// <returns>Absolute (raw) utility score of performing this action</returns>
-        public abstract float EvaluateAbsoluteUtility(AiContext context);
+        public abstract UtilityPick EvaluateAbsoluteUtility(AiContext context);
 
         /// <summary>
         /// Execute current action in current context

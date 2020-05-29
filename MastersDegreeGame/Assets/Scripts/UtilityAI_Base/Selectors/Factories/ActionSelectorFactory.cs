@@ -12,18 +12,18 @@ namespace UtilityAI_Base.Selectors.Factories
 
     public sealed class ActionSelectorFactory
     {
-        private readonly RandomActionSelector _randomActionSelector = new RandomActionSelector();
-        private readonly DualUtilityReasoner _dualUtilityReasoner = new DualUtilityReasoner();
-        private readonly HighestScoreWins _highestScoreWins = new HighestScoreWins();
+        private static readonly RandomActionSelector RandomActionSelector = new RandomActionSelector();
+        private static readonly DualUtilityReasoner DualUtilityReasoner = new DualUtilityReasoner();
+        private static readonly HighestScoreWins HighestScoreWins = new HighestScoreWins();
 
-        public ActionSelector GetSelector(ActionSelectorType actionSelectorType) {
+        public static ActionSelector GetSelector(ActionSelectorType actionSelectorType) {
             switch (actionSelectorType) {
                 case ActionSelectorType.Random:
-                    return _randomActionSelector;
+                    return RandomActionSelector;
                 case ActionSelectorType.DualUtility:
-                    return _dualUtilityReasoner;
+                    return DualUtilityReasoner;
                 case ActionSelectorType.HighestScoreWins:
-                    return _highestScoreWins;
+                    return HighestScoreWins;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(actionSelectorType), actionSelectorType, null);
             }

@@ -178,7 +178,6 @@ namespace Characters.Player
         }
 
         public void UnequipWeapon() {
-            // TODO: Fix 
             isRangedEquipped = false;
             GetComponent<RangedAttacker>().enabled = false;
             UnequipOnPrefab(rightHand);

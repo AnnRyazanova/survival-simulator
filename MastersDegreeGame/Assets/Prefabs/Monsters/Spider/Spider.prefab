@@ -276,7 +276,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  colliders: []
+  bufferSize: 50
+  DistancesToEnemies: []
 --- !u!114 &6394776289645170165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,8 +293,8 @@ MonoBehaviour:
   actionSelectorType: 2
   fallbackSelectorType: 0
   actions:
-  - {fileID: 11400000, guid: 977d6421a8bde2d4b8a134622ef5a7b8, type: 2}
-  - {fileID: 11400000, guid: 5efeeff12bd4f1745bc163569a0d3e3c, type: 2}
+  - {fileID: 11400000, guid: 1264721c4169e934487f46b848758752, type: 2}
+  - {fileID: 0}
   fallBackActions: []
 --- !u!1 &5619418397164638223
 GameObject:

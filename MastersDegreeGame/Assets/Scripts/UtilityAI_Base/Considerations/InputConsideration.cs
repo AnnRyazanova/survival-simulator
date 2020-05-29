@@ -18,7 +18,6 @@ namespace UtilityAI_Base.Considerations
                     pick.Add(EvaluateAt(eval));
                 }
             }
-
             return pick;
         }
     }

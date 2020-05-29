@@ -56,12 +56,11 @@ namespace UtilityAI_Base.Editor
                     true, true)
                 {
                     drawHeaderCallback = rect => { EditorGUI.LabelField(rect, "", EditorStyles.boldLabel); },
-                    elementHeight = EditorGUIUtility.singleLineHeight * 5 + 5,
+                    elementHeight =  EditorGUIUtility.singleLineHeight * 8f,
                     onAddCallback = AddItem,
                     onRemoveCallback = RemoveItem,
                     headerHeight = 10
                 };
-                _considerationsDisplay.elementHeight = EditorGUIUtility.singleLineHeight * 8f;
                 SetConsiderationsListDrawCallback();
             }
         }
@@ -84,10 +83,8 @@ namespace UtilityAI_Base.Editor
                     SelectedAction.qualifierType);
 
             if (EditorGUI.EndChangeCheck()) {
-                // TODO: Possible GC issue. Revise later
                 SelectedAction.qualifier =
                     ConsiderationsQualifierFactory.GetQualifier(SelectedAction.qualifierType);
-                Debug.Log(SelectedAction.qualifier);
             }
             
             EditorGUILayout.Separator();

@@ -80,12 +80,11 @@ namespace UtilityAI_Base.Editor
             EditorGUILayout.Separator();
 
             EditorGUI.BeginChangeCheck();
-            SelectedAction.qualifierType =
-                (QualifierType) EditorGUILayout.EnumPopup(new GUIContent("Considerations Qualifier"),
-                    SelectedAction.qualifierType);
+            SelectedAction.evaluatedParamName =
+                (AiContextVariable) EditorGUILayout.EnumPopup(new GUIContent("Evaluated Sequence"),
+                    SelectedAction.evaluatedParamName);
 
             if (EditorGUI.EndChangeCheck()) {
-                // TODO: Possible GC issue. Revise later
                 SelectedAction.qualifier =
                     ConsiderationsQualifierFactory.GetQualifier(SelectedAction.qualifierType);
                 Debug.Log(SelectedAction.qualifier);

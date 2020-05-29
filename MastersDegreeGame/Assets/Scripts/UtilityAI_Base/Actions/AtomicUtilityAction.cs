@@ -28,8 +28,8 @@ namespace UtilityAI_Base.Actions
             considerations = new List<ContextConsideration>();
         }
 
-        public override float EvaluateAbsoluteUtility(AiContext context) {
-            return _actionWeight * qualifier.Qualify(context, considerations);
+        public override UtilityPick EvaluateAbsoluteUtility(AiContext context) {
+            return new UtilityPick(this, _actionWeight * qualifier.Qualify(context, considerations));
         }
         
         public override void Execute(AiContext context, UtilityPick pick) {
