@@ -20,9 +20,9 @@ public class MeshSplit : MonoBehaviour
 
     private string getRegionName(int i)
     {
-        if (baseVerticles[baseTriangles[i + 0]].y < 0.1 ||
-            baseVerticles[baseTriangles[i + 1]].y < 0.1 ||
-            baseVerticles[baseTriangles[i + 2]].y < 0.1)
+        if (baseVerticles[baseTriangles[i + 0]].y < 0.05 ||
+            baseVerticles[baseTriangles[i + 1]].y < 0.05 ||
+            baseVerticles[baseTriangles[i + 2]].y < 0.05)
         {
             return "Water";
         }
