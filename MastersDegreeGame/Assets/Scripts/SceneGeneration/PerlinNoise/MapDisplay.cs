@@ -8,6 +8,7 @@ namespace SceneGeneration.PerlinNoise
         public MeshFilter meshFilter;
         public MeshRenderer meshRenderer;
 
+
         public void DrawTexture(Texture2D texture) {
             textureRender.sharedMaterial.mainTexture = texture;
             textureRender.transform.localScale = new Vector3 (texture.width, 1, texture.height);
@@ -15,6 +16,7 @@ namespace SceneGeneration.PerlinNoise
 
         public void DrawMesh(MeshData meshData, Texture2D texture) {
             meshFilter.sharedMesh = meshData.CreateMesh ();
+            //meshSplit.Split();
             meshRenderer.sharedMaterial.mainTexture = texture;
         }
 
