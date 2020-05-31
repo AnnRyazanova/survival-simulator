@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!114 &11400000
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 32
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -30,11 +30,11 @@ MonoBehaviour:
   _originalActionWeight: 16
   description: Go to target
   maxConsecutiveInvocations: 0
-  qualifierType: 1
+  qualifierType: 0
   considerations:
   - description: Distance to target
     weight: 1
-    valueRange: {x: 0, y: 10}
+    valueRange: {x: 0, y: 8}
     canApplyVeto: 0
     isEnabled: 1
     evaluatedContextVariable: 1

@@ -67,10 +67,10 @@ namespace UtilityAI_Base.Intellect
 
                 // Update context
                 Sense();
-                Debug.Log("===============================================");
+                // Debug.Log("===============================================");
                 // Think about next action to be taken
                 Think();
-                Debug.Log("===============================================");
+                // Debug.Log("===============================================");
 
                 // Perform selected action
                 Act();
@@ -114,7 +114,7 @@ namespace UtilityAI_Base.Intellect
 
         private void Act() {
             if (_currentAction != null) {
-                // Debug.Log(_currentAction.UtilityAction.description + " " + _currentAction.Score);
+                Debug.Log(_currentAction.UtilityAction.description + " " + _currentAction.Score);
                 _currentAction.UtilityAction.Execute(_context, _currentAction);
                 if (!_consecutiveActionsAreSame) {
                     if (!_inertiaIsApplied) {

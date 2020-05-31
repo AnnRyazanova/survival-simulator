@@ -12,10 +12,10 @@ namespace UtilityAI_Base.Selectors
         Average
     }
     
-    [Serializable]
-    public abstract class ConsiderationsQualifier
+    public class ConsiderationsQualifier
     {
-        public string description = "qualifier";
-        public abstract float Qualify(AiContext context, List<ContextConsideration> considerations);
+        public virtual float Qualify(AiContext context, List<ContextConsideration> considerations) {
+            throw new NotImplementedException();
+        }
     }
 }

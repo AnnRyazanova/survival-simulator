@@ -6,6 +6,8 @@ using UtilityAI_Base.Actions.Base;
 using UtilityAI_Base.Considerations;
 using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
+using UtilityAI_Base.Selectors;
+using UtilityAI_Base.Selectors.ConsiderationQualifiers;
 
 namespace UtilityAI_Base.Actions.Pickers
 {
@@ -16,6 +18,7 @@ namespace UtilityAI_Base.Actions.Pickers
         public AiContextVariable evaluatedParamName = AiContextVariable.None;
 
         public List<InputConsideration> considerations = new List<InputConsideration>();
+        public ConsiderationsQualifier qualifier = new ProductQualifier();
 
         public override UtilityPick EvaluateAbsoluteUtility(AiContext context) {
             // TODO: Maybe disable checks ?? or add some new =)

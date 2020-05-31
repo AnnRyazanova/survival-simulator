@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UtilityAI_Base.Considerations;
 using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
@@ -9,14 +10,12 @@ namespace UtilityAI_Base.Selectors.ConsiderationQualifiers
     [Serializable]
     public class AverageQualifier : ConsiderationsQualifier
     {
-        public new string description = "avg qualifier";
-        
         public override float Qualify(AiContext context, List<ContextConsideration> considerations) {
             var averageScore = 0f;
             foreach (var consideration in considerations) {
                 if (consideration.isEnabled) {
                     var score = consideration.Evaluate(context);
-                    if (consideration.canApplyVeto && Math.Abs(score) < 1e-3) {
+                    if (consideration.canApplyVeto && score == 0f) {
                         return 0f;
                     }
 

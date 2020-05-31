@@ -12,7 +12,7 @@ namespace UtilityAI_Base.Considerations.Interfaces
         [SerializeField] protected Vector2 valueRange = new Vector2(0f, 100f);
         
         public bool canApplyVeto = false;
-        public bool isEnabled = true;
+        public bool isEnabled = false;
 
         public AiContextVariable evaluatedContextVariable;
 

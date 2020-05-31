@@ -10,7 +10,7 @@ namespace UtilityAI_Base.Selectors.Factories
         HighestScoreWins
     }
 
-    public sealed class ActionSelectorFactory
+    public static class ActionSelectorFactory
     {
         private static readonly RandomActionSelector RandomActionSelector = new RandomActionSelector();
         private static readonly DualUtilityReasoner DualUtilityReasoner = new DualUtilityReasoner();

@@ -91,7 +91,6 @@ namespace UtilityAI_Base.Actions.Base
         [FormerlySerializedAs("qualifierTypeType")]
         public QualifierType qualifierType;
 
-        public ConsiderationsQualifier qualifier = new ProductQualifier();
 
         /// <summary>
         /// Callback for inertia coroutine

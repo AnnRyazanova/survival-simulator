@@ -28,9 +28,9 @@ namespace Prefabs.Monsters.Spider.AI
 
         public override void UpdateContext() {
             if (foundCollisionsCount == 0) return;
-
-            if (Enemies.Count > 0) ClearAll();
-
+            if (Enemies.Count > 0 || DistancesToEnemies.Count > 0) ClearAll();
+            _timeSinceLastWander = DistanceFromStartingPoint == 0 ? _timeSinceLastWander + 0.01f : 0f; 
+            Debug.Log(_timeSinceLastWander);
             foreach (var col in Colliders) {
                 if (col == null) continue;
                 var obj = col.gameObject;
@@ -54,7 +54,8 @@ namespace Prefabs.Monsters.Spider.AI
         }
 
         private float _distanceToEnemy = 100f;
-
+        private float _timeSinceLastWander = 0f;
+        
         [NpcContextVar]
         public float DistanceToEnemy
         {
@@ -64,8 +65,13 @@ namespace Prefabs.Monsters.Spider.AI
         
         [NpcContextVar]
         public float DistanceFromStartingPoint => Vector3.Distance(transform.position, StartingPoint);
-
         [NpcContextVar] public float QuantityEnemiesNearby { get; set; }
+
+        [NpcContextVar]
+        public float TimeSinceLastWander
+        {
+            get => _timeSinceLastWander;
+        }
 
         [HideInInspector] public List<ICombatTarget> Enemies = new List<ICombatTarget>();
         [HideInInspector] public List<float> DistancesToEnemies = new List<float>();

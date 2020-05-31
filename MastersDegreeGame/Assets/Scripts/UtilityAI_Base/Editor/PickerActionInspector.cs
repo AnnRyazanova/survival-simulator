@@ -87,7 +87,6 @@ namespace UtilityAI_Base.Editor
             if (EditorGUI.EndChangeCheck()) {
                 SelectedAction.qualifier =
                     ConsiderationsQualifierFactory.GetQualifier(SelectedAction.qualifierType);
-                Debug.Log(SelectedAction.qualifier);
             }
             
             EditorGUILayout.Separator();
