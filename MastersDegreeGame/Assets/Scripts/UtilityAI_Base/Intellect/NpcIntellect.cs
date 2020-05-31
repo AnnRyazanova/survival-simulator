@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Characters;
@@ -29,19 +30,29 @@ namespace UtilityAI_Base.Intellect
 
         [HideInInspector] public ActionSelector fallbackSelector;
         [HideInInspector] public ActionSelector selector;
-
+        
         #endregion
 
         #region Private members
 
         private AiContext _context;
         private NavMeshAgent _navMeshAgent;
+        
         private UtilityPick _currentAction = null;
+        private UtilityPick _lastAction = null;
+
+        private float modifier = 0f;
+        
+        private float _inertiaTimer = 0f;
+        private float _cooldownTimer = 0f;
 
         private float _lastUpdated = 0f;
         private float _updateTimesPerSecond = 1;
         private bool _consecutiveActionsAreSame = false;
         private bool _inertiaIsApplied = false;
+
+        private bool _started = false;
+        
         #endregion
 
         #region public fields
@@ -83,16 +94,26 @@ namespace UtilityAI_Base.Intellect
             _context.UpdateContext();
         }
 
+        private void SetCurrentInCooldown() => modifier = 0f;
+        
+        private IEnumerator AddInertiaToCurrent() {
+            if (!_started) {
+                _started = true;
+                modifier = 4f;
+                yield return new WaitForSeconds(_currentAction.UtilityAction.InertiaTime);
+                modifier = 1f;
+                _started = false;
+            }
+        }
+
         private void Think() {
-            // TODO: Null return checks for selectors and actions
             UtilityPick action = selector.Select(_context, actions);
             if (_currentAction == null) {
                 if (action != null) _currentAction = action;
             }
             else {
-                var currentActionScore = _currentAction.UtilityAction.EvaluateAbsoluteUtility(_context).Score;
+                var currentActionScore = modifier * _currentAction.UtilityAction.EvaluateAbsoluteUtility(_context).Score;
                 if (currentActionScore == 0) {
-                    StartCoroutine(_currentAction.UtilityAction.SetInCooldown());
                     _currentAction = null;
                 }
 
@@ -104,27 +125,20 @@ namespace UtilityAI_Base.Intellect
                     _consecutiveActionsAreSame = action == _currentAction;
                     if (!_consecutiveActionsAreSame) {
                         if (action.Score > currentActionScore) {
-                            StartCoroutine(_currentAction.UtilityAction.SetInCooldown());
                             _currentAction = action;
                         }
-                    }
+                    } 
                 }
             }
+
+            _lastAction = _currentAction;
         }
 
         private void Act() {
             if (_currentAction != null) {
-                Debug.Log(_currentAction.UtilityAction.description + " " + _currentAction.Score);
+                Debug.Log(_currentAction.UtilityAction.description + " " + modifier * _currentAction.Score);
                 _currentAction.UtilityAction.Execute(_context, _currentAction);
-                if (!_consecutiveActionsAreSame) {
-                    if (!_inertiaIsApplied) {
-                        // StartCoroutine(_currentAction.UtilityAction.AddInertia());
-                        _inertiaIsApplied = true;   
-                    }
-                }
-                else {
-                    _inertiaIsApplied = false;
-                }
+                StartCoroutine(AddInertiaToCurrent());
             }
         }
 

@@ -97,7 +97,8 @@ namespace UtilityAI_Base.Editor
                 EditorGUILayout.FloatField(new GUIContent("Cooldown (s)"), SelectedAction.CooldownTime),
                 0f,
                 100f);
-            
+            EditorGUILayout.Separator();
+
             SelectedAction.InertiaTime = Mathf.Clamp(
                 EditorGUILayout.FloatField(new GUIContent("Inertia time (s)"), SelectedAction.InertiaTime),
                 0f,

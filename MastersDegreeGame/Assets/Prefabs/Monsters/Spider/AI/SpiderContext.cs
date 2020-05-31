@@ -30,7 +30,6 @@ namespace Prefabs.Monsters.Spider.AI
             if (foundCollisionsCount == 0) return;
             if (Enemies.Count > 0 || DistancesToEnemies.Count > 0) ClearAll();
             _timeSinceLastWander = DistanceFromStartingPoint == 0 ? _timeSinceLastWander + 0.01f : 0f; 
-            Debug.Log(_timeSinceLastWander);
             foreach (var col in Colliders) {
                 if (col == null) continue;
                 var obj = col.gameObject;

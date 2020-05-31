@@ -97,6 +97,12 @@ namespace UtilityAI_Base.Editor
                 100f);
             EditorGUILayout.Separator();
 
+            SelectedAction.InertiaTime = Mathf.Clamp(
+                EditorGUILayout.FloatField(new GUIContent("Inertia time (s)"), SelectedAction.InertiaTime),
+                0f,
+                100f);
+            EditorGUILayout.Separator();
+            
             SelectedAction.ActionWeight =
                 EditorGUILayout.FloatField(new GUIContent("Weight"), SelectedAction.ActionWeight);
             EditorGUILayout.Separator();
