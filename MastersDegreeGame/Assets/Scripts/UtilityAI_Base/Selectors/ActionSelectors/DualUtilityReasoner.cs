@@ -1,6 +1,10 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
 using UtilityAI_Base.Actions;
+using UtilityAI_Base.Actions.Base;
+using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
 using UtilityAI_Base.CustomAttributes;
 using UtilityAI_Base.ExtensionMethods;
@@ -16,26 +20,26 @@ namespace UtilityAI_Base.Selectors.ActionSelectors
         {
             public float Weight = 0f;
             public readonly float Rank = 0f;
-            public readonly UtilityAction UAction = null;
+            public readonly UtilityPick UAction = null;
 
-            public UtilityWeights(float rank, UtilityAction action) {
+            public UtilityWeights(float rank, UtilityPick action) {
                 Rank = rank;
                 UAction = action;
             }
         }
 
-        public override UtilityAction Select(IAiContext context, List<UtilityAction> actions) {
+        public override UtilityPick Select(AiContext context, List<AbstractUtilityAction> actions) {
             var utilities = new List<UtilityWeights>();
             foreach (var action in actions) {
-                float utility = action.EvaluateAbsoluteUtility(context);
-                if (utility > 0f) {
-                    utilities.Add(new UtilityWeights(utility, action));
+                UtilityPick utility = action.EvaluateAbsoluteUtility(context);
+                if (utility != null && utility.Score > 0f) {
+                    utilities.Add(new UtilityWeights(utility.Score, utility));
                 }
             }
 
             var count = utilities.Count;
             if (count > 0) {
-                utilities.Sort((first, second) => first.Rank.CompareTo(second));
+                utilities.Sort((first, second) => first.Rank.CompareTo(second.Rank));
 
                 var std = utilities.GetStd();
                 var sum = 0f;
@@ -55,7 +59,7 @@ namespace UtilityAI_Base.Selectors.ActionSelectors
                     if (u.Weight > maxWeight) maxWeight = u.Weight;
                     if (u.Weight < minWeight) minWeight = u.Weight;
                 }
-
+                // TODO: Weights are equal to 1 on the first run ??  
                 var rand = Random.Range(minWeight, maxWeight);
                 return utilities.Find(u => u.Weight >= rand).UAction;
             }

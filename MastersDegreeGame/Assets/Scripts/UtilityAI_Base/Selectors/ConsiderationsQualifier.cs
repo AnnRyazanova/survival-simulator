@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UtilityAI_Base.Considerations;
+using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
 
 namespace UtilityAI_Base.Selectors
@@ -11,10 +12,10 @@ namespace UtilityAI_Base.Selectors
         Average
     }
     
-    [Serializable]
-    public abstract class ConsiderationsQualifier
+    public class ConsiderationsQualifier
     {
-        public string description = "qualifier";
-        public abstract float Qualify(IAiContext context, List<Consideration> considerations);
+        public virtual float Qualify(AiContext context, List<ContextConsideration> considerations) {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UtilityAI_Base.Considerations;
+using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
 
 namespace UtilityAI_Base.Selectors.ConsiderationQualifiers
@@ -8,9 +10,7 @@ namespace UtilityAI_Base.Selectors.ConsiderationQualifiers
     [Serializable]
     public class ProductQualifier : ConsiderationsQualifier
     {
-        public new string description = "product qualifier";
-        
-        public override float Qualify(IAiContext context, List<Consideration> considerations) {
+        public override float Qualify(AiContext context, List<ContextConsideration> considerations) {
             var product = 1f;
             foreach (var consideration in considerations) {
                 if (consideration.isEnabled) product *= consideration.Evaluate(context);

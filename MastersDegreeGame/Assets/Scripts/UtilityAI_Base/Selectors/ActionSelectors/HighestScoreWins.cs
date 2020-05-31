@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UtilityAI_Base.Actions;
+using UtilityAI_Base.Actions.Base;
+using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
 using UtilityAI_Base.CustomAttributes;
 
@@ -13,21 +16,22 @@ namespace UtilityAI_Base.Selectors.ActionSelectors
     [ActionSelector("Highest Score Wins")]
     public sealed class HighestScoreWins : ActionSelector
     {
-        public string Name;
+        public string name;
 
-        public override UtilityAction Select(IAiContext context, List<UtilityAction> actions) {
+        public override UtilityPick Select(AiContext context, List<AbstractUtilityAction> actions) {
             var maxUtility = 0f;
-            UtilityAction highestScoreAction = null;
+            UtilityPick highestScoreAction = null;
             foreach (var action in actions) {
-                if (action.CanBeInvoked()) {
-                    var utility = action.ActionWeight * action.EvaluateAbsoluteUtility(context);
-                    if (utility >= maxUtility) {
-                        maxUtility = utility;
-                        highestScoreAction = action;
+                if (action != null) {
+                    var utility = action.EvaluateAbsoluteUtility(context);
+                    // Debug.Log(utility.UtilityAction.description + " " + utility.Score);
+                    if (utility.Score > 0 && utility.Score >= maxUtility) {
+                        maxUtility = utility.Score;
+                        highestScoreAction = utility;
                     }
                 }
             }
-
+            
             return highestScoreAction;
         }
     }

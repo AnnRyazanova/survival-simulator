@@ -6,12 +6,12 @@ namespace UtilityAI_Base.ResponseCurves.SuppliedCurves
     [Serializable]
     public class AnimationResponseCurve : ResponseCurve
     {
-        public AnimationCurve curve;
+        public AnimationCurve curve = new AnimationCurve(new Keyframe(0, 0), new Keyframe(1, 1));
 
         public AnimationResponseCurve() {
-            curve = AnimationCurve.Linear(0f,0f,1f, 1f);
             responseCurveType = CurveType.Animation;
         }
+        
         public override float EvaluateAt(float parameter) {
             return Mathf.Clamp(curve.Evaluate(parameter), 0f, 1f);
         }

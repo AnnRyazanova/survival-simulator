@@ -1,9 +1,10 @@
 using System;
+using UnityEngine;
 using UtilityAI_Base.Selectors.ConsiderationQualifiers;
 
 namespace UtilityAI_Base.Selectors.Factories
 {
-    public sealed class ConsiderationsQualifierFactory
+    public static class ConsiderationsQualifierFactory
     {
         private static readonly ProductQualifier Product = new ProductQualifier();
         private static readonly AverageQualifier Average = new AverageQualifier();
@@ -11,9 +12,9 @@ namespace UtilityAI_Base.Selectors.Factories
         public static ConsiderationsQualifier GetQualifier(QualifierType type) {
             switch (type) {
                 case QualifierType.Product:
-                    return Product;
+                    return  new ProductQualifier();
                 case QualifierType.Average:
-                    return Average;
+                    return new AverageQualifier();
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
