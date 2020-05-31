@@ -278,7 +278,14 @@ MonoBehaviour:
   target: {fileID: 0}
   StartingPoint: {x: 0, y: 0, z: 0}
   bufferSize: 50
+  dayNight: {fileID: 0}
+  coverMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  Covers: []
   DistancesToEnemies: []
+  DistancesToCover: []
+  CoverValues: []
 --- !u!114 &6394776289645170165
 MonoBehaviour:
   m_ObjectHideFlags: 0

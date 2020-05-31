@@ -1,10 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UtilityAI_Base.Actions.Pickers;
 using UtilityAI_Base.Considerations.Interfaces;
 using UtilityAI_Base.Contexts;
-using UtilityAI_Base.Contexts.Interfaces;
 
 namespace UtilityAI_Base.Considerations
 {
@@ -17,6 +15,11 @@ namespace UtilityAI_Base.Considerations
                 if (context.GetParameter(evaluatedContextVariable) is List<float> evaluatedParams) {
                     foreach (var eval in evaluatedParams) {
                         pick.Add(EvaluateAt(eval));
+                    }
+                }
+                else {
+                    if (context.GetParameter(evaluatedContextVariable) is float evaluatedParam) {
+                        Debug.Log( "SSSSSSSSSSs " + evaluatedParam);
                     }
                 }
             }
