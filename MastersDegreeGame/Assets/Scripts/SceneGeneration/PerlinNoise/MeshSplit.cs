@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.AI;
 
 public class MeshSplit : MonoBehaviour
 {
@@ -93,7 +94,7 @@ public class MeshSplit : MonoBehaviour
         {
             CreateMesh(item, trisDictionary[item]);
         }
-
+        GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
     public void CreateMesh(string regionName, List<int> dictionaryTriangles)
@@ -136,6 +137,12 @@ public class MeshSplit : MonoBehaviour
             normals.Add(baseNormals[dictionaryTriangles[i + 2]]);
 
         }
+
+        if (regionName == "Water")
+        {
+            newObject.layer = 4;
+        }
+        
         children.Add(newObject);
         
         Mesh mesh = new Mesh();
