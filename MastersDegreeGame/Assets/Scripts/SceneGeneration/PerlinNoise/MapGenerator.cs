@@ -18,24 +18,12 @@ namespace SceneGeneration.PerlinNoise
 
         public DrawMode drawMode;
 
-        public Noise.NormalizeMode normalizeMode;
+        public TerrainData terrainData;
+        public NoiseData noiseData;
 
-        public const int MapChunkSize = 131;
-        [Range(0, 6)] public int editorPreviewLod;
-        public float noiseScale;
-
-        public int octaves;
-        [Range(0, 1)] public float persistance;
-        public float lacunarity;
-
-        public int seed;
-        public Vector2 offset;
-
-        public bool useFalloff;
-
-        public float meshHeightMultiplier;
-        public AnimationCurve meshHeightCurve;
-
+        public const int MapSize = 131;
+        public const int editorPreviewLod = 0;
+        
         public bool autoUpdate;
 
         public TerrainType[] regions;
@@ -45,8 +33,14 @@ namespace SceneGeneration.PerlinNoise
         private Queue<MapThreadInfo<MapData>> _mapDataThreadInfoQueue = new Queue<MapThreadInfo<MapData>>();
         private Queue<MapThreadInfo<MeshData>> _meshDataThreadInfoQueue = new Queue<MapThreadInfo<MeshData>>();
 
+        void OnValuesUpdated() {
+            if (!Application.isPlaying) {
+                DrawMapInEditor ();
+            }
+        }
+        
         private void Awake() {
-            _falloffMap = FalloffGenerator.GenerateFalloffMap(MapChunkSize);
+            _falloffMap = FalloffGenerator.GenerateFalloffMap(MapSize);
         }
 
         public void DrawMapInEditor() {
@@ -59,17 +53,17 @@ namespace SceneGeneration.PerlinNoise
                     break;
                 case DrawMode.ColourMap:
                     display.DrawTexture(
-                        TextureGenerator.TextureFromColourMap(mapData.ColourMap, MapChunkSize, MapChunkSize));
+                        TextureGenerator.TextureFromColourMap(mapData.ColourMap, MapSize, MapSize));
                     break;
                 case DrawMode.Mesh:
                     display.DrawMesh(
-                        MeshGenerator.GenerateTerrainMesh(mapData.HeightMap, meshHeightMultiplier, meshHeightCurve,
+                        MeshGenerator.GenerateTerrainMesh(mapData.HeightMap, terrainData.meshHeightMultiplier, terrainData.meshHeightCurve,
                             editorPreviewLod),
-                        TextureGenerator.TextureFromColourMap(mapData.ColourMap, MapChunkSize, MapChunkSize));
+                        TextureGenerator.TextureFromColourMap(mapData.ColourMap, MapSize, MapSize));
                     break;
                 case DrawMode.FalloffMap:
                     display.DrawTexture(
-                        TextureGenerator.TextureFromHeightMap(FalloffGenerator.GenerateFalloffMap(MapChunkSize)));
+                        TextureGenerator.TextureFromHeightMap(FalloffGenerator.GenerateFalloffMap(MapSize)));
                     break;
             }
         }
@@ -95,7 +89,7 @@ namespace SceneGeneration.PerlinNoise
 
         private void MeshDataThread(MapData mapData, int lod, Action<MeshData> callback) {
             var meshData =
-                MeshGenerator.GenerateTerrainMesh(mapData.HeightMap, meshHeightMultiplier, meshHeightCurve, lod);
+                MeshGenerator.GenerateTerrainMesh(mapData.HeightMap, terrainData.meshHeightMultiplier, terrainData.meshHeightCurve, lod);
             lock (_meshDataThreadInfoQueue) {
                 _meshDataThreadInfoQueue.Enqueue(new MapThreadInfo<MeshData>(callback, meshData));
             }
@@ -120,20 +114,20 @@ namespace SceneGeneration.PerlinNoise
         }
 
         private MapData GenerateMapData(Vector2 centre) {
-            var noiseMap = Noise.GenerateNoiseMap(MapChunkSize, MapChunkSize, seed, noiseScale, octaves, persistance,
-                lacunarity, centre + offset, normalizeMode);
+            var noiseMap = Noise.GenerateNoiseMap(MapSize, MapSize, noiseData.seed, noiseData.noiseScale, noiseData.octaves, noiseData.persistance,
+                noiseData.lacunarity, centre + noiseData.offset, noiseData.normalizeMode);
 
-            var colourMap = new Color[MapChunkSize * MapChunkSize];
-            for (var y = 0; y < MapChunkSize; y++) {
-                for (var x = 0; x < MapChunkSize; x++) {
-                    if (useFalloff) {
+            var colourMap = new Color[MapSize * MapSize];
+            for (var y = 0; y < MapSize; y++) {
+                for (var x = 0; x < MapSize; x++) {
+                    if (terrainData.useFalloff) {
                         noiseMap[x, y] = Mathf.Clamp01(noiseMap[x, y] - _falloffMap[x, y]);
                     }
 
                     var currentHeight = noiseMap[x, y];
                     for (var i = 0; i < regions.Length; i++) {
                         if (currentHeight >= regions[i].height) {
-                            colourMap[y * MapChunkSize + x] = regions[i].colour;
+                            colourMap[y * MapSize + x] = regions[i].colour;
                         }
                         else {
                             break;
@@ -147,15 +141,16 @@ namespace SceneGeneration.PerlinNoise
         }
 
         private void OnValidate() {
-            if (lacunarity < 1) {
-                lacunarity = 1;
+            if (terrainData != null) {
+                terrainData.OnValuesUpdated -= OnValuesUpdated;
+                terrainData.OnValuesUpdated += OnValuesUpdated;
             }
-
-            if (octaves < 0) {
-                octaves = 0;
+            if (noiseData != null) {
+                noiseData.OnValuesUpdated -= OnValuesUpdated;
+                noiseData.OnValuesUpdated += OnValuesUpdated;
             }
-
-            _falloffMap = FalloffGenerator.GenerateFalloffMap(MapChunkSize);
+            
+            _falloffMap = FalloffGenerator.GenerateFalloffMap(MapSize);
         }
 
         private struct MapThreadInfo<T>

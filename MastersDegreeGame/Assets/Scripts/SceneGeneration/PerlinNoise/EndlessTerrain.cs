@@ -5,8 +5,7 @@ namespace SceneGeneration.PerlinNoise
 {
     public class EndlessTerrain : MonoBehaviour
     {
-        private const float Scale = 5f;
-
+        //private const float Scale = 5f;
         private const float ViewerMoveThresholdForChunkUpdate = 25f;
 
         private const float SqrViewerMoveThresholdForChunkUpdate =
@@ -31,7 +30,7 @@ namespace SceneGeneration.PerlinNoise
             _mapGenerator = FindObjectOfType<MapGenerator>();
 
             MaxViewDst = detailLevels[detailLevels.Length - 1].visibleDstThreshold;
-            _chunkSize = MapGenerator.MapChunkSize - 1;
+            _chunkSize = MapGenerator.MapSize - 1;
             _chunksVisibleInViewDst = Mathf.RoundToInt(MaxViewDst / _chunkSize);
 
             UpdateVisibleChunks();
@@ -39,7 +38,7 @@ namespace SceneGeneration.PerlinNoise
 
         private void Update() {
             var position = viewer.position;
-            ViewerPosition = new Vector2(position.x, position.z) / Scale;
+            ViewerPosition = new Vector2(position.x, position.z) / _mapGenerator.terrainData.uniformScale;
 
             if ((_viewerPositionOld - ViewerPosition).sqrMagnitude > SqrViewerMoveThresholdForChunkUpdate) {
                 _viewerPositionOld = ViewerPosition;
@@ -100,9 +99,9 @@ namespace SceneGeneration.PerlinNoise
                 _meshFilter = _meshObject.AddComponent<MeshFilter>();
                 _meshRenderer.material = material;
 
-                _meshObject.transform.position = positionV3 * Scale;
+                _meshObject.transform.position = positionV3 * _mapGenerator.terrainData.uniformScale;
                 _meshObject.transform.parent = parent;
-                _meshObject.transform.localScale = Vector3.one * Scale;
+                _meshObject.transform.localScale = Vector3.one * _mapGenerator.terrainData.uniformScale;
                 SetVisible(false);
 
                 _lodMeshes = new LodMesh[detailLevels.Length];
@@ -117,8 +116,8 @@ namespace SceneGeneration.PerlinNoise
                 _mapData = mapData;
                 _mapDataReceived = true;
 
-                var texture = TextureGenerator.TextureFromColourMap(mapData.ColourMap, MapGenerator.MapChunkSize,
-                    MapGenerator.MapChunkSize);
+                var texture = TextureGenerator.TextureFromColourMap(mapData.ColourMap, MapGenerator.MapSize,
+                    MapGenerator.MapSize);
                 _meshRenderer.material.mainTexture = texture;
 
                 UpdateTerrainChunk();
