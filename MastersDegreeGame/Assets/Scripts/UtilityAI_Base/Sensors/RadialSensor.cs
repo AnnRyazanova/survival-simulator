@@ -5,7 +5,7 @@ using UtilityAI_Base.Contexts.Interfaces;
 
 namespace UtilityAI_Base.Sensors
 {
-    public sealed class RadialSensor : MonoBehaviour, IContextProvider
+    public sealed class RadialSensor : MonoBehaviour
     {
         #region public fields
 
@@ -26,11 +26,7 @@ namespace UtilityAI_Base.Sensors
         #endregion
         
         #region interface methods implementations
-        
-        public void ProvideContext(IAiContext context) {
-            throw new NotImplementedException();
-        }
-        
+ 
         #endregion
         
         #region Unity functions
@@ -41,9 +37,6 @@ namespace UtilityAI_Base.Sensors
         }
 
         private void Update() {
-            if (_detectedCollidersCount > 0) {
-                ProvideContext(context);
-            }
         }
 
         private void FixedUpdate() {

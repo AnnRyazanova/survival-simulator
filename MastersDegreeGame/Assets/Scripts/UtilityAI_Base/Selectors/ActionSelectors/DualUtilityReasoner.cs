@@ -32,7 +32,7 @@ namespace UtilityAI_Base.Selectors.ActionSelectors
             var utilities = new List<UtilityWeights>();
             foreach (var action in actions) {
                 UtilityPick utility = action.EvaluateAbsoluteUtility(context);
-                if (utility.Score > 0f) {
+                if (utility != null && utility.Score > 0f) {
                     utilities.Add(new UtilityWeights(utility.Score, utility));
                 }
             }
@@ -59,7 +59,6 @@ namespace UtilityAI_Base.Selectors.ActionSelectors
                     if (u.Weight > maxWeight) maxWeight = u.Weight;
                     if (u.Weight < minWeight) minWeight = u.Weight;
                 }
-                Debug.Log(minWeight + " " + maxWeight);
                 // TODO: Weights are equal to 1 on the first run ??  
                 var rand = Random.Range(minWeight, maxWeight);
                 return utilities.Find(u => u.Weight >= rand).UAction;

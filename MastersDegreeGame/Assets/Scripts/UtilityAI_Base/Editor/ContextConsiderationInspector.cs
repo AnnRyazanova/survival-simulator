@@ -30,6 +30,7 @@ namespace UtilityAI_Base.Editor
             rect.width = 10;
             property.FindPropertyRelative("canApplyVeto").boolValue = EditorGUI.Toggle(
                 rect, property.FindPropertyRelative("canApplyVeto").boolValue);
+            
         }
         
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label) {
@@ -37,7 +38,6 @@ namespace UtilityAI_Base.Editor
             position.x += 10;
 
             EditorGUI.BeginProperty(position, label, property);
-            EditorGUI.BeginChangeCheck();
             
             DisplayHeadLine(position, property, label);
             
@@ -47,8 +47,7 @@ namespace UtilityAI_Base.Editor
                     position.width,
                     EditorGUIUtility.singleLineHeight), property.FindPropertyRelative("valueRange"),
                 new GUIContent("Value normalization range"));
-            EditorGUI.EndChangeCheck();
-            
+
             EditorGUI.EndProperty();
         }
     }

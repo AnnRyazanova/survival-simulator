@@ -7,6 +7,7 @@ namespace UtilityAI_Base.Contexts
         Enemies,
         Target,
         DistancesToEnemies,
+        DistanceFromStartingPoint,
         Owner
     }
 }

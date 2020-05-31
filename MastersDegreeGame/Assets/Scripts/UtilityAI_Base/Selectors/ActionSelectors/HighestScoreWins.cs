@@ -22,12 +22,16 @@ namespace UtilityAI_Base.Selectors.ActionSelectors
             var maxUtility = 0f;
             UtilityPick highestScoreAction = null;
             foreach (var action in actions) {
-                var utility = action.EvaluateAbsoluteUtility(context);
-                if (utility.Score >= maxUtility) {
-                    maxUtility = utility.Score;
-                    highestScoreAction = utility;
+                if (action != null) {
+                    var utility = action.EvaluateAbsoluteUtility(context);
+                    Debug.Log(utility.UtilityAction.description + " " + utility.Score);
+                    if (utility.Score > 0 && utility.Score >= maxUtility) {
+                        maxUtility = utility.Score;
+                        highestScoreAction = utility;
+                    }
                 }
             }
+            
             return highestScoreAction;
         }
     }

@@ -67,10 +67,12 @@ namespace UtilityAI_Base.Editor
         
         private void AddItem(ReorderableList list) {
             SelectedAction.considerations.Add(new ContextConsideration());
+            EditorUtility.SetDirty(target);
         }
 
         private void RemoveItem(ReorderableList list) {
             SelectedAction.considerations.RemoveAt(list.index);
+            EditorUtility.SetDirty(target);
         }
 
         private void ShowProperties() {
@@ -85,24 +87,35 @@ namespace UtilityAI_Base.Editor
             if (EditorGUI.EndChangeCheck()) {
                 SelectedAction.qualifier =
                     ConsiderationsQualifierFactory.GetQualifier(SelectedAction.qualifierType);
+                EditorUtility.SetDirty(target);
             }
             
             EditorGUILayout.Separator();
+            EditorGUI.BeginChangeCheck();
 
             SelectedAction.CooldownTime = Mathf.Clamp(
                 EditorGUILayout.FloatField(new GUIContent("Cooldown (s)"), SelectedAction.CooldownTime),
                 0f,
                 100f);
+            
+            SelectedAction.InertiaTime = Mathf.Clamp(
+                EditorGUILayout.FloatField(new GUIContent("Inertia time (s)"), SelectedAction.InertiaTime),
+                0f,
+                100f);
             EditorGUILayout.Separator();
-
+            
             SelectedAction.ActionWeight =
                 EditorGUILayout.FloatField(new GUIContent("Weight"), SelectedAction.ActionWeight);
+
             EditorGUILayout.Separator();
 
             EditorGUILayout.LabelField(new GUIContent("Action To Be Performed:"), EditorStyles.boldLabel);
             EditorGUILayout.Separator();
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("actionTask"));
+            if (EditorGUI.EndChangeCheck()) {
+                EditorUtility.SetDirty(target);
+            }
         }
 
         public void ShowDescription() {
@@ -121,7 +134,6 @@ namespace UtilityAI_Base.Editor
 
             ShowDescription();
             serializedObject.ApplyModifiedProperties();
-            // DrawDefaultInspector();
         }
     }
 }

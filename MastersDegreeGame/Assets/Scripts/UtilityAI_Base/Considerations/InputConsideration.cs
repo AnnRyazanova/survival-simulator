@@ -14,8 +14,10 @@ namespace UtilityAI_Base.Considerations
         public List<float> Evaluate(AiContext context) {
             var pick = new List<float>();
             if (evaluatedContextVariable != AiContextVariable.None) {
-                foreach (var eval in (List<float>)context.GetParameter(evaluatedContextVariable)) {
-                    pick.Add(EvaluateAt(eval));
+                if (context.GetParameter(evaluatedContextVariable) is List<float> evaluatedParams) {
+                    foreach (var eval in evaluatedParams) {
+                        pick.Add(EvaluateAt(eval));
+                    }
                 }
             }
             return pick;

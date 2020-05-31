@@ -23,6 +23,7 @@ namespace Prefabs.Monsters.Spider.AI
             owner = GetComponent<NpcMainScript>();
             target = null;
             Colliders = new Collider[bufferSize];
+            StartingPoint = ((NpcMainScript) owner).transform.position;
         }
 
         public override void UpdateContext() {
@@ -60,12 +61,15 @@ namespace Prefabs.Monsters.Spider.AI
             get => target != null ? Vector3.Distance(transform.position, target.transform.position) : 100f;
             set => _distanceToEnemy = value;
         }
+        
+        [NpcContextVar]
+        public float DistanceFromStartingPoint => Vector3.Distance(transform.position, StartingPoint);
 
         [NpcContextVar] public float QuantityEnemiesNearby { get; set; }
 
         [HideInInspector] public List<ICombatTarget> Enemies = new List<ICombatTarget>();
         [HideInInspector] public List<float> DistancesToEnemies = new List<float>();
-
+        
         public override object GetParameter(AiContextVariable param) {
             switch (param) {
                 case AiContextVariable.DistanceToTarget:
@@ -80,6 +84,8 @@ namespace Prefabs.Monsters.Spider.AI
                     return owner;
                 case AiContextVariable.DistancesToEnemies:
                     return DistancesToEnemies;
+                case AiContextVariable.DistanceFromStartingPoint:
+                    return DistanceFromStartingPoint;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(param), param, null);
             }

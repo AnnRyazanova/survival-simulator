@@ -36,7 +36,8 @@ namespace UtilityAI_Base.Actions.Base
         /// How much time should pass before action can be invoked again 
         /// </summary>
         protected float _cooldownTime = 0f;
-
+        protected float _inertiaTime = 0f;
+        
         protected float _lastInvokedTime = 0f;
 
         public float CooldownTime
@@ -45,16 +46,26 @@ namespace UtilityAI_Base.Actions.Base
             set => _cooldownTime = Mathf.Clamp(value, 0f, 1e+10f);
         }
 
+        public float InertiaTime
+        {
+            get => _inertiaTime;
+            set => _inertiaTime = Mathf.Clamp(value, 0f, 100f);
+        }
+        
         /// <summary>
         /// Action weight to be applied after Utility calculation. Adjusting weights make this action
         /// Less/more probable to be executed 
         /// </summary>
         protected float _actionWeight = 1f;
+        public float _originalActionWeight = 1f;
 
         public float ActionWeight
         {
             get => _actionWeight;
-            set => _actionWeight = Mathf.Clamp(value, 0f, 100f);
+            set
+            {
+                _actionWeight = Mathf.Clamp(value, 0f, 100f);
+            }
         }
 
         /// <summary>
@@ -88,10 +99,9 @@ namespace UtilityAI_Base.Actions.Base
         /// </summary>
         /// <returns> WaitForSeconds coroutine object </returns>
         public IEnumerator AddInertia() {
-            var oldWeight = _actionWeight;
-            _actionWeight *= 2f;
-            yield return new WaitForSeconds(_cooldownTime);
-            _actionWeight = oldWeight;
+            _actionWeight *= 4f;
+            yield return new WaitForSeconds(_inertiaTime);
+            _actionWeight = _originalActionWeight;
         }
 
         /// <summary>

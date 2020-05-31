@@ -15,20 +15,14 @@ namespace UtilityAI_Base.Actions.Pickers
     {
         public AiContextVariable evaluatedParamName = AiContextVariable.None;
 
-        public List<InputConsideration> considerations;
-
-        public void Awake() {
-            considerations = new List<InputConsideration>();
-        }
+        public List<InputConsideration> considerations = new List<InputConsideration>();
 
         public override UtilityPick EvaluateAbsoluteUtility(AiContext context) {
-            // TODO: Maybe disable checks ?? 
-            var c = 0;
+            // TODO: Maybe disable checks ?? or add some new =)
             if (evaluatedParamName != AiContextVariable.None) {
                 List<float> averageScores = null;
                 foreach (var inputConsideration in considerations) {
                     var scores = inputConsideration.Evaluate(context);
-                    c = scores.Count;
                     if(averageScores == null) averageScores = new List<float>(new float[scores.Count]);
                     for (var i = 0; i < scores.Count; i++) {
                         averageScores[i] += scores[i];
@@ -47,7 +41,6 @@ namespace UtilityAI_Base.Actions.Pickers
                         }
                     }
 
-                // Debug.Log("FROM " + maxAvg + " " + maxIdx + " " + c);
                 return new UtilityPick(this, maxAvg, maxIdx);
             }
 
@@ -55,7 +48,10 @@ namespace UtilityAI_Base.Actions.Pickers
         }
 
         public override void Execute(AiContext context, UtilityPick pick) {
-            Debug.Log(context.GetParameter(evaluatedParamName));
+            _lastInvokedTime = Time.time;
+            _invokedTimes++;
+            _inExecution = true;
+            actionTask?.Invoke(context, pick);
         }
     }
 }

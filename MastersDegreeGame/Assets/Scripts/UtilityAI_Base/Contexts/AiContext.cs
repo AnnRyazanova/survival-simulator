@@ -15,6 +15,7 @@ namespace UtilityAI_Base.Contexts
     {
         public IAgent owner;
         public GameObject target;
+        [HideInInspector] public Vector3 StartingPoint;
 
         [SerializeField] protected int bufferSize = 50;
         protected Collider[] Colliders;

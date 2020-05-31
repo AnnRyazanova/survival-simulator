@@ -22,21 +22,18 @@ namespace UtilityAI_Base.Actions
         /// <summary>
         /// List of all considerations needed to evaluate this actions' utility score 
         /// </summary>
-        public List<ContextConsideration> considerations;
-
-        public void Awake() {
-            considerations = new List<ContextConsideration>();
-        }
+        public List<ContextConsideration> considerations = new List<ContextConsideration>();
 
         public override UtilityPick EvaluateAbsoluteUtility(AiContext context) {
-            return new UtilityPick(this, _actionWeight * qualifier.Qualify(context, considerations));
+            var score = Mathf.Round(_actionWeight * qualifier.Qualify(context, considerations) * 1e+3f) / 1e+3f;
+            return new UtilityPick(this, score);
         }
         
         public override void Execute(AiContext context, UtilityPick pick) {
             _lastInvokedTime = Time.time;
             _invokedTimes++;
             _inExecution = true;
-            actionTask.Invoke(context, pick);
+            actionTask?.Invoke(context, pick);
         }
     }
 }

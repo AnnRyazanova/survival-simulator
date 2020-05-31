@@ -220,7 +220,7 @@ namespace Characters.Player
         #endregion
 
         public bool IsActive() {
-            throw new NotImplementedException();
+            return true;
         }
 
         public Vector3 GetCurrentWorldPosition() {
@@ -228,7 +228,8 @@ namespace Characters.Player
         }
 
         public Vector3 GetCurrentVelocity() {
-            throw new NotImplementedException();
+            // TODO: change to nvmesh
+            return Vector3.forward;
         }
     }
 }
