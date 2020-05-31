@@ -5,7 +5,7 @@ namespace CameraLogic
 {
     public class CameraFollow : MonoBehaviour
     {
-        [SerializeField] private GameObject targetBody;
+        public GameObject targetBody;
         private Vector3 _cameraOffset;
 
         private void Start() => _cameraOffset = transform.position - targetBody.transform.position;
