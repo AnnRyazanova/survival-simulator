@@ -384,7 +384,7 @@ GameObject:
   - component: {fileID: 4717858302495670760}
   - component: {fileID: 16411760510161278}
   m_Layer: 5
-  m_Name: TestWindow
+  m_Name: SettingsWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9212244927131702975}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6676857f2351c814890a71b853e4dd22, type: 3}
+  m_Script: {fileID: 11500000, guid: fc90b3e85e15efb44b4225ed778da920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
