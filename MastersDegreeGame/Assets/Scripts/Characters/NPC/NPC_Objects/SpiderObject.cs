@@ -15,7 +15,6 @@ namespace Characters.NPC.NPC_Objects
         }
 
         public void AttackTarget(ICombatTarget target) {
-            Debug.Log("Attack");
             animatorController.OnAttackMelee();
             StartCoroutine(DoDamage(target, 0.1f));
         }

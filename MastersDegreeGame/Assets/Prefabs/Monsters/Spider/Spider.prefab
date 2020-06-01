@@ -146,6 +146,8 @@ GameObject:
   - component: {fileID: 195670875867014130}
   - component: {fileID: 5013417418158621078}
   - component: {fileID: 3493011632022199613}
+  - component: {fileID: 344283739171159469}
+  - component: {fileID: 6394776289645170165}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -160,7 +162,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5619418397164638221}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -0.81303686, z: 0, w: 0.58221227}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.35, y: 0.4, z: 0.35}
   m_Children:
@@ -205,10 +207,11 @@ MonoBehaviour:
   characterRunSpeed: 4
   characterWalkSpeed: 2
   attackRate: 1.5
-  lastAttackTime: 0
+  lastAttackTime: 16.141253
   actionSphere: {fileID: 6480165528348724169}
   itemSearchRadius: 0.3
   npcObject: {fileID: 4979329492961819518}
+  _agent: {fileID: 0}
 --- !u!195 &195670875867014130
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -223,9 +226,9 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 1
   m_AngularSpeed: 100000
-  m_StoppingDistance: 1
+  m_StoppingDistance: 1.5
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
@@ -259,6 +262,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad12a27c7cb6d941a9964e9d5d24b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldMove: 0
+--- !u!114 &344283739171159469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5619418397164638221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89e1e1bb83546aa46b5de6329fba0c3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  StartingPoint: {x: 0, y: 0, z: 0}
+  bufferSize: 50
+  dayNight: {fileID: 0}
+  coverMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  Covers: []
+  DistancesToEnemies: []
+  DistancesToCover: []
+  CoverValues: []
+--- !u!114 &6394776289645170165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5619418397164638221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0497029c22c9446d8888248f243d113c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionSelectorType: 2
+  fallbackSelectorType: 0
+  actions:
+  - {fileID: 11400000, guid: 31c968c923c4a3640a742fc197818afe, type: 2}
+  - {fileID: 11400000, guid: 1264721c4169e934487f46b848758752, type: 2}
+  - {fileID: 11400000, guid: 43348f8bc8354384da7efdad99d3f162, type: 2}
+  - {fileID: 11400000, guid: 2eda9518c4b2b5848929ae9456079023, type: 2}
+  fallBackActions: []
 --- !u!1 &5619418397164638223
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,16 +2205,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5619418397164735981}
     m_Modifications:
-    - target: {fileID: 5201485673633628420, guid: 7687883559cf4c14e8c92dc6f8990952,
-        type: 3}
-      propertyPath: m_Name
-      value: SpiderObject
-      objectReference: {fileID: 0}
-    - target: {fileID: 2958479864784799321, guid: 7687883559cf4c14e8c92dc6f8990952,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 137601814807686304, guid: 7687883559cf4c14e8c92dc6f8990952,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2223,11 +2260,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6393210503230187448, guid: 7687883559cf4c14e8c92dc6f8990952,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1640960433280677366, guid: 7687883559cf4c14e8c92dc6f8990952,
         type: 3}
       propertyPath: _totalPoints
@@ -2241,6 +2273,21 @@ PrefabInstance:
     - target: {fileID: 1640960433280677366, guid: 7687883559cf4c14e8c92dc6f8990952,
         type: 3}
       propertyPath: _skipRecovery
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2958479864784799321, guid: 7687883559cf4c14e8c92dc6f8990952,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5201485673633628420, guid: 7687883559cf4c14e8c92dc6f8990952,
+        type: 3}
+      propertyPath: m_Name
+      value: SpiderObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 6393210503230187448, guid: 7687883559cf4c14e8c92dc6f8990952,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

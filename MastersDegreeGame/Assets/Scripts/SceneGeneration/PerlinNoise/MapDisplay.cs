@@ -16,7 +16,6 @@ namespace SceneGeneration.PerlinNoise
 
         public void DrawMesh(MeshData meshData, Texture2D texture) {
             meshFilter.sharedMesh = meshData.CreateMesh ();
-            //meshSplit.Split();
             meshRenderer.sharedMaterial.mainTexture = texture;
         }
 

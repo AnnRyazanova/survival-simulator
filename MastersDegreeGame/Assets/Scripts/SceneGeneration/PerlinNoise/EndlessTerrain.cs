@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿/*using System.Collections.Generic;
 using UnityEngine;
 
 namespace SceneGeneration.PerlinNoise
@@ -201,4 +201,4 @@ namespace SceneGeneration.PerlinNoise
             public float visibleDstThreshold;
         }
     }
-}
+}*/

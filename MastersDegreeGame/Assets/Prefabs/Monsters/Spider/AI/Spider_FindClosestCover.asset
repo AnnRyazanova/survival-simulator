@@ -1,0 +1,149 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2670ef3a80f641d1b8e8c4f22c8d2074, type: 3}
+  m_Name: Spider_FindClosestCover
+  m_EditorClassIdentifier: 
+  actionTask:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4712786132671204694, guid: 5ad61e3911d49ad45ae167b66e86a325,
+          type: 3}
+        m_MethodName: GoToCover
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _originalActionWeight: 1
+  description: Go to closest cover
+  maxConsecutiveInvocations: 0
+  qualifierType: 0
+  evaluatedParamName: 6
+  considerations:
+  - description: Time of day
+    weight: 1
+    valueRange: {x: 0, y: 1}
+    canApplyVeto: 1
+    isEnabled: 1
+    evaluatedContextVariable: 9
+    utilityCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: -0.0034179688
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.3994668
+        value: -0.0032548476
+        inSlope: 0.1176685
+        outSlope: 0.1176685
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.08805536
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.40063006
+        value: 1.0011966
+        inSlope: -0.012204631
+        outSlope: -0.012204631
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 1
+        outWeight: 0.8296392
+      - serializedVersion: 3
+        time: 0.62193537
+        value: 1.0014725
+        inSlope: -0.019380923
+        outSlope: -0.019380923
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.24926943
+      - serializedVersion: 3
+        time: 0.6224789
+        value: -0.001151681
+        inSlope: -0.02253113
+        outSlope: -0.02253113
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.22413328
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.99938965
+        value: -0.007320404
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  - description: n
+    weight: 1
+    valueRange: {x: 2, y: 15}
+    canApplyVeto: 0
+    isEnabled: 1
+    evaluatedContextVariable: 7
+    utilityCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: -0.0012130737
+        value: 0.8982544
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 0.2515442
+        value: 0.99911475
+        inSlope: -0.124808
+        outSlope: -0.124808
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.5292304
+        value: 0.7047858
+        inSlope: -1.0818262
+        outSlope: -1.0818262
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.9999981
+        value: 0.54804444
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4

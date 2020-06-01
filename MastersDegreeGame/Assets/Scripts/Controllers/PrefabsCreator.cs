@@ -9,6 +9,7 @@ public class PrefabsCreator
     {
         public Vector3 scale = Vector3.one;
         public Vector3 position = Vector3.zero;
+        public Transform parent = null;
     }
     
     public GameObject LoadPrefab(string prefabPath, PrefabParams @params = null)
@@ -19,13 +20,13 @@ public class PrefabsCreator
             return null;
         }
         
-        var _gameObj = GameObject.Instantiate(prefab) as GameObject;
-        
-        var vecPos =  @params?.position ?? Vector3.zero;
-        var vecScale = @params?.scale ??Vector3.one;
-        _gameObj.transform.localPosition = vecPos;
-        _gameObj.transform.localScale = vecScale;
+        var gameObj = GameObject.Instantiate(prefab, @params?.parent) as GameObject;
 
-        return _gameObj;
+        var vecPos =  @params?.position ?? Vector3.zero;
+        var vecScale = @params?.scale ?? Vector3.one;
+        gameObj.transform.localPosition = vecPos;
+        gameObj.transform.localScale = vecScale;
+
+        return gameObj;
     }
 }

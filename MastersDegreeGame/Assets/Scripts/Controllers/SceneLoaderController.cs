@@ -106,12 +106,14 @@ public sealed class SceneLoaderController : MonoBehaviour
     private void InstantiatePrefabs()
     {
         PrefabsCreator.Get.LoadPrefab("Player/SceneInfo");
-
+        
         var @params = new PrefabsCreator.PrefabParams {
             scale = new Vector3(1,1,1)
         };
         PrefabsCreator.Get.LoadPrefab("Player/Player", @params);
         PrefabsCreator.Get.LoadPrefab("Environment/TimeOfDay");
+        
+        
     }
     
 }

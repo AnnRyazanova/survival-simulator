@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a928bfaebc63bc54c8f357b92e8351cf, type: 3}
-  m_Name: Noise
+  m_Name: ObjectPositionNoise
   m_EditorClassIdentifier: 
-  autoUpdate: 1
+  autoUpdate: 0
   normalizeMode: 0
-  noiseScale: 22.34
-  octaves: 6
-  persistance: 0.454
-  lacunarity: 1.9
-  seed: 111
+  noiseScale: 50
+  octaves: 2
+  persistance: 0.36
+  lacunarity: 2
+  seed: 254
   offset: {x: 0, y: 0}

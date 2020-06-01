@@ -101,7 +101,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _SpecsTex1:
         m_Texture: {fileID: 2800000, guid: 69213dcd64af3f24db37404c5c29245d, type: 3}
-        m_Scale: {x: 2, y: 3}
+        m_Scale: {x: 100, y: 20}
         m_Offset: {x: 0, y: 0}
     - _SpecsTex2:
         m_Texture: {fileID: 2800000, guid: 34174dc685eac9f43be279fcf9a21fef, type: 3}

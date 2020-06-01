@@ -142,9 +142,11 @@ public class MeshSplit : MonoBehaviour
         {
             newObject.layer = 4;
         }
+
+        
         
         children.Add(newObject);
-        
+
         Mesh mesh = new Mesh();
         mesh.name = regionName;
         
@@ -153,6 +155,12 @@ public class MeshSplit : MonoBehaviour
         mesh.uv = uvs.ToArray();
         mesh.normals = normals.ToArray();
 
+        if (regionName == "Forest")
+        {
+            var go = newObject.AddComponent<ObjectPositionGenerator>();
+            go.Generate(mesh.vertices);
+        }
+        
         MeshFilter newMeshFilter = newObject.GetComponent<MeshFilter>();
         newMeshFilter.mesh = mesh;
     }
