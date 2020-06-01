@@ -27,9 +27,9 @@ public class MeshSplit : MonoBehaviour
         {
             return "Water";
         }
-        else if (baseVerticles[baseTriangles[i + 0]].y < 0.2 ||
-                 baseVerticles[baseTriangles[i + 1]].y < 0.2 ||
-                 baseVerticles[baseTriangles[i + 2]].y < 0.2)
+        else if (baseVerticles[baseTriangles[i + 0]].y < 0.3 ||
+                 baseVerticles[baseTriangles[i + 1]].y < 0.3 ||
+                 baseVerticles[baseTriangles[i + 2]].y < 0.3)
         {
             return "Sand";
         }
@@ -155,11 +155,11 @@ public class MeshSplit : MonoBehaviour
         mesh.uv = uvs.ToArray();
         mesh.normals = normals.ToArray();
 
-        if (regionName == "Forest")
+        /*if (regionName == "Forest")
         {
             var go = newObject.AddComponent<ObjectPositionGenerator>();
             go.Generate(mesh.vertices);
-        }
+        }*/
         
         MeshFilter newMeshFilter = newObject.GetComponent<MeshFilter>();
         newMeshFilter.mesh = mesh;

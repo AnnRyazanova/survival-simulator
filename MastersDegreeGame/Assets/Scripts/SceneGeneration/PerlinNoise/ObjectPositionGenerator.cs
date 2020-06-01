@@ -27,16 +27,13 @@ public class ObjectPositionGenerator : MonoBehaviour {
                 var @params = new PrefabsCreator.PrefabParams {
                     scale = new Vector3(1,1,1),
                     position = position,
-                    parent = transform,
+                    parent = transform
                         
                 };
-                PrefabsCreator.Get.LoadPrefab("Player/Player", @params);
+                var go = PrefabsCreator.Get.LoadPrefab("Enviroment/oak1", @params);
                 // Instantiate and place element in world.
-                GameObject newElement = Instantiate(());
-                newElement.transform.SetParent(transform);
-                newElement.transform.position = position + offset;
-                newElement.transform.eulerAngles = rotation;
-                newElement.transform.localScale = scale;
+                //GameObject newElement = Instantiate();
+                go.transform.eulerAngles = rotation;
             }
             
         }
