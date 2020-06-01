@@ -14,9 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionTask:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4712786132671204694, guid: 5ad61e3911d49ad45ae167b66e86a325,
+          type: 3}
+        m_MethodName: GoToCover
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _originalActionWeight: 1
-  description: Find closest
+  description: Go to closest cover
   maxConsecutiveInvocations: 0
   qualifierType: 0
   evaluatedParamName: 6
@@ -32,7 +44,7 @@ MonoBehaviour:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.001159668
+        value: -0.0034179688
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -40,17 +52,26 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.7371169
-        value: 0.2509487
-        inSlope: 0.63450706
-        outSlope: 0.63450706
+        time: 0.3994668
+        value: -0.0032548476
+        inSlope: 0.1176685
+        outSlope: 0.1176685
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.33333334
+        inWeight: 0.08805536
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.40063006
+        value: 1.0011966
+        inSlope: -0.012204631
+        outSlope: -0.012204631
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 1
         outWeight: 0.8296392
       - serializedVersion: 3
-        time: 0.7405877
-        value: 1.0140915
+        time: 0.62193537
+        value: 1.0014725
         inSlope: -0.019380923
         outSlope: -0.019380923
         tangentMode: 0
@@ -58,8 +79,8 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.24926943
       - serializedVersion: 3
-        time: 0.8807797
-        value: 1.0106319
+        time: 0.6224789
+        value: -0.001151681
         inSlope: -0.02253113
         outSlope: -0.02253113
         tangentMode: 0
@@ -67,8 +88,8 @@ MonoBehaviour:
         inWeight: 0.22413328
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1.0006104
-        value: 1.0113487
+        time: 0.99938965
+        value: -0.007320404
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -78,9 +99,9 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  - description: Distance to cover
+  - description: n
     weight: 1
-    valueRange: {x: 1, y: 20}
+    valueRange: {x: 2, y: 15}
     canApplyVeto: 0
     isEnabled: 1
     evaluatedContextVariable: 7
@@ -88,8 +109,8 @@ MonoBehaviour:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.00061035156
-        value: 1
+        time: -0.0012130737
+        value: 0.8982544
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -97,56 +118,26 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.65932125
-        value: 0.9688211
-        inSlope: -0.44659597
-        outSlope: -0.44659597
+        time: 0.2515442
+        value: 0.99911475
+        inSlope: -0.124808
+        outSlope: -0.124808
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.9987991
-        value: 0.6999025
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  - description: Cover quality
-    weight: 1
-    valueRange: {x: 10, y: 20}
-    canApplyVeto: 0
-    isEnabled: 1
-    evaluatedContextVariable: 8
-    utilityCurve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.00061035156
-        value: 0.4008789
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 0.54305506
-        value: 0.8725979
-        inSlope: 0.8653792
-        outSlope: 0.8653792
+        time: 0.5292304
+        value: 0.7047858
+        inSlope: -1.0818262
+        outSlope: -1.0818262
         tangentMode: 0
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 1
-        value: 1
+        time: 0.9999981
+        value: 0.54804444
         inSlope: 0
         outSlope: 0
         tangentMode: 0

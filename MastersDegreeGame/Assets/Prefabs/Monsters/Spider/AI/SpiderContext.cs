@@ -74,7 +74,7 @@ namespace Prefabs.Monsters.Spider.AI
         private void FixedUpdate() {
             var position = transform.position;
             _foundCharactersCount = Physics.OverlapSphereNonAlloc(position, 10f, Colliders);
-            _foundCoversCount = Physics.OverlapSphereNonAlloc(position, 20f, _coverBuffer, coverMask);
+            _foundCoversCount = Physics.OverlapSphereNonAlloc(position, 50f, _coverBuffer, coverMask);
         }
 
         private float _distanceToEnemy = 100f;
@@ -83,13 +83,17 @@ namespace Prefabs.Monsters.Spider.AI
         [NpcContextVar]
         public float DistanceToEnemy
         {
-            get => target != null ? Vector3.Distance(transform.position, target.transform.position) : 100f;
+            get
+            {
+                // Debug.Log("DIST " + Vector3.Distance(transform.position, target.transform.position));
+                return target != null ? Vector3.Distance(transform.position, target.transform.position) : 100f;
+            }
             set => _distanceToEnemy = value;
         }
 
         [NpcContextVar]
-        public float TimeOfDay =>
-            DayNightCycleController.Get != null ? DayNightCycleController.Get._currentTimeOfDay : 0.5f;
+        public float TimeOfDay => DayNightCycleController.Get != null ? DayNightCycleController.Get._currentTimeOfDay : 0.5f;
+           
 
         [NpcContextVar] public float DistanceFromStartingPoint => Vector3.Distance(transform.position, StartingPoint);
         [NpcContextVar] public float QuantityEnemiesNearby { get; set; }

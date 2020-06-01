@@ -20,22 +20,39 @@ namespace UtilityAI_Base.Actions.Pickers
 
         public List<InputConsideration> considerations = new List<InputConsideration>();
 
+        private List<float> GetSumScores(AiContext context) {
+            List<float> averageScores = null;
+            var vetoIndices = new List<int>();
+            var count = (context.GetParameter(evaluatedParamName) as IEnumerable).Cast<object>().Count();
+            foreach (var inputConsideration in considerations) {
+                if (!inputConsideration.isEnabled) continue;
+                var scores = inputConsideration.Evaluate(context, count);
+                if(averageScores == null) averageScores = new List<float>(new float[scores.Count]);
+                for (var i = 0; i < scores.Count; i++) {
+                    var score = Mathf.Round(scores[i] * 1e+3f) / 1e+3f;
+                    if (score == 0 && inputConsideration.canApplyVeto) {
+                        vetoIndices.Add(i);
+                    }
+                    averageScores[i] += score;
+                }
+            }
+
+            if (averageScores != null) {
+                foreach (var vetoIndex in vetoIndices) {
+                    averageScores[vetoIndex] = 0f;
+                }
+            }
+           
+            return averageScores;
+        }
+        
         public override UtilityPick EvaluateAbsoluteUtility(AiContext context) {
             if (evaluatedParamName != AiContextVariable.None) {
-                List<float> averageScores = null;
-                var count = (context.GetParameter(evaluatedParamName) as IEnumerable).Cast<object>().Count();
-                foreach (var inputConsideration in considerations) {
-                    var scores = inputConsideration.Evaluate(context, count);
-                    if(averageScores == null) averageScores = new List<float>(new float[scores.Count]);
-                    for (var i = 0; i < scores.Count; i++) {
-                        averageScores[i] += scores[i];
-                    }
-                }
-
-                var considerationsCount = (float)considerations.Count;
-                var maxIdx = 0;
-                var maxAvg = 0f;
-                if (averageScores != null)
+                var averageScores = GetSumScores(context);
+                if (averageScores != null) {
+                    var considerationsCount = (float)considerations.Count;
+                    var maxIdx = -1;
+                    var maxAvg = 0f;
                     for (var i = 0; i < averageScores.Count; i++) {
                         averageScores[i] /= considerationsCount;
                         if (averageScores[i] > maxAvg) {
@@ -43,8 +60,9 @@ namespace UtilityAI_Base.Actions.Pickers
                             maxIdx = i;
                         }
                     }
-
-                return new UtilityPick(this, ActionWeight * maxAvg, maxIdx);
+                
+                    return new UtilityPick(this, ActionWeight * maxAvg, maxIdx);
+                }
             }
 
             return null;

@@ -34,7 +34,7 @@ MonoBehaviour:
   considerations:
   - description: Distance to target
     weight: 1
-    valueRange: {x: 0, y: 8}
+    valueRange: {x: 1, y: 6}
     canApplyVeto: 0
     isEnabled: 1
     evaluatedContextVariable: 1
@@ -100,7 +100,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   - description: Distance from starting point
     weight: 1
-    valueRange: {x: 2, y: 30}
+    valueRange: {x: 2, y: 20}
     canApplyVeto: 0
     isEnabled: 1
     evaluatedContextVariable: 5

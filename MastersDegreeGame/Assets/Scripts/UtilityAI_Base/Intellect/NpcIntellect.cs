@@ -78,10 +78,10 @@ namespace UtilityAI_Base.Intellect
 
                 // Update context
                 Sense();
-                // Debug.Log("===============================================");
+                Debug.Log("===============================================");
                 // Think about next action to be taken
                 Think();
-                // Debug.Log("===============================================");
+                Debug.Log("===============================================");
 
                 // Perform selected action
                 Act();
@@ -99,7 +99,7 @@ namespace UtilityAI_Base.Intellect
         private IEnumerator AddInertiaToCurrent() {
             if (!_started) {
                 _started = true;
-                modifier = 4f;
+                modifier = 2f;
                 yield return new WaitForSeconds(_currentAction.UtilityAction.InertiaTime);
                 modifier = 1f;
                 _started = false;
@@ -112,8 +112,9 @@ namespace UtilityAI_Base.Intellect
                 if (action != null) _currentAction = action;
             }
             else {
-                var currentActionScore = modifier * _currentAction.UtilityAction.EvaluateAbsoluteUtility(_context).Score;
-                if (currentActionScore == 0) {
+                _currentAction =  _currentAction.UtilityAction.EvaluateAbsoluteUtility(_context);
+                _currentAction.Score *= modifier;
+                if (_currentAction.Score == 0) {
                     _currentAction = null;
                 }
 
@@ -124,7 +125,7 @@ namespace UtilityAI_Base.Intellect
                 else {
                     _consecutiveActionsAreSame = action == _currentAction;
                     if (!_consecutiveActionsAreSame) {
-                        if (action.Score > currentActionScore) {
+                        if (action.Score > _currentAction.Score) {
                             _currentAction = action;
                         }
                     } 
@@ -136,9 +137,9 @@ namespace UtilityAI_Base.Intellect
 
         private void Act() {
             if (_currentAction != null) {
-                Debug.Log(_currentAction.UtilityAction.description + " " + modifier * _currentAction.Score);
                 _currentAction.UtilityAction.Execute(_context, _currentAction);
                 StartCoroutine(AddInertiaToCurrent());
+                // Debug.Log(name + ": " +_currentAction.UtilityAction.description + " " + _currentAction.Score);
             }
         }
 
