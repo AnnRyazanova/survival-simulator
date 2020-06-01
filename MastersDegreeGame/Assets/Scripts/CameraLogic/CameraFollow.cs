@@ -5,10 +5,10 @@ namespace CameraLogic
 {
     public class CameraFollow : MonoBehaviour
     {
-        [SerializeField] private GameObject targetBody;
-        private Vector3 _cameraOffset;
+        public GameObject targetBody;
+        private readonly Vector3 _cameraOffset = new Vector3(0, 7, -6);
 
-        private void Start() => _cameraOffset = transform.position - targetBody.transform.position;
+        //private void Start() => _cameraOffset = transform.position - targetBody.transform.position;
 
         void Update() {
             if (targetBody != null) transform.position = targetBody.transform.position + _cameraOffset;

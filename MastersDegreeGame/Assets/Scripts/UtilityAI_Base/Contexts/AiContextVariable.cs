@@ -8,6 +8,10 @@ namespace UtilityAI_Base.Contexts
         Target,
         DistancesToEnemies,
         DistanceFromStartingPoint,
+        Covers,
+        DistancesToCover,
+        CoverValues,
+        TimeOfDay,
         Owner
     }
 }

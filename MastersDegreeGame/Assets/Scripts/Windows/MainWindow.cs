@@ -19,8 +19,13 @@ public class MainWindow : BaseWindow
     }
 
     private void Update() {
-        _attakcButton.interactable = PlayerMainScript.MyPlayer.equipment.weapon != null &&
-                                     PlayerMainScript.MyPlayer.equipment.weapon.item is WeaponItem;
+        if (PlayerMainScript.MyPlayer != null)
+        {
+            _attakcButton.interactable = PlayerMainScript.MyPlayer.equipment.weapon != null &&
+                                         PlayerMainScript.MyPlayer.equipment.weapon.item is WeaponItem;
+        }
+        
+        
     }
 
     public void OnPauseButtonClick() {

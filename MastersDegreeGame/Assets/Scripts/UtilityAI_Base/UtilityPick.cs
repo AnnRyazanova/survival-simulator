@@ -13,7 +13,7 @@ namespace UtilityAI_Base
     public sealed class UtilityPick : IEquatable<UtilityPick>
     {
         public readonly AbstractUtilityAction UtilityAction = null;
-        public readonly float Score = 0f;
+        public float Score = 0f;
         public readonly int SelectorIdx;
         public readonly UtilityActionType ActionType;
 

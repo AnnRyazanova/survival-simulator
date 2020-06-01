@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using Characters.Animations;
 using Characters.Controllers;
 using Characters.Player;
@@ -8,6 +9,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
 using UtilityAI_Base;
+using UtilityAI_Base.Actions.Pickers;
 using UtilityAI_Base.Agents.Interfaces;
 using UtilityAI_Base.Contexts;
 using UtilityAI_Base.Contexts.Interfaces;
@@ -30,10 +32,26 @@ namespace Characters.NPC
             attackRate = 1f;
         }
 
+        public void GoToCover(AiContext context, UtilityPick pick) {
+            if (pick.UtilityAction is PickerAction picker) {
+                var choices = context.GetParameter(picker.evaluatedParamName) as List<Vector3>;
+                var owner = context.owner as NpcMainScript;
+                if (pick.SelectorIdx != -1) {
+                    string a = "";
+                    foreach (var choice in choices) {
+                        a += " " + choice;
+                    }
+                    owner._agent.SetDestination(choices[pick.SelectorIdx]);
+                }
+            }
+        }
+        
         public void GoToTarget(AiContext context, UtilityPick pick) {
             var hitGameObject = context.target;
             var owner = context.owner as NpcMainScript;
-            owner._agent.SetDestination(hitGameObject.transform.position);
+            if (owner != null) {
+                owner._agent.SetDestination(hitGameObject.transform.position);
+            }
         }
 
         public void ReturnHome(AiContext context, UtilityPick pick) {

@@ -12,25 +12,35 @@ namespace Prefabs.Monsters.Spider.AI
     [Serializable]
     public class SpiderContext : AiContext
     {
-        private int foundCollisionsCount = 0;
+        private int _foundCharactersCount = 0;
+        private int _foundCoversCount = 0;
+
+        public DayNightCycleController dayNight;
+
+        public LayerMask coverMask;
+
+        private Collider[] _coverBuffer;
 
         public void ClearAll() {
             Enemies.Clear();
             DistancesToEnemies.Clear();
+            DistancesToCover.Clear();
+            CoverValues.Clear();
         }
 
         private void Awake() {
             owner = GetComponent<NpcMainScript>();
             target = null;
             Colliders = new Collider[bufferSize];
+            _coverBuffer = new Collider[bufferSize];
             StartingPoint = ((NpcMainScript) owner).transform.position;
+            dayNight = DayNightCycleController.Get;
         }
 
         public override void UpdateContext() {
-            if (foundCollisionsCount == 0) return;
-            if (Enemies.Count > 0 || DistancesToEnemies.Count > 0) ClearAll();
-            _timeSinceLastWander = DistanceFromStartingPoint == 0 ? _timeSinceLastWander + 0.01f : 0f; 
-            Debug.Log(_timeSinceLastWander);
+            if (_foundCharactersCount == 0) return;
+            ClearAll();
+            _timeSinceLastWander = DistanceFromStartingPoint == 0 ? _timeSinceLastWander + 0.01f : 0f;
             foreach (var col in Colliders) {
                 if (col == null) continue;
                 var obj = col.gameObject;
@@ -47,35 +57,57 @@ namespace Prefabs.Monsters.Spider.AI
                     target = obj.GetComponent<PlayerMainScript>().gameObject;
                 }
             }
+
+            if (_foundCoversCount == 0) return;
+            foreach (var cover in _coverBuffer) {
+                if (cover == null) continue;
+                var selected = cover.GetComponent<NpcCoverPoint>();
+                if (selected != null) {
+                    var position = selected.transform.position;
+                    Covers.Add(position);
+                    DistancesToCover.Add(Vector3.Distance(transform.position, position));
+                    CoverValues.Add(selected.value);
+                }
+            }
         }
 
         private void FixedUpdate() {
-            foundCollisionsCount = Physics.OverlapSphereNonAlloc(transform.position, 10f, Colliders);
+            var position = transform.position;
+            _foundCharactersCount = Physics.OverlapSphereNonAlloc(position, 10f, Colliders);
+            _foundCoversCount = Physics.OverlapSphereNonAlloc(position, 50f, _coverBuffer, coverMask);
         }
 
         private float _distanceToEnemy = 100f;
         private float _timeSinceLastWander = 0f;
-        
+
         [NpcContextVar]
         public float DistanceToEnemy
         {
-            get => target != null ? Vector3.Distance(transform.position, target.transform.position) : 100f;
+            get
+            {
+                // Debug.Log("DIST " + Vector3.Distance(transform.position, target.transform.position));
+                return target != null ? Vector3.Distance(transform.position, target.transform.position) : 100f;
+            }
             set => _distanceToEnemy = value;
         }
-        
+
         [NpcContextVar]
-        public float DistanceFromStartingPoint => Vector3.Distance(transform.position, StartingPoint);
+        public float TimeOfDay => DayNightCycleController.Get != null ? DayNightCycleController.Get._currentTimeOfDay : 0.5f;
+           
+
+        [NpcContextVar] public float DistanceFromStartingPoint => Vector3.Distance(transform.position, StartingPoint);
         [NpcContextVar] public float QuantityEnemiesNearby { get; set; }
 
-        [NpcContextVar]
-        public float TimeSinceLastWander
-        {
-            get => _timeSinceLastWander;
-        }
+        public float TimeSinceLastWander => _timeSinceLastWander;
 
         [HideInInspector] public List<ICombatTarget> Enemies = new List<ICombatTarget>();
+        [HideInInspector] public List<Vector3> Covers = new List<Vector3>();
+
         [HideInInspector] public List<float> DistancesToEnemies = new List<float>();
-        
+
+        [HideInInspector] public List<float> DistancesToCover = new List<float>();
+        [HideInInspector] public List<float> CoverValues = new List<float>();
+
         public override object GetParameter(AiContextVariable param) {
             switch (param) {
                 case AiContextVariable.DistanceToTarget:
@@ -92,6 +124,14 @@ namespace Prefabs.Monsters.Spider.AI
                     return DistancesToEnemies;
                 case AiContextVariable.DistanceFromStartingPoint:
                     return DistanceFromStartingPoint;
+                case AiContextVariable.Covers:
+                    return Covers;
+                case AiContextVariable.DistancesToCover:
+                    return DistancesToCover;
+                case AiContextVariable.CoverValues:
+                    return CoverValues;
+                case AiContextVariable.TimeOfDay:
+                    return TimeOfDay;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(param), param, null);
             }

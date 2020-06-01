@@ -79,16 +79,10 @@ namespace UtilityAI_Base.Editor
             EditorGUILayout.LabelField(new GUIContent("Utility Action Parameters:"), EditorStyles.boldLabel);
             EditorGUILayout.Separator();
 
-            EditorGUI.BeginChangeCheck();
             SelectedAction.evaluatedParamName =
                 (AiContextVariable) EditorGUILayout.EnumPopup(new GUIContent("Evaluated Sequence"),
                     SelectedAction.evaluatedParamName);
 
-            if (EditorGUI.EndChangeCheck()) {
-                SelectedAction.qualifier =
-                    ConsiderationsQualifierFactory.GetQualifier(SelectedAction.qualifierType);
-            }
-            
             EditorGUILayout.Separator();
 
             SelectedAction.CooldownTime = Mathf.Clamp(
@@ -97,6 +91,12 @@ namespace UtilityAI_Base.Editor
                 100f);
             EditorGUILayout.Separator();
 
+            SelectedAction.InertiaTime = Mathf.Clamp(
+                EditorGUILayout.FloatField(new GUIContent("Inertia time (s)"), SelectedAction.InertiaTime),
+                0f,
+                100f);
+            EditorGUILayout.Separator();
+            
             SelectedAction.ActionWeight =
                 EditorGUILayout.FloatField(new GUIContent("Weight"), SelectedAction.ActionWeight);
             EditorGUILayout.Separator();

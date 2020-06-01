@@ -16,7 +16,7 @@ public class DayNightCycleController : MonoBehaviour
     // 0.25 is sunrise
     // 0.5 is noon
     // 0.75 is sunset
-    [SerializeField] [Range(0,1)] private float _currentTimeOfDay = 0;
+    [SerializeField] [Range(0,1)] public float _currentTimeOfDay = 0;
     
     public static DayNightCycleController Get { get; private set; }
 

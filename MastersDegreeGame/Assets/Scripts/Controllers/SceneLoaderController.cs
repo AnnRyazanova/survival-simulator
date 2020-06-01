@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using SceneGeneration.PerlinNoise;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ public sealed class SceneLoaderController : MonoBehaviour
     
     private readonly string _menuScene = "Menu/Menu";
     private readonly string _testScene = "MovementTest/MovementTest";
-    private readonly string _testGenScene = "Generation/Test";
+    private readonly string _testGenScene = "Generator/Perlin";
     
     public void LoadStartScene(int val)
     {
@@ -98,8 +99,19 @@ public sealed class SceneLoaderController : MonoBehaviour
 
         if (showMenuWindow) {
             MainWindowController.Instance.ShowWindow();
-            PrefabsCreator.Get.LoadPrefab("Environment/TimeOfDay");
+            InstantiatePrefabs();
         }
+    }
+
+    private void InstantiatePrefabs()
+    {
+        PrefabsCreator.Get.LoadPrefab("Player/SceneInfo");
+
+        var @params = new PrefabsCreator.PrefabParams {
+            scale = new Vector3(1,1,1)
+        };
+        PrefabsCreator.Get.LoadPrefab("Player/Player", @params);
+        PrefabsCreator.Get.LoadPrefab("Environment/TimeOfDay");
     }
     
 }

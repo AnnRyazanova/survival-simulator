@@ -24,7 +24,7 @@ namespace UtilityAI_Base.Selectors.ActionSelectors
             foreach (var action in actions) {
                 if (action != null) {
                     var utility = action.EvaluateAbsoluteUtility(context);
-                    // Debug.Log(utility.UtilityAction.description + " " + utility.Score);
+                    Debug.Log(utility.UtilityAction.description + " " + utility.Score);
                     if (utility.Score > 0 && utility.Score >= maxUtility) {
                         maxUtility = utility.Score;
                         highestScoreAction = utility;
