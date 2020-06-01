@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UtilityAI_Base.Actions.Base;
 using UtilityAI_Base.Considerations;
@@ -18,14 +19,13 @@ namespace UtilityAI_Base.Actions.Pickers
         public AiContextVariable evaluatedParamName = AiContextVariable.None;
 
         public List<InputConsideration> considerations = new List<InputConsideration>();
-        public ConsiderationsQualifier qualifier = new ProductQualifier();
 
         public override UtilityPick EvaluateAbsoluteUtility(AiContext context) {
-            // TODO: Maybe disable checks ?? or add some new =)
             if (evaluatedParamName != AiContextVariable.None) {
                 List<float> averageScores = null;
+                var count = (context.GetParameter(evaluatedParamName) as IEnumerable).Cast<object>().Count();
                 foreach (var inputConsideration in considerations) {
-                    var scores = inputConsideration.Evaluate(context);
+                    var scores = inputConsideration.Evaluate(context, count);
                     if(averageScores == null) averageScores = new List<float>(new float[scores.Count]);
                     for (var i = 0; i < scores.Count; i++) {
                         averageScores[i] += scores[i];
@@ -44,7 +44,7 @@ namespace UtilityAI_Base.Actions.Pickers
                         }
                     }
 
-                return new UtilityPick(this, maxAvg, maxIdx);
+                return new UtilityPick(this, ActionWeight * maxAvg, maxIdx);
             }
 
             return null;

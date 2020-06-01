@@ -9,7 +9,7 @@ namespace UtilityAI_Base.Considerations
     [Serializable]
     public class InputConsideration : Consideration
     {
-        public List<float> Evaluate(AiContext context) {
+        public List<float> Evaluate(AiContext context, int len = 1) {
             var pick = new List<float>();
             if (evaluatedContextVariable != AiContextVariable.None) {
                 if (context.GetParameter(evaluatedContextVariable) is List<float> evaluatedParams) {
@@ -19,7 +19,11 @@ namespace UtilityAI_Base.Considerations
                 }
                 else {
                     if (context.GetParameter(evaluatedContextVariable) is float evaluatedParam) {
-                        Debug.Log( "SSSSSSSSSSs " + evaluatedParam);
+                        pick = new List<float>();
+                        var score = EvaluateAt(evaluatedParam);
+                        for (int i = 0; i < len; i++) {
+                            pick.Add(score);
+                        }
                     }
                 }
             }

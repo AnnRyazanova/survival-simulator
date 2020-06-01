@@ -16,7 +16,7 @@ namespace Prefabs.Monsters.Spider.AI
         private int _foundCoversCount = 0;
 
         public DayNightCycleController dayNight;
-        
+
         public LayerMask coverMask;
 
         private Collider[] _coverBuffer;
@@ -56,12 +56,11 @@ namespace Prefabs.Monsters.Spider.AI
                 if (obj.GetComponent<PlayerMainScript>() != null) {
                     target = obj.GetComponent<PlayerMainScript>().gameObject;
                 }
-                
             }
 
             if (_foundCoversCount == 0) return;
             foreach (var cover in _coverBuffer) {
-                if(cover == null) continue;
+                if (cover == null) continue;
                 var selected = cover.GetComponent<NpcCoverPoint>();
                 if (selected != null) {
                     var position = selected.transform.position;
@@ -88,7 +87,10 @@ namespace Prefabs.Monsters.Spider.AI
             set => _distanceToEnemy = value;
         }
 
-        [NpcContextVar] public float TimeOfDay => DayNightCycleController.Get._currentTimeOfDay;
+        [NpcContextVar]
+        public float TimeOfDay =>
+            DayNightCycleController.Get != null ? DayNightCycleController.Get._currentTimeOfDay : 0.5f;
+
         [NpcContextVar] public float DistanceFromStartingPoint => Vector3.Distance(transform.position, StartingPoint);
         [NpcContextVar] public float QuantityEnemiesNearby { get; set; }
 

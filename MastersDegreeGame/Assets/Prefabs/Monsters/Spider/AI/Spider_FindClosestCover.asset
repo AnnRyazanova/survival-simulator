@@ -23,8 +23,8 @@ MonoBehaviour:
   considerations:
   - description: Time of day
     weight: 1
-    valueRange: {x: 0, y: 100}
-    canApplyVeto: 0
+    valueRange: {x: 0, y: 1}
+    canApplyVeto: 1
     isEnabled: 1
     evaluatedContextVariable: 9
     utilityCurve:
@@ -49,8 +49,8 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.8296392
       - serializedVersion: 3
-        time: 0.74363947
-        value: 0.9993744
+        time: 0.7405877
+        value: 1.0140915
         inSlope: -0.019380923
         outSlope: -0.019380923
         tangentMode: 0
@@ -58,8 +58,8 @@ MonoBehaviour:
         inWeight: 0.33333334
         outWeight: 0.24926943
       - serializedVersion: 3
-        time: 0.8832211
-        value: 1.0004429
+        time: 0.8807797
+        value: 1.0106319
         inSlope: -0.02253113
         outSlope: -0.02253113
         tangentMode: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1.0006104
-        value: 1.0000305
+        value: 1.0113487
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -97,8 +97,17 @@ MonoBehaviour:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.9975586
-        value: 0.19705582
+        time: 0.65932125
+        value: 0.9688211
+        inSlope: -0.44659597
+        outSlope: -0.44659597
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.9987991
+        value: 0.6999025
         inSlope: 0
         outSlope: 0
         tangentMode: 0
