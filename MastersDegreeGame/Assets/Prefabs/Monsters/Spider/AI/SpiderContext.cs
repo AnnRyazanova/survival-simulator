@@ -92,7 +92,7 @@ namespace Prefabs.Monsters.Spider.AI
         }
 
         [NpcContextVar]
-        public float TimeOfDay => DayNightCycleController.Get != null ? DayNightCycleController.Get._currentTimeOfDay : 0.5f;
+        public float TimeOfDay => DayNightCycleController.Get != null ? DayNightCycleController.Get.CurrentTimeOfDayFloat : 0.5f;
            
 
         [NpcContextVar] public float DistanceFromStartingPoint => Vector3.Distance(transform.position, StartingPoint);

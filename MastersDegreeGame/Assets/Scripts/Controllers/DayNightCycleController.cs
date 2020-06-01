@@ -7,6 +7,14 @@ using UnityEngine.Rendering;
 
 public class DayNightCycleController : MonoBehaviour
 {
+    public enum TimeOfDay
+    {
+        Night,
+        Morning,
+        Afternoon,
+        Evening
+    }
+    
     [SerializeField] private Light _sun;
     [SerializeField] private float _secInDay = 120f;
     [SerializeField] private Gradient _sunColor;
@@ -16,7 +24,27 @@ public class DayNightCycleController : MonoBehaviour
     // 0.25 is sunrise
     // 0.5 is noon
     // 0.75 is sunset
-    [SerializeField] [Range(0,1)] public float _currentTimeOfDay = 0;
+    [SerializeField] [Range(0,1)] private float _currentTimeOfDay = 0;
+
+    public float CurrentTimeOfDayFloat => _currentTimeOfDay;
+    
+    public TimeOfDay CurrentTimeOfDay 
+    {
+        get {
+            TimeOfDay result;
+            if (_currentTimeOfDay < 0.25) {
+                result = TimeOfDay.Night;
+            } else if (_currentTimeOfDay < 0.5) {
+                result = TimeOfDay.Morning;
+            } else if (_currentTimeOfDay < 0.75) {
+                result = TimeOfDay.Afternoon;
+            } else {
+                result = TimeOfDay.Evening;
+            }
+
+            return result;
+        }
+    }
     
     public static DayNightCycleController Get { get; private set; }
 

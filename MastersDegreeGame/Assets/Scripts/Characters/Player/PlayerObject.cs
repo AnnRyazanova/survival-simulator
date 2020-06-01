@@ -52,7 +52,7 @@ namespace Characters.Player
         public IEnumerator DoTakeDamage(ICombatAggressor aggressor, float delay = 0) {
             yield return new WaitForSecondsRealtime(delay);
             Health.RemovePoints(aggressor.GetDamage().value);
-            if (Health.CurrentPoints == 0) {
+            if (Health.CurrentPoints == 0 && _capsuleCollider != null) {
                 animatorController.OnDie();
                 _capsuleCollider.enabled = false;
             }
