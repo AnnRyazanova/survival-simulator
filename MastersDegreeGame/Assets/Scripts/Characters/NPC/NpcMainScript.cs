@@ -71,10 +71,10 @@ namespace Characters.NPC
             
             owner._agent.updateRotation = true;
 
-            // if (hitGameObject != null && hitGameObject.GetComponent<PlayerMainScript>() != null) {
-            //     (owner.npcObject as ICombatAggressor)?.AttackTarget(hitGameObject.GetComponent<PlayerMainScript>()
-            //         .playerObject);
-            // }
+            if (hitGameObject != null && hitGameObject.GetComponent<PlayerMainScript>() != null) {
+                (owner.npcObject as ICombatAggressor)?.AttackTarget(hitGameObject.GetComponent<PlayerMainScript>()
+                    .playerObject);
+            }
         }
         
         private void Update() {
