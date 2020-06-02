@@ -21,7 +21,7 @@ namespace SceneGeneration.PerlinNoise
         public TerrainData terrainData;
         public NoiseData noiseData;
 
-        public const int MapSize = 131;
+        public const int MapSize = 100;
         public const int editorPreviewLod = 0;
         
         public bool autoUpdate;
