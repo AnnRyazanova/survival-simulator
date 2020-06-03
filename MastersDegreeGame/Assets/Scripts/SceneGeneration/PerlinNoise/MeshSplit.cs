@@ -13,6 +13,8 @@ public class MeshSplit : MonoBehaviour
     private int[] baseTriangles;
     private Vector2[] baseUvs;
     private Vector3[] baseNormals;
+    private Vector3[] waterVerticles;
+    private int[] waterTriangles;
     
     private Dictionary<string, List<int>> trisDictionary;
     
@@ -21,15 +23,15 @@ public class MeshSplit : MonoBehaviour
 
     private string getRegionName(int i)
     {
-        if (baseVerticles[baseTriangles[i + 0]].y < 0.03 ||
-            baseVerticles[baseTriangles[i + 1]].y < 0.03 ||
-            baseVerticles[baseTriangles[i + 2]].y < 0.03)
+        if (baseVerticles[baseTriangles[i + 0]].y < -0.1 ||
+            baseVerticles[baseTriangles[i + 1]].y < -0.1 ||
+            baseVerticles[baseTriangles[i + 2]].y < -0.1)
         {
-            return "Water";
+            return "Bottom";
         }
-        else if (baseVerticles[baseTriangles[i + 0]].y < 0.2 ||
-                 baseVerticles[baseTriangles[i + 1]].y < 0.2 ||
-                 baseVerticles[baseTriangles[i + 2]].y < 0.2)
+        else if (baseVerticles[baseTriangles[i + 0]].y < 0.5 ||
+                 baseVerticles[baseTriangles[i + 1]].y < 0.5 ||
+                 baseVerticles[baseTriangles[i + 2]].y < 0.5)
         {
             return "Sand";
         }
@@ -65,6 +67,28 @@ public class MeshSplit : MonoBehaviour
         }
     }
 
+    private void waterMapTrianglesToGridNodes()
+    {
+        waterVerticles = baseMesh.vertices;
+        waterTriangles = baseMesh.triangles;
+        string regionName = "Water";
+        for (int i = 0; i < waterTriangles.Length; i += 3)
+        {
+            waterVerticles[waterTriangles[i + 0]].y = 0;
+            waterVerticles[waterTriangles[i + 1]].y = 0;
+            waterVerticles[waterTriangles[i + 2]].y = 0;
+
+            if (!trisDictionary.ContainsKey(regionName))
+            {
+                trisDictionary.Add(regionName, new List<int>());
+                
+            }
+            trisDictionary[regionName].Add(waterTriangles[i]);
+            trisDictionary[regionName].Add(waterTriangles[i + 1]);
+            trisDictionary[regionName].Add(waterTriangles[i + 2]);
+        }
+    }
+
     public void Split()
     {
         DestroyChildren();
@@ -89,15 +113,15 @@ public class MeshSplit : MonoBehaviour
         baseNormals = baseMesh.normals;
         
         MapTrianglesToGridNodes();
-        
+        waterMapTrianglesToGridNodes();
         foreach (var item in trisDictionary.Keys)
         {
-            CreateMesh(item, trisDictionary[item]);
+            CreateSubMesh(item, trisDictionary[item]);
         }
         GetComponent<NavMeshSurface>().BuildNavMesh();
     }
 
-    public void CreateMesh(string regionName, List<int> dictionaryTriangles)
+    public void CreateSubMesh(string regionName, List<int> dictionaryTriangles)
     {
         Debug.Log(dictionaryTriangles.Count);
         GameObject newObject = new GameObject();
@@ -119,11 +143,19 @@ public class MeshSplit : MonoBehaviour
 
         for (int i = 0; i < dictionaryTriangles.Count; i += 3)
         {
-
-            verts.Add(baseVerticles[dictionaryTriangles[i]]);
-            verts.Add(baseVerticles[dictionaryTriangles[i + 1]]);
-            verts.Add(baseVerticles[dictionaryTriangles[i + 2]]);
-
+            if (regionName == "Water")
+            {
+                verts.Add(waterVerticles[dictionaryTriangles[i]]);
+                verts.Add(waterVerticles[dictionaryTriangles[i + 1]]);
+                verts.Add(waterVerticles[dictionaryTriangles[i + 2]]);
+            }
+            else
+            {
+                verts.Add(baseVerticles[dictionaryTriangles[i]]);
+                verts.Add(baseVerticles[dictionaryTriangles[i + 1]]);
+                verts.Add(baseVerticles[dictionaryTriangles[i + 2]]); 
+            }
+            
             tris.Add(i);
             tris.Add(i + 1);
             tris.Add(i + 2);
@@ -138,13 +170,13 @@ public class MeshSplit : MonoBehaviour
 
         }
 
-        if (regionName == "Water")
+        if ((regionName == "Bottom") || (regionName == "Water"))
         {
             newObject.layer = 4;
         }
-        
+
         children.Add(newObject);
-        
+
         Mesh mesh = new Mesh();
         mesh.name = regionName;
         
@@ -153,6 +185,13 @@ public class MeshSplit : MonoBehaviour
         mesh.uv = uvs.ToArray();
         mesh.normals = normals.ToArray();
 
+        if (regionName == "Forest")
+        {
+            Debug.Log("if forest");
+            var go = newObject.AddComponent<ObjectPositionGenerator>();
+            go.Generate(mesh.vertices);
+        }
+        
         MeshFilter newMeshFilter = newObject.GetComponent<MeshFilter>();
         newMeshFilter.mesh = mesh;
     }
@@ -164,7 +203,7 @@ public class MeshSplit : MonoBehaviour
         DestroyChildren();
 
         GetComponent<MeshRenderer>().enabled = true;
-
+        
     }
 
     private void DestroyChildren()
