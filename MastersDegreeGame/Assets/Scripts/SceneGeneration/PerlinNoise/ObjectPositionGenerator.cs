@@ -3,82 +3,81 @@ using System.Collections.Generic;
 using SceneGeneration.PerlinNoise;
 using UnityEngine;
 
-public class ObjectPositionGenerator : MonoBehaviour {
-
-    public int forestSize = 131; // Overall size of the forest (a square of forestSize X forestSize).
-    public int elementSpacing = 15; // The spacing between element placements. Basically grid size.
-
-    public Element[] elements;
-
-    public void Generate(Vector3[] meshVertices) {
-        //var _MapGenerator = FindObjectOfType<MapGenerator>();
+public class ObjectPositionGenerator : MonoBehaviour
+{
+    public void Generate(Vector3[] meshVertices)
+    {
+        string[] elements = { "Carrot", "Branch_5", "Mushroom", "Branch_5", "Rock Type2 02", "Cover", "Spider"};
+        string[] elements1 = { "Carrot", "Branch_5", "Mushroom", "Branch_5", "Rock Type2 02", "Cover",};
         Debug.Log("begin forest");
-        
-        
-        for (int i = 0; i < meshVertices.Length; i++)
+        string elem;
+        int count_spider = 0;
+        for (int i = 0; i < meshVertices.Length; i+=50)
         {
-            for (int j = 0; j < elements.Length; j++)
-            {
-                Element element = elements[j];
-                Vector3 position = meshVertices[i];
-                Vector3 offset = new Vector3(Random.Range(-0.75f, 0.75f), 0f, Random.Range(-0.75f, 0.75f));
-                Vector3 rotation = new Vector3(Random.Range(0, 5f), Random.Range(0, 360f), Random.Range(0, 5f));
-                Vector3 scale = Vector3.one * Random.Range(0.75f, 1.25f);
-                var @params = new PrefabsCreator.PrefabParams {
-                    scale = new Vector3(1,1,1),
-                    position = position,
-                    parent = transform
-                        
-                };
-                var go = PrefabsCreator.Get.LoadPrefab("Enviroment/oak1", @params);
-                // Instantiate and place element in world.
-                //GameObject newElement = Instantiate();
-                go.transform.eulerAngles = rotation;
-            }
             
+            elem = elements[Random.Range(1, elements.Length)];
+            if (elem == "Spider")
+            {
+                count_spider++;
+            }
+
+            if (count_spider > 5)
+            {
+                elem = elements1[Random.Range(1, elements1.Length)];
+            }
+            var @params = new PrefabsCreator.PrefabParams
+            {
+                scale = elem == "Spider"? new Vector3(0.35f, .35f, .35f): Vector3.one,
+                position = meshVertices[i],
+                parent = transform
+                
+            };
+            PrefabsCreator.Get.LoadPrefab("Environment/" + elem, @params);
+
         }
-        
-        
-        
-        
-        /*
-        // Loop through all the positions within our forest boundary.
-        for (int x = 0; x < forestSize; x += elementSpacing) {
-            for (int z = 0; z < forestSize; z += elementSpacing) {
-                if (_MapGenerator.getMapData().HeightMap[x, z] > 0.1)
-                {
-                    for (int i = 0; i < elements.Length; i++) {
+    }
+}
 
-                        // Get the current element.
-                        Element element = elements[i];
-                        
-                        // Check if the element can be placed.
-                        if (element.CanPlace()) {
-                            Debug.Log("if element can place");
-                            // Add random elements to element placement.
-                            Vector3 position = new Vector3(x, _MapGenerator.getMapData().HeightMap[x, z], z);
-                            Vector3 offset = new Vector3(Random.Range(-0.75f, 0.75f), 0f, Random.Range(-0.75f, 0.75f));
-                            Vector3 rotation = new Vector3(Random.Range(0, 5f), Random.Range(0, 360f), Random.Range(0, 5f));
-                            Vector3 scale = Vector3.one * Random.Range(0.75f, 1.25f);
 
-                            // Instantiate and place element in world.
-                            GameObject newElement = Instantiate(element.GetRandom());
-                            newElement.transform.SetParent(transform);
-                            newElement.transform.position = position + offset;
-                            newElement.transform.eulerAngles = rotation;
-                            newElement.transform.localScale = scale;
 
-                            // Break out of this for loop to ensure we don't place another element at this position.
-                            break;
+/*
+// Loop through all the positions within our forest boundary.
+for (int x = 0; x < forestSize; x += elementSpacing) {
+    for (int z = 0; z < forestSize; z += elementSpacing) {
+        if (_MapGenerator.getMapData().HeightMap[x, z] > 0.1)
+        {
+            for (int i = 0; i < elements.Length; i++) {
 
-                        }
+                // Get the current element.
+                Element element = elements[i];
+                
+                // Check if the element can be placed.
+                if (element.CanPlace()) {
+                    Debug.Log("if element can place");
+                    // Add random elements to element placement.
+                    Vector3 position = new Vector3(x, _MapGenerator.getMapData().HeightMap[x, z], z);
+                    Vector3 offset = new Vector3(Random.Range(-0.75f, 0.75f), 0f, Random.Range(-0.75f, 0.75f));
+                    Vector3 rotation = new Vector3(Random.Range(0, 5f), Random.Range(0, 360f), Random.Range(0, 5f));
+                    Vector3 scale = Vector3.one * Random.Range(0.75f, 1.25f);
 
-                    }
+                    // Instantiate and place element in world.
+                    GameObject newElement = Instantiate(element.GetRandom());
+                    newElement.transform.SetParent(transform);
+                    newElement.transform.position = position + offset;
+                    newElement.transform.eulerAngles = rotation;
+                    newElement.transform.localScale = scale;
+
+                    // Break out of this for loop to ensure we don't place another element at this position.
+                    break;
+
                 }
 
             }
-        }*/
-        Debug.Log("end");
+        }
+
+    }
+}*/
+      /*  Debug.Log("end");
     }
 
 }
@@ -111,4 +110,4 @@ public class Element {
 
     }
 
-}
+}*/

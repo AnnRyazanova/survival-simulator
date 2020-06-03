@@ -185,11 +185,12 @@ public class MeshSplit : MonoBehaviour
         mesh.uv = uvs.ToArray();
         mesh.normals = normals.ToArray();
 
-        /*if (regionName == "Forest")
+        if (regionName == "Forest")
         {
+            Debug.Log("if forest");
             var go = newObject.AddComponent<ObjectPositionGenerator>();
             go.Generate(mesh.vertices);
-        }*/
+        }
         
         MeshFilter newMeshFilter = newObject.GetComponent<MeshFilter>();
         newMeshFilter.mesh = mesh;
@@ -202,7 +203,7 @@ public class MeshSplit : MonoBehaviour
         DestroyChildren();
 
         GetComponent<MeshRenderer>().enabled = true;
-
+        
     }
 
     private void DestroyChildren()
