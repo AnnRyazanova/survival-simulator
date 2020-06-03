@@ -5,10 +5,10 @@
         _Color ("Color", Color) = (1,1,1,1)
     }
     SubShader
-    {
+    { 
         CGPROGRAM
        
-        #pragma surface surf Lambert
+        #pragma surface surf Lambert noshadow
           
         fixed4 _Color;
 
@@ -24,4 +24,5 @@
         }
         ENDCG
     }
+    FallBack "Diffuse"
 }

@@ -95,6 +95,9 @@ public sealed class PlayerNeedsUiView : MonoBehaviour
     private void UpdateHunger()
     {
         var hunger = PlayerMainScript.MyPlayer.playerObject.Hunger;
+        
+        if (_hungerProgressBar == null || _hungerProgressBar.IsDestroyed()) return;
+        
         _hungerProgressBar.fillAmount = hunger.CurrentPointsNormalized;
 #if CHEAT
         _hungerText.text = hunger.CurrentPoints.ToString();

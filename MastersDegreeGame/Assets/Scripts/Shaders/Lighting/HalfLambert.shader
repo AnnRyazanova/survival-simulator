@@ -9,7 +9,7 @@
     {
         CGPROGRAM
        
-        #pragma surface surf HalfLambert
+        #pragma surface surf HalfLambert noshadow 
         
         float4 LightingHalfLambert(SurfaceOutput o, fixed3 lightDir, fixed atten)
         {
@@ -38,4 +38,5 @@
         }
         ENDCG
     }
+    FallBack "Diffuse"
 }
