@@ -43,7 +43,6 @@ namespace Characters.Controllers
         public void MoveTo(Transform self, Vector3 point, float speed) {
             Agent.speed = speed;
             Agent.destination = self.position + point;
-            Debug.Log(Agent.destination);
         }
 
         public void Move(Transform transform, Vector2 inputDirection, float speed) {

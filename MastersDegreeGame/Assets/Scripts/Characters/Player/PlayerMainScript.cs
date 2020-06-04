@@ -14,6 +14,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UtilityAI_Base.Actions;
 using UtilityAI_Base.Agents.Interfaces;
+using UtilityAI_Base.Intellect;
 
 
 namespace Characters.Player
@@ -34,9 +35,15 @@ namespace Characters.Player
         
         public ConeRadarSystem coneRadarSystem;
         public CircleRadarSystem circleRadar;
-        
 
+        private Collider[] _NPCsAround;
+        private Collider[] _NPCsPrevious;
+        
+        public float npcActivationRadius = 30f;
+        public int foundNpcCount = 0;
+        
         public LayerMask pickableMask;
+        public LayerMask enemiesMask;
         
         public bool isRangedEquipped;
         
@@ -64,6 +71,25 @@ namespace Characters.Player
             equipment.tool = null;
         }
 
+        private void ActivateNPCs() {
+            if (_NPCsPrevious != null && _NPCsPrevious.Length > 0 && _NPCsPrevious != _NPCsAround) {
+                for (var i = 0; i < _NPCsPrevious.Length; i++) {
+                    _NPCsPrevious[i].transform.parent.GetComponent<NpcIntellect>().isEnabled = false;
+                }
+            }
+
+            if (_NPCsAround.Length > 0) {
+                for (var i = 0; i < _NPCsAround.Length; i++) {
+                    _NPCsAround[i].transform.parent.GetComponent<NpcIntellect>().isEnabled = true;
+                }
+            }
+            _NPCsPrevious = _NPCsAround;
+        }
+        
+        private void FixedUpdate() {
+            _NPCsAround = Physics.OverlapSphere(transform.position, npcActivationRadius, enemiesMask);
+        }
+
         private void Awake() {
             coneRadarSystem = new ConeRadarSystem();
             circleRadar = new CircleRadarSystem();
@@ -71,6 +97,7 @@ namespace Characters.Player
             NavMeshController = new NavMeshController(GetComponent<NavMeshAgent>());
             StartCoroutine(InitJoystick());
             GetComponent<RangedAttacker>().enabled = false;
+            _NPCsAround = new Collider[20];
         }
 
         private void Start() {
@@ -115,7 +142,6 @@ namespace Characters.Player
                 if (npc != null) {
                     NavMeshController.LookAt(transform, npc.transform.position);
                     animatorController.OnAttackRanged();
-                    Debug.Log($"HIT {npc.npcObject.name}");
                 }
             }
         }
@@ -137,6 +163,7 @@ namespace Characters.Player
             animatorController.OnMove(_inputDirections.magnitude, playerObject.Energy.CurrentPoints);
             
             inventory.UpdateItems();
+            ActivateNPCs();
         }
 
         private IEnumerator InitJoystick() {

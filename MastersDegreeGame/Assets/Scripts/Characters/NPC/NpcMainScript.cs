@@ -37,10 +37,6 @@ namespace Characters.NPC
                 var choices = context.GetParameter(picker.evaluatedParamName) as List<Vector3>;
                 var owner = context.owner as NpcMainScript;
                 if (pick.SelectorIdx != -1) {
-                    string a = "";
-                    foreach (var choice in choices) {
-                        a += " " + choice;
-                    }
                     owner._agent.SetDestination(choices[pick.SelectorIdx]);
                 }
             }

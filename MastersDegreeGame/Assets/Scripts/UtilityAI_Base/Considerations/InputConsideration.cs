@@ -13,15 +13,15 @@ namespace UtilityAI_Base.Considerations
             var pick = new List<float>();
             if (evaluatedContextVariable != AiContextVariable.None) {
                 if (context.GetParameter(evaluatedContextVariable) is List<float> evaluatedParams) {
-                    foreach (var eval in evaluatedParams) {
-                        pick.Add(EvaluateAt(eval));
+                    for (var i = 0; i < evaluatedParams.Count; i++) {
+                        pick.Add(EvaluateAt( evaluatedParams[i]));
                     }
                 }
                 else {
                     if (context.GetParameter(evaluatedContextVariable) is float evaluatedParam) {
                         pick = new List<float>();
                         var score = EvaluateAt(evaluatedParam);
-                        for (int i = 0; i < len; i++) {
+                        for (var i = 0; i < len; i++) {
                             pick.Add(score);
                         }
                     }

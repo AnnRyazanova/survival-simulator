@@ -7,6 +7,7 @@ using Characters.Player;
 using Prefabs.Monsters.Spider.AI;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Profiling;
 using UtilityAI_Base.Actions;
 using UtilityAI_Base.Actions.Base;
 using UtilityAI_Base.Contexts;
@@ -22,6 +23,8 @@ namespace UtilityAI_Base.Intellect
     {
         #region Public members
 
+        public bool isEnabled = false;
+        
         public ActionSelectorType actionSelectorType;
         public ActionSelectorType fallbackSelectorType;
 
@@ -73,25 +76,25 @@ namespace UtilityAI_Base.Intellect
         }
 
         private void Update() {
-            if (Time.time >= _lastUpdated) {
-                _lastUpdated = Time.time + 1f / _updateTimesPerSecond;
-
+            if (Time.time >= _lastUpdated && isEnabled) {
                 // Update context
                 Sense();
-                Debug.Log("===============================================");
+
                 // Think about next action to be taken
                 Think();
-                Debug.Log("===============================================");
 
                 // Perform selected action
                 Act();
+                _lastUpdated = Time.time + 1f / _updateTimesPerSecond;
             }
         }
 
         #region Intellect methods
 
         private void Sense() {
+            Profiler.BeginSample("CTX UPDATE");
             _context.UpdateContext();
+            Profiler.EndSample();
         }
 
         private void SetCurrentInCooldown() => modifier = 0f;
@@ -107,6 +110,7 @@ namespace UtilityAI_Base.Intellect
         }
 
         private void Think() {
+            Profiler.BeginSample("THINK UPDATE");
             UtilityPick action = selector.Select(_context, actions);
             if (_currentAction == null) {
                 if (action != null) _currentAction = action;
@@ -133,13 +137,13 @@ namespace UtilityAI_Base.Intellect
             }
 
             _lastAction = _currentAction;
+            Profiler.EndSample();
         }
 
         private void Act() {
             if (_currentAction != null) {
                 _currentAction.UtilityAction.Execute(_context, _currentAction);
                 StartCoroutine(AddInertiaToCurrent());
-                // Debug.Log(name + ": " +_currentAction.UtilityAction.description + " " + _currentAction.Score);
             }
         }
 
