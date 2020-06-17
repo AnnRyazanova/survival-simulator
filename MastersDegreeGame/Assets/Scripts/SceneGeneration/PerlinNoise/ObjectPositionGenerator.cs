@@ -5,109 +5,67 @@ using UnityEngine;
 
 public class ObjectPositionGenerator : MonoBehaviour
 {
-    public void Generate(Vector3[] meshVertices)
-    {
-        string[] elements = { "Carrot", "Branch_5", "Mushroom", "Branch_5", "Rock Type2 02", "Cover", "Spider"};
-        string[] elements1 = { "Carrot", "Branch_5", "Mushroom", "Branch_5", "Rock Type2 02", "Cover",};
-        Debug.Log("begin forest");
-        string elem;
-        int count_spider = 0;
-        for (int i = 0; i < meshVertices.Length; i+=50)
-        {
-            
-            elem = elements[Random.Range(1, elements.Length)];
-            if (elem == "Spider")
-            {
-                count_spider++;
-            }
 
-            if (count_spider > 5)
+    private float neighborRadius = 2;
+    public void GeneratePerlin(Vector3[] meshVertices)
+    {
+        var noiseMap = Noise.GenerateNoiseMap(100, 100, 
+                                23, 10, 4, .5f, 2, 
+                                new Vector2(0,0),  Noise.NormalizeMode.Local);
+
+        float mapWidth = 100;
+        float mapHeight = 100;
+        int vertexIndex = 1;
+        for (int x = 0; x < mapWidth; x++)
+        {
+            for (int z = 0; z < mapHeight; z++)
             {
-                elem = elements1[Random.Range(1, elements1.Length)];
+                
+                float objectValue = noiseMap [z, x];
+                
+                int neighborZBegin = (int)Mathf.Max (0, z - this.neighborRadius);
+                int neighborZEnd = (int)Mathf.Min (mapHeight-1, z + this.neighborRadius);
+                int neighborXBegin = (int)Mathf.Max (0, x - this.neighborRadius);
+                int neighborXEnd = (int)Mathf.Min (mapWidth-1, x + this.neighborRadius);
+                float maxValue = 0f;
+                for (int neighborZ = neighborZBegin; neighborZ <= neighborZEnd; neighborZ++) {
+                    for (int neighborX = neighborXBegin; neighborX <= neighborXEnd; neighborX++) {
+                        float neighborValue = noiseMap [neighborZ, neighborX];
+                        // saves the maximum tree noise value in the radius
+                        if (neighborValue >= maxValue) {
+                            maxValue = neighborValue;
+                        }
+                    }
+                }
+                if ((objectValue == maxValue)&&(vertexIndex <= meshVertices.Length)) {
+                    var @params = new PrefabsCreator.PrefabParams
+                    {
+                        scale = new Vector3(50,50,50),
+                        position = new Vector3(meshVertices[vertexIndex].x, meshVertices[vertexIndex].y + 1.5f, meshVertices[vertexIndex].z),
+                        parent = transform
+                    };
+                    PrefabsCreator.Get.LoadPrefab("Environment/oak", @params);
+                }
+                vertexIndex+=3;
             }
+        }
+    }
+
+    public void GenerateSpan(Vector3[] meshVertices)
+    {
+        for (int i = 0; i < meshVertices.Length; i+=300)
+        {
             var @params = new PrefabsCreator.PrefabParams
             {
-                scale = elem == "Spider"? new Vector3(0.35f, .35f, .35f): Vector3.one,
-                position = meshVertices[i],
+                scale = new Vector3(50,50,50),
+                position = new Vector3(meshVertices[i].x, meshVertices[i].y + 1.5f, meshVertices[i].z),
                 parent = transform
-                
             };
-            PrefabsCreator.Get.LoadPrefab("Environment/" + elem, @params);
-
+            PrefabsCreator.Get.LoadPrefab("Environment/oak", @params);
         }
     }
 }
 
 
 
-/*
-// Loop through all the positions within our forest boundary.
-for (int x = 0; x < forestSize; x += elementSpacing) {
-    for (int z = 0; z < forestSize; z += elementSpacing) {
-        if (_MapGenerator.getMapData().HeightMap[x, z] > 0.1)
-        {
-            for (int i = 0; i < elements.Length; i++) {
 
-                // Get the current element.
-                Element element = elements[i];
-                
-                // Check if the element can be placed.
-                if (element.CanPlace()) {
-                    Debug.Log("if element can place");
-                    // Add random elements to element placement.
-                    Vector3 position = new Vector3(x, _MapGenerator.getMapData().HeightMap[x, z], z);
-                    Vector3 offset = new Vector3(Random.Range(-0.75f, 0.75f), 0f, Random.Range(-0.75f, 0.75f));
-                    Vector3 rotation = new Vector3(Random.Range(0, 5f), Random.Range(0, 360f), Random.Range(0, 5f));
-                    Vector3 scale = Vector3.one * Random.Range(0.75f, 1.25f);
-
-                    // Instantiate and place element in world.
-                    GameObject newElement = Instantiate(element.GetRandom());
-                    newElement.transform.SetParent(transform);
-                    newElement.transform.position = position + offset;
-                    newElement.transform.eulerAngles = rotation;
-                    newElement.transform.localScale = scale;
-
-                    // Break out of this for loop to ensure we don't place another element at this position.
-                    break;
-
-                }
-
-            }
-        }
-
-    }
-}*/
-      /*  Debug.Log("end");
-    }
-
-}
-
-[System.Serializable]
-public class Element {
-
-    public string name;
-    [Range(1, 10)]
-    public int density;
-
-    public GameObject[] prefabs;
-
-    public bool CanPlace () {
-
-        // Validation check to see if element can be placed. More detailed calculations can go here, such as checking perlin noise.
-        
-        if (Random.Range(0, 10) < density)
-            return true;
-        else
-            return false;
-
-    }
-
-    public GameObject GetRandom() {
-
-        // Return a random GameObject prefab from the prefabs array.
-
-        return prefabs[Random.Range(0, prefabs.Length)];
-
-    }
-
-}*/
