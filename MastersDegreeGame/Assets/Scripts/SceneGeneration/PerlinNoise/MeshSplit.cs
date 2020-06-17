@@ -189,7 +189,7 @@ public class MeshSplit : MonoBehaviour
         {
             Debug.Log("if forest");
             var go = newObject.AddComponent<ObjectPositionGenerator>();
-            go.Generate(mesh.vertices);
+            go.GeneratePerlin(mesh.vertices);
         }
         
         MeshFilter newMeshFilter = newObject.GetComponent<MeshFilter>();
