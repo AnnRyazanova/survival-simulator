@@ -1851,9 +1851,14 @@ MonoBehaviour:
   hitDelaySeconds: 0.1
   circleRadar:
     searchRadius: 0
+  npcActivationRadius: 30
+  foundNpcCount: 0
   pickableMask:
     serializedVersion: 2
     m_Bits: 2048
+  enemiesMask:
+    serializedVersion: 2
+    m_Bits: 4096
   isRangedEquipped: 0
 --- !u!136 &3989612077218997873
 CapsuleCollider:

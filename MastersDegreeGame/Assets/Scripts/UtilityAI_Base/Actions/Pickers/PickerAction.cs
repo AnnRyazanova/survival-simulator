@@ -20,29 +20,29 @@ namespace UtilityAI_Base.Actions.Pickers
 
         public List<InputConsideration> considerations = new List<InputConsideration>();
 
-        private List<float> GetSumScores(AiContext context) {
-            List<float> averageScores = null;
+        private float[] GetSumScores(AiContext context) {
             var vetoIndices = new List<int>();
             var count = (context.GetParameter(evaluatedParamName) as IEnumerable).Cast<object>().Count();
+            if (count == 0) return null;
+            var averageScores = new float[count];
+            
             foreach (var inputConsideration in considerations) {
                 if (!inputConsideration.isEnabled) continue;
                 var scores = inputConsideration.Evaluate(context, count);
-                if(averageScores == null) averageScores = new List<float>(new float[scores.Count]);
                 for (var i = 0; i < scores.Count; i++) {
                     var score = Mathf.Round(scores[i] * 1e+3f) / 1e+3f;
                     if (score == 0 && inputConsideration.canApplyVeto) {
                         vetoIndices.Add(i);
+                        continue;
                     }
                     averageScores[i] += score;
                 }
             }
 
-            if (averageScores != null) {
-                foreach (var vetoIndex in vetoIndices) {
-                    averageScores[vetoIndex] = 0f;
-                }
+            foreach (var vetoIndex in vetoIndices) {
+                averageScores[vetoIndex] = 0f;
             }
-           
+
             return averageScores;
         }
         
@@ -53,10 +53,11 @@ namespace UtilityAI_Base.Actions.Pickers
                     var considerationsCount = (float)considerations.Count;
                     var maxIdx = -1;
                     var maxAvg = 0f;
-                    for (var i = 0; i < averageScores.Count; i++) {
-                        averageScores[i] /= considerationsCount;
-                        if (averageScores[i] > maxAvg) {
-                            maxAvg = averageScores[i];
+                    for (var i = 0; i < averageScores.Length; i++) {
+                        var score = averageScores[i];
+                        score /= considerationsCount;
+                        if (score > maxAvg) {
+                            maxAvg = score;
                             maxIdx = i;
                         }
                     }

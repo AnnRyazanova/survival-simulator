@@ -80,11 +80,11 @@ namespace Characters.Systems.Combat
             var instance = Instantiate((_rangedWeapon.item as ThrowingWeaponItem)?.weaponPrefab,
                 throwingPoint.transform.position, instanceAngles);
             instance.transform.parent = throwingPoint.transform;
-            var rigidbody = instance.GetComponent<Rigidbody>();
+            var instanceRigidbody = instance.GetComponent<Rigidbody>();
 
-            rigidbody.isKinematic = false;
+            instanceRigidbody.isKinematic = false;
 
-            rigidbody.AddForce((position - _myPosition).normalized * projectileSpeed,
+            instanceRigidbody.AddForce((position - _myPosition).normalized * projectileSpeed,
                 ForceMode.Impulse);
             
             _rangedWeapon.ReduceAmount(1);
@@ -105,7 +105,6 @@ namespace Characters.Systems.Combat
                             var parent = _directRay.collider.gameObject.transform.parent;
                             var npc = parent != null ? parent.GetComponent<NpcMainScript>() : null;
                             if (npc != null) {
-                                Debug.Log(npc.name);
                                 StartCoroutine(AttackRanged(npc.npcObject));
                             }
                         }
